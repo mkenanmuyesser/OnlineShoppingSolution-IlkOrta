@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "OnlineUsers";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<div class="portlet light bordered blue-oleo">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="" class="fullscreen" data-original-title="" title="">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-server font-dark"></i>
+                    <span class="caption-subject font-dark bold uppercase">&nbsp;</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse" data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">Rol</label>
+                                <select id="" class="form-control select2">
+                                    <option>Tümü</option>
+                                    <option>Misafir</option>
+                                    <option>Admin</option>
+                                    <option>Perakende Müşteri</option>
+                                    <option>Şirket Müşteri</option>
+                                </select>
+                            </div>                           
+                        </div>
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="submit" class="btn blue-madison">
+                                    Ara
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button type="button" class="btn green-meadow">
+                                    Temizle
+                                    <i class="fa fa-recycle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="fa fa-database font-dark"></i>
+                    <span class="caption-subject bold uppercase">&nbsp;</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table id="sample_1" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10%">Kullanıcı Adı</th>
+                            <th width="10%">E-posta</th>
+                            <th width="10%">Son Giriş Tarihi</th>
+                            <th width="10%">Üyelik Tarihi</th>
+                            <th width="20%">Roller</th>
+                            <th width="10%">Alışveriş Sayısı</th>
+                            <th width="10%">Alışveriş Toplamı</th>
+                            <th width="10%">Sepetindeki Ürünler</th>
+                            <th width="10%">Aktif Mi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kullanıcı Adı</td>
+                            <td>E-posta</td>
+                            <td>01/01/2017 12.00</td>
+                            <td>01/01/2017 12.00</td>
+                            <td>Admin<br />Misafir</td>
+                            <td>1</td>
+                            <td>49,99</td>
+                            <td>
+                                <div class="text-center">
+                                    <a href="#mdlDialog" role="button" class="btn blue input-sm" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="icheck-inline">
+                                    <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="Banka" EntityType="DbModel.Banka" />
+    <EntitySet Name="HesapNumarasi" EntityType="DbModel.HesapNumarasi" />
+    <EntitySet Name="KrediKartiTip" EntityType="DbModel.KrediKartiTip" />
+    <EntitySet Name="SanalPos" EntityType="DbModel.SanalPos" />
+    <EntitySet Name="Taksit" EntityType="DbModel.Taksit" />
+    <EntitySet Name="sysdiagrams" EntityType="DbModel.sysdiagrams" />
+    <EntitySet Name="Cache" EntityType="DbModel.Cache" />
+    <EntitySet Name="EpostaKuyrugu" EntityType="DbModel.EpostaKuyrugu" />
+    <EntitySet Name="IcerikAyar" EntityType="DbModel.IcerikAyar" />
+    <EntitySet Name="IpAdres" EntityType="DbModel.IpAdres" />
+    <EntitySet Name="Log" EntityType="DbModel.Log" />
+    <EntitySet Name="SmsKuyrugu" EntityType="DbModel.SmsKuyrugu" />
+    <EntitySet Name="Adres" EntityType="DbModel.Adres" />
+    <EntitySet Name="AdresIl" EntityType="DbModel.AdresIl" />
+    <EntitySet Name="AdresIlce" EntityType="DbModel.AdresIlce" />
+    <EntitySet Name="FaturaTip" EntityType="DbModel.FaturaTip" />
+    <EntitySet Name="Gonderim" EntityType="DbModel.Gonderim" />
+    <EntitySet Name="IadeTalep" EntityType="DbModel.IadeTalep" />
+    <EntitySet Name="IadeTalepDurumTip" EntityType="DbModel.IadeTalepDurumTip" />
+    <EntitySet Name="IadeTalepIstekTip" EntityType="DbModel.IadeTalepIstekTip" />
+    <EntitySet Name="IadeTalepNedenTip" EntityType="DbModel.IadeTalepNedenTip" />
+    <EntitySet Name="Iskonto" EntityType="DbModel.Iskonto" />
+    <EntitySet Name="IskontoKategori" EntityType="DbModel.IskontoKategori" />
+    <EntitySet Name="IskontoKullanimHareket" EntityType="DbModel.IskontoKullanimHareket" />
+    <EntitySet Name="IskontoMarka" EntityType="DbModel.IskontoMarka" />
+    <EntitySet Name="IskontoRol" EntityType="DbModel.IskontoRol" />
+    <EntitySet Name="IskontoSirket" EntityType="DbModel.IskontoSirket" />
+    <EntitySet Name="IskontoTip" EntityType="DbModel.IskontoTip" />
+    <EntitySet Name="IskontoUrun" EntityType="DbModel.IskontoUrun" />
+    <EntitySet Name="IstekListesi" EntityType="DbModel.IstekListesi" />
+    <EntitySet Name="KatmanliFiyat" EntityType="DbModel.KatmanliFiyat" />
+    <EntitySet Name="KomisyonIskontoTip" EntityType="DbModel.KomisyonIskontoTip" />
+    <EntitySet Name="OdemeDurumTip" EntityType="DbModel.OdemeDurumTip" />
+    <EntitySet Name="Sepet" EntityType="DbModel.Sepet" />
+    <EntitySet Name="SepetTip" EntityType="DbModel.SepetTip" />
+    <EntitySet Name="Siparis" EntityType="DbModel.Siparis" />
+    <EntitySet Name="SiparisDetay" EntityType="DbModel.SiparisDetay" />
+    <EntitySet Name="SiparisDurumTip" EntityType="DbModel.SiparisDurumTip" />
+    <EntitySet Name="SiparisGonderim" EntityType="DbModel.SiparisGonderim" />
+    <EntitySet Name="SiparisHareket" EntityType="DbModel.SiparisHareket" />
+    <EntitySet Name="SiparisOdemeTip" EntityType="DbModel.SiparisOdemeTip" />
+    <EntitySet Name="TeslimZamani" EntityType="DbModel.TeslimZamani" />
+    <EntitySet Name="Anket" EntityType="DbModel.Anket" />
+    <EntitySet Name="AnketCevap" EntityType="DbModel.AnketCevap" />
+    <EntitySet Name="AnketSoru" EntityType="DbModel.AnketSoru" />
+    <EntitySet Name="Banner" EntityType="DbModel.Banner" />
+    <EntitySet Name="BannerTip" EntityType="DbModel.BannerTip" />
+    <EntitySet Name="HaberBlog" EntityType="DbModel.HaberBlog" />
+    <EntitySet Name="HaberBlogResim" EntityType="DbModel.HaberBlogResim" />
+    <EntitySet Name="HaberBlogTip" EntityType="DbModel.HaberBlogTip" />
+    <EntitySet Name="HaberBlogYorum" EntityType="DbModel.HaberBlogYorum" />
+    <EntitySet Name="HaberBulteniAbonelik" EntityType="DbModel.HaberBulteniAbonelik" />
+    <EntitySet Name="Kampanya" EntityType="DbModel.Kampanya" />
+    <EntitySet Name="KampanyaResim" EntityType="DbModel.KampanyaResim" />
+    <EntitySet Name="KisaLink" EntityType="DbModel.KisaLink" />
+    <EntitySet Name="SSS" EntityType="DbModel.SSS" />
+    <EntitySet Name="IlgiliUrun" EntityType="DbModel.IlgiliUrun" />
+    <EntitySet Name="Kategori" EntityType="DbModel.Kategori" />
+    <EntitySet Name="KategoriOzellik" EntityType="DbModel.KategoriOzellik" />
+    <EntitySet Name="Marka" EntityType="DbModel.Marka" />
+    <EntitySet Name="Nitelik" EntityType="DbModel.Nitelik" />
+    <EntitySet Name="NitelikGrup" EntityType="DbModel.NitelikGrup" />
+    <EntitySet Name="Olcu" EntityType="DbModel.Olcu" />
+    <EntitySet Name="OlcuTip" EntityType="DbModel.OlcuTip" />
+    <EntitySet Name="Ozellik" EntityType="DbModel.Ozellik" />
+    <EntitySet Name="OzellikTip" EntityType="DbModel.OzellikTip" />
+    <EntitySet Name="Paket" EntityType="DbModel.Paket" />
+    <EntitySet Name="PaketKategori" EntityType="DbModel.PaketKategori" />
+    <EntitySet Name="PaketNitelik" EntityType="DbModel.PaketNitelik" />
+    <EntitySet Name="PaketResim" EntityType="DbModel.PaketResim" />
+    <EntitySet Name="PaketUrun" EntityType="DbModel.PaketUrun" />
+    <EntitySet Name="StokHareket" EntityType="DbModel.StokHareket" />
+    <EntitySet Name="StokHareketTip" EntityType="DbModel.StokHareketTip" />
+    <EntitySet Name="Urun" EntityType="DbModel.Urun" />
+    <EntitySet Name="UrunKategori" EntityType="DbModel.UrunKategori" />
+    <EntitySet Name="UrunNitelik" EntityType="DbModel.UrunNitelik" />
+    <EntitySet Name="UrunOzellik" EntityType="DbModel.UrunOzellik" />
+    <EntitySet Name="UrunResim" EntityType="DbModel.UrunResim" />
+    <EntitySet Name="UrunResimTip" EntityType="DbModel.UrunResimTip" />
+    <EntitySet Name="UrunYorum" EntityType="DbModel.UrunYorum" />
+    <EntitySet Name="Vergi" EntityType="DbModel.Vergi" />
+    <EntitySet Name="Kullanici" EntityType="DbModel.Kullanici" />
+    <EntitySet Name="KullaniciAdres" EntityType="DbModel.KullaniciAdres" />
+    <EntitySet Name="KullaniciDetay" EntityType="DbModel.KullaniciDetay" />
+    <EntitySet Name="KullaniciRol" EntityType="DbModel.KullaniciRol" />
+    <EntitySet Name="KullaniciYetki" EntityType="DbModel.KullaniciYetki" />
+    <EntitySet Name="Rol" EntityType="DbModel.Rol" />
+    <EntitySet Name="Sirket" EntityType="DbModel.Sirket" />
+    <EntitySet Name="Yetki" EntityType="DbModel.Yetki" />
+    <AssociationSet Name="FK_HesapNumarasi_Banka" Association="DbModel.FK_HesapNumarasi_Banka">
+      <End Role="Banka" EntitySet="Banka" />
+      <End Role="HesapNumarasi" EntitySet="HesapNumarasi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanalPos_Banka" Association="DbModel.FK_SanalPos_Banka">
+      <End Role="Banka" EntitySet="Banka" />
+      <End Role="SanalPos" EntitySet="SanalPos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Banka" Association="DbModel.FK_Siparis_Banka">
+      <End Role="Banka" EntitySet="Banka" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Taksit_Banka" Association="DbModel.FK_Taksit_Banka">
+      <End Role="Banka" EntitySet="Banka" />
+      <End Role="Taksit" EntitySet="Taksit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_KrediKartiTip" Association="DbModel.FK_Siparis_KrediKartiTip">
+      <End Role="KrediKartiTip" EntitySet="KrediKartiTip" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adres_AdresIl" Association="DbModel.FK_Adres_AdresIl">
+      <End Role="AdresIl" EntitySet="AdresIl" />
+      <End Role="Adres" EntitySet="Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adres_AdresIlce" Association="DbModel.FK_Adres_AdresIlce">
+      <End Role="AdresIlce" EntitySet="AdresIlce" />
+      <End Role="Adres" EntitySet="Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adres_FaturaTip" Association="DbModel.FK_Adres_FaturaTip">
+      <End Role="FaturaTip" EntitySet="FaturaTip" />
+      <End Role="Adres" EntitySet="Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciAdres_Adres" Association="DbModel.FK_KullaniciAdres_Adres">
+      <End Role="Adres" EntitySet="Adres" />
+      <End Role="KullaniciAdres" EntitySet="KullaniciAdres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Adres" Association="DbModel.FK_Siparis_Adres">
+      <End Role="Adres" EntitySet="Adres" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Adres1" Association="DbModel.FK_Siparis_Adres1">
+      <End Role="Adres" EntitySet="Adres" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdresIlce_AdresIl" Association="DbModel.FK_AdresIlce_AdresIl">
+      <End Role="AdresIl" EntitySet="AdresIl" />
+      <End Role="AdresIlce" EntitySet="AdresIlce" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisGonderim_Gonderim" Association="DbModel.FK_SiparisGonderim_Gonderim">
+      <End Role="Gonderim" EntitySet="Gonderim" />
+      <End Role="SiparisGonderim" EntitySet="SiparisGonderim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IadeTalep_IadeTalepDurumTip" Association="DbModel.FK_IadeTalep_IadeTalepDurumTip">
+      <End Role="IadeTalepDurumTip" EntitySet="IadeTalepDurumTip" />
+      <End Role="IadeTalep" EntitySet="IadeTalep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IadeTalep_IadeTalepIstekTip" Association="DbModel.FK_IadeTalep_IadeTalepIstekTip">
+      <End Role="IadeTalepIstekTip" EntitySet="IadeTalepIstekTip" />
+      <End Role="IadeTalep" EntitySet="IadeTalep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IadeTalep_IadeTalepNedenTip" Association="DbModel.FK_IadeTalep_IadeTalepNedenTip">
+      <End Role="IadeTalepNedenTip" EntitySet="IadeTalepNedenTip" />
+      <End Role="IadeTalep" EntitySet="IadeTalep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IadeTalep_SiparisDetay" Association="DbModel.FK_IadeTalep_SiparisDetay">
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+      <End Role="IadeTalep" EntitySet="IadeTalep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimKategori_Indirim" Association="DbModel.FK_IndirimKategori_Indirim">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoKategori" EntitySet="IskontoKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimKullanim_Indirim" Association="DbModel.FK_IndirimKullanim_Indirim">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoKullanimHareket" EntitySet="IskontoKullanimHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimUrun_Indirim" Association="DbModel.FK_IndirimUrun_Indirim">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoUrun" EntitySet="IskontoUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoMarka_Iskonto" Association="DbModel.FK_IskontoMarka_Iskonto">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoMarka" EntitySet="IskontoMarka" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoRol_Iskonto" Association="DbModel.FK_IskontoRol_Iskonto">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoRol" EntitySet="IskontoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoSirket_Iskonto" Association="DbModel.FK_IskontoSirket_Iskonto">
+      <End Role="Iskonto" EntitySet="Iskonto" />
+      <End Role="IskontoSirket" EntitySet="IskontoSirket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimKategori_Kategori" Association="DbModel.FK_IndirimKategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="IskontoKategori" EntitySet="IskontoKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimKullanim_Siparis" Association="DbModel.FK_IndirimKullanim_Siparis">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="IskontoKullanimHareket" EntitySet="IskontoKullanimHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoMarka_Marka" Association="DbModel.FK_IskontoMarka_Marka">
+      <End Role="Marka" EntitySet="Marka" />
+      <End Role="IskontoMarka" EntitySet="IskontoMarka" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoRol_Rol" Association="DbModel.FK_IskontoRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="IskontoRol" EntitySet="IskontoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IskontoSirket_Sirket" Association="DbModel.FK_IskontoSirket_Sirket">
+      <End Role="Sirket" EntitySet="Sirket" />
+      <End Role="IskontoSirket" EntitySet="IskontoSirket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IndirimUrun_Urun" Association="DbModel.FK_IndirimUrun_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="IskontoUrun" EntitySet="IskontoUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IstekListesi_Kullanici" Association="DbModel.FK_IstekListesi_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="IstekListesi" EntitySet="IstekListesi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IstekListesi_Urun" Association="DbModel.FK_IstekListesi_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="IstekListesi" EntitySet="IstekListesi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisOdemeTip_KomisyonIskontoTip" Association="DbModel.FK_SiparisOdemeTip_KomisyonIskontoTip">
+      <End Role="KomisyonIskontoTip" EntitySet="KomisyonIskontoTip" />
+      <End Role="SiparisOdemeTip" EntitySet="SiparisOdemeTip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_OdemeDurumTip" Association="DbModel.FK_Siparis_OdemeDurumTip">
+      <End Role="OdemeDurumTip" EntitySet="OdemeDurumTip" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_Kullanici" Association="DbModel.FK_Sepet_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sepet" EntitySet="Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_SepetTip" Association="DbModel.FK_Sepet_SepetTip">
+      <End Role="SepetTip" EntitySet="SepetTip" />
+      <End Role="Sepet" EntitySet="Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_Urun" Association="DbModel.FK_Sepet_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Sepet" EntitySet="Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Kullanici" Association="DbModel.FK_Siparis_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_SiparisDurumTip" Association="DbModel.FK_Siparis_SiparisDurumTip">
+      <End Role="SiparisDurumTip" EntitySet="SiparisDurumTip" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_SiparisOdemeTip" Association="DbModel.FK_Siparis_SiparisOdemeTip">
+      <End Role="SiparisOdemeTip" EntitySet="SiparisOdemeTip" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_Siparis" Association="DbModel.FK_SiparisDetay_Siparis">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisHareket_Siparis" Association="DbModel.FK_SiparisHareket_Siparis">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="SiparisHareket" EntitySet="SiparisHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_Siparis" Association="DbModel.FK_StokHareket_Siparis">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="StokHareket" EntitySet="StokHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_Urun" Association="DbModel.FK_SiparisDetay_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisGonderim_SiparisDetay" Association="DbModel.FK_SiparisGonderim_SiparisDetay">
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+      <End Role="SiparisGonderim" EntitySet="SiparisGonderim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisGonderim_TeslimZamani" Association="DbModel.FK_SiparisGonderim_TeslimZamani">
+      <End Role="TeslimZamani" EntitySet="TeslimZamani" />
+      <End Role="SiparisGonderim" EntitySet="SiparisGonderim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnketSoru_Anket" Association="DbModel.FK_AnketSoru_Anket">
+      <End Role="Anket" EntitySet="Anket" />
+      <End Role="AnketSoru" EntitySet="AnketSoru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnketCevap_AnketSoru" Association="DbModel.FK_AnketCevap_AnketSoru">
+      <End Role="AnketSoru" EntitySet="AnketSoru" />
+      <End Role="AnketCevap" EntitySet="AnketCevap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnketCevap_Kullanici" Association="DbModel.FK_AnketCevap_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="AnketCevap" EntitySet="AnketCevap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banner_BannerTip" Association="DbModel.FK_Banner_BannerTip">
+      <End Role="BannerTip" EntitySet="BannerTip" />
+      <End Role="Banner" EntitySet="Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaberYorum_Haber" Association="DbModel.FK_HaberYorum_Haber">
+      <End Role="HaberBlog" EntitySet="HaberBlog" />
+      <End Role="HaberBlogYorum" EntitySet="HaberBlogYorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KampanyaResim_Kampanya" Association="DbModel.FK_KampanyaResim_Kampanya">
+      <End Role="Kampanya" EntitySet="Kampanya" />
+      <End Role="KampanyaResim" EntitySet="KampanyaResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlgiliUrun_Urun" Association="DbModel.FK_IlgiliUrun_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="IlgiliUrun" EntitySet="IlgiliUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlgiliUrun_Urun1" Association="DbModel.FK_IlgiliUrun_Urun1">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="IlgiliUrun" EntitySet="IlgiliUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kategori_Kategori" Association="DbModel.FK_Kategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Kategori1" EntitySet="Kategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KategoriOzellik_Kategori" Association="DbModel.FK_KategoriOzellik_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="KategoriOzellik" EntitySet="KategoriOzellik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketKategori_Kategori" Association="DbModel.FK_PaketKategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="PaketKategori" EntitySet="PaketKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunKategori_Kategori" Association="DbModel.FK_UrunKategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="UrunKategori" EntitySet="UrunKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KategoriOzellik_Ozellik" Association="DbModel.FK_KategoriOzellik_Ozellik">
+      <End Role="Ozellik" EntitySet="Ozellik" />
+      <End Role="KategoriOzellik" EntitySet="KategoriOzellik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Uretici" Association="DbModel.FK_Urun_Uretici">
+      <End Role="Marka" EntitySet="Marka" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nitelik_NitelikGrup" Association="DbModel.FK_Nitelik_NitelikGrup">
+      <End Role="NitelikGrup" EntitySet="NitelikGrup" />
+      <End Role="Nitelik" EntitySet="Nitelik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketNitelik_Nitelik" Association="DbModel.FK_PaketNitelik_Nitelik">
+      <End Role="Nitelik" EntitySet="Nitelik" />
+      <End Role="PaketNitelik" EntitySet="PaketNitelik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunNitelik_Nitelik1" Association="DbModel.FK_UrunNitelik_Nitelik1">
+      <End Role="Nitelik" EntitySet="Nitelik" />
+      <End Role="UrunNitelik" EntitySet="UrunNitelik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Paket_NitelikGrup" Association="DbModel.FK_Paket_NitelikGrup">
+      <End Role="NitelikGrup" EntitySet="NitelikGrup" />
+      <End Role="Paket" EntitySet="Paket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_NitelikGrup" Association="DbModel.FK_Urun_NitelikGrup">
+      <End Role="NitelikGrup" EntitySet="NitelikGrup" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ozellik_OzellikTip" Association="DbModel.FK_Ozellik_OzellikTip">
+      <End Role="OzellikTip" EntitySet="OzellikTip" />
+      <End Role="Ozellik" EntitySet="Ozellik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunOzellik_Ozellik" Association="DbModel.FK_UrunOzellik_Ozellik">
+      <End Role="Ozellik" EntitySet="Ozellik" />
+      <End Role="UrunOzellik" EntitySet="UrunOzellik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Paket_Vergi" Association="DbModel.FK_Paket_Vergi">
+      <End Role="Vergi" EntitySet="Vergi" />
+      <End Role="Paket" EntitySet="Paket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketKategori_Paket" Association="DbModel.FK_PaketKategori_Paket">
+      <End Role="Paket" EntitySet="Paket" />
+      <End Role="PaketKategori" EntitySet="PaketKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketNitelik_Paket" Association="DbModel.FK_PaketNitelik_Paket">
+      <End Role="Paket" EntitySet="Paket" />
+      <End Role="PaketNitelik" EntitySet="PaketNitelik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketResim_Paket" Association="DbModel.FK_PaketResim_Paket">
+      <End Role="Paket" EntitySet="Paket" />
+      <End Role="PaketResim" EntitySet="PaketResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketUrun_Paket" Association="DbModel.FK_PaketUrun_Paket">
+      <End Role="Paket" EntitySet="Paket" />
+      <End Role="PaketUrun" EntitySet="PaketUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaketUrun_Urun" Association="DbModel.FK_PaketUrun_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="PaketUrun" EntitySet="PaketUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_StokHareketTip" Association="DbModel.FK_StokHareket_StokHareketTip">
+      <End Role="StokHareketTip" EntitySet="StokHareketTip" />
+      <End Role="StokHareket" EntitySet="StokHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_Urun" Association="DbModel.FK_StokHareket_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="StokHareket" EntitySet="StokHareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resim_Urun" Association="DbModel.FK_Resim_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunResim" EntitySet="UrunResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Vergi" Association="DbModel.FK_Urun_Vergi">
+      <End Role="Vergi" EntitySet="Vergi" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunKategori_Urun" Association="DbModel.FK_UrunKategori_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunKategori" EntitySet="UrunKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunNitelik_Urun" Association="DbModel.FK_UrunNitelik_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunNitelik" EntitySet="UrunNitelik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunOzellik_Urun" Association="DbModel.FK_UrunOzellik_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunOzellik" EntitySet="UrunOzellik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunYorum_Urun" Association="DbModel.FK_UrunYorum_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunYorum" EntitySet="UrunYorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunResim_UrunResimTip" Association="DbModel.FK_UrunResim_UrunResimTip">
+      <End Role="UrunResimTip" EntitySet="UrunResimTip" />
+      <End Role="UrunResim" EntitySet="UrunResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunYorum_Kullanici" Association="DbModel.FK_UrunYorum_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="UrunYorum" EntitySet="UrunYorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciAdres_Kullanici" Association="DbModel.FK_KullaniciAdres_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="KullaniciAdres" EntitySet="KullaniciAdres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciDetay_Kullanici" Association="DbModel.FK_KullaniciDetay_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="KullaniciDetay" EntitySet="KullaniciDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciYetki_Kullanici" Association="DbModel.FK_KullaniciYetki_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="KullaniciYetki" EntitySet="KullaniciYetki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciDetay_Sirket" Association="DbModel.FK_KullaniciDetay_Sirket">
+      <End Role="Sirket" EntitySet="Sirket" />
+      <End Role="KullaniciDetay" EntitySet="KullaniciDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciYetki_Yetki" Association="DbModel.FK_KullaniciYetki_Yetki">
+      <End Role="Yetki" EntitySet="Yetki" />
+      <End Role="KullaniciYetki" EntitySet="KullaniciYetki" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Banka">
+    <Key>
+      <PropertyRef Name="BankaId" />
+    </Key>
+    <Property Name="BankaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="HesapNumarasi" Relationship="DbModel.FK_HesapNumarasi_Banka" FromRole="Banka" ToRole="HesapNumarasi" />
+    <NavigationProperty Name="SanalPos" Relationship="DbModel.FK_SanalPos_Banka" FromRole="Banka" ToRole="SanalPos" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_Banka" FromRole="Banka" ToRole="Siparis" />
+    <NavigationProperty Name="Taksit" Relationship="DbModel.FK_Taksit_Banka" FromRole="Banka" ToRole="Taksit" />
+  </EntityType>
+  <EntityType Name="HesapNumarasi">
+    <Key>
+      <PropertyRef Name="HesapNumarasiId" />
+    </Key>
+    <Property Name="HesapNumarasiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankaId" Type="Int32" Nullable="false" />
+    <Property Name="Iban" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sehir" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SubeKodu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SubeAdi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HesapNo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HesapSahibi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Banka" Relationship="DbModel.FK_HesapNumarasi_Banka" FromRole="HesapNumarasi" ToRole="Banka" />
+  </EntityType>
+  <EntityType Name="KrediKartiTip">
+    <Key>
+      <PropertyRef Name="KrediKartiTipId" />
+    </Key>
+    <Property Name="KrediKartiTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_KrediKartiTip" FromRole="KrediKartiTip" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="SanalPos">
+    <Key>
+      <PropertyRef Name="SanalPosId" />
+    </Key>
+    <Property Name="SanalPosId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankaId" Type="Int32" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ClientId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChargeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PosNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Xcip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DDDAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="DDDStoreKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Banka" Relationship="DbModel.FK_SanalPos_Banka" FromRole="SanalPos" ToRole="Banka" />
+  </EntityType>
+  <EntityType Name="Taksit">
+    <Key>
+      <PropertyRef Name="TaksitId" />
+    </Key>
+    <Property Name="TaksitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankaId" Type="Int32" Nullable="false" />
+    <Property Name="TaksitSayisi" Type="Int32" Nullable="false" />
+    <Property Name="FaizOrani" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Banka" Relationship="DbModel.FK_Taksit_Banka" FromRole="Taksit" ToRole="Banka" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Cache">
+    <Key>
+      <PropertyRef Name="CacheId" />
+    </Key>
+    <Property Name="CacheId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EpostaKuyrugu">
+    <Key>
+      <PropertyRef Name="EpostaKuyruguId" />
+    </Key>
+    <Property Name="EpostaKuyruguId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="From" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FromName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="To" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ToName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReplyTo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReplyToName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Bcc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentFilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GonderimDenemesi" Type="Int32" Nullable="false" />
+    <Property Name="GonderimTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="IcerikAyar">
+    <Key>
+      <PropertyRef Name="AyarId" />
+    </Key>
+    <Property Name="AyarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UygulamaAd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UygulamaAciklama" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SecureUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FacebookHesapUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TwitterHesapUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KeepAliveTime" Type="Int32" Nullable="false" />
+    <Property Name="ClearCacheTime" Type="Int32" Nullable="false" />
+    <Property Name="CookieTime" Type="Int32" Nullable="false" />
+    <Property Name="SslAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="SirketAd" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SirketAciklama" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="SirketAdres" Type="String" Nullable="false" MaxLength="750" FixedLength="false" Unicode="false" />
+    <Property Name="SirketTelefon1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SirketTelefon2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SirketFax1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SirketFax2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SirketEposta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SirketMapCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SirketHakkimizda" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ParaPuanLimit" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="ParaPuanKazanc" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="ParaPuanAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="SayfaUrunYorumAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="SayfaKuponAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="MisafirSatinAlmaAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="KdvDahilMi" Type="Boolean" Nullable="false" />
+    <Property Name="CacheAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="IpBloklamaAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="UygulamaAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="KucukLogoResimUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="BuyukLogoResimUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEposta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEpostaTanim" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEpostaKullaniciAdi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEpostaSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEpostaHost" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GonderilecekEpostaPort" Type="Int32" Nullable="false" />
+    <Property Name="GonderilecekEpostaAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="SmsKullaniciAdi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SmsSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MesafeliSatisSozlesmesi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GuvenlikIlkeleri" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TuketiciHaklari" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IadeKosullari" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DDDSuccessURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DDDErrorURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DDDConfirmURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="IpAdres">
+    <Key>
+      <PropertyRef Name="IpAdresId" />
+    </Key>
+    <Property Name="IpAdresId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IpAdresi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="system_logging_guid" />
+    </Key>
+    <Property Name="system_logging_guid" Type="Guid" Nullable="false" />
+    <Property Name="entered_date" Type="DateTime" Precision="3" />
+    <Property Name="log_application" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="log_date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="log_level" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="log_logger" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_message" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_machine_name" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_user_name" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_call_site" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_thread" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="log_exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="log_stacktrace" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SmsKuyrugu">
+    <Key>
+      <PropertyRef Name="SmsKuyruguId" />
+    </Key>
+    <Property Name="SmsKuyruguId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TelefonNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Icerik" Type="String" Nullable="false" MaxLength="160" FixedLength="false" Unicode="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GonderimDenemesi" Type="Int32" Nullable="false" />
+    <Property Name="GonderimTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Adres">
+    <Key>
+      <PropertyRef Name="AdresId" />
+    </Key>
+    <Property Name="AdresId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FaturaTipId" Type="Int32" Nullable="false" />
+    <Property Name="AdresAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TcNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="FirmaUnvan" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VergiNo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="VergiDairesi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AdresBilgi" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PostaKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdresIlceId" Type="Int32" Nullable="false" />
+    <Property Name="AdresIlId" Type="Int32" Nullable="false" />
+    <Property Name="Telefon1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AdresIl" Relationship="DbModel.FK_Adres_AdresIl" FromRole="Adres" ToRole="AdresIl" />
+    <NavigationProperty Name="AdresIlce" Relationship="DbModel.FK_Adres_AdresIlce" FromRole="Adres" ToRole="AdresIlce" />
+    <NavigationProperty Name="FaturaTip" Relationship="DbModel.FK_Adres_FaturaTip" FromRole="Adres" ToRole="FaturaTip" />
+    <NavigationProperty Name="KullaniciAdres" Relationship="DbModel.FK_KullaniciAdres_Adres" FromRole="Adres" ToRole="KullaniciAdres" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_Adres" FromRole="Adres" ToRole="Siparis" />
+    <NavigationProperty Name="Siparis1" Relationship="DbModel.FK_Siparis_Adres1" FromRole="Adres" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="AdresIl">
+    <Key>
+      <PropertyRef Name="AdresIlId" />
+    </Key>
+    <Property Name="AdresIlId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Adres" Relationship="DbModel.FK_Adres_AdresIl" FromRole="AdresIl" ToRole="Adres" />
+    <NavigationProperty Name="AdresIlce" Relationship="DbModel.FK_AdresIlce_AdresIl" FromRole="AdresIl" ToRole="AdresIlce" />
+  </EntityType>
+  <EntityType Name="AdresIlce">
+    <Key>
+      <PropertyRef Name="AdresIlceId" />
+    </Key>
+    <Property Name="AdresIlceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdresIlId" Type="Int32" Nullable="false" />
+    <Property Name="IlceAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Adres" Relationship="DbModel.FK_Adres_AdresIlce" FromRole="AdresIlce" ToRole="Adres" />
+    <NavigationProperty Name="AdresIl" Relationship="DbModel.FK_AdresIlce_AdresIl" FromRole="AdresIlce" ToRole="AdresIl" />
+  </EntityType>
+  <EntityType Name="FaturaTip">
+    <Key>
+      <PropertyRef Name="FaturaTipId" />
+    </Key>
+    <Property Name="FaturaTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Adres" Relationship="DbModel.FK_Adres_FaturaTip" FromRole="FaturaTip" ToRole="Adres" />
+  </EntityType>
+  <EntityType Name="Gonderim">
+    <Key>
+      <PropertyRef Name="GonderimId" />
+    </Key>
+    <Property Name="GonderimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GonderimSorgulamaLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AltLimit" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Fiyat" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Resim" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SiparisGonderim" Relationship="DbModel.FK_SiparisGonderim_Gonderim" FromRole="Gonderim" ToRole="SiparisGonderim" />
+  </EntityType>
+  <EntityType Name="IadeTalep">
+    <Key>
+      <PropertyRef Name="IadeTalepId" />
+    </Key>
+    <Property Name="IadeTalepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparisDetayId" Type="Int32" Nullable="false" />
+    <Property Name="IadeTalepNedenTipId" Type="Int32" Nullable="false" />
+    <Property Name="IadeTalepIstekTipId" Type="Int32" Nullable="false" />
+    <Property Name="IadeTalepDurumTipId" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="IadeNeden" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IadeIstek" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciAciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PersonelAciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IadeTalepDurumTip" Relationship="DbModel.FK_IadeTalep_IadeTalepDurumTip" FromRole="IadeTalep" ToRole="IadeTalepDurumTip" />
+    <NavigationProperty Name="IadeTalepIstekTip" Relationship="DbModel.FK_IadeTalep_IadeTalepIstekTip" FromRole="IadeTalep" ToRole="IadeTalepIstekTip" />
+    <NavigationProperty Name="IadeTalepNedenTip" Relationship="DbModel.FK_IadeTalep_IadeTalepNedenTip" FromRole="IadeTalep" ToRole="IadeTalepNedenTip" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DbModel.FK_IadeTalep_SiparisDetay" FromRole="IadeTalep" ToRole="SiparisDetay" />
+  </EntityType>
+  <EntityType Name="IadeTalepDurumTip">
+    <Key>
+      <PropertyRef Name="IadeTalepDurumTipId" />
+    </Key>
+    <Property Name="IadeTalepDurumTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IadeTalep" Relationship="DbModel.FK_IadeTalep_IadeTalepDurumTip" FromRole="IadeTalepDurumTip" ToRole="IadeTalep" />
+  </EntityType>
+  <EntityType Name="IadeTalepIstekTip">
+    <Key>
+      <PropertyRef Name="IadeTalepIstekTipId" />
+    </Key>
+    <Property Name="IadeTalepIstekTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IadeTalep" Relationship="DbModel.FK_IadeTalep_IadeTalepIstekTip" FromRole="IadeTalepIstekTip" ToRole="IadeTalep" />
+  </EntityType>
+  <EntityType Name="IadeTalepNedenTip">
+    <Key>
+      <PropertyRef Name="IadeTalepNedenTipId" />
+    </Key>
+    <Property Name="IadeTalepNedenTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IadeTalep" Relationship="DbModel.FK_IadeTalep_IadeTalepNedenTip" FromRole="IadeTalepNedenTip" ToRole="IadeTalep" />
+  </EntityType>
+  <EntityType Name="Iskonto">
+    <Key>
+      <PropertyRef Name="IskontoId" />
+    </Key>
+    <Property Name="IskontoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoTipId" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IskontoMiktari" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="MinimumFiyat" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MaksimumFiyat" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="HediyeKartAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="HediyeKartKuponKod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BaslangicTarih" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarih" Type="DateTime" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoKategori" Relationship="DbModel.FK_IndirimKategori_Indirim" FromRole="Iskonto" ToRole="IskontoKategori" />
+    <NavigationProperty Name="IskontoKullanimHareket" Relationship="DbModel.FK_IndirimKullanim_Indirim" FromRole="Iskonto" ToRole="IskontoKullanimHareket" />
+    <NavigationProperty Name="IskontoUrun" Relationship="DbModel.FK_IndirimUrun_Indirim" FromRole="Iskonto" ToRole="IskontoUrun" />
+    <NavigationProperty Name="IskontoMarka" Relationship="DbModel.FK_IskontoMarka_Iskonto" FromRole="Iskonto" ToRole="IskontoMarka" />
+    <NavigationProperty Name="IskontoRol" Relationship="DbModel.FK_IskontoRol_Iskonto" FromRole="Iskonto" ToRole="IskontoRol" />
+    <NavigationProperty Name="IskontoSirket" Relationship="DbModel.FK_IskontoSirket_Iskonto" FromRole="Iskonto" ToRole="IskontoSirket" />
+  </EntityType>
+  <EntityType Name="IskontoKategori">
+    <Key>
+      <PropertyRef Name="IskontoKategoriId" />
+    </Key>
+    <Property Name="IskontoKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="AltKategorilerdeGecerliMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IndirimKategori_Indirim" FromRole="IskontoKategori" ToRole="Iskonto" />
+    <NavigationProperty Name="Kategori" Relationship="DbModel.FK_IndirimKategori_Kategori" FromRole="IskontoKategori" ToRole="Kategori" />
+  </EntityType>
+  <EntityType Name="IskontoKullanimHareket">
+    <Key>
+      <PropertyRef Name="IskontoKullanimId" />
+    </Key>
+    <Property Name="IskontoKullanimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="SiparisId" Type="Int32" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IndirimKullanim_Indirim" FromRole="IskontoKullanimHareket" ToRole="Iskonto" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_IndirimKullanim_Siparis" FromRole="IskontoKullanimHareket" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="IskontoMarka">
+    <Key>
+      <PropertyRef Name="IskontoMarkaId" />
+    </Key>
+    <Property Name="IskontoMarkaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="MarkaId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IskontoMarka_Iskonto" FromRole="IskontoMarka" ToRole="Iskonto" />
+    <NavigationProperty Name="Marka" Relationship="DbModel.FK_IskontoMarka_Marka" FromRole="IskontoMarka" ToRole="Marka" />
+  </EntityType>
+  <EntityType Name="IskontoRol">
+    <Key>
+      <PropertyRef Name="IskontoRolId" />
+    </Key>
+    <Property Name="IskontoRolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="RolId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IskontoRol_Iskonto" FromRole="IskontoRol" ToRole="Iskonto" />
+    <NavigationProperty Name="Rol" Relationship="DbModel.FK_IskontoRol_Rol" FromRole="IskontoRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="IskontoSirket">
+    <Key>
+      <PropertyRef Name="IskontoSirketId" />
+    </Key>
+    <Property Name="IskontoSirketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="SirketId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IskontoSirket_Iskonto" FromRole="IskontoSirket" ToRole="Iskonto" />
+    <NavigationProperty Name="Sirket" Relationship="DbModel.FK_IskontoSirket_Sirket" FromRole="IskontoSirket" ToRole="Sirket" />
+  </EntityType>
+  <EntityType Name="IskontoTip">
+    <Key>
+      <PropertyRef Name="IskontoTipId" />
+    </Key>
+    <Property Name="IskontoTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IskontoUrun">
+    <Key>
+      <PropertyRef Name="IskontoUrunId" />
+    </Key>
+    <Property Name="IskontoUrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IskontoId" Type="Int32" Nullable="false" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Iskonto" Relationship="DbModel.FK_IndirimUrun_Indirim" FromRole="IskontoUrun" ToRole="Iskonto" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_IndirimUrun_Urun" FromRole="IskontoUrun" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="IstekListesi">
+    <Key>
+      <PropertyRef Name="IstekListesiId" />
+    </Key>
+    <Property Name="IstekListesiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_IstekListesi_Kullanici" FromRole="IstekListesi" ToRole="Kullanici" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_IstekListesi_Urun" FromRole="IstekListesi" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="KatmanliFiyat">
+    <Key>
+      <PropertyRef Name="KatmanliFiyatId" />
+    </Key>
+    <Property Name="KatmanliFiyatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="SirketId" Type="Int32" />
+    <Property Name="RolId" Type="Int32" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="Fiyat" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KomisyonIskontoTip">
+    <Key>
+      <PropertyRef Name="KomisyonIskontoTipId" />
+    </Key>
+    <Property Name="KomisyonIskontoTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SiparisOdemeTip" Relationship="DbModel.FK_SiparisOdemeTip_KomisyonIskontoTip" FromRole="KomisyonIskontoTip" ToRole="SiparisOdemeTip" />
+  </EntityType>
+  <EntityType Name="OdemeDurumTip">
+    <Key>
+      <PropertyRef Name="OdemeDurumTipId" />
+    </Key>
+    <Property Name="OdemeDurumTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_OdemeDurumTip" FromRole="OdemeDurumTip" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="Sepet">
+    <Key>
+      <PropertyRef Name="SepetId" />
+    </Key>
+    <Property Name="SepetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SepetTipId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_Sepet_Kullanici" FromRole="Sepet" ToRole="Kullanici" />
+    <NavigationProperty Name="SepetTip" Relationship="DbModel.FK_Sepet_SepetTip" FromRole="Sepet" ToRole="SepetTip" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_Sepet_Urun" FromRole="Sepet" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="SepetTip">
+    <Key>
+      <PropertyRef Name="SepetTipId" />
+    </Key>
+    <Property Name="SepetTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Sepet" Relationship="DbModel.FK_Sepet_SepetTip" FromRole="SepetTip" ToRole="Sepet" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="SiparisId" />
+    </Key>
+    <Property Name="SiparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="FaturaAdresId" Type="Int32" Nullable="false" />
+    <Property Name="GonderimAdresId" Type="Int32" Nullable="false" />
+    <Property Name="SiparisOdemeTipId" Type="Int32" Nullable="false" />
+    <Property Name="SiparisDurumTipId" Type="Int32" Nullable="false" />
+    <Property Name="OdemeDurumTipId" Type="Int32" Nullable="false" />
+    <Property Name="KrediKartiTipId" Type="Int32" />
+    <Property Name="KrediKartiBankaId" Type="Int32" />
+    <Property Name="KrediKartiAdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KrediKartiMaskeliNumara" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KrediKartiTaksit" Type="Int32" />
+    <Property Name="KrediKartiTransferId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ToplamIskonto" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="ToplamKomisyon" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="KullanilanParaPuanMiktar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="KalanParaPuanMiktar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="KuponMiktar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="UrunKdvDahilToplamTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="UrunKdvHaricToplamTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="UrunKdvToplamTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="OdemeTipUcreti" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="GonderimUcreti" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="OdenecekTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="IadeToplam" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciIp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SiparisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SonIslemTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OdemeTarihi" Type="DateTime" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Banka" Relationship="DbModel.FK_Siparis_Banka" FromRole="Siparis" ToRole="Banka" />
+    <NavigationProperty Name="KrediKartiTip" Relationship="DbModel.FK_Siparis_KrediKartiTip" FromRole="Siparis" ToRole="KrediKartiTip" />
+    <NavigationProperty Name="Adres" Relationship="DbModel.FK_Siparis_Adres" FromRole="Siparis" ToRole="Adres" />
+    <NavigationProperty Name="Adres1" Relationship="DbModel.FK_Siparis_Adres1" FromRole="Siparis" ToRole="Adres" />
+    <NavigationProperty Name="IskontoKullanimHareket" Relationship="DbModel.FK_IndirimKullanim_Siparis" FromRole="Siparis" ToRole="IskontoKullanimHareket" />
+    <NavigationProperty Name="OdemeDurumTip" Relationship="DbModel.FK_Siparis_OdemeDurumTip" FromRole="Siparis" ToRole="OdemeDurumTip" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_Siparis_Kullanici" FromRole="Siparis" ToRole="Kullanici" />
+    <NavigationProperty Name="SiparisDurumTip" Relationship="DbModel.FK_Siparis_SiparisDurumTip" FromRole="Siparis" ToRole="SiparisDurumTip" />
+    <NavigationProperty Name="SiparisOdemeTip" Relationship="DbModel.FK_Siparis_SiparisOdemeTip" FromRole="Siparis" ToRole="SiparisOdemeTip" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DbModel.FK_SiparisDetay_Siparis" FromRole="Siparis" ToRole="SiparisDetay" />
+    <NavigationProperty Name="SiparisHareket" Relationship="DbModel.FK_SiparisHareket_Siparis" FromRole="Siparis" ToRole="SiparisHareket" />
+    <NavigationProperty Name="StokHareket" Relationship="DbModel.FK_StokHareket_Siparis" FromRole="Siparis" ToRole="StokHareket" />
+  </EntityType>
+  <EntityType Name="SiparisDetay">
+    <Key>
+      <PropertyRef Name="SiparisDetayId" />
+    </Key>
+    <Property Name="SiparisDetayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparisId" Type="Int32" Nullable="false" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="UrunBirimKdvDahilTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="UrunBirimKdvHaricTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="UrunBirimKdvTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananBirimKdvDahilTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananBirimKdvHaricTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananBirimKdvTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananKdvDahilTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananKdvHaricTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="HesaplananKdvTutar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IadeTalep" Relationship="DbModel.FK_IadeTalep_SiparisDetay" FromRole="SiparisDetay" ToRole="IadeTalep" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_SiparisDetay_Siparis" FromRole="SiparisDetay" ToRole="Siparis" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_SiparisDetay_Urun" FromRole="SiparisDetay" ToRole="Urun" />
+    <NavigationProperty Name="SiparisGonderim" Relationship="DbModel.FK_SiparisGonderim_SiparisDetay" FromRole="SiparisDetay" ToRole="SiparisGonderim" />
+  </EntityType>
+  <EntityType Name="SiparisDurumTip">
+    <Key>
+      <PropertyRef Name="SiparisDurumTipId" />
+    </Key>
+    <Property Name="SiparisDurumTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_SiparisDurumTip" FromRole="SiparisDurumTip" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="SiparisGonderim">
+    <Key>
+      <PropertyRef Name="SiparisGonderimId" />
+    </Key>
+    <Property Name="SiparisGonderimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparisDetayId" Type="Int32" Nullable="false" />
+    <Property Name="GonderimId" Type="Int32" Nullable="false" />
+    <Property Name="TeslimZamaniId" Type="Int32" Nullable="false" />
+    <Property Name="TakipNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GonderimTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TeslimTarihi" Type="DateTime" Precision="3" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Gonderim" Relationship="DbModel.FK_SiparisGonderim_Gonderim" FromRole="SiparisGonderim" ToRole="Gonderim" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DbModel.FK_SiparisGonderim_SiparisDetay" FromRole="SiparisGonderim" ToRole="SiparisDetay" />
+    <NavigationProperty Name="TeslimZamani" Relationship="DbModel.FK_SiparisGonderim_TeslimZamani" FromRole="SiparisGonderim" ToRole="TeslimZamani" />
+  </EntityType>
+  <EntityType Name="SiparisHareket">
+    <Key>
+      <PropertyRef Name="SiparisHareketId" />
+    </Key>
+    <Property Name="SiparisHareketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparisId" Type="Int32" Nullable="false" />
+    <Property Name="Aciklama" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciyaGosterilecekMi" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_SiparisHareket_Siparis" FromRole="SiparisHareket" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="SiparisOdemeTip">
+    <Key>
+      <PropertyRef Name="SiparisOdemeTipId" />
+    </Key>
+    <Property Name="SiparisOdemeTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KomisyonIskontoTipId" Type="Int32" Nullable="false" />
+    <Property Name="Miktar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KomisyonIskontoTip" Relationship="DbModel.FK_SiparisOdemeTip_KomisyonIskontoTip" FromRole="SiparisOdemeTip" ToRole="KomisyonIskontoTip" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_SiparisOdemeTip" FromRole="SiparisOdemeTip" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="TeslimZamani">
+    <Key>
+      <PropertyRef Name="TeslimZamaniId" />
+    </Key>
+    <Property Name="TeslimZamaniId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SiparisGonderim" Relationship="DbModel.FK_SiparisGonderim_TeslimZamani" FromRole="TeslimZamani" ToRole="SiparisGonderim" />
+  </EntityType>
+  <EntityType Name="Anket">
+    <Key>
+      <PropertyRef Name="AnketId" />
+    </Key>
+    <Property Name="AnketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="ZiyaretciCevapAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="YayindaMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AnketSoru" Relationship="DbModel.FK_AnketSoru_Anket" FromRole="Anket" ToRole="AnketSoru" />
+  </EntityType>
+  <EntityType Name="AnketCevap">
+    <Key>
+      <PropertyRef Name="AnketCevapId" />
+    </Key>
+    <Property Name="AnketCevapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnketSoruId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="CevapSonuc" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AnketSoru" Relationship="DbModel.FK_AnketCevap_AnketSoru" FromRole="AnketCevap" ToRole="AnketSoru" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_AnketCevap_Kullanici" FromRole="AnketCevap" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="AnketSoru">
+    <Key>
+      <PropertyRef Name="AnketSoruId" />
+    </Key>
+    <Property Name="AnketSoruId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnketId" Type="Int32" Nullable="false" />
+    <Property Name="Soru" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Anket" Relationship="DbModel.FK_AnketSoru_Anket" FromRole="AnketSoru" ToRole="Anket" />
+    <NavigationProperty Name="AnketCevap" Relationship="DbModel.FK_AnketCevap_AnketSoru" FromRole="AnketSoru" ToRole="AnketCevap" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="BannerId" />
+    </Key>
+    <Property Name="BannerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BannerTipId" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Resim" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BannerTip" Relationship="DbModel.FK_Banner_BannerTip" FromRole="Banner" ToRole="BannerTip" />
+  </EntityType>
+  <EntityType Name="BannerTip">
+    <Key>
+      <PropertyRef Name="BannerTipId" />
+    </Key>
+    <Property Name="BannerTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Banner" Relationship="DbModel.FK_Banner_BannerTip" FromRole="BannerTip" ToRole="Banner" />
+  </EntityType>
+  <EntityType Name="HaberBlog">
+    <Key>
+      <PropertyRef Name="HaberBlogId" />
+    </Key>
+    <Property Name="HaberBlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaberBlogTipId" Type="Int32" Nullable="false" />
+    <Property Name="Baslik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Icerik" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YorumYapilabilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="HaberBlogYorum" Relationship="DbModel.FK_HaberYorum_Haber" FromRole="HaberBlog" ToRole="HaberBlogYorum" />
+  </EntityType>
+  <EntityType Name="HaberBlogResim">
+    <Key>
+      <PropertyRef Name="ResimId" />
+    </Key>
+    <Property Name="ResimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaberBlogId" Type="Int32" Nullable="false" />
+    <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AltAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TitleAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YeniMi" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaberBlogTip">
+    <Key>
+      <PropertyRef Name="HaberBlogTipId" />
+    </Key>
+    <Property Name="HaberBlogTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaberBlogYorum">
+    <Key>
+      <PropertyRef Name="HaberBlogYorumId" />
+    </Key>
+    <Property Name="HaberBlogYorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaberBlogId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="Yorum" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="HaberBlog" Relationship="DbModel.FK_HaberYorum_Haber" FromRole="HaberBlogYorum" ToRole="HaberBlog" />
+  </EntityType>
+  <EntityType Name="HaberBulteniAbonelik">
+    <Key>
+      <PropertyRef Name="HaberBulteniAbonelikId" />
+    </Key>
+    <Property Name="HaberBulteniAbonelikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Eposta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kampanya">
+    <Key>
+      <PropertyRef Name="KampanyaId" />
+    </Key>
+    <Property Name="KampanyaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Konu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Icerik" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AnaSayfadaGosterilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KampanyaResim" Relationship="DbModel.FK_KampanyaResim_Kampanya" FromRole="Kampanya" ToRole="KampanyaResim" />
+  </EntityType>
+  <EntityType Name="KampanyaResim">
+    <Key>
+      <PropertyRef Name="KampanyaResimId" />
+    </Key>
+    <Property Name="KampanyaResimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KampanyaId" Type="Int32" Nullable="false" />
+    <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AltAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TitleAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YeniMi" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kampanya" Relationship="DbModel.FK_KampanyaResim_Kampanya" FromRole="KampanyaResim" ToRole="Kampanya" />
+  </EntityType>
+  <EntityType Name="KisaLink">
+    <Key>
+      <PropertyRef Name="KisaLinkId" />
+    </Key>
+    <Property Name="KisaLinkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UzunLink" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KisaltilmisLink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZiyaretSayisi" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SSS">
+    <Key>
+      <PropertyRef Name="SSSId" />
+    </Key>
+    <Property Name="SSSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Icerik" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IlgiliUrun">
+    <Key>
+      <PropertyRef Name="IlgiliUrunId" />
+    </Key>
+    <Property Name="IlgiliUrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId1" Type="Int32" Nullable="false" />
+    <Property Name="UrunId2" Type="Int32" Nullable="false" />
+    <Property Name="Sira" Type="Int32" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_IlgiliUrun_Urun" FromRole="IlgiliUrun" ToRole="Urun" />
+    <NavigationProperty Name="Urun1" Relationship="DbModel.FK_IlgiliUrun_Urun1" FromRole="IlgiliUrun" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UstKategoriId" Type="Int32" />
+    <Property Name="VergiId" Type="Int32" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Resim" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoKategori" Relationship="DbModel.FK_IndirimKategori_Kategori" FromRole="Kategori" ToRole="IskontoKategori" />
+    <NavigationProperty Name="Kategori1" Relationship="DbModel.FK_Kategori_Kategori" FromRole="Kategori" ToRole="Kategori1" />
+    <NavigationProperty Name="Kategori2" Relationship="DbModel.FK_Kategori_Kategori" FromRole="Kategori1" ToRole="Kategori" />
+    <NavigationProperty Name="KategoriOzellik" Relationship="DbModel.FK_KategoriOzellik_Kategori" FromRole="Kategori" ToRole="KategoriOzellik" />
+    <NavigationProperty Name="PaketKategori" Relationship="DbModel.FK_PaketKategori_Kategori" FromRole="Kategori" ToRole="PaketKategori" />
+    <NavigationProperty Name="UrunKategori" Relationship="DbModel.FK_UrunKategori_Kategori" FromRole="Kategori" ToRole="UrunKategori" />
+  </EntityType>
+  <EntityType Name="KategoriOzellik">
+    <Key>
+      <PropertyRef Name="KategoriOzellikId" />
+    </Key>
+    <Property Name="KategoriOzellikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="OzellikId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kategori" Relationship="DbModel.FK_KategoriOzellik_Kategori" FromRole="KategoriOzellik" ToRole="Kategori" />
+    <NavigationProperty Name="Ozellik" Relationship="DbModel.FK_KategoriOzellik_Ozellik" FromRole="KategoriOzellik" ToRole="Ozellik" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="MarkaId" />
+    </Key>
+    <Property Name="MarkaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Resim" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AnaSayfadaGosterilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoMarka" Relationship="DbModel.FK_IskontoMarka_Marka" FromRole="Marka" ToRole="IskontoMarka" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_Urun_Uretici" FromRole="Marka" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Nitelik">
+    <Key>
+      <PropertyRef Name="NitelikId" />
+    </Key>
+    <Property Name="NitelikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NitelikGrupId" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="NitelikGrup" Relationship="DbModel.FK_Nitelik_NitelikGrup" FromRole="Nitelik" ToRole="NitelikGrup" />
+    <NavigationProperty Name="PaketNitelik" Relationship="DbModel.FK_PaketNitelik_Nitelik" FromRole="Nitelik" ToRole="PaketNitelik" />
+    <NavigationProperty Name="UrunNitelik" Relationship="DbModel.FK_UrunNitelik_Nitelik1" FromRole="Nitelik" ToRole="UrunNitelik" />
+  </EntityType>
+  <EntityType Name="NitelikGrup">
+    <Key>
+      <PropertyRef Name="NitelikGrupId" />
+    </Key>
+    <Property Name="NitelikGrupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Nitelik" Relationship="DbModel.FK_Nitelik_NitelikGrup" FromRole="NitelikGrup" ToRole="Nitelik" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_Paket_NitelikGrup" FromRole="NitelikGrup" ToRole="Paket" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_Urun_NitelikGrup" FromRole="NitelikGrup" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Olcu">
+    <Key>
+      <PropertyRef Name="OlcuId" />
+    </Key>
+    <Property Name="OlcuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OlcuTipId" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OlcuTip">
+    <Key>
+      <PropertyRef Name="OlcuTipId" />
+    </Key>
+    <Property Name="OlcuTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ozellik">
+    <Key>
+      <PropertyRef Name="OzellikId" />
+    </Key>
+    <Property Name="OzellikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OzellikTipId" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KategoriOzellik" Relationship="DbModel.FK_KategoriOzellik_Ozellik" FromRole="Ozellik" ToRole="KategoriOzellik" />
+    <NavigationProperty Name="OzellikTip" Relationship="DbModel.FK_Ozellik_OzellikTip" FromRole="Ozellik" ToRole="OzellikTip" />
+    <NavigationProperty Name="UrunOzellik" Relationship="DbModel.FK_UrunOzellik_Ozellik" FromRole="Ozellik" ToRole="UrunOzellik" />
+  </EntityType>
+  <EntityType Name="OzellikTip">
+    <Key>
+      <PropertyRef Name="OzellikTipId" />
+    </Key>
+    <Property Name="OzellikTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" />
+    <NavigationProperty Name="Ozellik" Relationship="DbModel.FK_Ozellik_OzellikTip" FromRole="OzellikTip" ToRole="Ozellik" />
+  </EntityType>
+  <EntityType Name="Paket">
+    <Key>
+      <PropertyRef Name="PaketId" />
+    </Key>
+    <Property Name="PaketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VergiId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikGrupId" Type="Int32" Nullable="false" />
+    <Property Name="PaketKod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="KisaAciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UzunAciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OrnekDosyaYolu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SatinAlAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="OnSiparisAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="YeniMi" Type="Boolean" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="NitelikGrup" Relationship="DbModel.FK_Paket_NitelikGrup" FromRole="Paket" ToRole="NitelikGrup" />
+    <NavigationProperty Name="Vergi" Relationship="DbModel.FK_Paket_Vergi" FromRole="Paket" ToRole="Vergi" />
+    <NavigationProperty Name="PaketKategori" Relationship="DbModel.FK_PaketKategori_Paket" FromRole="Paket" ToRole="PaketKategori" />
+    <NavigationProperty Name="PaketNitelik" Relationship="DbModel.FK_PaketNitelik_Paket" FromRole="Paket" ToRole="PaketNitelik" />
+    <NavigationProperty Name="PaketResim" Relationship="DbModel.FK_PaketResim_Paket" FromRole="Paket" ToRole="PaketResim" />
+    <NavigationProperty Name="PaketUrun" Relationship="DbModel.FK_PaketUrun_Paket" FromRole="Paket" ToRole="PaketUrun" />
+  </EntityType>
+  <EntityType Name="PaketKategori">
+    <Key>
+      <PropertyRef Name="PaketKategoriId" />
+    </Key>
+    <Property Name="PaketKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaketId" Type="Int32" Nullable="false" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kategori" Relationship="DbModel.FK_PaketKategori_Kategori" FromRole="PaketKategori" ToRole="Kategori" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_PaketKategori_Paket" FromRole="PaketKategori" ToRole="Paket" />
+  </EntityType>
+  <EntityType Name="PaketNitelik">
+    <Key>
+      <PropertyRef Name="PaketNitelikId" />
+    </Key>
+    <Property Name="PaketNitelikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaketId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikDegeri" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Nitelik" Relationship="DbModel.FK_PaketNitelik_Nitelik" FromRole="PaketNitelik" ToRole="Nitelik" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_PaketNitelik_Paket" FromRole="PaketNitelik" ToRole="Paket" />
+  </EntityType>
+  <EntityType Name="PaketResim">
+    <Key>
+      <PropertyRef Name="PaketResimId" />
+    </Key>
+    <Property Name="PaketResimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaketId" Type="Int32" Nullable="false" />
+    <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AltAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TitleAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YeniMi" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_PaketResim_Paket" FromRole="PaketResim" ToRole="Paket" />
+  </EntityType>
+  <EntityType Name="PaketUrun">
+    <Key>
+      <PropertyRef Name="PaketUrunId" />
+    </Key>
+    <Property Name="PaketUrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaketId" Type="Int32" Nullable="false" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_PaketUrun_Paket" FromRole="PaketUrun" ToRole="Paket" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_PaketUrun_Urun" FromRole="PaketUrun" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="StokHareket">
+    <Key>
+      <PropertyRef Name="StokHareketId" />
+    </Key>
+    <Property Name="StokHareketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="StokHareketTipId" Type="Int32" Nullable="false" />
+    <Property Name="SiparisId" Type="Int32" />
+    <Property Name="OlcuId" Type="Int32" Nullable="false" />
+    <Property Name="IadeTalepId" Type="Int32" />
+    <Property Name="Miktar" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Fiyat" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KayitKullaniciKey" Type="Guid" Nullable="false" />
+    <Property Name="KayitTarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_StokHareket_Siparis" FromRole="StokHareket" ToRole="Siparis" />
+    <NavigationProperty Name="StokHareketTip" Relationship="DbModel.FK_StokHareket_StokHareketTip" FromRole="StokHareket" ToRole="StokHareketTip" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_StokHareket_Urun" FromRole="StokHareket" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="StokHareketTip">
+    <Key>
+      <PropertyRef Name="StokHareketTipId" />
+    </Key>
+    <Property Name="StokHareketTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="StokHareket" Relationship="DbModel.FK_StokHareket_StokHareketTip" FromRole="StokHareketTip" ToRole="StokHareket" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MarkaId" Type="Int32" />
+    <Property Name="VergiId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikGrupId" Type="Int32" Nullable="false" />
+    <Property Name="Barkod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UrunKod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="KisaAciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UzunAciklama" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OrnekDosyaYolu" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="YorumYapilabilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="StokMiktar" Type="Int32" Nullable="false" />
+    <Property Name="StoktaVarMi" Type="Boolean" Nullable="false" />
+    <Property Name="StokMiktariGosterilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="StokAlarmSeviyesi" Type="Int32" Nullable="false" />
+    <Property Name="MinimumSiparisMiktari" Type="Int32" Nullable="false" />
+    <Property Name="MaksimumSiparisMiktari" Type="Int32" Nullable="false" />
+    <Property Name="SatinAlAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="OnSiparisAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="OzelFiyatAktifMi" Type="Boolean" Nullable="false" />
+    <Property Name="OzelFiyatBaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="OzelFiyatBitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Maliyet" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Fiyat" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="EskiFiyat" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="OzelFiyat" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoUrun" Relationship="DbModel.FK_IndirimUrun_Urun" FromRole="Urun" ToRole="IskontoUrun" />
+    <NavigationProperty Name="IstekListesi" Relationship="DbModel.FK_IstekListesi_Urun" FromRole="Urun" ToRole="IstekListesi" />
+    <NavigationProperty Name="Sepet" Relationship="DbModel.FK_Sepet_Urun" FromRole="Urun" ToRole="Sepet" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DbModel.FK_SiparisDetay_Urun" FromRole="Urun" ToRole="SiparisDetay" />
+    <NavigationProperty Name="IlgiliUrun" Relationship="DbModel.FK_IlgiliUrun_Urun" FromRole="Urun" ToRole="IlgiliUrun" />
+    <NavigationProperty Name="IlgiliUrun1" Relationship="DbModel.FK_IlgiliUrun_Urun1" FromRole="Urun" ToRole="IlgiliUrun" />
+    <NavigationProperty Name="Marka" Relationship="DbModel.FK_Urun_Uretici" FromRole="Urun" ToRole="Marka" />
+    <NavigationProperty Name="NitelikGrup" Relationship="DbModel.FK_Urun_NitelikGrup" FromRole="Urun" ToRole="NitelikGrup" />
+    <NavigationProperty Name="PaketUrun" Relationship="DbModel.FK_PaketUrun_Urun" FromRole="Urun" ToRole="PaketUrun" />
+    <NavigationProperty Name="StokHareket" Relationship="DbModel.FK_StokHareket_Urun" FromRole="Urun" ToRole="StokHareket" />
+    <NavigationProperty Name="UrunResim" Relationship="DbModel.FK_Resim_Urun" FromRole="Urun" ToRole="UrunResim" />
+    <NavigationProperty Name="Vergi" Relationship="DbModel.FK_Urun_Vergi" FromRole="Urun" ToRole="Vergi" />
+    <NavigationProperty Name="UrunKategori" Relationship="DbModel.FK_UrunKategori_Urun" FromRole="Urun" ToRole="UrunKategori" />
+    <NavigationProperty Name="UrunNitelik" Relationship="DbModel.FK_UrunNitelik_Urun" FromRole="Urun" ToRole="UrunNitelik" />
+    <NavigationProperty Name="UrunOzellik" Relationship="DbModel.FK_UrunOzellik_Urun" FromRole="Urun" ToRole="UrunOzellik" />
+    <NavigationProperty Name="UrunYorum" Relationship="DbModel.FK_UrunYorum_Urun" FromRole="Urun" ToRole="UrunYorum" />
+  </EntityType>
+  <EntityType Name="UrunKategori">
+    <Key>
+      <PropertyRef Name="UrunKategoriId" />
+    </Key>
+    <Property Name="UrunKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kategori" Relationship="DbModel.FK_UrunKategori_Kategori" FromRole="UrunKategori" ToRole="Kategori" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_UrunKategori_Urun" FromRole="UrunKategori" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="UrunNitelik">
+    <Key>
+      <PropertyRef Name="UrunNitelikId" />
+    </Key>
+    <Property Name="UrunNitelikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikId" Type="Int32" Nullable="false" />
+    <Property Name="NitelikDegeri" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Nitelik" Relationship="DbModel.FK_UrunNitelik_Nitelik1" FromRole="UrunNitelik" ToRole="Nitelik" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_UrunNitelik_Urun" FromRole="UrunNitelik" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="UrunOzellik">
+    <Key>
+      <PropertyRef Name="UrunOzellikId" />
+    </Key>
+    <Property Name="UrunOzellikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="OzellikId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ozellik" Relationship="DbModel.FK_UrunOzellik_Ozellik" FromRole="UrunOzellik" ToRole="Ozellik" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_UrunOzellik_Urun" FromRole="UrunOzellik" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="UrunResim">
+    <Key>
+      <PropertyRef Name="UrunResimId" />
+    </Key>
+    <Property Name="UrunResimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="UrunResimTipId" Type="Int32" Nullable="false" />
+    <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AltAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TitleAttribute" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YeniMi" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_Resim_Urun" FromRole="UrunResim" ToRole="Urun" />
+    <NavigationProperty Name="UrunResimTip" Relationship="DbModel.FK_UrunResim_UrunResimTip" FromRole="UrunResim" ToRole="UrunResimTip" />
+  </EntityType>
+  <EntityType Name="UrunResimTip">
+    <Key>
+      <PropertyRef Name="UrunResimTipId" />
+    </Key>
+    <Property Name="UrunResimTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UrunResim" Relationship="DbModel.FK_UrunResim_UrunResimTip" FromRole="UrunResimTip" ToRole="UrunResim" />
+  </EntityType>
+  <EntityType Name="UrunYorum">
+    <Key>
+      <PropertyRef Name="UrunYorumId" />
+    </Key>
+    <Property Name="UrunYorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Yorum" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Puan" Type="Int32" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GosterilsinMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_UrunYorum_Urun" FromRole="UrunYorum" ToRole="Urun" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_UrunYorum_Kullanici" FromRole="UrunYorum" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="Vergi">
+    <Key>
+      <PropertyRef Name="VergiId" />
+    </Key>
+    <Property Name="VergiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VergiOrani" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Paket" Relationship="DbModel.FK_Paket_Vergi" FromRole="Vergi" ToRole="Paket" />
+    <NavigationProperty Name="Urun" Relationship="DbModel.FK_Urun_Vergi" FromRole="Vergi" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="Eposta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UyelikTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SonGirisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BasarisizGirisSayisi" Type="Int32" Nullable="false" />
+    <Property Name="HesapKilitliMi" Type="Boolean" Nullable="false" />
+    <Property Name="EpostaOnayliMi" Type="Boolean" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IstekListesi" Relationship="DbModel.FK_IstekListesi_Kullanici" FromRole="Kullanici" ToRole="IstekListesi" />
+    <NavigationProperty Name="Sepet" Relationship="DbModel.FK_Sepet_Kullanici" FromRole="Kullanici" ToRole="Sepet" />
+    <NavigationProperty Name="Siparis" Relationship="DbModel.FK_Siparis_Kullanici" FromRole="Kullanici" ToRole="Siparis" />
+    <NavigationProperty Name="AnketCevap" Relationship="DbModel.FK_AnketCevap_Kullanici" FromRole="Kullanici" ToRole="AnketCevap" />
+    <NavigationProperty Name="UrunYorum" Relationship="DbModel.FK_UrunYorum_Kullanici" FromRole="Kullanici" ToRole="UrunYorum" />
+    <NavigationProperty Name="KullaniciRol" Relationship="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="Kullanici" ToRole="KullaniciRol" />
+    <NavigationProperty Name="KullaniciAdres" Relationship="DbModel.FK_KullaniciAdres_Kullanici" FromRole="Kullanici" ToRole="KullaniciAdres" />
+    <NavigationProperty Name="KullaniciDetay" Relationship="DbModel.FK_KullaniciDetay_Kullanici" FromRole="Kullanici" ToRole="KullaniciDetay" />
+    <NavigationProperty Name="KullaniciYetki" Relationship="DbModel.FK_KullaniciYetki_Kullanici" FromRole="Kullanici" ToRole="KullaniciYetki" />
+  </EntityType>
+  <EntityType Name="KullaniciAdres">
+    <Key>
+      <PropertyRef Name="KullaniciAdresId" />
+    </Key>
+    <Property Name="KullaniciAdresId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdresId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Adres" Relationship="DbModel.FK_KullaniciAdres_Adres" FromRole="KullaniciAdres" ToRole="Adres" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_KullaniciAdres_Kullanici" FromRole="KullaniciAdres" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="KullaniciDetay">
+    <Key>
+      <PropertyRef Name="KullaniciDetayId" />
+    </Key>
+    <Property Name="KullaniciDetayId" Type="Guid" Nullable="false" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciResim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SirketId" Type="Int32" />
+    <Property Name="SepetteUrunVarMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_KullaniciDetay_Kullanici" FromRole="KullaniciDetay" ToRole="Kullanici" />
+    <NavigationProperty Name="Sirket" Relationship="DbModel.FK_KullaniciDetay_Sirket" FromRole="KullaniciDetay" ToRole="Sirket" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="KullaniciRolId" />
+    </Key>
+    <Property Name="KullaniciRolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="RolId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="KullaniciRol" ToRole="Kullanici" />
+    <NavigationProperty Name="Rol" Relationship="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="KullaniciRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="KullaniciYetki">
+    <Key>
+      <PropertyRef Name="KullaniciYetkiId" />
+    </Key>
+    <Property Name="KullaniciYetkiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Guid" Nullable="false" />
+    <Property Name="YetkiId" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="DbModel.FK_KullaniciYetki_Kullanici" FromRole="KullaniciYetki" ToRole="Kullanici" />
+    <NavigationProperty Name="Yetki" Relationship="DbModel.FK_KullaniciYetki_Yetki" FromRole="KullaniciYetki" ToRole="Yetki" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="RolId" />
+    </Key>
+    <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoRol" Relationship="DbModel.FK_IskontoRol_Rol" FromRole="Rol" ToRole="IskontoRol" />
+    <NavigationProperty Name="KullaniciRol" Relationship="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="Rol" ToRole="KullaniciRol" />
+  </EntityType>
+  <EntityType Name="Sirket">
+    <Key>
+      <PropertyRef Name="SirketId" />
+    </Key>
+    <Property Name="SirketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="IskontoSirket" Relationship="DbModel.FK_IskontoSirket_Sirket" FromRole="Sirket" ToRole="IskontoSirket" />
+    <NavigationProperty Name="KullaniciDetay" Relationship="DbModel.FK_KullaniciDetay_Sirket" FromRole="Sirket" ToRole="KullaniciDetay" />
+  </EntityType>
+  <EntityType Name="Yetki">
+    <Key>
+      <PropertyRef Name="YetkiId" />
+    </Key>
+    <Property Name="YetkiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sira" Type="Int32" Nullable="false" />
+    <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KullaniciYetki" Relationship="DbModel.FK_KullaniciYetki_Yetki" FromRole="Yetki" ToRole="KullaniciYetki" />
+  </EntityType>
+  <Association Name="FK_HesapNumarasi_Banka">
+    <End Type="DbModel.Banka" Role="Banka" Multiplicity="1" />
+    <End Type="DbModel.HesapNumarasi" Role="HesapNumarasi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banka">
+        <PropertyRef Name="BankaId" />
+      </Principal>
+      <Dependent Role="HesapNumarasi">
+        <PropertyRef Name="BankaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanalPos_Banka">
+    <End Type="DbModel.Banka" Role="Banka" Multiplicity="1" />
+    <End Type="DbModel.SanalPos" Role="SanalPos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banka">
+        <PropertyRef Name="BankaId" />
+      </Principal>
+      <Dependent Role="SanalPos">
+        <PropertyRef Name="BankaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Banka">
+    <End Type="DbModel.Banka" Role="Banka" Multiplicity="0..1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banka">
+        <PropertyRef Name="BankaId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="KrediKartiBankaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Taksit_Banka">
+    <End Type="DbModel.Banka" Role="Banka" Multiplicity="1" />
+    <End Type="DbModel.Taksit" Role="Taksit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banka">
+        <PropertyRef Name="BankaId" />
+      </Principal>
+      <Dependent Role="Taksit">
+        <PropertyRef Name="BankaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_KrediKartiTip">
+    <End Type="DbModel.KrediKartiTip" Role="KrediKartiTip" Multiplicity="0..1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KrediKartiTip">
+        <PropertyRef Name="KrediKartiTipId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="KrediKartiTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adres_AdresIl">
+    <End Type="DbModel.AdresIl" Role="AdresIl" Multiplicity="1" />
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresIl">
+        <PropertyRef Name="AdresIlId" />
+      </Principal>
+      <Dependent Role="Adres">
+        <PropertyRef Name="AdresIlId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adres_AdresIlce">
+    <End Type="DbModel.AdresIlce" Role="AdresIlce" Multiplicity="1" />
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresIlce">
+        <PropertyRef Name="AdresIlceId" />
+      </Principal>
+      <Dependent Role="Adres">
+        <PropertyRef Name="AdresIlceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adres_FaturaTip">
+    <End Type="DbModel.FaturaTip" Role="FaturaTip" Multiplicity="1" />
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FaturaTip">
+        <PropertyRef Name="FaturaTipId" />
+      </Principal>
+      <Dependent Role="Adres">
+        <PropertyRef Name="FaturaTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciAdres_Adres">
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="1" />
+    <End Type="DbModel.KullaniciAdres" Role="KullaniciAdres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adres">
+        <PropertyRef Name="AdresId" />
+      </Principal>
+      <Dependent Role="KullaniciAdres">
+        <PropertyRef Name="AdresId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Adres">
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adres">
+        <PropertyRef Name="AdresId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="GonderimAdresId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Adres1">
+    <End Type="DbModel.Adres" Role="Adres" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adres">
+        <PropertyRef Name="AdresId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="FaturaAdresId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdresIlce_AdresIl">
+    <End Type="DbModel.AdresIl" Role="AdresIl" Multiplicity="1" />
+    <End Type="DbModel.AdresIlce" Role="AdresIlce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresIl">
+        <PropertyRef Name="AdresIlId" />
+      </Principal>
+      <Dependent Role="AdresIlce">
+        <PropertyRef Name="AdresIlId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisGonderim_Gonderim">
+    <End Type="DbModel.Gonderim" Role="Gonderim" Multiplicity="1" />
+    <End Type="DbModel.SiparisGonderim" Role="SiparisGonderim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gonderim">
+        <PropertyRef Name="GonderimId" />
+      </Principal>
+      <Dependent Role="SiparisGonderim">
+        <PropertyRef Name="GonderimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IadeTalep_IadeTalepDurumTip">
+    <End Type="DbModel.IadeTalepDurumTip" Role="IadeTalepDurumTip" Multiplicity="1" />
+    <End Type="DbModel.IadeTalep" Role="IadeTalep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IadeTalepDurumTip">
+        <PropertyRef Name="IadeTalepDurumTipId" />
+      </Principal>
+      <Dependent Role="IadeTalep">
+        <PropertyRef Name="IadeTalepDurumTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IadeTalep_IadeTalepIstekTip">
+    <End Type="DbModel.IadeTalepIstekTip" Role="IadeTalepIstekTip" Multiplicity="1" />
+    <End Type="DbModel.IadeTalep" Role="IadeTalep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IadeTalepIstekTip">
+        <PropertyRef Name="IadeTalepIstekTipId" />
+      </Principal>
+      <Dependent Role="IadeTalep">
+        <PropertyRef Name="IadeTalepIstekTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IadeTalep_IadeTalepNedenTip">
+    <End Type="DbModel.IadeTalepNedenTip" Role="IadeTalepNedenTip" Multiplicity="1" />
+    <End Type="DbModel.IadeTalep" Role="IadeTalep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IadeTalepNedenTip">
+        <PropertyRef Name="IadeTalepNedenTipId" />
+      </Principal>
+      <Dependent Role="IadeTalep">
+        <PropertyRef Name="IadeTalepNedenTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IadeTalep_SiparisDetay">
+    <End Type="DbModel.SiparisDetay" Role="SiparisDetay" Multiplicity="1" />
+    <End Type="DbModel.IadeTalep" Role="IadeTalep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiparisDetay">
+        <PropertyRef Name="SiparisDetayId" />
+      </Principal>
+      <Dependent Role="IadeTalep">
+        <PropertyRef Name="SiparisDetayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimKategori_Indirim">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoKategori" Role="IskontoKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoKategori">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimKullanim_Indirim">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoKullanimHareket" Role="IskontoKullanimHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoKullanimHareket">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimUrun_Indirim">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoUrun" Role="IskontoUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoUrun">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoMarka_Iskonto">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoMarka" Role="IskontoMarka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoMarka">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoRol_Iskonto">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoRol" Role="IskontoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoRol">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoSirket_Iskonto">
+    <End Type="DbModel.Iskonto" Role="Iskonto" Multiplicity="1" />
+    <End Type="DbModel.IskontoSirket" Role="IskontoSirket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iskonto">
+        <PropertyRef Name="IskontoId" />
+      </Principal>
+      <Dependent Role="IskontoSirket">
+        <PropertyRef Name="IskontoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimKategori_Kategori">
+    <End Type="DbModel.Kategori" Role="Kategori" Multiplicity="1" />
+    <End Type="DbModel.IskontoKategori" Role="IskontoKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="IskontoKategori">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimKullanim_Siparis">
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="1" />
+    <End Type="DbModel.IskontoKullanimHareket" Role="IskontoKullanimHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="IskontoKullanimHareket">
+        <PropertyRef Name="SiparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoMarka_Marka">
+    <End Type="DbModel.Marka" Role="Marka" Multiplicity="1" />
+    <End Type="DbModel.IskontoMarka" Role="IskontoMarka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marka">
+        <PropertyRef Name="MarkaId" />
+      </Principal>
+      <Dependent Role="IskontoMarka">
+        <PropertyRef Name="MarkaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoRol_Rol">
+    <End Type="DbModel.Rol" Role="Rol" Multiplicity="1" />
+    <End Type="DbModel.IskontoRol" Role="IskontoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolId" />
+      </Principal>
+      <Dependent Role="IskontoRol">
+        <PropertyRef Name="RolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IskontoSirket_Sirket">
+    <End Type="DbModel.Sirket" Role="Sirket" Multiplicity="1" />
+    <End Type="DbModel.IskontoSirket" Role="IskontoSirket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sirket">
+        <PropertyRef Name="SirketId" />
+      </Principal>
+      <Dependent Role="IskontoSirket">
+        <PropertyRef Name="SirketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IndirimUrun_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.IskontoUrun" Role="IskontoUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="IskontoUrun">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IstekListesi_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.IstekListesi" Role="IstekListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="IstekListesi">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IstekListesi_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.IstekListesi" Role="IstekListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="IstekListesi">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisOdemeTip_KomisyonIskontoTip">
+    <End Type="DbModel.KomisyonIskontoTip" Role="KomisyonIskontoTip" Multiplicity="1" />
+    <End Type="DbModel.SiparisOdemeTip" Role="SiparisOdemeTip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KomisyonIskontoTip">
+        <PropertyRef Name="KomisyonIskontoTipId" />
+      </Principal>
+      <Dependent Role="SiparisOdemeTip">
+        <PropertyRef Name="KomisyonIskontoTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_OdemeDurumTip">
+    <End Type="DbModel.OdemeDurumTip" Role="OdemeDurumTip" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OdemeDurumTip">
+        <PropertyRef Name="OdemeDurumTipId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="OdemeDurumTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.Sepet" Role="Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_SepetTip">
+    <End Type="DbModel.SepetTip" Role="SepetTip" Multiplicity="1" />
+    <End Type="DbModel.Sepet" Role="Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SepetTip">
+        <PropertyRef Name="SepetTipId" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="SepetTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.Sepet" Role="Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_SiparisDurumTip">
+    <End Type="DbModel.SiparisDurumTip" Role="SiparisDurumTip" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiparisDurumTip">
+        <PropertyRef Name="SiparisDurumTipId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="SiparisDurumTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_SiparisOdemeTip">
+    <End Type="DbModel.SiparisOdemeTip" Role="SiparisOdemeTip" Multiplicity="1" />
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiparisOdemeTip">
+        <PropertyRef Name="SiparisOdemeTipId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="SiparisOdemeTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_Siparis">
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="1" />
+    <End Type="DbModel.SiparisDetay" Role="SiparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="SiparisDetay">
+        <PropertyRef Name="SiparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisHareket_Siparis">
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="1" />
+    <End Type="DbModel.SiparisHareket" Role="SiparisHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="SiparisHareket">
+        <PropertyRef Name="SiparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_Siparis">
+    <End Type="DbModel.Siparis" Role="Siparis" Multiplicity="0..1" />
+    <End Type="DbModel.StokHareket" Role="StokHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="StokHareket">
+        <PropertyRef Name="SiparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.SiparisDetay" Role="SiparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="SiparisDetay">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisGonderim_SiparisDetay">
+    <End Type="DbModel.SiparisDetay" Role="SiparisDetay" Multiplicity="1" />
+    <End Type="DbModel.SiparisGonderim" Role="SiparisGonderim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiparisDetay">
+        <PropertyRef Name="SiparisDetayId" />
+      </Principal>
+      <Dependent Role="SiparisGonderim">
+        <PropertyRef Name="SiparisDetayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisGonderim_TeslimZamani">
+    <End Type="DbModel.TeslimZamani" Role="TeslimZamani" Multiplicity="1" />
+    <End Type="DbModel.SiparisGonderim" Role="SiparisGonderim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeslimZamani">
+        <PropertyRef Name="TeslimZamaniId" />
+      </Principal>
+      <Dependent Role="SiparisGonderim">
+        <PropertyRef Name="TeslimZamaniId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnketSoru_Anket">
+    <End Type="DbModel.Anket" Role="Anket" Multiplicity="1" />
+    <End Type="DbModel.AnketSoru" Role="AnketSoru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anket">
+        <PropertyRef Name="AnketId" />
+      </Principal>
+      <Dependent Role="AnketSoru">
+        <PropertyRef Name="AnketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnketCevap_AnketSoru">
+    <End Type="DbModel.AnketSoru" Role="AnketSoru" Multiplicity="1" />
+    <End Type="DbModel.AnketCevap" Role="AnketCevap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnketSoru">
+        <PropertyRef Name="AnketSoruId" />
+      </Principal>
+      <Dependent Role="AnketCevap">
+        <PropertyRef Name="AnketSoruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnketCevap_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.AnketCevap" Role="AnketCevap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="AnketCevap">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banner_BannerTip">
+    <End Type="DbModel.BannerTip" Role="BannerTip" Multiplicity="1" />
+    <End Type="DbModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BannerTip">
+        <PropertyRef Name="BannerTipId" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="BannerTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaberYorum_Haber">
+    <End Type="DbModel.HaberBlog" Role="HaberBlog" Multiplicity="1" />
+    <End Type="DbModel.HaberBlogYorum" Role="HaberBlogYorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HaberBlog">
+        <PropertyRef Name="HaberBlogId" />
+      </Principal>
+      <Dependent Role="HaberBlogYorum">
+        <PropertyRef Name="HaberBlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KampanyaResim_Kampanya">
+    <End Type="DbModel.Kampanya" Role="Kampanya" Multiplicity="1" />
+    <End Type="DbModel.KampanyaResim" Role="KampanyaResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kampanya">
+        <PropertyRef Name="KampanyaId" />
+      </Principal>
+      <Dependent Role="KampanyaResim">
+        <PropertyRef Name="KampanyaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlgiliUrun_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.IlgiliUrun" Role="IlgiliUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="IlgiliUrun">
+        <PropertyRef Name="UrunId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlgiliUrun_Urun1">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.IlgiliUrun" Role="IlgiliUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="IlgiliUrun">
+        <PropertyRef Name="UrunId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kategori_Kategori">
+    <End Type="DbModel.Kategori" Role="Kategori" Multiplicity="0..1" />
+    <End Type="DbModel.Kategori" Role="Kategori1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Kategori1">
+        <PropertyRef Name="UstKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KategoriOzellik_Kategori">
+    <End Type="DbModel.Kategori" Role="Kategori" Multiplicity="1" />
+    <End Type="DbModel.KategoriOzellik" Role="KategoriOzellik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="KategoriOzellik">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketKategori_Kategori">
+    <End Type="DbModel.Kategori" Role="Kategori" Multiplicity="1" />
+    <End Type="DbModel.PaketKategori" Role="PaketKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="PaketKategori">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunKategori_Kategori">
+    <End Type="DbModel.Kategori" Role="Kategori" Multiplicity="1" />
+    <End Type="DbModel.UrunKategori" Role="UrunKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="UrunKategori">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KategoriOzellik_Ozellik">
+    <End Type="DbModel.Ozellik" Role="Ozellik" Multiplicity="1" />
+    <End Type="DbModel.KategoriOzellik" Role="KategoriOzellik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ozellik">
+        <PropertyRef Name="OzellikId" />
+      </Principal>
+      <Dependent Role="KategoriOzellik">
+        <PropertyRef Name="OzellikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Uretici">
+    <End Type="DbModel.Marka" Role="Marka" Multiplicity="0..1" />
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marka">
+        <PropertyRef Name="MarkaId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="MarkaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nitelik_NitelikGrup">
+    <End Type="DbModel.NitelikGrup" Role="NitelikGrup" Multiplicity="1" />
+    <End Type="DbModel.Nitelik" Role="Nitelik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NitelikGrup">
+        <PropertyRef Name="NitelikGrupId" />
+      </Principal>
+      <Dependent Role="Nitelik">
+        <PropertyRef Name="NitelikGrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketNitelik_Nitelik">
+    <End Type="DbModel.Nitelik" Role="Nitelik" Multiplicity="1" />
+    <End Type="DbModel.PaketNitelik" Role="PaketNitelik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nitelik">
+        <PropertyRef Name="NitelikId" />
+      </Principal>
+      <Dependent Role="PaketNitelik">
+        <PropertyRef Name="NitelikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunNitelik_Nitelik1">
+    <End Type="DbModel.Nitelik" Role="Nitelik" Multiplicity="1" />
+    <End Type="DbModel.UrunNitelik" Role="UrunNitelik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nitelik">
+        <PropertyRef Name="NitelikId" />
+      </Principal>
+      <Dependent Role="UrunNitelik">
+        <PropertyRef Name="NitelikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Paket_NitelikGrup">
+    <End Type="DbModel.NitelikGrup" Role="NitelikGrup" Multiplicity="1" />
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NitelikGrup">
+        <PropertyRef Name="NitelikGrupId" />
+      </Principal>
+      <Dependent Role="Paket">
+        <PropertyRef Name="NitelikGrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_NitelikGrup">
+    <End Type="DbModel.NitelikGrup" Role="NitelikGrup" Multiplicity="1" />
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NitelikGrup">
+        <PropertyRef Name="NitelikGrupId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="NitelikGrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ozellik_OzellikTip">
+    <End Type="DbModel.OzellikTip" Role="OzellikTip" Multiplicity="1" />
+    <End Type="DbModel.Ozellik" Role="Ozellik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OzellikTip">
+        <PropertyRef Name="OzellikTipId" />
+      </Principal>
+      <Dependent Role="Ozellik">
+        <PropertyRef Name="OzellikTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunOzellik_Ozellik">
+    <End Type="DbModel.Ozellik" Role="Ozellik" Multiplicity="1" />
+    <End Type="DbModel.UrunOzellik" Role="UrunOzellik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ozellik">
+        <PropertyRef Name="OzellikId" />
+      </Principal>
+      <Dependent Role="UrunOzellik">
+        <PropertyRef Name="OzellikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Paket_Vergi">
+    <End Type="DbModel.Vergi" Role="Vergi" Multiplicity="1" />
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vergi">
+        <PropertyRef Name="VergiId" />
+      </Principal>
+      <Dependent Role="Paket">
+        <PropertyRef Name="VergiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketKategori_Paket">
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="1" />
+    <End Type="DbModel.PaketKategori" Role="PaketKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paket">
+        <PropertyRef Name="PaketId" />
+      </Principal>
+      <Dependent Role="PaketKategori">
+        <PropertyRef Name="PaketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketNitelik_Paket">
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="1" />
+    <End Type="DbModel.PaketNitelik" Role="PaketNitelik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paket">
+        <PropertyRef Name="PaketId" />
+      </Principal>
+      <Dependent Role="PaketNitelik">
+        <PropertyRef Name="PaketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketResim_Paket">
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="1" />
+    <End Type="DbModel.PaketResim" Role="PaketResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paket">
+        <PropertyRef Name="PaketId" />
+      </Principal>
+      <Dependent Role="PaketResim">
+        <PropertyRef Name="PaketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketUrun_Paket">
+    <End Type="DbModel.Paket" Role="Paket" Multiplicity="1" />
+    <End Type="DbModel.PaketUrun" Role="PaketUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paket">
+        <PropertyRef Name="PaketId" />
+      </Principal>
+      <Dependent Role="PaketUrun">
+        <PropertyRef Name="PaketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaketUrun_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.PaketUrun" Role="PaketUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="PaketUrun">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_StokHareketTip">
+    <End Type="DbModel.StokHareketTip" Role="StokHareketTip" Multiplicity="1" />
+    <End Type="DbModel.StokHareket" Role="StokHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StokHareketTip">
+        <PropertyRef Name="StokHareketTipId" />
+      </Principal>
+      <Dependent Role="StokHareket">
+        <PropertyRef Name="StokHareketTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.StokHareket" Role="StokHareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="StokHareket">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resim_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.UrunResim" Role="UrunResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunResim">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Vergi">
+    <End Type="DbModel.Vergi" Role="Vergi" Multiplicity="1" />
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vergi">
+        <PropertyRef Name="VergiId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="VergiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunKategori_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.UrunKategori" Role="UrunKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunKategori">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunNitelik_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.UrunNitelik" Role="UrunNitelik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunNitelik">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunOzellik_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.UrunOzellik" Role="UrunOzellik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunOzellik">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunYorum_Urun">
+    <End Type="DbModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DbModel.UrunYorum" Role="UrunYorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunYorum">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunResim_UrunResimTip">
+    <End Type="DbModel.UrunResimTip" Role="UrunResimTip" Multiplicity="1" />
+    <End Type="DbModel.UrunResim" Role="UrunResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UrunResimTip">
+        <PropertyRef Name="UrunResimTipId" />
+      </Principal>
+      <Dependent Role="UrunResim">
+        <PropertyRef Name="UrunResimTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunYorum_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.UrunYorum" Role="UrunYorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="UrunYorum">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DbModel.KullaniciRol" Role="KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciAdres_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.KullaniciAdres" Role="KullaniciAdres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="KullaniciAdres">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciDetay_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.KullaniciDetay" Role="KullaniciDetay" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="KullaniciDetay">
+        <PropertyRef Name="KullaniciDetayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciYetki_Kullanici">
+    <End Type="DbModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="DbModel.KullaniciYetki" Role="KullaniciYetki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="KullaniciYetki">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciDetay_Sirket">
+    <End Type="DbModel.Sirket" Role="Sirket" Multiplicity="0..1" />
+    <End Type="DbModel.KullaniciDetay" Role="KullaniciDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sirket">
+        <PropertyRef Name="SirketId" />
+      </Principal>
+      <Dependent Role="KullaniciDetay">
+        <PropertyRef Name="SirketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Type="DbModel.Rol" Role="Rol" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DbModel.KullaniciRol" Role="KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolId" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="RolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciYetki_Yetki">
+    <End Type="DbModel.Yetki" Role="Yetki" Multiplicity="1" />
+    <End Type="DbModel.KullaniciYetki" Role="KullaniciYetki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetki">
+        <PropertyRef Name="YetkiId" />
+      </Principal>
+      <Dependent Role="KullaniciYetki">
+        <PropertyRef Name="YetkiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

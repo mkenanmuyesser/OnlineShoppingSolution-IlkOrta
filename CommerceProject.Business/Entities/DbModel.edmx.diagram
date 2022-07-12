@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="572b585fc60f4e5a9b469e63ee5297e1" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="DbModel.Banka" Width="1.5" PointX="6.75" PointY="6.375" />
+        <EntityTypeShape EntityType="DbModel.HesapNumarasi" Width="1.5" PointX="9" PointY="53.625" />
+        <EntityTypeShape EntityType="DbModel.KrediKartiTip" Width="1.5" PointX="6.75" PointY="13.375" />
+        <EntityTypeShape EntityType="DbModel.SanalPos" Width="1.5" PointX="9" PointY="60.625" />
+        <EntityTypeShape EntityType="DbModel.Taksit" Width="1.5" PointX="9" PointY="57.5" />
+        <EntityTypeShape EntityType="DbModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.25" />
+        <EntityTypeShape EntityType="DbModel.Cache" Width="1.5" PointX="2.75" PointY="7.25" />
+        <EntityTypeShape EntityType="DbModel.EpostaKuyrugu" Width="1.5" PointX="0.75" PointY="14.25" />
+        <EntityTypeShape EntityType="DbModel.IcerikAyar" Width="1.5" PointX="19.75" PointY="19.25" />
+        <EntityTypeShape EntityType="DbModel.IpAdres" Width="1.5" PointX="11.75" PointY="4.25" />
+        <EntityTypeShape EntityType="DbModel.Log" Width="1.5" PointX="0.75" PointY="19.25" />
+        <EntityTypeShape EntityType="DbModel.SmsKuyrugu" Width="1.5" PointX="13.75" PointY="4.25" />
+        <EntityTypeShape EntityType="DbModel.Adres" Width="1.5" PointX="6.75" PointY="58.625" />
+        <EntityTypeShape EntityType="DbModel.AdresIl" Width="1.5" PointX="4.5" PointY="57.625" />
+        <EntityTypeShape EntityType="DbModel.AdresIlce" Width="1.5" PointX="4.5" PointY="63.125" />
+        <EntityTypeShape EntityType="DbModel.FaturaTip" Width="1.5" PointX="4.5" PointY="60.375" />
+        <EntityTypeShape EntityType="DbModel.Gonderim" Width="1.5" PointX="14.25" PointY="49.25" />
+        <EntityTypeShape EntityType="DbModel.IadeTalep" Width="1.5" PointX="13.5" PointY="43.875" />
+        <EntityTypeShape EntityType="DbModel.IadeTalepDurumTip" Width="1.5" PointX="11.25" PointY="52" />
+        <EntityTypeShape EntityType="DbModel.IadeTalepIstekTip" Width="1.5" PointX="11.25" PointY="54.75" />
+        <EntityTypeShape EntityType="DbModel.IadeTalepNedenTip" Width="1.5" PointX="11.25" PointY="44.25" />
+        <EntityTypeShape EntityType="DbModel.Iskonto" Width="1.5" PointX="6" PointY="51.75" />
+        <EntityTypeShape EntityType="DbModel.IskontoKategori" Width="1.5" PointX="8.25" PointY="46.25" />
+        <EntityTypeShape EntityType="DbModel.IskontoKullanimHareket" Width="1.5" PointX="14.25" PointY="23.5" />
+        <EntityTypeShape EntityType="DbModel.IskontoMarka" Width="1.5" PointX="8.25" PointY="50.25" />
+        <EntityTypeShape EntityType="DbModel.IskontoRol" Width="1.5" PointX="17" PointY="33.625" />
+        <EntityTypeShape EntityType="DbModel.IskontoSirket" Width="1.5" PointX="8.25" PointY="25.125" />
+        <EntityTypeShape EntityType="DbModel.IskontoTip" Width="1.5" PointX="17.75" PointY="8.25" />
+        <EntityTypeShape EntityType="DbModel.IskontoUrun" Width="1.5" PointX="8.25" PointY="32" />
+        <EntityTypeShape EntityType="DbModel.IstekListesi" Width="1.5" PointX="8.25" PointY="38.875" />
+        <EntityTypeShape EntityType="DbModel.KatmanliFiyat" Width="1.5" PointX="17.75" PointY="11.25" />
+        <EntityTypeShape EntityType="DbModel.KomisyonIskontoTip" Width="1.5" PointX="4.5" PointY="16.375" />
+        <EntityTypeShape EntityType="DbModel.OdemeDurumTip" Width="1.5" PointX="6.75" PointY="10.625" />
+        <EntityTypeShape EntityType="DbModel.Sepet" Width="1.5" PointX="14.25" PointY="39.5" />
+        <EntityTypeShape EntityType="DbModel.SepetTip" Width="1.5" PointX="12" PointY="49" />
+        <EntityTypeShape EntityType="DbModel.Siparis" Width="1.5" PointX="9" PointY="0.75" />
+        <EntityTypeShape EntityType="DbModel.SiparisDetay" Width="1.5" PointX="11.25" PointY="38.75" />
+        <EntityTypeShape EntityType="DbModel.SiparisDurumTip" Width="1.5" PointX="6.75" PointY="2.875" />
+        <EntityTypeShape EntityType="DbModel.SiparisGonderim" Width="1.5" PointX="16.5" PointY="39.125" />
+        <EntityTypeShape EntityType="DbModel.SiparisHareket" Width="1.5" PointX="11.25" PointY="7.125" />
+        <EntityTypeShape EntityType="DbModel.SiparisOdemeTip" Width="1.5" PointX="6.75" PointY="16.125" />
+        <EntityTypeShape EntityType="DbModel.TeslimZamani" Width="1.5" PointX="14.25" PointY="52.875" />
+        <EntityTypeShape EntityType="DbModel.Anket" Width="1.5" PointX="12.75" PointY="11.5" />
+        <EntityTypeShape EntityType="DbModel.AnketCevap" Width="1.5" PointX="17.25" PointY="21.875" />
+        <EntityTypeShape EntityType="DbModel.AnketSoru" Width="1.5" PointX="15" PointY="11.875" />
+        <EntityTypeShape EntityType="DbModel.Banner" Width="1.5" PointX="20" PointY="4.375" />
+        <EntityTypeShape EntityType="DbModel.BannerTip" Width="1.5" PointX="17.75" PointY="4.875" />
+        <EntityTypeShape EntityType="DbModel.HaberBlog" Width="1.5" PointX="16.75" PointY="15.5" />
+        <EntityTypeShape EntityType="DbModel.HaberBlogResim" Width="1.5" PointX="19.75" PointY="8.25" />
+        <EntityTypeShape EntityType="DbModel.HaberBlogTip" Width="1.5" PointX="19.75" PointY="12.25" />
+        <EntityTypeShape EntityType="DbModel.HaberBlogYorum" Width="1.5" PointX="19" PointY="16" />
+        <EntityTypeShape EntityType="DbModel.HaberBulteniAbonelik" Width="1.5" PointX="0.75" PointY="24.25" />
+        <EntityTypeShape EntityType="DbModel.Kampanya" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="DbModel.KampanyaResim" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="DbModel.KisaLink" Width="1.5" PointX="2.75" PointY="24.25" />
+        <EntityTypeShape EntityType="DbModel.SSS" Width="1.5" PointX="21.75" PointY="8.25" />
+        <EntityTypeShape EntityType="DbModel.IlgiliUrun" Width="1.5" PointX="8.25" PointY="68.625" />
+        <EntityTypeShape EntityType="DbModel.Kategori" Width="1.5" PointX="6" PointY="24.625" />
+        <EntityTypeShape EntityType="DbModel.KategoriOzellik" Width="1.5" PointX="8.25" PointY="22" />
+        <EntityTypeShape EntityType="DbModel.Marka" Width="1.5" PointX="3.75" PointY="28.375" />
+        <EntityTypeShape EntityType="DbModel.Nitelik" Width="1.5" PointX="3" PointY="53.25" />
+        <EntityTypeShape EntityType="DbModel.NitelikGrup" Width="1.5" PointX="0.75" PointY="34.5" />
+        <EntityTypeShape EntityType="DbModel.Olcu" Width="1.5" PointX="21.75" PointY="11.25" />
+        <EntityTypeShape EntityType="DbModel.OlcuTip" Width="1.5" PointX="21.75" PointY="14.25" />
+        <EntityTypeShape EntityType="DbModel.Ozellik" Width="1.5" PointX="6" PointY="20.625" />
+        <EntityTypeShape EntityType="DbModel.OzellikTip" Width="1.5" PointX="3.75" PointY="21" />
+        <EntityTypeShape EntityType="DbModel.Paket" Width="1.5" PointX="3" PointY="32.875" />
+        <EntityTypeShape EntityType="DbModel.PaketKategori" Width="1.5" PointX="8.25" PointY="34.875" />
+        <EntityTypeShape EntityType="DbModel.PaketNitelik" Width="1.5" PointX="5.25" PointY="43.375" />
+        <EntityTypeShape EntityType="DbModel.PaketResim" Width="1.5" PointX="5.25" PointY="47.125" />
+        <EntityTypeShape EntityType="DbModel.PaketUrun" Width="1.5" PointX="11.25" PointY="34.625" />
+        <EntityTypeShape EntityType="DbModel.StokHareket" Width="1.5" PointX="11.25" PointY="29.125" />
+        <EntityTypeShape EntityType="DbModel.StokHareketTip" Width="1.5" PointX="9" PointY="18.375" />
+        <EntityTypeShape EntityType="DbModel.Urun" Width="1.5" PointX="6" PointY="30.5" />
+        <EntityTypeShape EntityType="DbModel.UrunKategori" Width="1.5" PointX="14.25" PointY="30.875" />
+        <EntityTypeShape EntityType="DbModel.UrunNitelik" Width="1.5" PointX="8.25" PointY="42.125" />
+        <EntityTypeShape EntityType="DbModel.UrunOzellik" Width="1.5" PointX="8.25" PointY="29" />
+        <EntityTypeShape EntityType="DbModel.UrunResim" Width="1.5" PointX="14.25" PointY="34.25" />
+        <EntityTypeShape EntityType="DbModel.UrunResimTip" Width="1.5" PointX="12" PointY="21.125" />
+        <EntityTypeShape EntityType="DbModel.UrunYorum" Width="1.5" PointX="14.25" PointY="26.5" />
+        <EntityTypeShape EntityType="DbModel.Vergi" Width="1.5" PointX="0.75" PointY="30.75" />
+        <EntityTypeShape EntityType="DbModel.Kullanici" Width="1.5" PointX="12" PointY="23.75" />
+        <EntityTypeShape EntityType="DbModel.KullaniciAdres" Width="1.5" PointX="16.25" PointY="44.625" />
+        <EntityTypeShape EntityType="DbModel.KullaniciDetay" Width="1.5" PointX="14.25" PointY="15.875" />
+        <EntityTypeShape EntityType="DbModel.KullaniciRol" Width="1.5" PointX="14.25" PointY="19.625" />
+        <EntityTypeShape EntityType="DbModel.KullaniciYetki" Width="1.5" PointX="17.25" PointY="25" />
+        <EntityTypeShape EntityType="DbModel.Rol" Width="1.5" PointX="8.75" PointY="13.125" />
+        <EntityTypeShape EntityType="DbModel.Sirket" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="DbModel.Yetki" Width="1.5" PointX="15" PointY="7.875" />
+        <AssociationConnector Association="DbModel.FK_HesapNumarasi_Banka" />
+        <AssociationConnector Association="DbModel.FK_SanalPos_Banka" />
+        <AssociationConnector Association="DbModel.FK_Siparis_Banka" />
+        <AssociationConnector Association="DbModel.FK_Taksit_Banka" />
+        <AssociationConnector Association="DbModel.FK_Siparis_KrediKartiTip" />
+        <AssociationConnector Association="DbModel.FK_Adres_AdresIl" />
+        <AssociationConnector Association="DbModel.FK_Adres_AdresIlce" />
+        <AssociationConnector Association="DbModel.FK_Adres_FaturaTip" />
+        <AssociationConnector Association="DbModel.FK_KullaniciAdres_Adres" />
+        <AssociationConnector Association="DbModel.FK_Siparis_Adres" />
+        <AssociationConnector Association="DbModel.FK_Siparis_Adres1" />
+        <AssociationConnector Association="DbModel.FK_AdresIlce_AdresIl" />
+        <AssociationConnector Association="DbModel.FK_SiparisGonderim_Gonderim" />
+        <AssociationConnector Association="DbModel.FK_IadeTalep_IadeTalepDurumTip" />
+        <AssociationConnector Association="DbModel.FK_IadeTalep_IadeTalepIstekTip" />
+        <AssociationConnector Association="DbModel.FK_IadeTalep_IadeTalepNedenTip" />
+        <AssociationConnector Association="DbModel.FK_IadeTalep_SiparisDetay" />
+        <AssociationConnector Association="DbModel.FK_IndirimKategori_Indirim" />
+        <AssociationConnector Association="DbModel.FK_IndirimKullanim_Indirim" />
+        <AssociationConnector Association="DbModel.FK_IndirimUrun_Indirim" />
+        <AssociationConnector Association="DbModel.FK_IskontoMarka_Iskonto" />
+        <AssociationConnector Association="DbModel.FK_IskontoRol_Iskonto" />
+        <AssociationConnector Association="DbModel.FK_IskontoSirket_Iskonto" />
+        <AssociationConnector Association="DbModel.FK_IndirimKategori_Kategori" />
+        <AssociationConnector Association="DbModel.FK_IndirimKullanim_Siparis" />
+        <AssociationConnector Association="DbModel.FK_IskontoMarka_Marka" />
+        <AssociationConnector Association="DbModel.FK_IskontoRol_Rol" />
+        <AssociationConnector Association="DbModel.FK_IskontoSirket_Sirket" />
+        <AssociationConnector Association="DbModel.FK_IndirimUrun_Urun" />
+        <AssociationConnector Association="DbModel.FK_IstekListesi_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_IstekListesi_Urun" />
+        <AssociationConnector Association="DbModel.FK_SiparisOdemeTip_KomisyonIskontoTip" />
+        <AssociationConnector Association="DbModel.FK_Siparis_OdemeDurumTip" />
+        <AssociationConnector Association="DbModel.FK_Sepet_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_Sepet_SepetTip" />
+        <AssociationConnector Association="DbModel.FK_Sepet_Urun" />
+        <AssociationConnector Association="DbModel.FK_Siparis_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_Siparis_SiparisDurumTip" />
+        <AssociationConnector Association="DbModel.FK_Siparis_SiparisOdemeTip" />
+        <AssociationConnector Association="DbModel.FK_SiparisDetay_Siparis" />
+        <AssociationConnector Association="DbModel.FK_SiparisHareket_Siparis" />
+        <AssociationConnector Association="DbModel.FK_StokHareket_Siparis" />
+        <AssociationConnector Association="DbModel.FK_SiparisDetay_Urun" />
+        <AssociationConnector Association="DbModel.FK_SiparisGonderim_SiparisDetay" />
+        <AssociationConnector Association="DbModel.FK_SiparisGonderim_TeslimZamani" />
+        <AssociationConnector Association="DbModel.FK_AnketSoru_Anket" />
+        <AssociationConnector Association="DbModel.FK_AnketCevap_AnketSoru" />
+        <AssociationConnector Association="DbModel.FK_AnketCevap_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_Banner_BannerTip" />
+        <AssociationConnector Association="DbModel.FK_HaberYorum_Haber" />
+        <AssociationConnector Association="DbModel.FK_KampanyaResim_Kampanya" />
+        <AssociationConnector Association="DbModel.FK_IlgiliUrun_Urun" />
+        <AssociationConnector Association="DbModel.FK_IlgiliUrun_Urun1" />
+        <AssociationConnector Association="DbModel.FK_Kategori_Kategori" />
+        <AssociationConnector Association="DbModel.FK_KategoriOzellik_Kategori" />
+        <AssociationConnector Association="DbModel.FK_PaketKategori_Kategori" />
+        <AssociationConnector Association="DbModel.FK_UrunKategori_Kategori" />
+        <AssociationConnector Association="DbModel.FK_KategoriOzellik_Ozellik" />
+        <AssociationConnector Association="DbModel.FK_Urun_Uretici" />
+        <AssociationConnector Association="DbModel.FK_Nitelik_NitelikGrup" />
+        <AssociationConnector Association="DbModel.FK_PaketNitelik_Nitelik" />
+        <AssociationConnector Association="DbModel.FK_UrunNitelik_Nitelik1" />
+        <AssociationConnector Association="DbModel.FK_Paket_NitelikGrup" />
+        <AssociationConnector Association="DbModel.FK_Urun_NitelikGrup" />
+        <AssociationConnector Association="DbModel.FK_Ozellik_OzellikTip" />
+        <AssociationConnector Association="DbModel.FK_UrunOzellik_Ozellik" />
+        <AssociationConnector Association="DbModel.FK_Paket_Vergi" />
+        <AssociationConnector Association="DbModel.FK_PaketKategori_Paket" />
+        <AssociationConnector Association="DbModel.FK_PaketNitelik_Paket" />
+        <AssociationConnector Association="DbModel.FK_PaketResim_Paket" />
+        <AssociationConnector Association="DbModel.FK_PaketUrun_Paket" />
+        <AssociationConnector Association="DbModel.FK_PaketUrun_Urun" />
+        <AssociationConnector Association="DbModel.FK_StokHareket_StokHareketTip" />
+        <AssociationConnector Association="DbModel.FK_StokHareket_Urun" />
+        <AssociationConnector Association="DbModel.FK_Resim_Urun" />
+        <AssociationConnector Association="DbModel.FK_Urun_Vergi" />
+        <AssociationConnector Association="DbModel.FK_UrunKategori_Urun" />
+        <AssociationConnector Association="DbModel.FK_UrunNitelik_Urun" />
+        <AssociationConnector Association="DbModel.FK_UrunOzellik_Urun" />
+        <AssociationConnector Association="DbModel.FK_UrunYorum_Urun" />
+        <AssociationConnector Association="DbModel.FK_UrunResim_UrunResimTip" />
+        <AssociationConnector Association="DbModel.FK_UrunYorum_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DbModel.FK_KullaniciAdres_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_KullaniciDetay_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_KullaniciYetki_Kullanici" />
+        <AssociationConnector Association="DbModel.FK_KullaniciDetay_Sirket" />
+        <AssociationConnector Association="DbModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
+        <AssociationConnector Association="DbModel.FK_KullaniciYetki_Yetki" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

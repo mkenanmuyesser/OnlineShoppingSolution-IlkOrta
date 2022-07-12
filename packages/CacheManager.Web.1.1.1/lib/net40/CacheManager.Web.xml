@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CacheManager.Web</name>
+    </assembly>
+    <members>
+        <member name="T:CacheManager.Web.CacheManagerOutputCacheProvider">
+            <summary>
+            Implements a simple System.Web.Caching.OutputCacheProvider which uses a cache manager
+            configured via web.config.
+            </summary>
+        </member>
+        <member name="P:CacheManager.Web.CacheManagerOutputCacheProvider.Cache">
+            <summary>
+            Gets the cache.
+            </summary>
+            <value>The cache.</value>
+            <exception cref="T:System.InvalidOperationException">
+            Output cache provider has not yet been initialized.
+            </exception>
+        </member>
+        <member name="M:CacheManager.Web.CacheManagerOutputCacheProvider.Add(System.String,System.Object,System.DateTime)">
+            <summary>
+            Inserts the specified entry into the output cache.
+            </summary>
+            <param name="key">A unique identifier for <paramref name="entry"/>.</param>
+            <param name="entry">The content to add to the output cache.</param>
+            <param name="utcExpiry">The time and date on which the cached entry expires.</param>
+            <returns>A reference to the specified provider.</returns>
+        </member>
+        <member name="M:CacheManager.Web.CacheManagerOutputCacheProvider.Get(System.String)">
+            <summary>
+            Returns a reference to the specified entry in the output cache.
+            </summary>
+            <param name="key">A unique identifier for a cached entry in the output cache.</param>
+            <returns>
+            The <paramref name="key"/> value that identifies the specified entry in the cache, or
+            null if the specified entry is not in the cache.
+            </returns>
+        </member>
+        <member name="M:CacheManager.Web.CacheManagerOutputCacheProvider.Initialize(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Initializes the provider.
+            </summary>
+            <param name="name">The friendly name of the provider.</param>
+            <param name="config">
+            A collection of the name/value pairs representing the provider-specific attributes
+            specified in the configuration for this provider.
+            </param>
+            <exception cref="T:System.InvalidOperationException">Might be re thrown.</exception>
+        </member>
+        <member name="M:CacheManager.Web.CacheManagerOutputCacheProvider.Remove(System.String)">
+            <summary>
+            Removes the specified entry from the output cache.
+            </summary>
+            <param name="key">The unique identifier for the entry to remove from the output cache.</param>
+        </member>
+        <member name="M:CacheManager.Web.CacheManagerOutputCacheProvider.Set(System.String,System.Object,System.DateTime)">
+            <summary>
+            Inserts the specified entry into the output cache, overwriting the entry if it is
+            already cached.
+            </summary>
+            <param name="key">A unique identifier for <paramref name="entry"/>.</param>
+            <param name="entry">The content to add to the output cache.</param>
+            <param name="utcExpiry">
+            The time and date on which the cached <paramref name="entry"/> expires.
+            </param>
+        </member>
+        <member name="T:CacheManager.Web.SystemWebCacheHandle`1">
+            <summary>
+            Implementation based on <see cref="T:System.Web.Caching.Cache"/>.
+            </summary>
+            <typeparam name="TCacheValue">The type of the cache value.</typeparam>
+            <remarks>
+            Although the MemoryCache doesn't support regions nor a RemoveAll/Clear method, we will
+            implement it via cache dependencies.
+            </remarks>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.#ctor(CacheManager.Core.ICacheManagerConfiguration,CacheManager.Core.CacheHandleConfiguration,CacheManager.Core.Logging.ILoggerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CacheManager.Web.SystemWebCacheHandle`1"/> class.
+            </summary>
+            <param name="managerConfiguration">The manager configuration.</param>
+            <param name="configuration">The cache handle configuration.</param>
+            <param name="loggerFactory">The logger factory.</param>
+        </member>
+        <member name="P:CacheManager.Web.SystemWebCacheHandle`1.Count">
+            <summary>
+            Gets the number of items the cache handle currently maintains.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:CacheManager.Web.SystemWebCacheHandle`1.Context">
+            <summary>
+            Gets the http context being used to get the <c>Cache</c> instance.
+            This implementation requires <see cref="P:System.Web.HttpContext.Current"/> to be not null.
+            </summary>
+            <value>The http context instance.</value>
+        </member>
+        <member name="P:CacheManager.Web.SystemWebCacheHandle`1.Logger">
+            <inheritdoc />
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.Clear">
+            <summary>
+            Clears this cache, removing all items in the base cache and all regions.
+            </summary>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.ClearRegion(System.String)">
+            <summary>
+            Clears the cache region, removing all items from the specified <paramref name="region"/> only.
+            </summary>
+            <param name="region">The cache region.</param>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.Exists(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.Exists(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.AddInternalPrepared(CacheManager.Core.CacheItem{`0})">
+            <summary>
+            Adds a value to the cache.
+            </summary>
+            <remarks>
+            Be aware that sliding expiration for this cache works only if the timeout is set to more than 2000ms.
+            </remarks>
+            <param name="item">The <c>CacheItem</c> to be added to the cache.</param>
+            <returns>
+            <c>true</c> if the key was not already added to the cache, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.GetCacheItemInternal(System.String)">
+            <summary>
+            Gets a <c>CacheItem</c> for the specified key.
+            </summary>
+            <param name="key">The key being used to identify the item within the cache.</param>
+            <returns>The <c>CacheItem</c>.</returns>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.GetCacheItemInternal(System.String,System.String)">
+            <summary>
+            Gets a <c>CacheItem</c> for the specified key.
+            </summary>
+            <param name="key">The key being used to identify the item within the cache.</param>
+            <param name="region">The cache region.</param>
+            <returns>The <c>CacheItem</c>.</returns>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.PutInternalPrepared(CacheManager.Core.CacheItem{`0})">
+            <summary>
+            Puts the <paramref name="item"/> into the cache. If the item exists it will get updated
+            with the new value. If the item doesn't exist, the item will be added to the cache.
+            </summary>
+            <remarks>
+            Be aware that sliding expiration for this cache works only if the timeout is set to more than 2000ms.
+            </remarks>
+            <param name="item">The <c>CacheItem</c> to be added to the cache.</param>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.RemoveInternal(System.String)">
+            <summary>
+            Removes a value from the cache for the specified key.
+            </summary>
+            <param name="key">The key being used to identify the item within the cache.</param>
+            <returns>
+            <c>true</c> if the key was found and removed from the cache, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:CacheManager.Web.SystemWebCacheHandle`1.RemoveInternal(System.String,System.String)">
+            <summary>
+            Removes a value from the cache for the specified key.
+            </summary>
+            <param name="key">The key being used to identify the item within the cache.</param>
+            <param name="region">The cache region.</param>
+            <returns>
+            <c>true</c> if the key was found and removed from the cache, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="T:CacheManager.Core.WebConfigurationBuilderExtensions">
+            <summary>
+            Extensions for the configuration builder specific to System.Runtime.Caching cache handle.
+            </summary>
+        </member>
+        <member name="M:CacheManager.Core.WebConfigurationBuilderExtensions.WithSystemWebCacheHandle(CacheManager.Core.ConfigurationBuilderCachePart,System.Boolean)">
+            <summary>
+            Adds a <see cref="T:CacheManager.Web.SystemWebCacheHandle`1" /> to the cache manager.
+            This handle uses <c>System.Web.Caching.Cache</c> and requires <c>HttpContext.Current</c> to be not null.
+            </summary>
+            <param name="part">The builder part.</param>
+            <param name="isBackplaneSource">Set this to true if this cache handle should be the source of the backplane.
+            This setting will be ignored if no backplane is configured.</param>
+            <returns>
+            The builder part.
+            </returns>
+            <returns>The builder part.</returns>
+        </member>
+        <member name="M:CacheManager.Core.WebConfigurationBuilderExtensions.WithSystemWebCacheHandle(CacheManager.Core.ConfigurationBuilderCachePart,System.String,System.Boolean)">
+            <summary>
+            Adds a <see cref="T:CacheManager.Web.SystemWebCacheHandle`1" /> to the cache manager.
+            This handle uses <c>System.Web.Caching.Cache</c> and requires <c>HttpContext.Current</c> to be not null.
+            </summary>
+            <param name="part">The builder part.</param>
+            <param name="instanceName">The name to be used for the cache handle instance.</param>
+            <param name="isBackplaneSource">Set this to true if this cache handle should be the source of the backplane.
+            This setting will be ignored if no backplane is configured.</param>
+            <returns>
+            The builder part.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">If part is null.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="instanceName"/> is null.</exception>
+        </member>
+    </members>
+</doc>

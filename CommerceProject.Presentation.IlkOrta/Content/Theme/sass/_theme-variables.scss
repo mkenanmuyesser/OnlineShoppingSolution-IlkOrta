@@ -1,0 +1,69 @@
+$main-font-color: #333;
+$main-font-family: 'Arimo';
+$main-font-size: 14px;
+$main-font-weight: 400;
+
+$header-height: 113px;
+$footer-height: 134px;
+$header-bg: rgba(#fff, .97);
+$preloader-img: "../img/svg/loader.svg";
+
+$general-color: #1e1e1e;
+$primary:       #037ac5;
+$primary-hover: lighten($primary, 10%);
+$success:       #738d00;
+$success-hover: lighten($success, 10%);
+$info:          #0098ca;
+$info-hover:    lighten($info, 10%);
+$warning:       #f89406;
+$warning-hover: lighten($warning, 10%);
+$danger:        #c10841;
+$danger-hover:  lighten($danger, 10%);
+$color-types: (
+  warning $warning $warning-hover,
+  danger $danger $danger-hover,
+  info $info $info-hover,
+  success $success $success-hover
+);
+
+$media-md: 1199px;
+$media-sm: 991px;
+$media-xs: 767px;
+
+%font-awesome {
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+@mixin rem($property, $values) {
+  $font-size: $main-font-size;
+  $px-values: ();
+  $rem-values: ();
+
+  @each $value in $values {
+    @if $value == 0 or $value == 0px {
+      $px-values: join($px-values, 0);
+      $rem-values: join($rem-values, 0);
+    } @else if type-of($value) == number and not unitless($value) and (unit($value) == px) {
+      $new-rem-value: $value / $font-size;
+      $px-values: join($px-values, round($value));
+      $rem-values: join($rem-values, #{$new-rem-value}rem);
+    } @else if type-of($value) == number and not unitless($value) and (unit($value) == "%") {
+      $px-values: join($px-values, #{$value});
+      $rem-values: join($rem-values, #{$value});
+    } @else if $value == auto {
+      $px-values: join($px-values, auto);
+      $rem-values: join($rem-values, auto);
+    } @else {
+      $px-values: join($px-values, round($value * $font-size));
+      $rem-values: join($rem-values, #{$value}rem);
+    }
+  }
+
+  #{$property}: $px-values;
+  #{$property}: $rem-values;
+}

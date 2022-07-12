@@ -1,0 +1,43 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var banner = Model as Banner;
+}
+
+<li data-delay="7000" data-transition="fade" data-slotamount="7" data-masterspeed="2000">
+    <div class="elements">
+        <h2 class="tp-caption skewtotop title"
+            data-x="722"
+            data-y="101"
+            data-start="1700"
+            data-transform_in="y:top;s:1000;e:Power4.easeOut"
+            data-transform_out="y:top;s:500;e:Power1.easeIn">
+            <strong>@banner.Aciklama1</strong>
+        </h2>
+
+        <div class="tp-caption lfr skewtoright description"
+             data-x="707"
+             data-y="189"
+             data-start="1500"
+             data-transform_in="x:right;s:1000;e:Power4.easeOut"
+             data-transform_out="x:right;s:500;e:Power1.easeIn"
+             style="max-width: 480px">
+            <strong>@banner.Aciklama2</strong>
+        </div>
+
+        @if (!string.IsNullOrEmpty(banner.Link))
+        {
+            <a href="@banner.Link"
+               class="btn btn-default cherry tp-caption"
+               data-x="722"
+               data-y="342"
+               data-start="1700"
+               data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+               data-transform_out="y:bottom;s:500;e:Power1.easeIn">
+                Göster
+            </a>
+        }       
+    </div>
+
+    <img class="replace-2x" src="@banner.Resim" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+</li>

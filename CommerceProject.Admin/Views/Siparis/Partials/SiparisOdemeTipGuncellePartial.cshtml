@@ -1,0 +1,234 @@
+﻿@using CommerceProject.Business.Entities
+
+@{ 
+    var siparisOdemeTip = ViewBag.SiparisOdemeTip as SiparisOdemeTip;
+}
+
+<form id="form_SiparisOdemeTip">
+    <input id="hdnSiparisOdemeTipId" type="hidden" value="@siparisOdemeTip.SiparisOdemeTipId" />
+
+    <div class="form-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="txtSiparisOdemeTipAdi" class="control-label">Ödeme Yöntemi Adı<span class="required"> * </span></label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="txtSiparisOdemeTipAdi" name="txtSiparisOdemeTipAdi" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Ödeme Yöntemi Adı Giriniz..." 
+                               value="@siparisOdemeTip.Adi" @(siparisOdemeTip.SiparisOdemeTipId > 0 ? "readonly" : "") tabindex="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dropDownKomiyonIskontoTip" class="control-label">Komisyon Tipi<span class="required"> * </span></label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <select id="dropDownKomiyonIskontoTip" name="dropDownKomiyonIskontoTip" class="form-control select2" style="width:100%;" tabindex="2"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="txtSiparisOdemeTipMiktar" class="control-label">Miktar<span class="required"> * </span></label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="txtSiparisOdemeTipMiktar" name="txtSiparisOdemeTipMiktar" class="form-control input-sm decimal-4 focus-sense" placeholder="Miktar Giriniz..."
+                               value="@(siparisOdemeTip.SiparisOdemeTipId > 0 ? siparisOdemeTip.Miktar.ToString("N4").Replace(".", "").Replace(",", ".") : "")" tabindex="3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="txtSiparisOdemeTipSira" class="control-label">Sıra<span class="required"> * </span></label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="txtSiparisOdemeTipSira" name="txtSiparisOdemeTipSira" class="form-control input-sm focus-sense" placeholder="Sıra Giriniz..." 
+                               value="@siparisOdemeTip.Sira" @(siparisOdemeTip.SiparisOdemeTipId > 0 ? "readonly" : "") tabindex="4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="txtSiparisOdemeTipAktifMi" class="control-label">Aktif mi?</label>
+                    <div class="icheck-inline">
+                        <input id="txtSiparisOdemeTipAktifMi" name="txtSiparisOdemeTipAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" 
+                               @(siparisOdemeTip.SiparisOdemeTipId > 0 ? (siparisOdemeTip.AktifMi ? "checked" : "") : "checked") tabindex="5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <div class="text-center">
+                @if (siparisOdemeTip.SiparisOdemeTipId == 0)
+                {
+                    <button type="submit" class="btn blue" tabindex="6">
+                        Kaydet
+                        <i class="fa fa-save"></i>
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" class="btn yellow" tabindex="6">
+                        Güncelle
+                        <i class="fa fa-edit"></i>
+                    </button>
+                }
+                <a href="/Siparis/OdemeYontemi" class="btn red" tabindex="7">
+                    İptal
+                    <i class="fa fa-close"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script type="text/javascript">
+    var komisyonIskontoTipListesi = @Html.Raw(Json.Encode(ViewBag.KomisyonIskontoTipListesi))
+
+    $(document).ready(function () {
+        $('#txtSiparisOdemeTipAktifMi').bootstrapSwitch();
+
+        $("#txtSiparisOdemeTipSira").inputmask('99', {
+            numericInput: true,
+            rightAlignNumerics: false,
+            greedy: false,
+            placeholder: '00'
+        });
+
+        $(".decimal-4").inputmask('decimal', {
+            rightAlign: false,
+            integerDigits: 18,
+            radixPoint: ".",
+            digits: 4
+        });
+
+        $('#dropDownKomiyonIskontoTip').select2({
+            placeholder: "Komisyon İskonto Tipi Seçiniz...",
+            language: {
+                noResults: function (params) {
+                    return "Hiç kayıt bulunamadı.";
+                }
+            },
+            data: komisyonIskontoTipListesi,
+            escapeMarkup: function (markup) {
+                return markup;
+            },
+            templateResult: templateData,
+            templateSelection: templateDataSelection
+        }).val('').trigger('change');
+        @if(siparisOdemeTip.SiparisOdemeTipId > 0)
+        {
+            @: $('#dropDownKomiyonIskontoTip').val('@(siparisOdemeTip.KomisyonIskontoTipId)').trigger('change');
+        }
+
+        $('#form_SiparisOdemeTip').validate({
+            errorElement: 'span',
+            errorClass: 'help-block help-block-error',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                txtSiparisOdemeTipAdi: {
+                    maxlength: 50,
+                    required: true
+                },
+                dropDownKomiyonIskontoTip: {
+                    required: true
+                },
+                txtSiparisOdemeTipMiktar: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                },
+                txtSiparisOdemeTipSira: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                }
+            },
+            errorPlacement: function (error, element) {
+                var icon = $(element).parent('.input-icon').children('i');
+                icon.removeClass('fa-check').addClass("fa-warning");
+                icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+            },
+            highlight: function (element) {
+                $(element)
+                    .closest('.form-group').removeClass("has-success").addClass('has-error');
+            },
+            unhighlight: function (element) {
+
+            },
+            success: function (label, element) {
+                var icon = $(element).parent('.input-icon').children('i');
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                icon.removeClass("fa-warning").addClass("fa-check");
+            },
+            submitHandler: function () {
+                kaydet();
+            },
+        });
+    });
+
+    function templateData(obj) {
+        if (obj.id == '')
+            return obj.text;
+
+        if (obj.aktif) {
+            return obj.text;
+        } else {
+            return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+        }
+    }
+    function templateDataSelection(obj) {
+        if (obj.id == '')
+            return obj.text;
+
+        if (obj.aktif) {
+            return obj.text;
+        } else {
+            return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+        }
+    }
+
+    function kaydet() {
+        var data = {
+            SiparisOdemeTipId: $('#hdnSiparisOdemeTipId').val(),
+            Adi: $('#txtSiparisOdemeTipAdi').val(),
+            KomisyonIskontoTipId: $('#dropDownKomiyonIskontoTip').val(),
+            Miktar: parseFloat($('#txtSiparisOdemeTipMiktar').val()),
+            Sira: $('#txtSiparisOdemeTipSira').val(),
+            AktifMi: $('#txtSiparisOdemeTipAktifMi').is(":checked") ? true : false
+        };
+
+        $.ajax({
+            url: '/Siparis/SiparisOdemeTipKaydetGuncelle',
+            data: JSON.stringify(data),
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
+                showLoadingModal();
+            },
+            success: function (result) {
+                hideLoadingModal();
+                if (!result) {
+                    callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+                else {
+                    callAlert('success', 'Kayıt işlemi başarılı.');
+                    setTimeout(function myfunction() {
+                        window.location.href = '/Siparis/OdemeYontemi';
+                    }, 1500);
+                }
+            },
+            error: function () {
+                hideLoadingModal();
+                callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+            }
+        });
+    }
+</script>

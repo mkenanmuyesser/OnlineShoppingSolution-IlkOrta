@@ -1,0 +1,200 @@
+/******************************************************************************
+  Steps
+*******************************************************************************/
+.steps {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  
+  .step {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    display: table-cell;
+    padding: 15px;
+    position: relative;
+    vertical-align: middle;
+    
+    .step-wrapper {
+      position: relative;
+      
+      &:after,
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -29px;
+        border: 7px solid transparent;
+        border-left-color: #e1e1e1;
+        z-index: 1;
+      }
+      &:before {
+        border-left-color: #fff;
+        right: -27px;
+        z-index: 2;
+      }
+    }
+    + .step {
+      border-left: 0 none;
+    }
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+      
+      .step-wrapper {
+        &:after,
+        &:before {
+          display: none;
+        }
+      }
+    }
+    .bg-image {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      bottom: 0;
+      left: 0;
+      opacity: .1;
+      filter: alpha(opacity=10);
+      position: absolute;
+      right: 0;
+      top: 0;
+      
+      ~ * {
+        position: relative;
+      }
+    }
+    
+    $step-types: (
+      error $danger,
+      danger $danger,
+      info $info,
+      warning $warning,
+      success $success,
+      grey #777
+    );
+    @each $type in $step-types {
+      $class: nth($type, 1);
+      $color: nth($type, 2);
+      
+      &.border-#{$class} .step-wrapper:after {
+        border-left-color: #{$color};
+      }
+      &.bg-#{$class} .step-wrapper:before {
+        border-left-color: #{$color};
+      }
+    }
+    &.bg-grey {
+      background: #777;
+    }
+  }
+  &.steps-apart {
+    display: block;
+    width: auto;
+    
+    .step {
+      border-radius: 3px;
+      display: block;
+      
+      &:last-child .step-wrapper:after,
+      &:last-child .step-wrapper:before {
+        display: block;
+      }
+    }
+    > [class*="col-md"]:last-child > .step .step-wrapper:after ,
+    > [class*="col-md"]:last-child > .step .step-wrapper:before {
+      display: none;
+    }
+  }
+  &.progress-steps {
+    display: block;
+    
+    .step {
+      background: none !important;
+      border: 1px solid #e1e1e1;
+      border-radius: 3px;
+      display: block;
+      margin: 0 0 40px;
+      min-height: 185px;
+      padding: 0;
+      
+      .step-wrapper {
+        padding: 20px 20px 20px 260px;
+        position: static;
+      }
+      .number {
+        background: #e1e1e1;
+        bottom: 0;
+        color: #fff;
+        font-size: 150px;
+        left: 0;
+        line-height: 1.2;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 240px;
+        
+        &:after,
+        &:before {
+          border: 7px solid transparent;
+          border-top-color: #e1e1e1;
+          bottom: -15px;
+          content: '';
+          left: 50%;
+          margin-left: -7px;
+          position: absolute;
+          z-index: 1;
+        }
+        &:before {
+          bottom: -13px;
+          z-index: 2;
+        }
+      }
+      &.step-right {
+        .step-wrapper {
+          padding: 20px 260px 20px 20px;
+        }
+        .number {
+          left: auto;
+          right: 0;
+        }
+      }
+      .step-wrapper,
+      &:last-child .number {
+        &:after,
+        &:before {
+          display: none;
+        }
+      }
+      $step-types: (
+        error $danger,
+        danger $danger,
+        info $info,
+        warning $warning,
+        success $success,
+        grey #777
+      );
+      @each $type in $step-types {
+        $class: nth($type, 1);
+        $color: nth($type, 2);
+        
+        &.border-#{$class} .number{
+          color: #{$color};
+          
+          &:after {
+            border-top-color: #{$color};
+          }
+        }
+        &.bg-#{$class} .number {
+          background: #{$color};
+          color: #fff;
+          
+          &:before {
+            border-top-color: #{$color};
+          }
+        }
+      }
+    }
+  }
+}

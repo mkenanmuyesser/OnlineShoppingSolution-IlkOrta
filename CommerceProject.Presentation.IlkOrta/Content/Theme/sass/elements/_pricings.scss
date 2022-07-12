@@ -1,0 +1,185 @@
+/******************************************************************************
+  Pricings
+*******************************************************************************/
+.pricing {
+  background-color: #fff;
+  margin: 0 auto 40px;
+  max-width: 270px;
+  position: relative;
+  text-align: left;
+  
+  * {
+    position: relative;
+  }
+  &:before {
+    background: #f7f7f7;
+    background: rgba(30,30,30,.06);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .title {
+    line-height: 32px;
+    padding: 17px 20px 21px;
+    
+    a {
+      color: #1e1e1e;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 32px;
+      text-decoration: none;
+    }
+  }
+  .price-box {
+    font-size: 12px;
+    line-height: 1;
+    overflow: hidden;
+    padding: 0 20px 20px;
+    
+    .icon {
+      background: #fff;
+      color: #505050;
+      height: 60px;
+      text-align: center;
+      width: 60px;
+      z-index: 1;
+      
+      i,
+      .livicon {
+        background: none;
+        font-size: 30px;
+        height: auto;
+        line-height: 52px;
+        margin: 0;
+        width: auto;
+        
+        svg {
+          top: 0 !important;
+          vertical-align: middle;
+        }
+      }
+    }
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 13px 0 0;
+      
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+  .options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    li {
+      border-top: 1px solid rgba(30,30,30,.1);
+      color: #999;
+      color: rgba(30,30,30,.4);
+      line-height: 22px;
+      padding: 13px 10px 13px 45px;
+      position: relative;
+      
+      span {
+        color: #1e1e1e;
+        display: none;
+        left: 25px;
+        line-height: 1;
+        position: absolute;
+        top: 16px;
+      }
+      &.active {
+        color: #1e1e1e;
+        
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  .bottom-box {
+    border-top: 1px solid rgba(30,30,30,.1);
+    background: rgba(30,30,30,.05);
+    overflow: hidden;
+    padding: 19px 19px 20px;
+    
+    .clearfix {
+      clear: both;
+    }
+    .more {
+      color: #7f7f7f;
+      color: rgba(30,30,30,.7);
+      display: block;
+      float: left;
+      font-size: 12px;
+      line-height: 1;
+      text-decoration: none;
+      -webkit-transition: opacity .2s linear;
+      transition: opacity .2s linear;
+      
+      &:hover {
+        opacity: .65;
+        filter: alpha(opacity=65);
+        -webkit-transition: opacity .2s linear;
+        transition: opacity .2s linear;
+      }
+      span {
+        font-size: 17px;
+        line-height: 12px;
+        margin: 0 0 0 3px;
+        vertical-align: top;
+      }
+    }
+    .rating-box {
+      float: right;
+    }
+    .btn {
+      font-weight: bold;
+      margin: 19px 0 0;
+      width: 100%;
+    }
+  }
+  $pricing-types: (
+    error $danger,
+    warning $warning,
+    danger $danger,
+    info $info,
+    success $success
+  );
+  @each $type in $pricing-types {
+    $class: nth($type, 1);
+    $color: nth($type, 2);
+
+    &.pricing-#{$class} {
+      &:before {
+        background: rgba($color,.06);
+      }
+      .title a {
+        color: #{$color};
+      }
+      .price-box .icon {
+        color: #{$color};
+        border-color: #{$color};
+      }
+      .options li,
+      .bottom-box {
+        border-color: rgba($color,.1);
+        color: rgba($color,.4);
+      }
+      .bottom-box {
+        border-top: 1px solid rgba($color,.1);
+        background: rgba($color,.05);
+      } 
+      .options li span,
+      .bottom-box .more,
+      .options li.active {
+        color: #{$color};
+      }
+    }
+  }
+}

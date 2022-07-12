@@ -1,0 +1,138 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Hakkimizda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var markalar = ViewBag.Markalar as List<Marka>;
+}
+
+<section id="main">
+    <header class="page-header">
+        <div class="container">
+            <h3 class="title">Hakkımızda</h3>
+        </div>
+    </header>
+
+    <div class="container" data-appear-animation="fadeIn">
+        <div class="row">
+            <div class="content col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 bottom-padding">
+                        <img class="replace-2x ls-bg" src="/Content/Theme/img/test/hakkimizda3.jpg" width="798" height="588" alt="">
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 bottom-padding">
+                        <div class="title-box">
+                            <h2 class="title" style="padding: 0;">Akıllı & Yaratıcı</h2>
+                        </div>
+                        <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                        <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                        <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                        <blockquote class="no-margin">
+                            <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                            <footer>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="bottom-padding col-sm-6 col-md-6">
+                        <div class="title-box">
+                            <h2 class="title" style="padding-top: 0;">Neler Yapıyoruz?</h2>
+                        </div>
+                        <div class="tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#services" data-toggle="tab">?</a>
+                                </li>
+                                <li>
+                                    <a href="#features" data-toggle="tab">??</a>
+                                </li>
+                                <li>
+                                    <a href="#text" data-toggle="tab">???</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active fade in" id="services">
+                                    <img class="replace-2x alignleft" src="content/img/product-1.jpg" width="200" height="200" alt="">
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                </div>
+
+                                <div class="tab-pane fade in" id="features">
+                                    <img class="replace-2x alignright" src="content/img/product-3.jpg" width="200" height="200" alt="">
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                </div>
+
+                                <div class="tab-pane fade in" id="text">
+                                    <img class="replace-2x alignright" src="content/img/product-3.jpg" width="200" height="200" alt="">
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                    <p>Açıklama aaaaa bbbb cccc ddddd eeeee fff gggg...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="bottom-padding col-sm-6 col-md-6">
+                        <div class="title-box">
+                            <h2 class="title" style="padding-top: 0;">Başarılarımız</h2>
+                        </div>
+
+                        <div class="progress progress-striped active" data-appear-progress-animation="100%">
+                            <div class="progress-bar progress-bar-warning">??? 100%</div>
+                        </div>
+                        <div class="progress progress-striped active" data-appear-progress-animation="100%">
+                            <div class="progress-bar progress-bar-success">??? 100%</div>
+                        </div>
+                        <div class="progress progress-striped active" data-appear-progress-animation="100%">
+                            <div class="progress-bar progress-bar-info">??? 100%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="content col-sm-12 col-md-12">
+                <div class="carousel-box load overflow" data-autoplay-disable="true">
+                    <div class="title-box">
+                        <a class="next" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+			  </svg>
+                        </a>
+                        <a class="prev" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+			  </svg>
+                        </a>
+                        <h2 class="title">Müşteri Portföyümüz</h2>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="carousel">
+                            @foreach (var marka in markalar)
+                            {
+                                <div class="col-sm-3 col-md-2 text-center bg-white">
+                                    <a href="javascript:;" class="client bg-white">
+                                        <img class="replace-2x" src="@marka.Resim" alt="" width="80" height="40">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

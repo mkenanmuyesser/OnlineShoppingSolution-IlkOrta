@@ -1,0 +1,142 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "OdemeYontemi";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{ 
+    var siparisOdemeTipListesi = ViewBag.SiparisOdemeTipListesi as List<SiparisOdemeTip>;
+}
+
+<div class="portlet light bordered blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-list-ul font-dark"></i>
+                    <span class="caption-subject font-dark bold">Ödeme Yöntemleri</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse" data-original-title="Genişlet / Daralt" title="Genişlet / Daralt"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="table-responsive">
+                                <table id="tableSiparisOdemeTip" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="30%">Adı</th>
+                                            <th width="35%">Komisyon İskonto Tipi</th>
+                                            <th width="10%">Miktar</th>
+                                            <th width="10%">Sıra</th>
+                                            <th width="10%">Aktif mi?</th>
+                                            <th width="5%">İşlem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var odemeTipi in siparisOdemeTipListesi)
+                                            {
+                                                <tr>
+                                                    <td>@odemeTipi.Adi</td>
+                                                    <td>@odemeTipi.KomisyonIskontoTip.Adi</td>
+                                                    <td>@odemeTipi.Miktar</td>
+                                                    <td>@odemeTipi.Sira</td>
+                                                    <td>
+                                                        <div class="icheck-inline">
+                                                            <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" @(odemeTipi.AktifMi ? "checked" : "") readonly>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <button class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle" onclick="odemeYontemGuncelle('@odemeTipi.SiparisOdemeTipId', this);">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="fa fa-edit font-dark"></i>
+                    <span class="caption-subject bold">Güncelleme</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div id="divPartial">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-info no-margin">
+                                            <i class="fa fa-info-circle"></i>
+                                            Lütfen yukarıdaki listeden güncellemek istediğiniz ödeme yöntemini seçiniz.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        function odemeYontemGuncelle(id, obj) {
+            $('#tableSiparisOdemeTip tbody tr').removeClass('bg-yellow-crusta');
+            $(obj).closest('tr').addClass('bg-yellow-crusta');
+
+            showLoadingModal();
+            $('#divPartial').html('');
+
+            $('#divPartial').load('/Siparis/SiparisOdemeTipGuncellePartial/' + id, function () {
+                hideLoadingModal();
+            });
+        }
+    </script>
+}

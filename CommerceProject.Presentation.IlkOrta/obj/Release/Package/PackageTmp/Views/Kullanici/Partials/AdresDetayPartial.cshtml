@@ -1,0 +1,328 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var kullaniciAdres = ViewBag.KullaniciAdres as KullaniciAdres;
+    var currentController = ViewBag.CurrentController;
+}
+
+<div class="row">
+    <article id="divAdresDetay" class="col-sm-12 col-md-12 content">
+        <input id="hdnAdresId" type="hidden" value="@kullaniciAdres.AdresId" />
+
+        <div class="col-sm-12 col-md-12">
+            <div class="title-box" style="all:initial">
+                <h2 class="title">Adres Bilgisi</h2>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Adres Tanımı <span class="required">*</span></label>
+                    <input id="txtAdresAdi" name="txtAdresAdi" class="form-control input-sm" type="text" placeholder="Adres Adını Giriniz..." required value="@kullaniciAdres.Adres.AdresAdi">
+                </div>
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Fatura Tipi <span class="required">*</span></label>
+                    <select id="drpFaturaTipleri" class="form-control without-styles select2" style="width: 100%;"></select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Tc No</label>
+                    <input id="txtTcNo" name="txtTcNo" class="form-control input-sm tc-number" type="text" placeholder="Tc No Giriniz..." value="@kullaniciAdres.Adres.TcNo">
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Ad <span class="required">*</span></label>
+                    <input id="txtAd" name="txtAd" class="form-control input-sm" type="text" placeholder="Adınızı Giriniz..." required value="@kullaniciAdres.Adres.Ad">
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Soyad <span class="required">*</span></label>
+                    <input id="txtSoyad" name="txtSoyad" class="form-control input-sm" type="text" placeholder="Soyadınızı Giriniz..." required value="@kullaniciAdres.Adres.Soyad">
+                </div>
+            </div>
+
+            <div id="rowFirma" class="row hidden">
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Firma Unvan <span class="required">*</span></label>
+                    <input id="txtFirmaUnvan" name="txtFirmaUnvan" class="form-control input-sm" type="text" placeholder="Firma Unvanı Giriniz..." value="@kullaniciAdres.Adres.FirmaUnvan">
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Vergi Dairesi <span class="required">*</span></label>
+                    <input id="txtVergiDairesi" name="txtVergiDairesi" class="form-control input-sm" type="text" placeholder="Vergi Dairesini Giriniz..." value="@kullaniciAdres.Adres.VergiDairesi">
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Vergi No <span class="required">*</span></label>
+                    <input id="txtVergiNo" name="txtVergiNo" class="form-control input-sm" type="text" placeholder="Vergi No Giriniz..." value="@kullaniciAdres.Adres.VergiNo">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>İl <span class="required">*</span></label>
+                    <select id="drpAdresIl" class="form-control without-styles select2" style="width: 100%;"></select>
+                </div>
+                <div id="divAdresIlce" class="form-group col-sm-4 col-md-4">
+                    <label>İlçe <span class="required">*</span></label>
+                    <select id="drpAdresIlce" class="form-control without-styles select2" style="width: 100%;"></select>
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label>Posta Kodu</label>
+                    <input id="txtPostaKodu" name="txtPostaKodu" class="form-control input-sm com-number" type="text" placeholder="Posta Kodunuzu Giriniz..." value="@kullaniciAdres.Adres.PostaKodu">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Adres <span class="required">*</span></label>
+                    <input id="txtAdresBilgi" name="txtAdresBilgi" class="form-control input-sm" type="text" placeholder="Adresinizi Giriniz..." required value="@kullaniciAdres.Adres.AdresBilgi">
+                </div>
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Açıklama</label>
+                    <input id="txtAciklama" name="txtAciklama" class="form-control input-sm" type="text" placeholder="Açıklama Giriniz..." value="@kullaniciAdres.Adres.Aciklama">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Telefon-1 <span class="required">*</span></label>
+                    <input id="txtTelefon1" name="txtTelefon1" class="form-control input-sm com-phone" type="text" placeholder="Telefon Numaranızı Giriniz..." required value="@kullaniciAdres.Adres.Telefon1">
+                </div>
+                <div class="form-group col-sm-6 col-md-6">
+                    <label>Telefon-2</label>
+                    <input id="txtTelefon2" name="txtTelefon2" class="form-control input-sm com-phone" type="text" placeholder="Telefon Numaranızı Giriniz..." value="@kullaniciAdres.Adres.Telefon2">
+                </div>
+            </div>
+            @if (currentController == "SepetKullaniciVar" || (currentController =="Kullanici"))
+            {
+                <div class="buttons-box clearfix pull-right">
+                    <button type="button" class="btn btn-primary" onclick="javascript: adresKaydet();">Kaydet</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                </div>
+            }           
+        </div>
+    </article>
+</div>
+
+<script type="text/javascript">
+      var faturaTipListesi = @Html.Raw(Json.Encode(ViewBag.FaturaTipListesi))
+      var ilListesi = @Html.Raw(Json.Encode(ViewBag.IlListesi))
+
+          $(document).ready(function () {
+              $('.tc-number').inputmask('99999999999', {
+                  rightAlign: false,
+                  clearIncomplete: true,
+                    oncomplete: function (e) {
+                    if (!checkTCNo($(this).val())) {
+                        callAlert('warning', 'Hatalı T.C. kimlik numarası girdiniz. Lütfen kontrol ediniz.');
+                        $(this).val('');
+                        $(this).focusout().focusin();
+                    }
+                  }
+              });
+              $('.com-number').inputmask('99999', {
+                  numericInput: true,
+                  rightAlignNumerics: false,
+                  greedy: false,
+                  placeholder: '00000'
+              });
+              $('.com-phone').inputmask('0 (999) 999-9999', {
+                  numeric: true,
+                  removeMaskOnSubmit: true,
+                  onincomplete: function (o, e) {
+                      $(this).val('');
+                  }
+              });
+
+              $('#drpFaturaTipleri').select2({
+                  placeholder: "Fatura Tipi Seçiniz...",
+                  allowClear: true,
+                  language: {
+                      noResults: function (params) {
+                          return "Hiç kayıt bulunamadı.";
+                      }
+                  },
+                  data: faturaTipListesi,
+                  escapeMarkup: function (markup) {
+                      return markup;
+                  },
+              }).on('change', function () {
+
+                  if ($('#drpFaturaTipleri').val() == '' ||
+                      $('#drpFaturaTipleri').val() == null ||
+                      $('#drpFaturaTipleri').val() == 1) {
+                      $('#rowFirma').addClass('hidden');
+                  }
+                  else {
+                      $('#rowFirma').removeClass('hidden');
+                  }
+              }).val('@kullaniciAdres.Adres.FaturaTipId').trigger('change');
+
+              $('#drpAdresIlce').select2({
+                  placeholder: "İlçe Seçiniz...",
+                  disabled: true,
+                  data: null
+              });
+
+              $('#drpAdresIl').select2({
+                  placeholder: "İl Seçiniz...",
+                  allowClear: true,
+                  language: {
+                      noResults: function (params) {
+                          return "Hiç kayıt bulunamadı.";
+                      }
+                  },
+                  data: ilListesi,
+                  escapeMarkup: function (markup) {
+                      return markup;
+                  },
+              }).on('change', function () {
+                  $('#drpAdresIlce').select2('destroy');
+                  $('#drpAdresIlce').off('change');
+
+                  $('#drpAdresIlce').empty();
+                  $('#drpAdresIlce').val('');
+
+                  var adresIlId = $('#drpAdresIl').val();
+                  if (adresIlId == null || adresIlId == '') {
+                      $('#drpAdresIlce').select2({
+                          placeholder: "İlçe Seçiniz...",
+                          disabled: true,
+                          data: null
+                      });
+                  }
+                  else {
+                      $.ajax({
+                          url: '/Kullanici/BagliIlceGetir/' + adresIlId,
+                          type: "get",
+                          dataType: "json",
+                          contentType: "application/json; charset=utf-8",
+                          beforeSend: function () {
+                              showLoadingModal('divAdresDetay');
+                          },
+                          success: function (result) {
+                              hideLoadingModal('divAdresDetay');
+
+                              $('#drpAdresIlce').select2({
+                                  placeholder: "İlçe Seçiniz...",
+                                  disabled: false,
+                                  allowClear: true,
+                                  language: {
+                                      noResults: function (params) {
+                                          return "Hiç kayıt bulunamadı.";
+                                      }
+                                  },
+                                  data: result,
+                                  escapeMarkup: function (markup) {
+                                      return markup;
+                                  }
+                              }).val('@kullaniciAdres.Adres.AdresIlceId').trigger('change');;
+                          },
+                          error: function () {
+                              hideLoadingModal('divAdresDetay');
+                              callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                          }
+                      });
+                  }
+
+                  }).val('@kullaniciAdres.Adres.AdresIlId').trigger('change');
+
+
+        //$(".integer").inputmask('99999999', {
+        //    numericInput: true,
+        //    rightAlignNumerics: false,
+        //    greedy: false,
+        //    placeholder: '00000000'
+        //});
+          });
+      function checkTCNo (value) {
+          value = value.toString();
+          var isEleven = /^[0-9]{11}$/.test(value);
+          var totalX = 0;
+          for (var i = 0; i < 10; i++) {
+              totalX += Number(value.substr(i, 1));
+          }
+          var isRuleX = totalX % 10 == value.substr(10, 1);
+          var totalY1 = 0;
+          var totalY2 = 0;
+          for (var i = 0; i < 10; i += 2) {
+              totalY1 += Number(value.substr(i, 1));
+          }
+          for (var i = 1; i < 10; i += 2) {
+              totalY2 += Number(value.substr(i, 1));
+          }
+          var isRuleY = ((totalY1 * 7) - totalY2) % 10 == value.substr(9, 0);
+          return isEleven && isRuleX && isRuleY;
+      }
+
+      function adresKaydet() {
+        if ($('#txtAdresAdi').val() == '' ||
+            $('#drpFaturaTipleri').val() == '' ||
+            $('#drpFaturaTipleri').val() == null ||
+            $('#txtAd').val() == '' ||
+            $('#txtSoyad').val() == '' ||
+            $('#drpAdresIl').val() == '' ||
+            $('#drpAdresIl').val() == null ||
+            $('#drpAdresIlce').val() == '' ||
+            $('#drpAdresIlce').val() == null ||
+            $('#txtAdresBilgi').val() == ''  ||
+            $('#txtTelefon1').val() == '') {
+            callAlert('warning', 'Lütfen gerekli alanları doldurunuz.');
+            return false;
+        }
+
+        if ($('#drpFaturaTipleri').val() == '2' &&
+            ($('#txtFirmaUnvan').val() == '' ||
+             $('#txtVergiDairesi').val() == '' ||
+             $('#txtVergiNo').val() == '')) {
+            callAlert('warning', 'Lütfen seçtiğiniz fatura tipinden dolayı "Firma Unvan", "Vergi Dairesi" ve "Vergi No" alanlarını lütfen doldurunuz.');
+            return false;
+        }
+
+        var data = {
+            AdresId: parseInt($('#hdnAdresId').val()),
+            AdresAdi: $('#txtAdresAdi').val(),
+            FaturaTipId: ($('#drpFaturaTipleri').val() != '' && $('#drpFaturaTipleri').val() != null) ? $('#drpFaturaTipleri').val() : 0,
+            TcNo: $('#txtTcNo').val(),
+            Ad: $('#txtAd').val(),
+            Soyad: $('#txtSoyad').val(),
+            FirmaUnvan: $('#txtFirmaUnvan').val(),
+            VergiDairesi: $('#txtVergiDairesi').val(),
+            VergiNo: $('#txtVergiNo').val(),
+            AdresIlId: ($('#drpAdresIl').val() != '' && $('#drpAdresIl').val() != null) ? $('#drpAdresIl').val() : 0,
+            AdresIlceId: ($('#drpAdresIlce').val() != '' && $('#drpAdresIlce').val() != null) ? $('#drpAdresIlce').val() : 0,
+            PostaKodu: $('#txtPostaKodu').val(),
+            AdresBilgi: $('#txtAdresBilgi').val(),
+            Aciklama: $('#txtAciklama').val(),
+            Telefon1: $('#txtTelefon1').val(),
+            Telefon2: $('#txtTelefon2').val(),
+            AktifMi: true
+        };
+
+        $.ajax({
+            url: '/Kullanici/AdresKaydet',
+            data: JSON.stringify(data),
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
+                showLoadingModal('divAdresDetay');
+            },
+            success: function (result) {
+                hideLoadingModal('divAdresDetay');
+
+                callAlert(result.messageType, result.message);
+
+                if ('@currentController' =='Kullanici') {
+                    ara();
+                }
+                else if('@currentController' =='SepetKullaniciVar'){
+                    adresBilgiGetir();
+                }
+
+                $('#modalDialog').modal('hide');
+            },
+            error: function () {
+                hideLoadingModal('divAdresDetay');
+                callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+            }
+        });
+    }
+</script>

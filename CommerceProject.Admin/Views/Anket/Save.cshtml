@@ -1,0 +1,747 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{ 
+    var anket = ViewBag.Anket as Anket;
+    var anketSorular = ViewBag.AnketSorular as List<AnketSoru>;
+}
+
+@section css{
+    <style type="text/css">
+        .none {
+            display: none;
+        }
+
+        .red-border {
+            border: 1px solid red;
+        }
+
+        #tableResim tbody tr td {
+            vertical-align: middle !important;
+        }
+    </style>
+}
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Anket/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Anket/Index">
+                        <i class="fa fa-search"></i> Arama
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <div class="tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab">Anket Bilgileri</a>
+                        </li>
+                        @if (anket.AnketId == 0)
+                        {
+                            <li class="disabled">
+                                <a href="#tab_2">
+                                    Sorular
+                                    <span class="badge badge-default" style="margin-top: -20px;margin-right: -12px;">0</span>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#tab_3">
+                                    Cevaplar
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#tab_4">Sonuçlar</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#tab_2" data-toggle="tab">
+                                    Sorular
+                                    <span class="badge badge-danger" style="margin-top: -20px;margin-right: -12px;">@anketSorular.Count</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab_3" data-toggle="tab">Cevaplar</a>
+                            </li>
+                            <li>
+                                <a href="#tab_4" data-toggle="tab">Sonuçlar</a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <form id="comform_1">
+                                <input id="hdnAnketId" type="hidden" value="@anket.AnketId" />
+
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketAdi" class="control-label">Adı<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <input id="txtAnketAdi" name="txtAnketAdi" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Anket Adı Giriniz..." value="@anket.Adi" tabindex="1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketAciklama" class="control-label">Açıklama<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <textarea id="txtAnketAciklama" name="txtAnketAciklama" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." tabindex="2">@anket.Aciklama</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <input id="txtAnketSira" name="txtAnketSira" class="form-control input-sm focus-sense" value="@anket.Sira" tabindex="3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Başlangıç - Bitiş Tarihi<span class="required"> * </span></label>
+                                                <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;">
+                                                    <div class="col-md-6" style="padding-left:0px !important;">
+                                                        <div class="form-group">
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <div id="dateTimeAnketBaslangicTarihi" name="dateTimeAnketBaslangicTarihi" class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" name="dateTimeAnketBaslangicTarihi" class="form-control" placeholder="Başlangıç Tarihi"
+                                                                           value="@(anket.AnketId > 0 ? anket.BaslangicTarihi.ToString("dd.MM.yyyy") : "")" tabindex="4">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" style="padding-right:0px !important;">
+                                                        <div class="form-group">
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <div id="dateTimeAnketBitisTarihi" name="dateTimeAnketBitisTarihi" class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" name="dateTimeAnketBitisTarihi" class="form-control" placeholder="Bitiş Tarihi"
+                                                                           value="@(anket.AnketId > 0 ? anket.BitisTarihi.ToString("dd.MM.yyyy") : "")" tabindex="5">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtAnketZiyaret" class="control-label">Ziyaretçi Cevaplayabilir mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtAnketZiyaret" name="txtAnketZiyaret" type="checkbox" class="make-switch" data-size="small" data-on-text="Evet" data-off-text="Hayır"
+                                                           @(anket.AnketId > 0 ? (anket.ZiyaretciCevapAktifMi ? "checked" : "") : "checked") tabindex="6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtAnketYayin" class="control-label">Yayında mı?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtAnketYayin" name="txtAnketYayin" type="checkbox" class="make-switch" data-size="small" data-on-text="Evet" data-off-text="Hayır"
+                                                           @(anket.AnketId > 0 ? (anket.YayindaMi ? "checked" : "") : "checked") tabindex="7">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketAktif" class="control-label">Aktif mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtAnketAktif" name="txtAnketAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                           @(anket.AnketId > 0 ? (anket.AktifMi ? "checked" : "") : "checked") tabindex="8">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="col-md-offset-5 col-md-7">
+                                            @if (anket.AnketId == 0)
+                                            {
+                                                <button type="submit" class="btn blue" tabindex="9">
+                                                    Kaydet
+                                                    <i class="fa fa-save"></i>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn yellow" tabindex="9">
+                                                    Güncelle
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            }
+                                            <a href="/Anket/Index" class="btn red" tabindex="10">
+                                                İptal
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <form id="comform_2">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="txtAnketSoruSoru" class="control-label">Soru<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <textarea id="txtAnketSoruSoru" name="txtAnketSoruSoru" rows="2" style="resize:none;" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Soru Giriniz..." tabindex="1"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketSoruSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <input id="txtAnketSoruSira" name="txtAnketSoruSira" class="form-control input-sm focus-sense" tabindex="2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtAnketSoruAktif" class="control-label">Aktif mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtAnketSoruAktif" name="txtAnketSoruAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked tabindex="3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:center;">
+                                            <button type="button" class="btn btn-sm green-meadow-stripe" style="margin-right:20px;" onclick="javascript: anketSoruYeni();" tabindex="4">Yeni Soru</button>
+                                            <button id="btnAnketSoruEkle" type="submit" class="btn btn-sm yellow-gold-stripe" style="margin-right:20px;" tabindex="5">Ekle</button>
+                                            <button type="button" class="btn btn-sm blue-madison-stripe" onclick="javascript: anketSoruYeni();" tabindex="6">Temizle</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:20px 0; border-top:2px solid #e5e5e5;">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group pull-left font-red-mint" style="font-size:12px;margin-bottom:5px;">
+                                                <i class="fa fa-info-circle"></i>
+                                                Sorular üzerinde ekleme, güncelleme veya silme işlemi yaptıktan sonra <b>KAYDET</b> butonuna tıklayarak değişiklikleri kaydediniz.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table id="tableAnketSoru" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr style="background:#dedede;">
+                                                            <th style="width:10%">Sıra</th>
+                                                            <th style="width:75%;">Soru</th>
+                                                            <th style="width:10%">Aktif mi?</th>
+                                                            <th style="width:5%;">İşlemler</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            foreach (var soru in anketSorular.OrderBy(x => x.Sira).ToList())
+                                                            {
+                                                                <tr data-id="@soru.AnketSoruId">
+                                                                    <td class="s-sira">@soru.Sira</td>
+                                                                    <td class="s-soru">@soru.Soru</td>
+                                                                    <td class="s-aktif">
+                                                                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Evet" data-off-text="Hayır" @(soru.AktifMi ? "checked" : "") readonly>
+                                                                    </td>
+                                                                    <td style="text-align:center;">
+                                                                        <button type="button" class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle"
+                                                                                onclick="javascript: anketSoruGuncelle('@soru.AnketSoruId', this);">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <div class="col-md-offset-5 col-md-7">
+                                            <button type="button" class="btn blue" onclick="javascript: anketSoruKaydet();">
+                                                Kaydet
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                            <form>
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table id="tableAnketCevap" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:5%;">#</th>
+                                                            <th style="width:60%">Soru</th>
+                                                            <th style="width:15%">Toplam Cevap</th>
+                                                            <th style="width:10%">EVET</th>
+                                                            <th style="width:10%">HAYIR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            int evet, hayir;
+                                                            foreach (var soru in anketSorular.OrderBy(x => x.Sira).ToList())
+                                                            {
+                                                                evet = soru.AnketCevap.Where(x => x.CevapSonuc == true).Count();
+                                                                hayir = soru.AnketCevap.Where(x => x.CevapSonuc == false).Count();
+
+                                                                <tr>
+                                                                    <td>@soru.Sira</td>
+                                                                    <td>@soru.Soru</td>
+                                                                    <td>@soru.AnketCevap.Count</td>
+                                                                    <td class="bg-green-turquoise">@((evet + hayir == 0) ? Html.Raw("0 <b>(%0)</b>") : Html.Raw(evet + " <b>(%" + (100 * evet / (evet + hayir)) + ")</b>"))</td>
+                                                                    <td class="bg-red-sunglo">@((evet + hayir == 0) ? Html.Raw("0 <b>(%0)</b>") : Html.Raw(hayir + " <b>(%" + (100 * hayir / (evet + hayir)) + ")</b>"))</td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_4">
+                           <div class="row">
+                               <div class="col-md-12">
+                                   
+                                   @{
+                                       foreach (var soru in anketSorular.OrderBy(x => x.Sira).ToList())
+                                       {
+                                        <div class="col-md-4">
+                                            <div class="portlet light bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold font-blue-ebonyclay" style="font-size:14px !important;"> #@soru.Sira @soru.Soru</span>
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran"> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div id="chart_@soru.AnketSoruId" class="chart" style="height: 200px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       }
+                                    }
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+    <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+    <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+
+    <script id="anket-soru-row" type="text/x-jquery-tmpl">
+        <tr class="bg-green-meadow" data-id="0">
+            <td class="s-sira">${Sira}</td>
+            <td class="s-soru">${Soru}</td>
+            <td class="s-aktif">
+                {{if isChecked }}
+                    <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Evet" data-off-text="Hayır" checked readonly>
+                {{else}}
+                    <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Evet" data-off-text="Hayır" readonly>
+                {{/if}}
+            </td>
+            <td style="text-align:center;">
+                <button type="button" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Satırı Sil"
+                        onclick="javascript: anketSoruSil(this);">
+                    <i class="fa fa-remove"></i>
+                </button>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var guncellenenAnketSoruId = 0;
+
+        $(document).ready(function () {
+            $("#txtAnketSira").inputmask('99999', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00000'
+            });
+            $("#txtAnketSoruSira").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            $('.input-group.date').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Form 1 validation
+            $('#comform_1').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    txtAnketAdi: {
+                        maxlength: 50,
+                        required: true
+                    },
+                    txtAnketAciklama: {
+                        maxlength: 500,
+                        required: true
+                    },
+                    txtAnketSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true,
+                    },
+                    dateTimeAnketBaslangicTarihi: {
+                        required: true
+                    },
+                    dateTimeAnketBitisTarihi: {
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    kaydet();
+                },
+            });
+            $('.input-group.date .form-control', $('#comform_1')).change(function () {
+                $('#comform_1').validate().element($(this));
+            });
+
+            // Form 2 validation
+            $('#comform_2').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    txtAnketSoruSoru: {
+                        maxlength: 500,
+                        required: true
+                    },
+                    txtAnketSoruSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true,
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    anketSoruEkle();
+                },
+            });
+
+            // Chart
+            initCharts();
+        });
+
+        function kaydet() {
+            if ($('#dateTimeAnketBaslangicTarihi').datepicker('getDate') != '' && $('#dateTimeAnketBitisTarihi').datepicker('getDate')) {
+                if ($('#dateTimeAnketBaslangicTarihi').datepicker('getDate') > $('#dateTimeAnketBitisTarihi').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var data = {
+                AnketId: parseInt($('#hdnAnketId').val()),
+                Adi: $('#txtAnketAdi').val(),
+                Aciklama: $('#txtAnketAciklama').val(),
+                BaslangicTarihi: $('#dateTimeAnketBaslangicTarihi').find('input').val() != '' ? $('#dateTimeAnketBaslangicTarihi').datepicker('getDate').toUTCString() : null,
+                BitisTarihi: $('#dateTimeAnketBitisTarihi').find('input').val() != '' ? $('#dateTimeAnketBitisTarihi').datepicker('getDate').toUTCString() : null,
+                Sira: parseInt($('#txtAnketSira').val()),
+                ZiyaretciCevapAktifMi: $('#txtAnketZiyaret').is(":checked") ? true : false,
+                YayindaMi: $('#txtAnketYayin').is(":checked") ? true : false,
+                AktifMi: $('#txtAnketAktif').is(":checked") ? true : false
+            };
+
+            $.ajax({
+                url: '/Anket/KaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Anket/Save/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function anketSoruGuncelle(id, obj) {
+            $('#tableAnketSoru tbody tr').removeClass('bg-yellow-casablanca');
+
+            guncellenenAnketSoruId = id;
+            var trRow = $(obj).closest('tr');
+
+            trRow.addClass('bg-yellow-casablanca');
+
+            $('#txtAnketSoruSira').val(trRow.find('.s-sira').html());
+            $('#txtAnketSoruSoru').val(trRow.find('.s-soru').html());
+
+            $('#txtAnketSoruAktif').bootstrapSwitch('destroy').prop('checked', trRow.find('.s-aktif .make-switch').is(":checked")).bootstrapSwitch();
+
+            if (id > 0) {
+                $('#btnAnketSoruEkle').html('Güncelle');
+            } else {
+                $('#btnAnketSoruEkle').html('Ekle');
+            }
+        }
+
+        function anketSoruSil(obj) {
+            confirm('ONAY', '<p>Satırı silmek istediğinize emin misiniz?</p>', function () {
+                anketSoruYeni();
+
+                $(obj).closest('tr').remove();
+            });
+        }
+
+        function anketSoruYeni() {
+            $('#tableAnketSoru tbody tr').removeClass('bg-yellow-casablanca');
+
+            guncellenenAnketSoruId = 0;
+
+            $('#txtAnketSoruSira').val('');
+            $('#txtAnketSoruSoru').val('');
+            $('#txtAnketSoruAktif').bootstrapSwitch('destroy').prop('checked', true).bootstrapSwitch();
+
+            $('#btnAnketSoruEkle').html('Ekle');
+        }
+
+        function anketSoruEkle() {
+            // Yeni soru ekle
+            if (guncellenenAnketSoruId == 0) {
+                var data = {
+                    Sira: $('#txtAnketSoruSira').val(),
+                    Soru: $('#txtAnketSoruSoru').val(),
+                    isChecked: $('#txtAnketSoruAktif').is(":checked") ? true : false
+                };
+
+                $('#anket-soru-row').tmpl(data).appendTo($('#tableAnketSoru tbody'));
+            } else {
+                var trRow = $('#tableAnketSoru tbody tr[data-id="' + guncellenenAnketSoruId + '"]');
+                trRow.find('.s-sira').html($('#txtAnketSoruSira').val());
+                trRow.find('.s-soru').html($('#txtAnketSoruSoru').val());
+                trRow.find('.s-aktif .make-switch').bootstrapSwitch('destroy').prop('checked', $('#txtAnketSoruAktif').is(":checked") ? true : false).bootstrapSwitch();
+            }
+            $('#tableAnketSoru .make-switch').bootstrapSwitch();
+            $('[data-toggle="tooltip"]').tooltip();
+
+            anketSoruYeni();
+        }
+
+        function anketSoruKaydet() {
+            if ($('#tableAnketSoru tbody tr').length == 0) {
+                callAlert('warning', 'Henüz soru eklenmemiş. Lütfen işleme soru eklemesi yaptıktan sonra devam ediniz.');
+                return false;
+            }
+
+            var data = [];
+            $('#tableAnketSoru tbody tr').each(function () {
+                var row = $(this);
+
+                data.push({
+                    AnketSoruId: parseInt(row.attr('data-id')),
+                    AnketId: parseInt($('#hdnAnketId').val()),
+                    Soru: row.find('.s-soru').html(),
+                    Sira: parseInt(row.find('.s-sira').html()),
+                    AktifMi: row.find('.s-aktif .make-switch').is(":checked") ? true : false
+                });
+            });
+
+            $.ajax({
+                url: '/Anket/SoruKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Anket/Save/' + parseInt($('#hdnAnketId').val());
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+
+        var initCharts = function () {
+            @{
+                int yes, no;
+                foreach (var soru in anketSorular)
+                {
+                    yes = soru.AnketCevap.Where(x => x.CevapSonuc == true).Count();
+                    no = soru.AnketCevap.Where(x => x.CevapSonuc == false).Count();
+                    <text>
+                    var chart = AmCharts.makeChart("chart_@soru.AnketSoruId", {
+                        "type": "pie",
+                        "theme": "light",
+                        "fontFamily": 'Open Sans',
+                        "color": '#888',
+                        "dataProvider": [{
+                            "cevap": "Evet",
+                            "sonuc": parseInt('@yes')
+                        }, {
+                            "cevap": "Hayır",
+                            "sonuc": parseInt('@no')
+                        }],
+                        "valueField": "sonuc",
+                        "titleField": "cevap",
+                        "outlineAlpha": 0.4,
+                        "depth3D": 15,
+                        "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+                        "angle": 30,
+                        "exportConfig": {
+                            menuItems: [{
+                                icon: '/lib/3/images/export.png',
+                                format: 'png'
+                            }]
+                        }
+                    });
+                    </text>
+                }
+            }
+        }
+    </script>
+}

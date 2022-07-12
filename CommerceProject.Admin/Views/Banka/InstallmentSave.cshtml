@@ -1,0 +1,277 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "InstallmentSave";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var taksit = ViewBag.Taksit as Taksit;
+}
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Banka/InstallmentSave">
+                        <i class="fa fa-save"></i> Taksit Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/InstallmentSearch">
+                        <i class="fa fa-search"></i> Taksit Arama
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/VirtualPosSave">
+                        <i class="fa fa-save"></i> Sanal Pos İşlemleri
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/AccountNumberSearch">
+                        <i class="fa fa-search"></i>  Hesap Numarası Arama
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/AccountNumberSave">
+                        <i class="fa fa-save"></i>  Hesap Numarası Yeni Kayıt
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <form id="comform">
+                    <input id="hdnTaksitId" type="hidden" value="@taksit.TaksitId" />
+
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dropDownBanka" class="control-label">Banka<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <select id="dropDownBanka" name="dropDownBanka" class="form-control select2" tabindex="0"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtTaksitTaksitSayisi" class="control-label">Taksit Sayısı<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtTaksitTaksitSayisi" name="txtTaksitTaksitSayisi" class="form-control input-sm focus-sense" value="@taksit.TaksitSayisi" tabindex="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtTaksitFaizOrani" class="control-label">Faiz Oranı<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtTaksitFaizOrani" name="txtTaksitFaizOrani" class="form-control input-sm focus-sense" value="@taksit.FaizOrani.ToString("N2").Replace(",", ".")" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtTaksitSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtTaksitSira" name="txtTaksitSira" class="form-control input-sm focus-sense" value="@taksit.Sira" tabindex="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtTaksitAktifMi" class="control-label">Aktif mi?</label>
+                                    <div class="icheck-inline">
+                                        <input id="txtTaksitAktifMi" name="txtHesapNumarasiAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(taksit.TaksitId > 0 ? (taksit.AktifMi ? "checked" : "") : "checked") tabindex="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                @if (taksit.TaksitId == 0)
+                                {
+                                    <button type="submit" class="btn blue" tabindex="5">
+                                        Kaydet
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn yellow" tabindex="5">
+                                        Güncelle
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                }
+                                <a href="/Banka/InstallmentSearch" class="btn red" tabindex="6">
+                                    İptal
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script type="text/javascript">
+        var bankaListesi = @Html.Raw(Json.Encode(ViewBag.BankaListesi))
+
+        $(document).ready(function () {
+            $('#dropDownBanka').select2({
+                placeholder: "Banka Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: bankaListesi
+            }).val('').trigger('change');
+
+            @if(taksit != null && taksit.BankaId > 0)
+            {
+                @: $('#dropDownBanka').val('@(taksit.BankaId)').trigger('change');
+            }
+
+            $("#txtTaksitTaksitSayisi").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            $("#txtTaksitFaizOrani").inputmask('99.99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false
+            });
+
+            $("#txtTaksitSira").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    dropDownBanka: {
+                        required: true
+                    },
+                    txtTaksitTaksitSayisi: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    },
+                    txtTaksitFaizOrani: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    },
+                    txtTaksitSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function () {
+                    kaydet();
+                },
+            });
+        });
+
+        function kaydet() {
+            var data = {
+                TaksitId: $('#hdnTaksitId').val(),
+                BankaId: ($('#dropDownBanka').val() != '' && $('#dropDownBanka').val() != null) ? $('#dropDownBanka').val() : 0,
+                TaksitSayisi: parseInt($('#txtTaksitTaksitSayisi').val()),
+                FaizOrani: parseFloat($('#txtTaksitFaizOrani').val()),
+                Sira: parseInt($('#txtTaksitSira').val()),
+                AktifMi: $('#txtTaksitAktifMi').is(":checked") ? true : false
+            };
+
+            $.ajax({
+                url: '/Banka/TaksitKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Banka/InstallmentSave/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

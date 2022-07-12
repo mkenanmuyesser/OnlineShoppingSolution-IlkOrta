@@ -1,0 +1,324 @@
+﻿@using CommerceProject.Business.Entities
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string id = ViewContext.RouteData.Values.Keys.Contains("id") ? ViewContext.RouteData.Values["id"].ToString() : "0";
+
+    var ustSliderBannerlar = ViewBag.UstSliderBannerlar as List<Banner>;
+    var ustBannerlar = ViewBag.UstBannerlar as List<Banner>;
+    var kategoriMenu = ViewBag.KategoriMenu;
+    var paketler = ViewBag.Paketler as List<Paket>;
+    var urunler = ViewBag.Urunler as List<Urun>;
+    var benzerUrunler = ViewBag.BenzerUrunler as List<Urun>;
+    var ozelFirsatUrunleri = ViewBag.OzelFirsatUrunleri as List<Urun>;
+
+    var totalCount = ViewBag.TotalCount != null ? (int)ViewBag.TotalCount : 0;
+    var pageIndex = ViewBag.PageIndex != null ? (int)ViewBag.PageIndex : 0;
+
+    var firstPart = ((pageIndex - 1) * (9) + 1);
+    var secondPart = (pageIndex * 9) > totalCount ? totalCount : (pageIndex * 9);
+
+    var sorting = ViewBag.SortIndex;
+    var sortingName = "";
+    switch (sorting)
+    {
+        case "last":
+            sortingName = "Son Eklenenler";
+            break;
+        case "a-z":
+            sortingName = "Alfabetik A-Z";
+            break;
+        case "z-a":
+            sortingName = "Alfabetik Z-A";
+            break;
+        case "price-up":
+            sortingName = "Fiyata Göre Artan";
+            break;
+        case "price-down":
+            sortingName = "Fiyata Göre Azalan";
+            break;
+        case "sell":
+            sortingName = "Çok Satanlar";
+            break;
+    }
+
+    var pagedList = ViewBag.PagedListModel as IPagedList<int>;
+}
+
+@section css{
+    <style type="text/css">
+        .double-product {
+            min-width: 180px !important;
+            width: auto;
+        }
+
+        .product {
+            min-width: 180px !important;
+            /*min-height: 200px !important;*/
+            text-align: center !important;
+            width: 100%;
+        }
+
+        .product .default {
+            background-color: transparent !important;
+        }
+
+        .product .product-name {
+            font-size: 10px;
+        }
+
+        .product-image {
+            background-color: transparent !important;
+        }
+
+        .product-image img {
+            height: 110px !important;
+            width: auto !important;
+        }
+
+        .product .actions a {
+            margin: 0px !important;
+            padding-top: 7px !important;
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        .product .actions.not-rotation-actions{
+            padding:5px 5px !important;
+        }
+    </style>
+}
+
+<section id="main" class="no-padding" style="padding-top: 54px;">
+    <div class="container bottom-padding">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 content pull-right">
+                        <div class="row margin-bottom">
+                            <div class="col-sm-12 col-md-8 ">
+                                <div class="slider progressive-slider load">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="sliders-box">
+                                                @foreach (var ustSliderBanner in ustSliderBannerlar)
+                                                {
+                                                    <div class="col-sm-12 col-md-12">
+                                                        <div class="slid row">
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <img class="replace-2x slid-img" src="@ustSliderBanner.Resim" width="720" height="442" alt="">
+                                                            </div>
+                                                            <div class="slid-content col-sm-4 col-md-4">
+                                                                <h1 class="title">@ustSliderBanner.Aciklama1</h1>
+                                                                <p class="descriptions">@ustSliderBanner.Aciklama2</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                            <div class="slider-nav col-sm-4 col-md-4">
+                                                <div class="nav-box">
+                                                    <a class="next" href="javascript:;">
+                                                        <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#838383" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+						</svg>
+                                                    </a>
+                                                    <a class="prev" href="javascript:;">
+                                                        <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#838383" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+						</svg>
+                                                    </a>
+                                                    <div class="pagination switches"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4 hidden-sm hidden-xs">
+                                <aside class="widget">
+                                    @foreach (var ustBanner in ustBannerlar)
+                                    {
+                                        <a class="banner" href="@ustBanner.Link">
+                                            <img class="replace-2x" src="@ustBanner.Resim" alt="">
+                                        </a>
+                                        <br />
+                                    }
+                                </aside>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:20px !important;">
+                            <div class="">
+                                <p></p>
+                                <div class="toolbar clearfix ">
+                                    <div class="sort-catalog pull-right">
+                                        <div class="btn-group sort-by btn-select">
+                                            <a class="btn dropdown-toggle btn-default" style="width:200px !important;" role="button" data-toggle="dropdown" href="javascript:;">Sıralama: <span>@sortingName</span> <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" style="width:200px !important;">
+                                                <li class="@(sorting == "last" ? "active" : "")" data-val="last"><a href="javascript: ara(1, 'last')">Son Eklenenler</a></li>
+                                                <li class="@(sorting == "a-z" ? "active" : "")" data-val="a-z"><a href="javascript: ara(1, 'a-z')">Alfabetik A-Z</a></li>
+                                                <li class="@(sorting == "z-a" ? "active" : "")" data-val="z-a"><a href="javascript: ara(1, 'z-a')">Alfabetik Z-A</a></li>
+                                                <li class="@(sorting == "price-up" ? "active" : "")" data-val="price-up"><a href="javascript: ara(1, 'price-up')">Fiyata Göre Artan</a></li>
+                                                <li class="@(sorting == "price-down" ? "active" : "")" data-val="price-down"><a href="javascript: ara(1, 'price-down')">Fiyata Göre Azalan</a></li>
+                                                <li class="@(sorting == "sell" ? "active" : "")" data-val="sell"><a href="javascript: ara(1, 'sell')">Çok Satanlar</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                @{
+                                    int sayac = 0;
+                                }
+                                @foreach (var paket in paketler)
+                                {
+                                    if (sayac % 4 == 0)
+                                    {
+                                        @Html.Raw("<div class='row'>");
+                                    }
+
+                                    @Html.Partial("~/Views/Urun/Partials/PaketPartial.cshtml", paket)
+
+                                    if (sayac % 4 == 3 || urunler.Count == 0)
+                                    {
+                                        @Html.Raw("</div>");
+                                    }
+
+                                    {
+                                        sayac++;
+                                    }
+                                }
+
+                                @foreach (var urun in urunler)
+                                {
+                                    if (sayac % 4 == 0)
+                                    {
+                                        @Html.Raw("<div class='row'>");
+                                    }
+
+                                    @Html.Partial("~/Views/Urun/Partials/UrunPartial.cshtml", urun)
+
+                                    if (sayac % 4 == 3 || urunler.IndexOf(urun) == urunler.Count - 1)
+                                    {
+                                        @Html.Raw("</div>");
+                                    }
+
+                                    {
+                                        sayac++;
+                                    }
+                                }
+
+                                @if (totalCount > 0)
+                                {
+                                    <div class="pagination-box col-sm-12 col-md-12 ">
+                                        <ul class="pagination">
+                                            @Html.PagedListPager(pagedList, p => Url.Action("IndexPaging", "Urun", new { id = id, pageIndex = p, sortIndex = sorting }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded, MaximumPageNumbersToDisplay = 5 }, new AjaxOptions()))
+                                        </ul>
+                                        <i class="pagination-text">@(firstPart)-@(secondPart) arası kayıtlar gösteriliyor (Toplam @(totalCount))</i>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3 sidebar">
+                        <aside class="widget menu">
+                            <header>
+                                <h3 class="title">Kategoriler</h3>
+                            </header>
+                            <nav>
+                                <ul>
+                                    @Html.Raw(kategoriMenu)
+                                </ul>
+                            </nav>
+                        </aside>
+
+                        @*<aside class="widget specials">
+                                      <header class="title-block">
+                                          <h3 class="title">Benzer Ürünler</h3>
+                                      </header>
+                                      <ul>
+                                          @foreach (var urun in benzerUrunler)
+                                          {
+                                              <li class="clearfix">
+                                                  <a href="/Urun/Detay/@urun.UrunId" class="product-image">
+                                                      @if (urun.AnaResim == null)
+                                                      {
+                                                          <img class='replace-2x' src='~/Content/Theme/img/empty_product.png' alt='' title='' width="70" height="70" />
+                                                      }
+                                                      else
+                                                      {
+                                                          <img class="replace-2x" src="@urun.AnaResim.ResimYolu" alt="" title="" width="70" height="70" />
+                                                      }
+                                                  </a>
+                                                  <h3 class="product-name">
+                                                      <a href="/Urun/Detay/@urun.UrunId">@urun.Adi</a>
+                                                  </h3>
+                                                  <div class="price-box">
+                                                      <span class="price">@string.Format("{0:N}", urun.Fiyat) <i class="fa fa-try"></i></span>
+                                                  </div>
+                                              </li>
+                                          }
+                                      </ul>
+                                  </aside>
+
+                                  <aside class="widget whats-news carousel-box load" data-carousel-one="true" data-autoplay-disable="false">
+                                      <header>
+                                          <a class="next" href="javascript:;">
+                                              <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                              <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+                            </svg>
+                                          </a>
+                                          <a class="prev" href="javascript:;">
+                                              <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                              <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+                            </svg>
+                                          </a>
+                                          <h3 class="title">Özel Fırsatlar</h3>
+                                      </header>
+                                      <div class="carousel-pagination row">
+                                          <div class="carousel">
+                                              @foreach (var urun in ozelFirsatUrunleri)
+                                              {
+                                                  @Html.Partial("~/Views/Urun/Partials/UrunPartial.cshtml", urun)
+                                              }
+                                          </div>
+                                      </div>
+                                  </aside>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section js{
+    <script type="text/javascript">
+        function urunGridGorunum() {
+            var id =  @id;
+
+            $('#divUrunGridPartial').html('');
+            $('#divUrunGridPartial').load('/Urun/UrunGridPartial/' + id);
+        }
+
+        function paketListGorunum() {
+            var id =  @id;
+
+            $('#divPaketListPartial').html('');
+            $('#divPaketListPartial').load('/Urun/PaketListPartial/'+id);
+        }
+
+        function ara(pageIndex, sortIndex) {
+            sortIndex = sortIndex != null ? sortIndex : $('.btn-group.sort-by .dropdown-menu li[class="active"]').attr('data-val');
+
+            window.location.href = '/Urun/IndexPaging?id=@(id == "0" ? null : id)&pageIndex=' + pageIndex + '&sortIndex=' + sortIndex;
+        }
+    </script>
+}

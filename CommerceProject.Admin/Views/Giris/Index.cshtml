@@ -1,0 +1,163 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Kontrol Paneli Giriş";
+    Layout = "~/Views/Shared/_LoginRoot.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+}
+
+<div class="logo">
+    <a href="/Giris">
+        <img src="@icerikAyar.KucukLogoResimUrl" alt="" />
+    </a>
+</div>
+
+<div class="content">
+
+    <form id="comform">
+        <div>
+            <h3>@icerikAyar.UygulamaAd</h3>
+            <p>Kontrol Paneli</p>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">E-posta</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user font-dark"></i>
+                    </span>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="txtGirisEposta" name="txtGirisEposta" class="form-control form-control-solid placeholder-no-fix com-email" type="text" autocomplete="off" placeholder="Kullanıcı Adı" tabindex="1" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Şifre</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-lock font-dark"></i>
+                    </span>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="txtGirisSifre" name="txtGirisSifre" class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Şifre" tabindex="2" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <label class="rememberme mt-checkbox mt-checkbox-outline">
+                    <input id="chkGirisHatirla" name="chkGirisHatirla" type="checkbox" checked tabindex="3" /> Beni Hatırla
+                    <span></span>
+                </label>
+                <button type="submit" class="btn green pull-right" tabindex="4"> Giriş </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="copyright">Tüm Hakkı Saklıdır. @DateTime.Now.Year &copy; ForceWebGlobal  </div>
+<div class="copyright">Version : @ViewContext.Controller.GetType().Assembly.GetName().Version</div>
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.com-email').inputmask('email', {
+                onincomplete: function (o, e) {
+                    $(this).val('');
+                    var formId = $(this).closest('form').attr('id');
+                    $('#' + formId).validate().element($(this));
+                }
+            });
+
+            $.backstretch([
+                "/Content/Theme/assets/pages/media/bg/1.jpg",
+                "/Content/Theme/assets/pages/media/bg/2.jpg",
+                "/Content/Theme/assets/pages/media/bg/3.jpg",
+                "/Content/Theme/assets/pages/media/bg/4.jpg"
+            ], {
+                    fade: 1000,
+                    duration: 8000
+                }
+            );
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                rules: {
+                    txtGirisEposta: {
+                        maxlength: 100,
+                        email: true,
+                        required: true
+                    },
+                    txtGirisSifre: {
+                        maxlength: 500,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function () {
+                    kullaniciGiris();
+                },
+            });
+        });
+
+        function kullaniciGiris() {
+            if ($('#txtGirisEposta').val() == '' || $('#txtGirisSifre').val() == '') {
+                callAlert('warning', 'Lütfen gerekli alanları doldurunuz.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Giris/KullaniciGiris',
+                data: JSON.stringify({
+                    'eposta': $('#txtGirisEposta').val(),
+                    'sifre': $('#txtGirisSifre').val(),
+                    'beniHatirla': $('#chkGirisHatirla').is(':checked'),
+                    'returnUrl':'@Request.QueryString["R"]'
+                }),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                     showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result.flag) {
+                        callAlert('success', 'Giriş başarılı. Kontrol paneline yönlendiriliyorsunuz.');
+                        window.location = result.returnUrl;
+                    }
+                    else {
+                        callAlert('error','Kullanıcı adı-şifre hatalı ve ya yönetici paneli yetkiniz bulunmamaktadır.');
+                    }
+                },
+                error: function () {
+                     hideLoadingModal();
+                     callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,231 @@
+﻿@using CommerceProject.Business.Entities
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var aranacakKelime = ViewBag.AranacakKelime;
+    var urunler = ViewBag.Urunler as List<Urun>;
+    var paketler = ViewBag.Paketler as List<Paket>;
+
+    var totalCount = ViewBag.TotalCount != null ? (int)ViewBag.TotalCount : 0;
+    var pageIndex = ViewBag.PageIndex != null ? (int)ViewBag.PageIndex : 0;
+
+    var firstPart = ((pageIndex - 1) * (9) + 1);
+    var secondPart = (pageIndex * 9) > totalCount ? totalCount : (pageIndex * 9);
+
+    var pagedList = ViewBag.PagedListModel as IPagedList<int>;
+}
+
+@section css{
+    <style type="text/css">
+        .list .product .product-image {
+            width:140px;
+        }
+
+        .urun{
+            width:100% !important;
+        }
+
+        .paket {
+            width: 100% !important;
+        }       
+    </style>
+}
+
+<section id="main">
+    <header class="page-header">
+        <div class="container">
+            <h2 class="title">Arama Sonuçları</h2>
+        </div>
+    </header>
+
+    <div class="container" data-appear-animation="fadeIn">
+        <div class="row">
+            <div class="content search-result list col-sm-12 col-md-12">
+                @*<input id="pageIndex" name="pageIndex" type="hidden" value="1" />*@
+
+                @if (string.IsNullOrEmpty(aranacakKelime) || !(paketler.Any() || urunler.Any()))
+                {
+                    <span>Arama sonucu bulunamadı.</span>
+                }
+                else
+                {
+                    <div class="filter-box">
+                        <div class="row">
+                            <div class="col-sm-7 col-md-7 btn-group filter-buttons filter-list">
+                                <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    Tümü <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="javascript:;" data-filter="*" class="active">Tümü</a></li>
+                                    <li><a href="javascript:;" data-filter=".paket">Paketler</a></li>
+                                    <li><a href="javascript:;" data-filter=".urun">Ürünler</a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="text-results col-sm-5 col-md-5">
+                                <i>@(firstPart)-@(secondPart) arası kayıtlar gösteriliyor (Toplam @(totalCount))</i>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="filter-elements">
+                            @foreach (var paket in paketler)
+                            {
+                                <article class="product paket item">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4">
+                                            <span class=""></span>
+                                            <a href="/Urun/Paket/@paket.Slug" class="product-image">
+                                                @if (paket.AnaResim == null)
+                                                {
+                                                    if (paket.ThumbResim == null)
+                                                    {
+                                                        <img class='replace-2x' src='/Uploads/Product/resim_yok.png' alt='' title='' width="270" height="270" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="replace-2x" src="@paket.ThumbResim.ResimYolu" alt="" title="" width="270" height="270" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <img class="replace-2x" src="@paket.AnaResim.ResimYolu" alt="" title="" width="270" height="270" />
+                                                }
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-8 col-md-8">
+                                            <h3 class="product-name">
+                                                <a href="/Urun/Paket/@paket.Slug">@paket.Adi</a>
+                                            </h3>
+                                            <div class="">
+                                                @paket.KisaAciklama
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price-old">@string.Format("{0:N}", paket.EskiFiyat) <i class="fa fa-try"></i></span>
+                                                <span class="price">@string.Format("{0:N}", paket.Fiyat)  <i class="fa fa-try"></i></span>
+                                            </div>
+                                            <div class="actions">
+                                                <a href="javascript:;" onclick="sepetePaketEkle(@paket.PaketId,1); return false;" title="Sepete Ekle">
+                                                    <img src="/Content/Theme/img/png-icons/sepeteEkle.png" width="12" height="12" />
+                                                </a>
+                                                <a href="javascript:;" onclick="hemenPaketAl(@paket.PaketId,1); return false;" title="Hemen Al">
+                                                    <img src="/Content/Theme/img/png-icons/hemenAl.png" width="12" height="12" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            }
+
+                            @foreach (var urun in urunler)
+                            {
+                                <article class="product urun item">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3">
+                                            <span class=""></span>
+                                            <a href="/Urun/Detay/@urun.Slug" class="product-image">
+                                                @if (urun.ThumbResim == null)
+                                                {
+                                                    if (urun.AnaResim == null)
+                                                    {
+                                                        <img class='replace-2x' src='/Uploads/Product/resim_yok.png' alt='' title='' width="270" height="270" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="replace-2x" src="@urun.AnaResim.ResimYolu" alt="" title="" width="270" height="270" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <img class="replace-2x" src="@urun.ThumbResim.ResimYolu" alt="" title="" width="270" height="270" />
+                                                }
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-9 col-md-9">
+                                            <h3 class="product-name">
+                                                <a href="/Urun/Detay/@urun.Slug">@urun.Adi</a>
+                                            </h3>
+                                            <div class="reviews-box">
+                                                <div class="rating-box">
+                                                    <div style="width:@Html.Raw((int)(urun.YorumOrtalama * 20))%" class="rating">
+                                                        <svg x="0" y="0" width="73px" height="12px" viewBox="0 0 73 12" enable-background="new 0 0 73 12" xml:space="preserve">
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#1e1e1e" points="6.5,0 8,5 13,5 9,7.7 10,12 6.5,9.2 3,12 4,7.7 0,5 5,5"></polygon>
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#1e1e1e" points="66.5,0 68,5 73,5 69,7.7 70,12 66.5,9.2 63,12 64,7.7 60,5 65,5 "></polygon>
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#1e1e1e" points="21.5,0 23,5 28,5 24,7.7 25,12 21.5,9.2 18,12 19,7.7 15,5 20,5 "></polygon>
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#1e1e1e" points="51.5,0 53,5 58,5 54,7.7 55,12 51.5,9.2 48,12 49,7.7 45,5 50,5 "></polygon>
+                                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#1e1e1e" points="36.5,0 38,5 43,5 39,7.7 40,12 36.5,9.2 33,12 34,7.7 30,5 35,5 "></polygon>
+				  </svg>
+                                                    </div>
+                                                </div>
+                                                <span>@urun.YorumSayisi yorum</span>
+                                            </div>
+                                            <div class="">
+                                                @urun.KisaAciklama
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price-old">@string.Format("{0:N}", urun.EskiFiyat) <i class="fa fa-try"></i></span>
+                                                <span class="price">@string.Format("{0:N}", urun.Fiyat)  <i class="fa fa-try"></i></span>
+                                            </div>
+                                            <div class="actions">
+                                                <a href="javascript:;" onclick="sepeteEkle(@urun.UrunId,1,true); return false;" title="Sepete Ekle">
+                                                    <img src="/Content/Theme/img/png-icons/sepeteEkle.png" width="12" height="12" />
+                                                </a>
+                                                <a href="javascript:;" onclick="hemenAl(@urun.UrunId,1); return false;" title="Hemen Al">
+                                                    <img src="/Content/Theme/img/png-icons/hemenAl.png" width="12" height="12" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            }
+
+                        </div>
+                    </div>
+
+                    if (totalCount > 0)
+                    {
+                        <div class="pagination-box">
+                            <ul class="pagination">
+
+                                @Html.PagedListPager(pagedList, p => Url.Action("IndexPost", "Arama", new { pageIndex = p }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded, MaximumPageNumbersToDisplay = 5 }, new AjaxOptions()))
+                            </ul>
+                            <i class="pagination-text">@(firstPart)-@(secondPart) arası kayıtlar gösteriliyor (Toplam @(totalCount))</i>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.pagination').on('click', 'a', function (e) {
+            e.preventDefault();
+
+            var vars = [], hash;
+            var href = $(this).attr('href');
+            var hashes = href.slice(href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+
+            ara(vars['pageIndex']);
+        });
+    });
+
+    function ara(pageIndex) {
+        $('#pageIndex').val(pageIndex);
+
+        $('.search-form').submit();
+    }
+</script>

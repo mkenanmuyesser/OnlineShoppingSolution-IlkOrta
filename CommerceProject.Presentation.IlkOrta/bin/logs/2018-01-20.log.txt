@@ -1,0 +1,11 @@
+2018-01-20 13:47:38.7871|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--C:\Programs\CommerceProject\CommerceProject.Presentation.IlkOrta\Views\Shared\Partials\MenuKullaniciPartial.cshtml(16): error CS0103: The name 'sepettekiUrunler' does not exist in the current context 
+2018-01-20 14:06:49.2628|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--Kullanýcý Giriþ 
+2018-01-20 14:17:05.0011|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--Path '/Views/Kullanici/Partials/UyeGirisPartial.cshtml' was not found. 
+2018-01-20 14:29:48.4291|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|18|KenanBusinessPC--Kullanýcý Giriþ 
+2018-01-20 14:30:30.0165|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|16|KenanBusinessPC--Kullanýcý Giriþ 
+2018-01-20 14:56:28.5097|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|15|KenanBusinessPC--Kullanýcý Giriþ 
+2018-01-20 23:00:50.7237|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--Object reference not set to an instance of an object. 
+2018-01-20 23:01:27.7823|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|15|KenanBusinessPC--Sequence contains more than one matching element 
+2018-01-20 23:04:54.3186|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|20|KenanBusinessPC--Object reference not set to an instance of an object. 
+2018-01-20 23:11:35.8457|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|4|KenanBusinessPC--Nullable object must have a value. 
+2018-01-20 23:12:12.9470|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|19|KenanBusinessPC--Object reference not set to an instance of an object. 

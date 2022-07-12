@@ -1,0 +1,470 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var iliskiliUrunler = ViewBag.IliskiliUrunler as List<Urun>;
+}
+
+@section css
+{
+    <style type="text/css">
+        .spinbox {
+            max-width: 60px;
+            position: relative;
+            padding-right: 20px;
+        }
+
+            .spinbox .spinbox-input {
+                min-width: 40px;
+                padding-left: 4px;
+                padding-right: 4px;
+                text-align: center;
+            }
+
+            .spinbox .spinbox-buttons {
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+                width: 20px;
+            }
+
+                .spinbox .spinbox-buttons .spinbox-up {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                    border-left: none;
+                    line-height: 1;
+                }
+
+                .spinbox .spinbox-buttons .spinbox-down {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                    border-left: none;
+                    line-height: 1;
+                }
+    </style>
+}
+
+<div id="main" class="page">
+    <header class="page-header">
+        <div class="container">
+            <h3 class="title">Alışveriş Sepeti</h3>
+        </div>
+    </header>
+
+    <div class="container" data-appear-animation="fadeIn">
+        <div class="row">
+            <article class="content col-sm-12 col-md-12">
+                <div id="divSepetDolu">
+                    <div class="table-box">
+                        <table id="tableSepet" class="shopping-cart-table table table-hover table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="td-name">Ürün</th>
+                                    <th class="td-price">Birim Fiyatı</th>
+                                    <th class="td-qty">Adet</th>
+                                    <th class="td-total">Ara Toplam</th>
+                                    <th style="width:15%">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <table class="shopping-cart-table shopping-cart-table-button table">
+                        <tbody>
+                            <tr>
+                                <td class="action no-border">
+                                    <a href="/"><i class="fa fa-angle-left"></i> Alışverişe Devam Et</a>
+                                    <a href="javascript:;" onclick="javascript: sepetiGuncelle();" class="update"><i class="fa fa-rotate-right"></i> Sepeti güncelle</a>
+                                    <a href="javascript:;" onclick="sepetiTemizle(); return false;" class="update"><i class="fa fa-recycle"></i> Sepeti temizle &nbsp;&nbsp;</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div id="car-bottom" class="row">
+                        @if (icerikAyar.SayfaKuponAktifMi)
+                        {
+                            <div class="col-sm-12 col-md-6">
+                                <div class="bg" style="padding:30px !important;">
+                                    <h5>İndirim Kuponu</h5>
+                                    <p>Eğer indirim kuponununz varsa kodu yazabilirsiniz.</p>
+                                    <input class="form-control" type="text" placeholder="İndirim kupon kodunuzu giriniz">
+                                    <button class="btn btn-default">Kupon Ekle</button>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-sm-12 col-md-6 pull-right">
+                            <div class="bg total" style="padding:30px !important;">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ürün Fiyatı : </td>
+                                            <td><span id="spanUrunFiyati" class="price"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kdv : </td>
+                                            <td><span id="spanKdv" class="price"></span></td>
+                                        </tr>
+                                        <tr class="tr-total">
+                                            <td>Ara Toplam Tutar : </td>
+                                            <td><span id="spanAraToplamTutar" class="price"></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="/Sepet/Odeme" class="btn checkout btn-default btn-lg">Ödeme Yap</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="recommended-product carousel-box load overflow" data-autoplay-disable="true">
+                        <div class="title-box no-margin">
+                            <a class="next" href="javascript:;">
+                                <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+			  </svg>
+                            </a>
+                            <a class="prev" href="javascript:;">
+                                <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+			  </svg>
+                            </a>
+                            <h2 class="title">İlişkili Ürünler</h2>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="carousel products">
+                                @foreach (var iliskiliUrun in iliskiliUrunler)
+                                {
+                                    <div class="col-sm-2 col-md-2 product" style="margin-top:40px !important;">
+                                        <div class="default">
+                                            @*<span class="sale "></span>*@
+                                            <a href="/Urun/Detay/@iliskiliUrun.Slug" class="product-image">
+                                                @if (iliskiliUrun.AnaResim == null)
+                                                {
+                                                    <img class='replace-2x' src='~/Content/Theme/img/empty_product.png' alt='' title='' />
+                                                }
+                                                else
+                                                {
+                                                    <img class="replace-2x" src="@iliskiliUrun.AnaResim.ResimYolu" alt="" title="" />
+                                                }
+                                            </a>
+                                            <div class="actions not-rotation-actions">
+                                                <a href="javascript:;" onclick="sepeteEkle(@iliskiliUrun.UrunId,1,true); return false;" title="Sepete Ekle">
+                                                    <img src="/Content/Theme/img/png-icons/sepeteEkle.png" width="16" height="16" />
+                                                </a>
+                                                <a href="javascript:;" onclick="hemenAl(@iliskiliUrun.UrunId,1); return false;" title="Hemen Al">
+                                                    <img src="/Content/Theme/img/png-icons/hemenAl.png" width="16" height="16" />
+                                                </a>
+                                            </div>
+                                            <div class="product-description">
+                                                <div class="vertical">
+                                                    <h3 class="product-name">
+                                                        <a href="/Urun/Detay/@iliskiliUrun.Slug">@iliskiliUrun.Adi</a>
+                                                    </h3>
+                                                    <div class="price">@string.Format("{0:N}", iliskiliUrun.Fiyat) <i class="fa fa-try"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="divSepetBos">
+                    <p>
+                        <span>Sepetinizde ürün bulunmamaktadır.</span>
+                        <br />
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td class="td-images">
+                <a href="/Urun/Detay/${UrunId}" class="product-image">
+                    {{if ThumbResimVarmi}}
+                    <img class="replace-2x" src="${ThumbResim}" alt="" title="" />
+                    {{else}}
+                    <img class='replace-2x' src='/Uploads/Product/resim_yok.png' alt="" title="" />
+                    {{/if}}
+                </a>
+            </td>
+            <td class="td-name">
+                <h2 class="product-name">
+                    <a href="/Urun/Detay/${UrunId}">${UrunAdi}</a>
+                </h2>
+            </td>
+            <td class="td-price">
+                <div class="price">${KdvDahilTutar} <i class="fa fa-try"></i></div>
+            </td>
+            <td class="td-qty" style="width:10%;">
+                <div class="spinbox" data-min="1" data-max="10" data-step="1">
+                    <input class="form-control spinbox-input" type="text" value="${Adet}">
+                    <input class="spinbox-input-hiddenAdet" type="hidden" value="${Adet}">
+                    <input class="spinbox-input-hiddenId" type="hidden" value="${UrunId}">
+                    <div class="spinbox-buttons">
+                        <button class="spinbox-up btn btn-default btn-xs" type="button">+</button>
+                        <button class="spinbox-down btn btn-default btn-xs" type="button">-</button>
+                    </div>
+                </div>
+            </td>
+            <td class="td-total">
+                <div class="price">${ToplamTutar} <i class="fa fa-try"></i></div>
+            </td>
+            <td class="td-remove">
+                <a href="javascript: sil('${UrunId}');" class="product-remove" title="Sil">
+                    <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                    <g>
+                    <path fill="#7f7f7f" d="M6,13c0.553,0,1-0.447,1-1V7c0-0.553-0.447-1-1-1S5,6.447,5,7v5C5,12.553,5.447,13,6,13z"></path>
+                    <path fill="#7f7f7f" d="M10,13c0.553,0,1-0.447,1-1V7c0-0.553-0.447-1-1-1S9,6.447,9,7v5C9,12.553,9.447,13,10,13z"></path>
+                    <path fill="#7f7f7f" d="M14,3h-1V1c0-0.552-0.447-1-1-1H4C3.448,0,3,0.448,3,1v2H2C1.447,3,1,3.447,1,4s0.447,1,1,1
+						c0,0.273,0,8.727,0,9c0,1.104,0.896,2,2,2h8c1.104,0,2-0.896,2-2c0-0.273,0-8.727,0-9c0.553,0,1-0.447,1-1S14.553,3,14,3z M5,2h6v1
+						H5V2z M12,14H4V5h8V14z"></path>
+					  </g>
+					</svg>
+                </a>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ara();
+        });
+
+        function ara() {
+
+            $.ajax({
+                url: '/Sepet/SepetAra',
+                data: null,
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    $('#tableSepet tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tableSepet tbody');
+
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    if (result.sonucListesi.length == 0) {
+                        $('#divSepetBos').show();
+                        $('#divSepetDolu').hide();
+                    }
+                    else {
+                        $('#divSepetBos').hide();
+                        $('#divSepetDolu').show();
+                    }
+
+                    // alt toplamlar
+                    $('#spanUrunFiyati').html(result.urunFiyati);
+                    $('#spanKdv').html(result.kdv);
+                    $('#spanAraToplamTutar').html(result.araToplamTutar);
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function sil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+
+                $.ajax({
+                    url: '/Sepet/SepetUrunSil/' + id,
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result) {
+                            callAlert('success', 'Silme işlemi başarılı.');
+                            ara();
+                            menuSepetYenile();
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+
+        function urunArttir(id) {
+            $.ajax({
+                url: '/Sepet/SepeteEkle',
+                data: JSON.stringify({
+                    'urunId': id,
+                    'adet': 1,
+                }),
+                type: "post",
+                cache: false,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result == null || result == '') {
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                    else {
+                        $('#divMenuSepetPartial').html('');
+                        $('#divMenuSepetPartial').load('/Home/MenuSepetPartial', function () { ara(); });
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function urunEksilt(id) {
+            $.ajax({
+                url: '/Sepet/SepettenCikar',
+                data: JSON.stringify({
+                    'urunId': id,
+                    'adet': 1,
+                }),
+                type: "post",
+                cache: false,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result == null || result == '') {
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                    else {
+                        $('#divMenuSepetPartial').html('');
+                        $('#divMenuSepetPartial').load('/Home/MenuSepetPartial', function () { ara(); });
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        $(document).on('click', '.spinbox-up, .spinbox-down', function () {
+            var $spinbox = $(this).closest('.spinbox');
+            if ($spinbox.length) {
+                var $input = $spinbox.find('input.spinbox-input');
+                var id = $spinbox.find('input.spinbox-input-hiddenId').val();
+                if ($input.length) {
+                    var max = parseInt($spinbox.data('max')) || false;
+                    var min = parseInt($spinbox.data('min')) || false;
+                    var val = parseInt($input.val()) || min || 0;
+                    var sign = $(this).hasClass('spinbox-up') ? 1 : -1;
+                    val += sign * (parseInt($spinbox.data('step')) || 1);
+
+                    var islemYapilacak = true;
+                    if (max && val > max) {
+                        val = max;
+                        islemYapilacak = false;
+                    } else if (min && val < min) {
+                        val = min;
+                        islemYapilacak = false;
+                    }
+
+                    if (islemYapilacak) {
+                        if (sign == '-1') {
+                            urunEksilt(id);
+                        }
+                        else if (sign == '1') {
+                            urunArttir(id);
+                        }
+                    }
+
+                    $input.val(val).trigger('change');
+                }
+            }
+        });
+
+        $(document).on('propertychange change keyup paste input', '.spinbox-input', function (e) {
+            var adet = $(this).closest('.spinbox').find('input.spinbox-input-hiddenAdet').val();
+            $(this).val(adet);
+        });
+
+        function sepetiTemizle() {
+            confirm('ONAY', '<p>Tüm sepeti temizlemek istediğinize emin misiniz?</p>', function () {
+
+                $.ajax({
+                    url: '/Sepet/SepetiTemizle',
+                    data: '',
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result == null || result == '') {
+                            callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                        else {
+                            callAlert('success', 'Sepetiniz temizlenmiştir.');
+                            ara();
+                            menuSepetYenile();
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+
+            });
+        }
+
+        function sepetiGuncelle() {
+            ara();
+            menuSepetYenile();
+        }
+    </script>
+}

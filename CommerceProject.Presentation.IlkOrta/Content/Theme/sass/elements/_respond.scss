@@ -1,0 +1,168 @@
+/******************************************************************************
+  Respond
+*******************************************************************************/
+.respond {
+  background: none;
+  border: 0 none;
+  
+  .description {
+    background: #fff;
+    border-radius: 5px;
+    color: #1e1e1e;
+    font-style: italic;
+    font-size: 90%;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    padding: 20px;
+    position: relative;
+  }
+  .name {
+    color: #7f7f7f;
+    min-height: 22px;
+    padding: 5px 5px 5px 5px;
+    
+    .icon {
+      color: #7f7f7f;
+      font-size: 30px;
+      margin: -5px 0 0;
+    }
+  }
+  &.bg {
+    .description {
+      background-color: #a5e573;
+      
+      &:before {
+        border: 10px solid transparent;
+        border-top-color: #a5e573;
+        bottom: -20px;
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+      }
+    }
+  }
+  &.border {
+    .description {
+      border-color: #a5e573;
+      border-width: 1px;
+      
+      &:before {
+        border: 10px solid transparent;
+        border-top-color: #a5e573;
+        bottom: -20px;
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+      }
+      &:after {
+        border: 10px solid transparent;
+        border-top-color: #fff;
+        bottom: -18px;
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+      }
+    }
+    &.respond-blockquote blockquote:before,
+    &.respond-blockquote blockquote:after {
+      color: #a5e573;
+    }
+  }
+  &.white {
+    .name {
+      color: #fff;
+      
+      .icon {
+        color: #fff;
+      }
+    }
+  }
+  &.respond-blockquote {
+    blockquote {
+      border: none;
+      margin: 0;
+      padding-left: 30px;
+      
+      &:before {
+        content: open-quote;
+        font-size: 50px;
+        font-weight: bold;
+        left: 16px;
+        line-height: 1;
+        position: absolute;
+        top: 14px;
+      }
+      &:after {
+        content: close-quote;
+        display: inline-block;
+        font-size: 50px;
+        font-weight: bold;
+        line-height: 0;
+        margin: 0 0 -5px 0;
+        vertical-align: bottom;
+      }
+    }
+    .name {
+      .icon {
+        float: left;
+        height: 50px;
+        margin: 0 10px 0 0;
+        width: 50px;
+      }
+      strong {
+        font-size: 120%;
+      }
+    }
+  }
+}
+.respond-carousel {
+  overflow: hidden;
+  
+  .pagination {
+    margin: 0;
+  }
+}
+$respond-types: (
+  primary $primary,
+  warning $warning,
+  danger $danger,
+  info $info,
+  success $success
+);
+@each $type in $respond-types {
+  $class: nth($type, 1);
+  $color: nth($type, 2);
+  
+  .respond {
+    .description.bg-#{$class} {
+      color: #fff;
+    }
+    .description.bg-#{$class}:before,
+    .description.border-#{$class}:before {
+      border-top-color: #{$color};
+    }
+    &.respond-blockquote.border .border-#{$class} blockquote {
+      &:before,
+      &:after {
+        color: #0098ca;
+      }
+    }
+  }
+}
+.respond .description.bg-white:before,
+.respond .description.border-white:before {
+  border-top-color: #fff;
+}
+.respond.border .description.border-white {
+  border-color: #fff;
+}
+.respond.respond-blockquote.border .border-white blockquote:before,
+.respond.respond-blockquote.border .border-white blockquote:after {
+  color: #1e1e1e;
+}

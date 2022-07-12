@@ -1,0 +1,134 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Card";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var urunId = ViewBag.UrunId != null ? Convert.ToInt32(ViewBag.UrunId) : 0;
+}
+
+@section  css{
+    <link href="~/Content/Theme/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Theme/assets/global/plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="portlet light ">
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-md-6">
+                        <div class="col-md-9">
+                            <label for="dropDownUrun" class="control-label">
+                                Ürün<span style="font-size: 12px;color: #ef5e77;"> Ürün Adı / Ürün Kodu / Barkod No' ya göre arama yapabilirsiniz.</span>
+                            </label>
+                            <div class="input-icon right">
+                                <i class="fa"></i>
+                                <select id="dropDownUrun" name="dropDownUrun" class="form-control select2" style="width:100%;"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="clearfix">
+                                <label class="control-label">&nbsp;</label>
+                            </div>
+                            <button type="button" class="btn btn-sm blue-madison" onclick="javascript: urunGetir()" style="width:100%;"><i class="fa fa-search"></i> Getir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="urunCardPartialDiv">
+
+        </div>
+
+    </div>
+</div>
+
+@section js{
+    <script src="~/Content/Theme/assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            window.history.pushState('/Urun/Card', 'Ürün Kartı', '/Urun/Card');
+
+            $('#dropDownUrun').select2({
+                placeholder: "Ürün Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Urun/UrunAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            }).val(null).trigger('change');
+
+            $('#dropDownUrun').select2('focus');
+            $('#dropDownUrun').select2('open');
+
+            @if(urunId > 0)
+            {
+                @: loadUrunCardPartial('/Urun/UrunCardPartial/@urunId', 'urunCardPartialDiv');
+            }
+        });
+
+        function loadUrunCardPartial(url, toLoadDivId) {
+            showLoadingModal();
+            $('#' + toLoadDivId).html('');
+
+            $('#' + toLoadDivId).load(url, function () {
+                hideLoadingModal();
+            });
+        }
+
+        function urunGetir() {
+            if ($('#dropDownUrun').val() == null || $('#dropDownUrun').val() == '') {
+                callAlert('warning', 'Lütfen ürün seçiniz.');
+                return false;
+            }
+
+            loadUrunCardPartial('/Urun/UrunCardPartial/' + $('#dropDownUrun').val(), 'urunCardPartialDiv');
+        }
+    </script>
+}

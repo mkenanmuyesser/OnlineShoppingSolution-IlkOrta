@@ -1,0 +1,1258 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var ipAdresleri = ViewBag.IpAdresleri as List<IpAdres>;
+}
+
+<div class="portlet light bordered blue-soft">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/YedeklemeBakim/Index">
+                        <i class="fa fa-database"></i> Yedekleme ve Bakım İşlemleri
+                    </a>
+                </li>
+                <li>
+                    <a href="/ProgramLog/Index">
+                        <i class="fa fa-pencil"></i> Program Logları
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+
+                <div class="profile">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="row profile-account">
+                                <div class="col-md-2">
+                                    <ul class="ver-inline-menu tabbable margin-bottom-15">
+                                        <li class="active">
+                                            <a href="#tab_1" data-toggle="tab"><i class="fa fa-info-circle"></i> Uygulama Bilgileri </a>
+                                            <span class="after"> </span>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_2" data-toggle="tab"><i class="fa fa-industry"></i> Şirket Bilgileri </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_3" data-toggle="tab"><i class="fa fa-wrench"></i> Sayfa Ayarları </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_4" data-toggle="tab"><i class="fa fa-file-image-o"></i> Logolar </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_5" data-toggle="tab"><i class="fa fa-envelope-o"></i> E-posta Ayarları </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_6" data-toggle="tab"><i class="fa fa-mobile-phone"></i> Sms Ayarları </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_7" data-toggle="tab"><i class="fa fa-star-o"></i> Seo </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_8" data-toggle="tab"><i class="fa fa-ban"></i> IP Bloklama </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_9" data-toggle="tab"><i class="fa fa-file-o"></i> İçerik </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-10">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_1">
+                                            <form id="comform_1">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaAdi" class="control-label">Uygulama Adı<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaAdi" name="txtUygulamaAdi" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Uygulama Adı Giriniz..." value="@icerikAyar.UygulamaAd" tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaAciklama" class="control-label">Açıklama<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <textarea id="txtUygulamaAciklama" name="txtUygulamaAciklama" style="resize:none;" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." tabindex="2">@icerikAyar.UygulamaAciklama</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaUrl" class="control-label">Url<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaUrl" name="txtUygulamaUrl" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Url Giriniz..." value="@icerikAyar.Url" tabindex="3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaSecureUrl" class="control-label">Secure Url</label>
+                                                            <input id="txtUygulamaSecureUrl" name="txtUygulamaSecureUrl" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Secure Url Giriniz..." value="@icerikAyar.SecureUrl" tabindex="4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaFacebookHesapUrl" class="control-label">Facebook Hesap Url</label>
+                                                            <input id="txtUygulamaFacebookHesapUrl" name="txtUygulamaFacebookHesapUrl" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Facebook Hesap Url Giriniz..." value="@icerikAyar.FacebookHesapUrl" tabindex="5">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaTwitterHesapUrl" class="control-label">Twitter Hesap Url</label>
+                                                            <input id="txtUygulamaTwitterHesapUrl" name="txtUygulamaTwitterHesapUrl" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Twitter Hesap Url Giriniz..." value="@icerikAyar.TwitterHesapUrl" tabindex="6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaParaPuanLimit" class="control-label">Para Puan Limit<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaParaPuanLimit" name="txtUygulamaParaPuanLimit" class="form-control input-sm decimal focus-sense" placeholder="Para Puan Limit Giriniz..." value="@icerikAyar.ParaPuanLimit.ToString("N4").Replace(".", "").Replace(",", ".")" tabindex="7">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaParaPuanKazanc" class="control-label">Para Puan Kazanç<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaParaPuanKazanc" name="txtUygulamaParaPuanKazanc" class="form-control input-sm decimal focus-sense" placeholder="Para Puan Kazanç Giriniz..." value="@icerikAyar.ParaPuanKazanc.ToString("N4").Replace(".", "").Replace(",", ".")" tabindex="8">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaKeepAliveTime" class="control-label">Keep Alive Time<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaKeepAliveTime" name="txtUygulamaKeepAliveTime" class="form-control input-sm com-number focus-sense" placeholder="Keep Alive Time Giriniz..." value="@icerikAyar.KeepAliveTime" tabindex="9">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaCacheClearTime" class="control-label">Cache Clear Time<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaCacheClearTime" name="txtUygulamaCacheClearTime" class="form-control input-sm com-number focus-sense" placeholder="Cache Clear Time Giriniz..." value="@icerikAyar.ClearCacheTime" tabindex="10">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaCookieTime" class="control-label">Cookie Time<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtUygulamaCookieTime" name="txtUygulamaCookieTime" class="form-control input-sm com-number focus-sense" placeholder="Cookie Time Giriniz..." value="@icerikAyar.CookieTime" tabindex="11">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaSslAktifMi" class="control-label">SSL Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtUygulamaSslAktifMi" name="txtUygulamaSslAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.SslAktifMi ? "checked" : "") : "checked") tabindex="12">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaCacheAktifMi" class="control-label">Cache Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtUygulamaCacheAktifMi" name="txtUygulamaCacheAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.CacheAktifMi ? "checked" : "") : "checked") tabindex="13">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaSayfaKuponAktifMi" class="control-label">Sayfa Kupon Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtUygulamaSayfaKuponAktifMi" name="txtUygulamaSayfaKuponAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.SayfaKuponAktifMi ? "checked" : "") : "checked") tabindex="14">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaParaPuanAktifMi" class="control-label">Para Puan Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtUygulamaParaPuanAktifMi" name="txtUygulamaParaPuanAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                @(icerikAyar.AyarId > 0 ? (icerikAyar.ParaPuanAktifMi ? "checked" : "") : "checked") tabindex="15">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtUygulamaAktifMi" class="control-label">Uygulama Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtUygulamaAktifMi" name="txtUygulamaAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.UygulamaAktifMi ? "checked" : "") : "checked") tabindex="16">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="17">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="17">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_2">
+                                            <form id="comform_2">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketAdi" class="control-label">Şirket Adı<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtSirketAdi" name="txtSirketAdi" class="form-control input-sm maxlength-handler" maxlength="200" placeholder="Şirket Adı Giriniz..." value="@icerikAyar.SirketAd" tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketAciklama" class="control-label">Açıklama<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <textarea id="txtSirketAciklama" name="txtSirketAciklama" style="resize:none;" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." tabindex="2">@icerikAyar.SirketAciklama</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketAdres" class="control-label">Adres<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <textarea id="txtSirketAdres" name="txtSirketAdres" style="resize:none;" rows="2" class="form-control input-sm maxlength-handler" maxlength="750" placeholder="Adres Giriniz..." tabindex="3">@icerikAyar.SirketAdres</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketTelefon1" class="control-label">Telefon 1<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtSirketTelefon1" name="txtSirketTelefon1" class="form-control input-sm com-phone" placeholder="0 (5xx) xxx-xxxx" value="@icerikAyar.SirketTelefon1" tabindex="4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="txtSirketTelefon2" class="control-label">Telefon 2</label>
+                                                                <input id="txtSirketTelefon2" name="txtSirketTelefon2" class="form-control input-sm com-phone" placeholder="0 (5xx) xxx-xxxx" value="@icerikAyar.SirketTelefon2" tabindex="5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketFaks1" class="control-label">Faks 1</label>
+                                                            <input id="txtSirketFaks1" name="txtSirketFaks1" class="form-control input-sm com-phone" placeholder="0 (5xx) xxx-xxxx" value="@icerikAyar.SirketFax1" tabindex="6">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketFaks2" class="control-label">Faks 2</label>
+                                                            <input id="txtSirketFaks2" name="txtSirketFaks2" class="form-control input-sm com-phone" placeholder="0 (5xx) xxx-xxxx" value="@icerikAyar.SirketFax2" tabindex="7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketEposta" class="control-label">E-posta<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtSirketEposta" name="txtSirketEposta" class="form-control input-sm com-email maxlength-handler" maxlength="100" value="@icerikAyar.SirketEposta" tabindex="8">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketMapCode" class="control-label">Map Code</label>
+                                                            <input id="txtSirketMapCode" name="txtSirketMapCode" class="form-control input-sm maxlength-handler" maxlength="1000" placeholder="Map Code Giriniz..." value="@icerikAyar.SirketMapCode" tabindex="9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtSirketHakkimizda" class="control-label">Hakkımızda<span class="required"> * </span></label>
+                                                            @*<div id="editor-form-group" class="input-icon right">
+                                                                    <i class="fa"></i>
+                                                                    <textarea id="txtSirketHakkimizda" name="txtSirketHakkimizda" class="form-control" rows="4">@icerikAyar.SirketHakkimizda</textarea>
+                                                                </div>*@
+                                                            <textarea id="txtSirketHakkimizda" name="txtSirketHakkimizda" class="form-control" rows="4" tabindex="10">@icerikAyar.SirketHakkimizda</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="11">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="11">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_3">
+                                            <form id="comform_3">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSayfaUrunYorumAktifMi" class="control-label">Ürün Yorum Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtSayfaUrunYorumAktifMi" name="txtSayfaUrunYorumAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.SayfaUrunYorumAktifMi ? "checked" : "") : "checked") tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSayfaMisafirAktifMi" class="control-label">Misafir Satın Alma Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtSayfaMisafirAktifMi" name="txtSayfaMisafirAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.MisafirSatinAlmaAktifMi ? "checked" : "") : "checked") tabindex="2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSayfaKdvDahilMi" class="control-label">Kdv Dahil mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtSayfaKdvDahilMi" name="txtSayfaKdvDahilMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Evet" data-off-text="Hayır"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.KdvDahilMi ? "checked" : "") : "checked") tabindex="3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="4">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="4">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_4">
+                                            <form id="comform_4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Küçük Logo</label>
+                                                            <div class="clear:both;"></div>
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                                    @if (string.IsNullOrEmpty(icerikAyar.KucukLogoResimUrl))
+                                                                    {
+                                                                        <img id="emptyFileLogoKucuk" src="/Content/Img/no-image.png" alt="" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img id="emptyFileLogoKucuk" src="@icerikAyar.KucukLogoResimUrl" alt="" />
+                                                                    }
+                                                                </div>
+                                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                                <div>
+                                                                    <span class="btn default btn-file">
+                                                                        <span class="fileinput-new" style="width:98px;"> Resim Seç </span>
+                                                                        <input id="fileUploadLogoKucuk" name="fileUploadLogoKucuk" type="file" onchange="resimSecildi('LogoKucuk');">
+                                                                    </span>
+                                                                    @if (!string.IsNullOrEmpty(icerikAyar.KucukLogoResimUrl))
+                                                                    {
+                                                                        <a href="javascript: resimSil('LogoKucuk');" style="width:98px;" class="btn red"> Sil </a>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Büyük Logo</label>
+                                                            <div class="clear:both;"></div>
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                                    @if (string.IsNullOrEmpty(icerikAyar.BuyukLogoResimUrl))
+                                                                    {
+                                                                        <img id="emptyFileLogoBuyuk" src="/Content/Img/no-image.png" alt="" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img id="emptyFileLogoBuyuk" src="@icerikAyar.BuyukLogoResimUrl" alt="" />
+                                                                    }
+                                                                </div>
+                                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                                <div>
+                                                                    <span class="btn default btn-file">
+                                                                        <span class="fileinput-new" style="width:98px;"> Resim Seç </span>
+                                                                        <input id="fileUploadLogoBuyuk" name="fileUploadLogoBuyuk" type="file" onchange="resimSecildi('LogoBuyuk');">
+                                                                    </span>
+                                                                    @if (!string.IsNullOrEmpty(icerikAyar.BuyukLogoResimUrl))
+                                                                    {
+                                                                        <a href="javascript: resimSil('LogoBuyuk');" style="width:98px;" class="btn red"> Sil </a>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_5">
+                                            <form id="comform_5">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaGonderilecekEposta" class="control-label">Gönderilecek E-posta Adresi<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtEpostaGonderilecekEposta" name="txtEpostaGonderilecekEposta" class="form-control input-sm com-email maxlength-handler" maxlength="100" placeholder="E-posta Giriniz..."
+                                                                       value="@icerikAyar.GonderilecekEposta" tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaGonderilecekEpostaTanim" class="control-label">Gönderilecek E-posta Tanımı<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtEpostaGonderilecekEpostaTanim" name="txtEpostaGonderilecekEpostaTanim" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Tanım Giriniz..."
+                                                                       value="@icerikAyar.GonderilecekEpostaTanim" tabindex="2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaKullaniciAdi" class="control-label">Kullanıcı Adı<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtEpostaKullaniciAdi" name="txtEpostaKullaniciAdi" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Kullanıcı Adı Giriniz..."
+                                                                       value="@icerikAyar.GonderilecekEpostaKullaniciAdi" tabindex="3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaSifre" class="control-label">Şifre<span class="required"> * </span></label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon" onmouseover="javascript: $(this).parent().find('input')[0].type = 'text';" onmouseout="javascript: $(this).parent().find('input')[0].type = 'password';">
+                                                                    <i class="fa fa-eye font-purple"></i>
+                                                                </span>
+                                                                <div class="input-icon right">
+                                                                    <i class="fa"></i>
+                                                                    <input id="txtEpostaSifre" name="txtEpostaSifre" class="form-control input-sm maxlength-handler" maxlength="50" type="password" placeholder="Şifre Giriniz..."
+                                                                           value="@icerikAyar.GonderilecekEpostaSifre" tabindex="4">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaHost" class="control-label">Host<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtEpostaHost" name="txtEpostaHost" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Host Giriniz..." value="@icerikAyar.GonderilecekEpostaHost" tabindex="5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaPort" class="control-label">Port<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtEpostaPort" name="txtEpostaPort" class="form-control input-sm com-number focus-sense" placeholder="Port Giriniz..." value="@icerikAyar.GonderilecekEpostaPort" tabindex="6">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEpostaAktifMi" class="control-label">Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtEpostaAktifMi" name="txtEpostaAktifMi" type="checkbox" class="make-switch" data-on-text="Aktif" data-off-text="Pasif"
+                                                                       @(icerikAyar.AyarId > 0 ? (icerikAyar.GonderilecekEpostaAktifMi ? "checked" : "") : "checked") tabindex="7">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="8">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="8">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_6">
+                                            <form id="comform_6">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSmsKullaniciAdi" class="control-label">Kullanıcı Adı<span class="required"> * </span></label>
+                                                            <div class="input-icon right">
+                                                                <i class="fa"></i>
+                                                                <input id="txtSmsKullaniciAdi" name="txtSmsKullaniciAdi" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Kullanıcı Adı Giriniz..."
+                                                                       value="@icerikAyar.SmsKullaniciAdi" tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSmsSifre" class="control-label">Şifre<span class="required"> * </span></label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon" onmouseover="javascript: $(this).parent().find('input')[0].type = 'text';" onmouseout="javascript: $(this).parent().find('input')[0].type = 'password';">
+                                                                    <i class="fa fa-eye font-purple"></i>
+                                                                </span>
+                                                                <div class="input-icon right">
+                                                                    <i class="fa"></i>
+                                                                    <input id="txtSmsSifre" name="txtSmsSifre" class="form-control input-sm maxlength-handler" maxlength="50" type="password" placeholder="Şifre Giriniz..."
+                                                                           value="@icerikAyar.SmsSifre" tabindex="2">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="3">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="3">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_7">
+                                            <form id="comform_7">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSeoMetaTitle" class="control-label">Meta Title</label>
+                                                            <input id="txtSeoMetaTitle" name="txtSeoMetaTitle" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Title Giriniz..." value="@icerikAyar.MetaTitle" tabindex="1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtSeoMetaKeywords" class="control-label">Meta Keywords</label>
+                                                            <input id="txtSeoMetaKeywords" name="txtSeoMetaKeywords" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Keywords Giriniz..." value="@icerikAyar.MetaKeywords" tabindex="2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtSeoMetaDescription" class="control-label">Meta Description</label>
+                                                            <textarea id="txtSeoMetaDescription" name="txtSeoMetaDescription" rows="2" style="resize:none;" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Description Giriniz..." tabindex="3">@icerikAyar.MetaDescription</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="4">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="4">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_8">
+                                            <form id="comform_8">
+                                                <div class="row">
+                                                    <div class="col-md-12 margin-bottom-10">
+                                                        <div class="alert alert-info no-margin">
+                                                            <i class="fa fa-info-circle"></i>
+                                                            Eğer IP Bloklama <b>AKTİF</b> olarak seçilirse (Ip adresi listesi otomatik olarak açılacaktır), <b>Admin Paneli</b>' ne sadece listeye eklenen IP adreslerinin erişmesi sağlanır.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-offset-5 col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="txtIPBloklamaAktifMi" class="control-label">IP Bloklama Aktif mi?</label>
+                                                            <div class="icheck-inline">
+                                                                <input id="txtIPBloklamaAktifMi" name="txtIPBloklamaAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" 
+                                                                       onchange="javascript: IpBloklamaKaydet();" @(icerikAyar.AyarId > 0 ? (icerikAyar.IpBloklamaAktifMi ? "checked" : "") : "checked")>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @{
+                                                    if (icerikAyar.AyarId > 0 && icerikAyar.IpBloklamaAktifMi)
+                                                    {
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="table-responsive">
+                                                                        <table id="tableIPListesi" class="table table-striped table-bordered table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="40%">IP Adresi</th>
+                                                                                    <th width="40%">Aktif Mi?</th>
+                                                                                    <th width="20%"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input id="txtIPBlokIPNo" name="txtIPBlokIPNo" class="form-control input-sm ip-address" placeholder="IP Adresi Giriniz..." />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input id="txtIPBlokAktifMi" name="txtIPBlokAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button type="button" class="btn btn-sm green-meadow" style="width:100%;"
+                                                                                                onclick="javascript: IpAdresiEkle();">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                            EKLE
+                                                                                        </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                @foreach(var ip in ipAdresleri)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>@ip.IpAdresi</td>
+                                                                                        <td colspan="2">
+                                                                                            <div class="icheck-inline">
+                                                                                                <input id="txtIPAktifMi@(ip.IpAdresId)" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                                                                       onchange="javascript: IpAdresiGuncelle('@ip.IpAdresId');" @(ip.AktifMi ? "checked" : "")>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_9">
+                                            <form id="comform_9">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtIcerikMesafeliSatisSozlesmesi" class="control-label">Mesafeli Satış Sözleşmesi</label>
+                                                            <textarea id="txtIcerikMesafeliSatisSozlesmesi" name="txtIcerikMesafeliSatisSozlesmesi" class="form-control" rows="4" tabindex="1">@icerikAyar.MesafeliSatisSozlesmesi</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtIcerikGuvenlikIlkeleri" class="control-label">Güvenlik İlkeleri</label>
+                                                            <textarea id="txtIcerikGuvenlikIlkeleri" name="txtIcerikGuvenlikIlkeleri" class="form-control" rows="4" tabindex="2">@icerikAyar.GuvenlikIlkeleri</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtIcerikTuketiciHaklari" class="control-label">Tüketici Hakları</label>
+                                                            <textarea id="txtIcerikTuketiciHaklari" name="txtIcerikTuketiciHaklari" class="form-control" rows="4" tabindex="3">@icerikAyar.TuketiciHaklari</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="txtIcerikIadeKosullari" class="control-label">İade Koşulları</label>
+                                                            <textarea id="txtIcerikIadeKosullari" name="txtIcerikIadeKosullari" class="form-control" rows="4" tabindex="4">@icerikAyar.IadeKosullari</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-5 col-md-7">
+                                                        @if (icerikAyar.AyarId == 0)
+                                                        {
+                                                            <button type="submit" class="btn blue" tabindex="5">
+                                                                Kaydet
+                                                                <i class="fa fa-save"></i>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn yellow" tabindex="5">
+                                                                Güncelle
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Content/Theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".decimal").inputmask('decimal', {
+                rightAlign: false,
+                integerDigits: 18,
+                radixPoint: ".",
+                digits: 4
+            });
+            $('.com-number').inputmask('99999', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00000'
+            });
+            $('.com-phone').inputmask('0 (999) 999-9999', {
+                numeric: true,
+                removeMaskOnSubmit: true,
+                onincomplete: function (o, e) {
+                    $(this).val('');
+                    var formId = $(this).closest('form').attr('id');
+                    $('#' + formId).validate().element($(this));
+                }
+            });
+            $('.com-email').inputmask('email', {
+                onincomplete: function (o, e) {
+                    $(this).val('');
+                    var formId = $(this).closest('form').attr('id');
+                    $('#' + formId).validate().element($(this));
+                }
+            });
+            $('.ip-address').ipAddress();
+
+            CKEDITOR.replace('txtSirketHakkimizda', {
+                language: 'tr',
+                contentsLanguage: 'tr'
+            });
+            CKEDITOR.replace('txtIcerikMesafeliSatisSozlesmesi', {
+                language: 'tr',
+                contentsLanguage: 'tr'
+            });
+            CKEDITOR.replace('txtIcerikGuvenlikIlkeleri', {
+                language: 'tr',
+                contentsLanguage: 'tr'
+            });
+            CKEDITOR.replace('txtIcerikTuketiciHaklari', {
+                language: 'tr',
+                contentsLanguage: 'tr'
+            });
+            CKEDITOR.replace('txtIcerikIadeKosullari', {
+                language: 'tr',
+                contentsLanguage: 'tr'
+            });
+
+            // Form 1 validations
+            var rules_1 = {
+                txtUygulamaAdi: {
+                    maxlength: 100,
+                    required: true
+                },
+                txtUygulamaAciklama: {
+                    maxlength: 500,
+                    required: true
+                },
+                txtUygulamaUrl: {
+                    maxlength: 100,
+                    required: true
+                },
+                txtUygulamaParaPuanLimit: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                },
+                txtUygulamaParaPuanKazanc: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                },
+                txtUygulamaKeepAliveTime: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                },
+                txtUygulamaCacheClearTime: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                },
+                txtUygulamaCookieTime: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                }
+            };
+            validation(1, rules_1, uygulamaKaydet);
+
+            // Form 2 validations
+            var rules_2 = {
+                txtSirketAdi: {
+                    maxlength: 200,
+                    required: true
+                },
+                txtSirketAciklama: {
+                    maxlength: 500,
+                    required: true
+                },
+                txtSirketAdres: {
+                    maxlength: 750,
+                    required: true
+                },
+                txtSirketTelefon1: {
+                    required: true
+                },
+                txtSirketEposta: {
+                    maxlength: 100,
+                    email: true,
+                    required: true
+                }
+            };
+            validation(2, rules_2, sirketKaydet);
+
+            // Form 3, 4 validations
+            validation(3, {}, sayfaKaydet);
+            validation(4, {}, logoKaydet);
+
+            // Form 5 validations
+            var rules_5 = {
+                txtEpostaGonderilecekEposta: {
+                    maxlength: 100,
+                    email: true,
+                    required: true
+                },
+                txtEpostaGonderilecekEpostaTanim: {
+                    maxlength: 500,
+                    required: true
+                },
+                txtEpostaKullaniciAdi: {
+                    maxlength: 100,
+                    required: true
+                },
+                txtEpostaSifre: {
+                    maxlength: 50,
+                    required: true
+                },
+                txtEpostaHost: {
+                    maxlength: 100,
+                    required: true
+                },
+                txtEpostaPort: {
+                    number: true,
+                    greaterThanZero: true,
+                    required: true
+                }
+            };
+            validation(5, rules_5, epostaKaydet);
+
+            // Form 6 validatons
+            var rules_6 = {
+                txtSmsKullaniciAdi: {
+                    maxlength: 100,
+                    required: true
+                },
+                txtSmsSifre: {
+                    maxlength: 50,
+                    required: true
+                }
+            };
+            validation(6, rules_6, smsKaydet);
+
+            // Form 7, 8 validatons
+            validation(7, {}, seoKaydet);
+            validation(9, {}, icerikKaydet);
+        });
+
+        function validation(formNo, rules, saveFunc) {
+            $('#comform_' + formNo).validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: rules,
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    saveFunc();
+                },
+            });
+        }
+
+        function resimSecildi(id) {
+            $('#emptyFile' + id).attr('src', '/Content/Img/no-image.png');
+
+            var ext = $('#fileUpload' + id).val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'bmp']) == -1) {
+                callAlert('warning', 'Uygun resim formatları \'gif\', \'png\', \'jpg\', \'jpeg\', \'bmp\' olmalıdır.');
+                $('#fileUpload' + id).val('');
+                return false;
+            }
+
+            // save
+            var formData = new FormData();
+            var file = document.getElementById('fileUpload' + id).files[0];
+
+            formData.append('resim', file);
+            formData.append('type', id);
+
+            $.ajax({
+                url: '/ProgramAyar/LogoKaydetGuncelle',
+                data: formData,
+                type: "post",
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/ProgramAyar/Index';
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+        function resimSil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $.ajax({
+                    url: '/ProgramAyar/LogoSil',
+                    data: JSON.stringify({ type: id }),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result > 0) {
+                            callAlert('success', 'Resim silme işlemi başarılı.');
+                            setTimeout(function myfunction() {
+                                window.location.href = '/ProgramAyar/Index';
+                            }, 1500);
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+
+        function uygulamaKaydet() {
+            var data = {
+                UygulamaAd: $('#txtUygulamaAdi').val(),
+                UygulamaAciklama: $('#txtUygulamaAciklama').val(),
+                Url: $('#txtUygulamaUrl').val(),
+                SecureUrl: $('#txtUygulamaSecureUrl').val(),
+                FacebookHesapUrl: $('#txtUygulamaFacebookHesapUrl').val(),
+                TwitterHesapUrl: $('#txtUygulamaTwitterHesapUrl').val(),
+                ParaPuanLimit: parseFloat($('#txtUygulamaParaPuanLimit').val()),
+                ParaPuanKazanc: parseFloat($('#txtUygulamaParaPuanKazanc').val()),
+                KeepAliveTime: $('#txtUygulamaKeepAliveTime').val(),
+                ClearCacheTime: $('#txtUygulamaCacheClearTime').val(),
+                CookieTime: $('#txtUygulamaCookieTime').val(),
+                SayfaKuponAktifMi: $('#txtUygulamaSayfaKuponAktifMi').is(":checked") ? true : false,
+                ParaPuanAktifMi: $('#txtUygulamaParaPuanAktifMi').is(":checked") ? true : false,
+                CacheAktifMi: $('#txtUygulamaCacheAktifMi').is(":checked") ? true : false,
+                SslAktifMi: $('#txtUygulamaSslAktifMi').is(":checked") ? true : false,
+                UygulamaAktifMi: $('#txtUygulamaAktifMi').is(":checked") ? true : false
+            };
+            kaydet('/ProgramAyar/UygulamaKaydetGuncelle', data);
+        }
+        function sirketKaydet() {
+            if (CKEDITOR.instances.txtSirketHakkimizda.getData() == null || CKEDITOR.instances.txtSirketHakkimizda.getData() == '') {
+                callAlert('warning', 'Hakkımızda alanı boş bırakılamaz.');
+                return false;
+            }
+
+            var data = {
+                SirketAd: $('#txtSirketAdi').val(),
+                SirketAciklama: $('#txtSirketAciklama').val(),
+                SirketAdres: $('#txtSirketAdres').val(),
+                SirketTelefon1: $('#txtSirketTelefon1').val(),
+                SirketTelefon2: $('#txtSirketTelefon2').val(),
+                SirketFax1: $('#txtSirketFaks1').val(),
+                SirketFax2: $('#txtSirketFaks2').val(),
+                SirketEposta: $('#txtSirketEposta').val(),
+                SirketMapCode: $('#txtSirketMapCode').val(),
+                SirketHakkimizda: CKEDITOR.instances.txtSirketHakkimizda.getData()
+            };
+            kaydet('/ProgramAyar/SirketKaydetGuncelle', data);
+        }
+        function sayfaKaydet() {
+            var data = {
+                SayfaUrunYorumAktifMi: $('#txtSayfaUrunYorumAktifMi').is(":checked") ? true : false,
+                MisafirSatinAlmaAktifMi: $('#txtSayfaMisafirAktifMi').is(":checked") ? true : false,
+                KdvDahilMi: $('#txtSayfaKdvDahilMi').is(":checked") ? true : false
+            };
+            kaydet('/ProgramAyar/SayfaKaydetGuncelle', data);
+        }
+        function logoKaydet() {
+        }
+        function epostaKaydet() {
+            var data = {
+                GonderilecekEposta: $('#txtEpostaGonderilecekEposta').val(),
+                GonderilecekEpostaTanim: $('#txtEpostaGonderilecekEpostaTanim').val(),
+                GonderilecekEpostaKullaniciAdi: $('#txtEpostaKullaniciAdi').val(),
+                GonderilecekEpostaSifre: $('#txtEpostaSifre').val(),
+                GonderilecekEpostaHost: $('#txtEpostaHost').val(),
+                GonderilecekEpostaPort: $('#txtEpostaPort').val(),
+                GonderilecekEpostaAktifMi: $('#txtEpostaAktifMi').is(":checked") ? true : false
+            };
+            kaydet('/ProgramAyar/EpostaKaydetGuncelle', data);
+        }
+        function smsKaydet() {
+            var data = {
+                SmsKullaniciAdi: $('#txtSmsKullaniciAdi').val(),
+                SmsSifre: $('#txtSmsSifre').val()
+            };
+            kaydet('/ProgramAyar/SmsKaydetGuncelle', data);
+        }
+        function seoKaydet() {
+            var data = {
+                MetaTitle: $('#txtSeoMetaTitle').val(),
+                MetaKeywords: $('#txtSeoMetaKeywords').val(),
+                MetaDescription: $('#txtSeoMetaDescription').val()
+            };
+            kaydet('/ProgramAyar/SeoKaydetGuncelle', data);
+        }
+        function icerikKaydet() {
+            var data = {
+                MesafeliSatisSozlesmesi: CKEDITOR.instances.txtIcerikMesafeliSatisSozlesmesi.getData(),
+                GuvenlikIlkeleri: CKEDITOR.instances.txtIcerikGuvenlikIlkeleri.getData(),
+                TuketiciHaklari: CKEDITOR.instances.txtIcerikTuketiciHaklari.getData(),
+                IadeKosullari: CKEDITOR.instances.txtIcerikIadeKosullari.getData(),
+            };
+            kaydet('/ProgramAyar/IcerikKaydetGuncelle', data);
+        }
+        function IpBloklamaKaydet() {
+            var data = {
+                aktifMi: $('#txtIPBloklamaAktifMi').is(":checked") ? true : false
+            };
+            kaydet('/ProgramAyar/IPAdresiBloklamaKaydetGuncelle', data);
+        }
+
+        function kaydet(url, data) {
+            $.ajax({
+                url: url,
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/ProgramAyar/Index';
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function IpAdresiEkle() {
+            if ($('#txtIPBlokIPNo').val() == '') {
+                callAlert('warning', 'Lütfen IP Adresi giriniz.');
+                return false;
+            }
+
+            var data = {
+                IpAdresId: 0,
+                IpAdresi: $('#txtIPBlokIPNo').val(),
+                AktifMi: $('#txtIPBlokAktifMi').is(":checked") ? true : false
+            };
+
+            kaydet('/ProgramAyar/IpAdresiKaydetGuncelle', data);
+        }
+
+        function IpAdresiGuncelle(id) {
+            var data = {
+                IpAdresId: id,
+                AktifMi: $('#txtIPAktifMi' + id).is(":checked") ? true : false
+            };
+
+            kaydet('/ProgramAyar/IpAdresiKaydetGuncelle', data);
+        }
+    </script>
+}

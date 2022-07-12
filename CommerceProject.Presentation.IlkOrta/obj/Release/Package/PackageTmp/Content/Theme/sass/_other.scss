@@ -1,0 +1,159 @@
+/******************************************************************************
+  Other
+*******************************************************************************/
+/* Promo Partners */
+.promo-partners {
+  font-size: 13px;
+  line-height: 20px;
+  
+  .col-md-2 {
+    margin-bottom: 37px;
+  }
+}
+/* About Us */
+.about-us {
+  font-size: 13px;
+  
+  strong {
+    font-size: 14px;
+  }
+}
+.body-bg-img {
+  background: url("../content/img/coming-soon.jpg") 50% 0 no-repeat;
+  
+  &.under-construction {
+    background: url("../content/img/under-construction.jpg") 50% 0 no-repeat;
+  }
+  .page-box {
+    display: table;
+    height: 100% !important;
+    table-layout: fixed;
+    width: 100%;
+  }
+  .header-three {
+    min-height: 1px;
+    position: absolute;
+    width: 100%;
+  }
+  #main {
+    display: table-cell;
+    padding: 119px 0 192px;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+.count-down-box {
+  float: right;
+}
+#count-down {
+  text-align: right;
+  width: auto!important;
+  @media (max-width: $media-sm) {
+    text-align: center;
+  }
+  
+  .county-days-wrapper,
+  .county-hours-wrapper,
+  .county-minutes-wrapper,
+  .county-seconds-wrapper {
+    background: $danger;
+    background: rgba($danger,.5);
+    display: inline-block;
+    height: 135px;
+    margin-left: 2px;
+    margin-right: 2px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 23%!important;
+  }
+  .county-hours-wrapper {
+    background: $warning;
+    background: rgba($warning,.5);
+  }
+  .county-minutes-wrapper {
+    background: $info;
+    background: rgba($info,.5);
+  }
+  .county-seconds-wrapper {
+    background: $success;
+    background: rgba($success,.5);
+  }
+  .county-days,
+  .county-hours,
+  .county-minutes,
+  .county-seconds {
+    font-size: 60px;
+    color: #fff;
+    line-height: 135px;
+    display: inline-block!important;
+    opacity: 1 !important;
+    width: auto !important;
+  }
+  .county-label-days,
+  .county-label-hours,
+  .county-label-minutes,
+  .county-label-seconds {
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 10px;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    width: 23% !important;
+  }
+}
+.coming-text {
+  margin-top: -4px;
+  
+  form {
+    position: relative;
+  }
+  .success {
+    bottom: 100%;
+    margin-bottom: 5px;
+    position: absolute;
+  }
+  .form-control {
+    padding-right: 100px;
+  }
+  .btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+  }
+} 
+.under-contact {
+  .phone,
+  .address {
+    padding: 0 0 0 34px;
+    position: relative;
+  }
+  .footer-icon {
+    color: #000;
+    left: 16px;
+    position: absolute;
+    top: 0;
+    
+    &:before {
+      font-size: 20px;
+      line-height: 18px;
+      width: auto;
+    }
+  }
+}
+.list-images > .col-md-4 {
+  margin-bottom: 30px;
+}
+[data-appear-animation] {
+  opacity: 0;
+  transition: .5s opacity .1s linear;
+  @media (max-width: $media-xs) {
+    opacity: 1;
+  }
+  
+  &.animated {
+    opacity: 1;
+  }
+}

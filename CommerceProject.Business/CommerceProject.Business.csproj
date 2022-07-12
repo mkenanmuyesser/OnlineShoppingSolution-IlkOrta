@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommerceProject.Business</RootNamespace>
+    <AssemblyName>CommerceProject.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CacheManager.Core, Version=1.1.2.0, Culture=neutral, PublicKeyToken=5b450b4fb65c4cdb, processorArchitecture=MSIL">
+      <HintPath>..\packages\CacheManager.Core.1.1.2\lib\net45\CacheManager.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CacheManager.SystemRuntimeCaching, Version=1.1.2.0, Culture=neutral, PublicKeyToken=5b450b4fb65c4cdb, processorArchitecture=MSIL">
+      <HintPath>..\packages\CacheManager.SystemRuntimeCaching.1.1.2\lib\net45\CacheManager.SystemRuntimeCaching.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ePayment, Version=1.0.1585.29907, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ePayment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PosnetDotNetEncryption, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommerceProject.Presentation.IlkOrta\bin\PosnetDotNetEncryption.dll</HintPath>
+    </Reference>
+    <Reference Include="PosnetDotNetManModule, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommerceProject.Presentation.IlkOrta\bin\PosnetDotNetManModule.dll</HintPath>
+    </Reference>
+    <Reference Include="PosnetDotNetTDSOOSManModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommerceProject.Presentation.IlkOrta\bin\PosnetDotNetTDSOOSManModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessContracts\IAdresIlceService.cs" />
+    <Compile Include="BusinessContracts\IAdresIlService.cs" />
+    <Compile Include="BusinessContracts\IIpAdresService.cs" />
+    <Compile Include="BusinessContracts\ICacheService.cs" />
+    <Compile Include="BusinessContracts\IFaturaTipService.cs" />
+    <Compile Include="BusinessContracts\IAdresService.cs" />
+    <Compile Include="BusinessContracts\IBannerTipService.cs" />
+    <Compile Include="BusinessContracts\IIadeTalepDurumTipService.cs" />
+    <Compile Include="BusinessContracts\IIadeTalepIstekTipService.cs" />
+    <Compile Include="BusinessContracts\IIadeTalepNedenTipService.cs" />
+    <Compile Include="BusinessContracts\IIlgiliUrunService.cs" />
+    <Compile Include="BusinessContracts\IKategoriOzellikService.cs" />
+    <Compile Include="BusinessContracts\IKomisyonIskontoTipService.cs" />
+    <Compile Include="BusinessContracts\IKullaniciAdresService.cs" />
+    <Compile Include="BusinessContracts\IKullaniciYetkiService.cs" />
+    <Compile Include="BusinessContracts\ILogService.cs" />
+    <Compile Include="BusinessContracts\INitelikGrupService.cs" />
+    <Compile Include="BusinessContracts\IOdemeDurumTipService.cs" />
+    <Compile Include="BusinessContracts\IOzellikService.cs" />
+    <Compile Include="BusinessContracts\IPaketKategoriService.cs" />
+    <Compile Include="BusinessContracts\IPaketNitelikService.cs" />
+    <Compile Include="BusinessContracts\IPaketResimService.cs" />
+    <Compile Include="BusinessContracts\IPaketService.cs" />
+    <Compile Include="BusinessContracts\IPaketUrunService.cs" />
+    <Compile Include="BusinessContracts\ISepetService.cs" />
+    <Compile Include="BusinessContracts\IIadeTalepService.cs" />
+    <Compile Include="BusinessContracts\IIskontoKategoriService.cs" />
+    <Compile Include="BusinessContracts\IIskontoKullanimHareketService.cs" />
+    <Compile Include="BusinessContracts\IIskontoMarkaService.cs" />
+    <Compile Include="BusinessContracts\IIskontoRolService.cs" />
+    <Compile Include="BusinessContracts\IIskontoService.cs" />
+    <Compile Include="BusinessContracts\IIskontoSirketService.cs" />
+    <Compile Include="BusinessContracts\IIskontoTipService.cs" />
+    <Compile Include="BusinessContracts\IIskontoUrunService.cs" />
+    <Compile Include="BusinessContracts\IKullaniciDetayService.cs" />
+    <Compile Include="BusinessContracts\IKullaniciRolService.cs" />
+    <Compile Include="BusinessContracts\ISepetTipService.cs" />
+    <Compile Include="BusinessContracts\ISiparisDetayService.cs" />
+    <Compile Include="BusinessContracts\ISiparisDurumTipService.cs" />
+    <Compile Include="BusinessContracts\ISiparisGonderimService.cs" />
+    <Compile Include="BusinessContracts\ISiparisHareketService.cs" />
+    <Compile Include="BusinessContracts\ISiparisOdemeTipService.cs" />
+    <Compile Include="BusinessContracts\IStokHareketService.cs" />
+    <Compile Include="BusinessContracts\IStokHareketTipService.cs" />
+    <Compile Include="BusinessContracts\ITeslimZamaniService.cs" />
+    <Compile Include="BusinessContracts\IUrunOzellikService.cs" />
+    <Compile Include="BusinessContracts\IUrunResimService.cs" />
+    <Compile Include="BusinessContracts\IUrunResimTipService.cs" />
+    <Compile Include="BusinessContracts\IUrunYorumService.cs" />
+    <Compile Include="BusinessContracts\IKisaLinkService.cs" />
+    <Compile Include="BusinessContracts\ISiparisService.cs" />
+    <Compile Include="BusinessContracts\IIstekListesiService.cs" />
+    <Compile Include="BusinessContracts\IRolService.cs" />
+    <Compile Include="BusinessContracts\IAnketCevapService.cs" />
+    <Compile Include="BusinessContracts\IAnketService.cs" />
+    <Compile Include="BusinessContracts\IAnketSoruService.cs" />
+    <Compile Include="BusinessContracts\ISanalPosService.cs" />
+    <Compile Include="BusinessContracts\ISSSService.cs" />
+    <Compile Include="BusinessContracts\ITaksitService.cs" />
+    <Compile Include="BusinessContracts\IBankaService.cs" />
+    <Compile Include="BusinessContracts\IBannerService.cs" />
+    <Compile Include="BusinessContracts\INitelikService.cs" />
+    <Compile Include="BusinessContracts\IUrunKategoriService.cs" />
+    <Compile Include="BusinessContracts\IUrunNitelikService.cs" />
+    <Compile Include="BusinessContracts\IUrunService.cs" />
+    <Compile Include="BusinessContracts\IKategoriService.cs" />
+    <Compile Include="BusinessContracts\IHesapNumarasiService.cs" />
+    <Compile Include="BusinessContracts\IIcerikAyarService.cs" />
+    <Compile Include="BusinessContracts\IGonderimService.cs" />
+    <Compile Include="BusinessContracts\IHaberBlogResimService.cs" />
+    <Compile Include="BusinessContracts\IHaberBlogService.cs" />
+    <Compile Include="BusinessContracts\IHaberBlogTipService.cs" />
+    <Compile Include="BusinessContracts\IHaberBlogYorumService.cs" />
+    <Compile Include="BusinessContracts\IHaberBulteniAbonelikService.cs" />
+    <Compile Include="BusinessContracts\IKampanyaResimService.cs" />
+    <Compile Include="BusinessContracts\IKampanyaService.cs" />
+    <Compile Include="BusinessContracts\IKullaniciService.cs" />
+    <Compile Include="BusinessContracts\IMarkaService.cs" />
+    <Compile Include="BusinessContracts\IOlcuService.cs" />
+    <Compile Include="BusinessContracts\IOlcuTipService.cs" />
+    <Compile Include="BusinessContracts\ISirketService.cs" />
+    <Compile Include="BusinessContracts\IVergiService.cs" />
+    <Compile Include="BusinessContracts\IYetkiService.cs" />
+    <Compile Include="BusinessServices\AdresIlceService.cs" />
+    <Compile Include="BusinessServices\AdresIlService.cs" />
+    <Compile Include="BusinessServices\IpAdresService.cs" />
+    <Compile Include="BusinessServices\CacheService.cs" />
+    <Compile Include="BusinessServices\FaturaTipService.cs" />
+    <Compile Include="BusinessServices\BannerTipService.cs" />
+    <Compile Include="BusinessServices\IadeTalepDurumTipService.cs" />
+    <Compile Include="BusinessServices\IadeTalepIstekTipService.cs" />
+    <Compile Include="BusinessServices\IadeTalepNedenTipService.cs" />
+    <Compile Include="BusinessServices\IlgiliUrunService.cs" />
+    <Compile Include="BusinessServices\KategoriOzellikService.cs" />
+    <Compile Include="BusinessServices\KomisyonIskontoTipService.cs" />
+    <Compile Include="BusinessServices\KullaniciAdresService.cs" />
+    <Compile Include="BusinessServices\KullaniciYetkiService.cs" />
+    <Compile Include="BusinessServices\LogService.cs" />
+    <Compile Include="BusinessServices\NitelikGrupService.cs" />
+    <Compile Include="BusinessServices\OdemeDurumTipService.cs" />
+    <Compile Include="BusinessServices\OzellikService.cs" />
+    <Compile Include="BusinessServices\PaketKategoriService.cs" />
+    <Compile Include="BusinessServices\PaketNitelikService.cs" />
+    <Compile Include="BusinessServices\PaketResimService.cs" />
+    <Compile Include="BusinessServices\PaketService.cs" />
+    <Compile Include="BusinessServices\PaketUrunService.cs" />
+    <Compile Include="BusinessServices\SepetService.cs" />
+    <Compile Include="BusinessServices\AdresService.cs" />
+    <Compile Include="BusinessServices\AnketCevapService.cs" />
+    <Compile Include="BusinessServices\IadeTalepService.cs" />
+    <Compile Include="BusinessServices\IskontoKategoriService.cs" />
+    <Compile Include="BusinessServices\IskontoKullanimHareketService.cs" />
+    <Compile Include="BusinessServices\IskontoMarkaService.cs" />
+    <Compile Include="BusinessServices\IskontoRolService.cs" />
+    <Compile Include="BusinessServices\IskontoService.cs" />
+    <Compile Include="BusinessServices\IskontoSirketService.cs" />
+    <Compile Include="BusinessServices\IskontoTipService.cs" />
+    <Compile Include="BusinessServices\IskontoUrunService.cs" />
+    <Compile Include="BusinessServices\KullaniciDetayService.cs" />
+    <Compile Include="BusinessServices\KullaniciRolService.cs" />
+    <Compile Include="BusinessServices\SepetTipService.cs" />
+    <Compile Include="BusinessServices\SiparisDetayService.cs" />
+    <Compile Include="BusinessServices\SiparisDurumTipService.cs" />
+    <Compile Include="BusinessServices\SiparisGonderimService.cs" />
+    <Compile Include="BusinessServices\SiparisHareketService.cs" />
+    <Compile Include="BusinessServices\SiparisOdemeTipService.cs" />
+    <Compile Include="BusinessServices\StokHareketService.cs" />
+    <Compile Include="BusinessServices\StokHareketTipService.cs" />
+    <Compile Include="BusinessServices\TeslimZamaniService.cs" />
+    <Compile Include="BusinessServices\UrunOzellikService.cs" />
+    <Compile Include="BusinessServices\UrunResimService.cs" />
+    <Compile Include="BusinessServices\UrunResimTipService.cs" />
+    <Compile Include="BusinessServices\UrunYorumService.cs" />
+    <Compile Include="BusinessServices\KisaLinkService.cs" />
+    <Compile Include="BusinessServices\SiparisService.cs" />
+    <Compile Include="BusinessServices\IstekListesiService.cs" />
+    <Compile Include="BusinessServices\RolService.cs" />
+    <Compile Include="BusinessServices\AnketService.cs" />
+    <Compile Include="BusinessServices\SanalPosService.cs" />
+    <Compile Include="BusinessServices\TaksitService.cs" />
+    <Compile Include="BusinessServices\AnketSoruService.cs" />
+    <Compile Include="BusinessServices\BankaService.cs" />
+    <Compile Include="BusinessServices\BannerService.cs" />
+    <Compile Include="BusinessServices\KategoriService.cs" />
+    <Compile Include="BusinessServices\NitelikService.cs" />
+    <Compile Include="BusinessServices\UrunKategoriService.cs" />
+    <Compile Include="BusinessServices\UrunNitelikService.cs" />
+    <Compile Include="BusinessServices\SSSService.cs" />
+    <Compile Include="BusinessServices\UrunService.cs" />
+    <Compile Include="BusinessServices\HesapNumarasiService.cs" />
+    <Compile Include="BusinessServices\IcerikAyarService.cs" />
+    <Compile Include="BusinessServices\GonderimService.cs" />
+    <Compile Include="BusinessServices\HaberBlogResimService.cs" />
+    <Compile Include="BusinessServices\HaberBlogService.cs" />
+    <Compile Include="BusinessServices\HaberBlogTipService.cs" />
+    <Compile Include="BusinessServices\HaberBlogYorumService.cs" />
+    <Compile Include="BusinessServices\HaberBulteniAbonelikService.cs" />
+    <Compile Include="BusinessServices\KampanyaResimService.cs" />
+    <Compile Include="BusinessServices\KampanyaService.cs" />
+    <Compile Include="BusinessServices\KullaniciService.cs" />
+    <Compile Include="BusinessServices\MarkaService.cs" />
+    <Compile Include="BusinessServices\OlcuService.cs" />
+    <Compile Include="BusinessServices\OlcuTipService.cs" />
+    <Compile Include="BusinessServices\SirketService.cs" />
+    <Compile Include="BusinessServices\VergiService.cs" />
+    <Compile Include="BusinessServices\YetkiService.cs" />
+    <Compile Include="Custom\FiyatDataObj.cs" />
+    <Compile Include="Custom\KategoriTreeNodeDataObj.cs" />
+    <Compile Include="Custom\KrediKartiDataObj.cs" />
+    <Compile Include="Custom\SepetDataObj.cs" />
+    <Compile Include="Custom\BankaDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarEpostaDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarIcerikDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarSayfaDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarSeoDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarSirketDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarSmsDataObj.cs" />
+    <Compile Include="Custom\IcerikAyarUygulamaDataObj.cs" />
+    <Compile Include="Custom\IskontoBilgiDataObj.cs" />
+    <Compile Include="Custom\IskontoSepetBilgiDataObj.cs" />
+    <Compile Include="Custom\IskontoUrunBilgiDataObj.cs" />
+    <Compile Include="Custom\IstekListesiDataObj.cs" />
+    <Compile Include="Custom\KullaniciDetayAdresDataObj.cs" />
+    <Compile Include="Custom\SiparisSonucDataObj.cs" />
+    <Compile Include="Custom\SiparisOzetDataObj.cs" />
+    <Compile Include="Custom\TaksitDataObj.cs" />
+    <Compile Include="Custom\KategoriDataObj.cs" />
+    <Compile Include="Custom\PaketDataObj.cs" />
+    <Compile Include="Custom\UrunDataObj.cs" />
+    <Compile Include="Entities\Adres.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AdresIl.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AdresIlce.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Anket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AnketCevap.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AnketSoru.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Banka.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Banner.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\BannerTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Cache.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EpostaKuyrugu.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FaturaTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Gonderim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HaberBlog.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HaberBlogResim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HaberBlogTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HaberBlogYorum.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HaberBulteniAbonelik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HesapNumarasi.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IadeTalep.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IadeTalepDurumTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IadeTalepIstekTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IadeTalepNedenTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IcerikAyar.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IlgiliUrun.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IpAdres.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Iskonto.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoKategori.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoKullanimHareket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoMarka.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoRol.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoSirket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IskontoUrun.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IstekListesi.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Kampanya.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KampanyaResim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Kategori.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KategoriOzellik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KatmanliFiyat.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KisaLink.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KomisyonIskontoTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KrediKartiTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Kullanici.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KullaniciAdres.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KullaniciDetay.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KullaniciRol.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KullaniciYetki.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Log.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Marka.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Nitelik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\NitelikGrup.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OdemeDurumTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Olcu.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OlcuTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Ozellik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OzellikTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Paket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PaketKategori.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PaketNitelik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PaketResim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PaketUrun.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Rol.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SanalPos.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sepet.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SepetTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Siparis.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SiparisDetay.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SiparisDurumTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SiparisGonderim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SiparisHareket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SiparisOdemeTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sirket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SmsKuyrugu.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SSS.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\StokHareket.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\StokHareketTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagrams.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Taksit.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TeslimZamani.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Urun.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunKategori.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunNitelik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunOzellik.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunResim.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunResimTip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UrunYorum.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Vergi.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Yetki.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Bank\BankTool.cs" />
+    <Compile Include="Helper\Bank\BankHelper.cs" />
+    <Compile Include="Helper\Bank\BankDDDHelper.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\ENUMS\Banks.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\ENUMS\PosType.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\GarantiPosInfo.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\PaymentResult.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\PosForm.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\PosInfo.cs" />
+    <Compile Include="Helper\Bank\DDD\ENTITY\YKBPosInfo.cs" />
+    <Compile Include="Helper\Bank\DDD\HELPER\CCHelperBase.cs" />
+    <Compile Include="Helper\Bank\DDD\HELPER\ESTHelper.cs" />
+    <Compile Include="Helper\Bank\DDD\HELPER\GarantiHelper.cs" />
+    <Compile Include="Helper\Bank\DDD\HELPER\IReceiverBank.cs" />
+    <Compile Include="Helper\Bank\DDD\HELPER\YKBHelper.cs" />
+    <Compile Include="Helper\Bank\DDD\MANAGER\CCManager.cs" />
+    <Compile Include="Helper\Bank\VirtualPosForm.cs" />
+    <Compile Include="Helper\Bank\VirtualPosResultForm.cs" />
+    <Compile Include="Helper\Caching\CacheHelper.cs" />
+    <Compile Include="Custom\CacheDataObj.cs" />
+    <Compile Include="Entities\DbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Cookie\CookieHelper.cs" />
+    <Compile Include="Helper\Cryptography\CryptoHelper.cs" />
+    <Compile Include="Helper\Email\EmailHelper.cs" />
+    <Compile Include="Helper\PriceCalculation\PriceCalculationHelper.cs" />
+    <Compile Include="Helper\Program\ProgramHelper.cs" />
+    <Compile Include="Helper\Repositories\GenericRepository.cs" />
+    <Compile Include="Helper\Repositories\IGenericRepository.cs" />
+    <Compile Include="Helper\Logging\LogHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Helper\Caching\CacheManagerCfg.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Entities\DbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\DbModel.edmx.diagram">
+      <DependentUpon>DbModel.edmx</DependentUpon>
+    </None>
+    <None Include="Helper\Logging\NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\DbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\DbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,57 @@
+/******************************************************************************
+  Manufactures
+*******************************************************************************/
+.manufactures {
+  .make-wrapper {
+    float: left;
+    height: 164px;
+    margin: 0 15px;
+    width: 164px;
+  }
+  .make {
+    background: #f7f7f7;
+    border: 1px solid #f7f7f7;
+    border-radius: 4px;
+    display: table-cell;
+    height: 164px;
+    line-height: 0;
+    max-height: 100%;
+    max-width: 164px;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    padding: 0 20px;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-transition:
+      background .2s linear,
+      border .2s linear,
+      opacity .2s linear;
+    transition:
+      background .2s linear,
+      border .2s linear,
+      opacity .2s linear;
+  }
+  a.make:hover {
+    background: #f2f2f2;
+    border: 1px solid #ccc;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transition:
+      background .2s linear,
+      border .2s linear,
+      opacity .2s linear;
+    transition:
+      background .2s linear,
+      border .2s linear,
+      opacity .2s linear;
+  }
+}
+.manufactures-list {
+  text-align: center;
+  
+  .make-wrapper {
+    display: inline-block;
+    float: none;
+    margin-bottom: 30px;
+  }
+}

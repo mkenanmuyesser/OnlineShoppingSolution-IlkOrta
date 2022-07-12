@@ -1,0 +1,1118 @@
+﻿@using CommerceProject.Admin.Helper;
+@using CommerceProject.Business.Entities
+
+@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var girisYapanKullanici = ViewBag.GirisYapanKullanici as Kullanici;
+    string pageName = ViewBag.PageName != null ? ((PageHelper.Pages)ViewBag.PageName).ToString() : "";
+    string pageNameFirst = !string.IsNullOrEmpty(pageName) ? pageName.Split('_')[0] : "";
+}
+
+@section css
+{
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Theme/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/Theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/Theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/Theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />*@
+
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Theme/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/Content/Theme/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Theme/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/Content/Theme/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- loading modal -->
+    <link href="~/Content/Theme/assets/global/plugins/loading-modal/css/jquery.loadingModal.css" rel="stylesheet" type="text/css" />
+    <!-- Pagination -->
+    <link href="~/Content/Scripts/paging/simplePagination.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        .i-menu-icon {
+            font-size: 10px !important;
+            position: relative !important;
+            top: -2px !important;
+        }
+
+        .media {
+            cursor: inherit !important;
+        }
+
+        .media .media-status {
+            font-style: italic !important;
+        }
+
+        .media .media-body .media-heading-small {
+            visibility: hidden;
+        }
+
+        .media:hover .media-body .media-heading-small {
+            visibility: visible;
+        }
+
+        .page-quick-sidebar-wrapper .page-quick-sidebar .list-heading {
+            font-size: 18px !important;
+            color: #dbeeff !important;
+            padding: 10px !important;
+            margin: 0px !important;
+            background: #363d44 !important;
+        }
+
+        .media .media-heading-small a {
+            background: #363d44;
+            width: 100%;
+        }
+        
+        .media .media-heading-small a:hover {
+            color: #578EBE;
+            background: #363d44;
+        }
+
+        .media .media-status {
+            font-size: 10px !important;
+        }
+    </style>
+    @RenderSection("css", false)
+}
+
+@section body
+{
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-container-bg-solid page-md page-footer-fixed page-sidebar-closed">
+        <div class="page-wrapper">
+            <div class="page-header navbar navbar-fixed-top">
+                <div class="page-header-inner ">
+                    <div class="page-logo">
+                        <a href="/Home/Index">
+                            <img src="@icerikAyar.KucukLogoResimUrl" alt="logo" class="logo-default" style="margin-top:10px;"/>
+                        </a>
+                        <div class="menu-toggler sidebar-toggler">
+                            <span></span>
+                        </div>
+                    </div>
+                    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span></span>
+                    </a>
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            @if (girisYapanKullanici != null && girisYapanKullanici.KullaniciDetay != null)
+                            {
+                                <li class="dropdown dropdown-user">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                        @if (girisYapanKullanici.KullaniciDetay.KullaniciResim != null)
+                                        {
+                                            var base64 = Convert.ToBase64String(girisYapanKullanici.KullaniciDetay.KullaniciResim);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                            <img alt="" class="img-circle" src="@imgSrc" />
+                                        }
+                                        <span class="username username-hide-on-mobile"> @Html.Raw(girisYapanKullanici.KullaniciDetay.Ad + " " + girisYapanKullanici.KullaniciDetay.Soyad) </span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-default">
+                                        <li>
+                                            <a href="/Home/Index">
+                                                <i class="icon-home"></i> Kontrol Paneli
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Giris/KullaniciCikis/?returnUrl=/@Html.Controller()/@Html.Action()">
+                                                <i class="icon-key"></i> Çıkış Yap
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown dropdown-quick-sidebar-toggler">
+                                    <a href="javascript:;" class="dropdown-toggle">
+                                        <i class="icon-logout"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+            <div class="page-container">
+                <div class="page-sidebar-wrapper">
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <div class="page-sidebar navbar-collapse collapse">
+                        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                            <li class="nav-item start @(pageNameFirst == "home" ? "active open" : "")">
+                                <a href="/Home/Index" class="nav-link ">
+                                    <i class="icon-wrench"></i>
+                                    <span class="title">Kontrol Paneli</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item @(pageNameFirst == "urun" || pageNameFirst == "paket" || pageNameFirst == "kategori" || pageNameFirst == "nitelik" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-layers"></i>
+                                    <span class="title">Katalog İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "urun" || pageNameFirst == "paket" || pageNameFirst == "kategori" || pageNameFirst == "nitelik" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "urun" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Ürün İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "urun" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "urun_index" ? "active open" : "")">
+                                                <a href="/Urun/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ürün Anasayfa</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "urun_search" ? "active open" : "")">
+                                                <a href="/Urun/Search" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ürün Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "urun_save" ? "active open" : "")">
+                                                <a href="/Urun/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ürün Kayıt</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "urun_card" ? "active open" : "")">
+                                                <a href="/Urun/Card" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ürün Kartı</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "paket" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Paket İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "paket" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "paket_index" ? "active open" : "")">
+                                                <a href="/Paket/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Paket Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "paket_save" ? "active open" : "")">
+                                                <a href="/Paket/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Paket Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "kategori" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Kategori İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "kategori" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "kategori_index" ? "active open" : "")">
+                                                <a href="/Kategori/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kategori Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "kategori_save" ? "active open" : "")">
+                                                <a href="/Kategori/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kategori Kayıt</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "kategori_list" ? "active open" : "")">
+                                                <a href="/Kategori/List" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kategori Listesi</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "nitelik" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Nitelik İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "nitelik" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "nitelik_index" ? "active open" : "")">
+                                                <a href="/Nitelik/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Nitelik Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "nitelik_save" ? "active open" : "")">
+                                                <a href="/Nitelik/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Nitelik Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "siparis" || pageNameFirst == "siparisgonderim" || pageNameFirst == "iadetalep" || pageNameFirst == "sepet" || pageNameFirst == "stokhareket" || pageNameFirst == "isteklistesi" || pageNameFirst == "iskonto" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-basket"></i>
+                                    <span class="title">Satış İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "siparis" || pageNameFirst == "siparisgonderim" || pageNameFirst == "iadetalep" || pageNameFirst == "sepet" || pageNameFirst == "stokhareket" || pageNameFirst == "isteklistesi" || pageNameFirst == "iskonto" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "siparis" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Sipariş İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "siparis" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "siparis_index" ? "active open" : "")">
+                                                <a href="/Siparis/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Sipariş Arama</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "siparisgonderim" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Sipariş Gönderim İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "siparisgonderim" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "siparisgonderim_index" ? "active open" : "")">
+                                                <a href="/SiparisGonderim/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Sipariş Gönderim Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "siparisgonderim_save" ? "active open" : "")">
+                                                <a href="/SiparisGonderim/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Sipariş Gönderim Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "iadetalep" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">İade Talep İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "iadetalep" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "iadetalep_index" ? "active open" : "")">
+                                                <a href="/IadeTalep/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İade Talep Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "iadetalep_save" ? "active open" : "")">
+                                                <a href="/IadeTalep/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İade Talep Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "sepet" ? "active open" : "")">
+                                        <a href="/Sepet/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Sepet İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "stokhareket" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Stok Hareketleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "stokhareket" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "stokhareket_index" ? "active open" : "")">
+                                                <a href="/StokHareket/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Stok Anasayfa</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "stokhareket_savestockin" ? "active open" : "")">
+                                                <a href="/StokHareket/SaveStockIn" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Stok Girişi</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "stokhareket_savestockout" ? "active open" : "")">
+                                                <a href="/StokHareket/SaveStockOut" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Stok Çıkışı</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "stokhareket_search" ? "active open" : "")">
+                                                <a href="/StokHareket/Search" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Stok Arama</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "isteklistesi" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">İstek Listesi İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "isteklistesi" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "isteklistesi_index" ? "active open" : "")">
+                                                <a href="/IstekListesi/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İstek Listesi Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "isteklistesi_save" ? "active open" : "")">
+                                                <a href="/IstekListesi/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İstek Listesi Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "iskonto" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">İskonto İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "iskonto" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "iskonto_index" ? "active open" : "")">
+                                                <a href="/Iskonto/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İskonto Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "iskonto_save" ? "active open" : "")">
+                                                <a href="/Iskonto/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">İskonto Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item @(pageNameFirst == "kullanici" || pageNameFirst == "rol" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-user"></i>
+                                    <span class="title">Üye İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "kullanici" || pageNameFirst == "rol" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "kullanici" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Kullanıcı İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "kullanici" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "kullanici_index" ? "active open" : "")">
+                                                <a href="/Kullanici/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kullanıcı Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "kullanici_save" ? "active open" : "")">
+                                                <a href="/Kullanici/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kullanıcı Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "rol" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Rol İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "rol" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "rol_index" ? "active open" : "")">
+                                                <a href="/Rol/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Rol Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "rol_save" ? "active open" : "")">
+                                                <a href="/Rol/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Rol Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "haberblog" || pageNameFirst == "haberbulteni" || pageNameFirst == "kampanya" || pageNameFirst == "anket" || pageNameFirst == "banner" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-docs"></i>
+                                    <span class="title">İçerik Yönetimi</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "haberblog" || pageNameFirst == "haberbulteni" || pageNameFirst == "kampanya" || pageNameFirst == "anket" || pageNameFirst == "banner" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "haberblog" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Haber/Blog İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "haberblog" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "haberblog_index" ? "active open" : "")">
+                                                <a href="/HaberBlog/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Haber/Blog Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "haberblog_save" ? "active open" : "")">
+                                                <a href="/HaberBlog/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Haber/Blog Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "haberbulteni" ? "active open" : "")">
+                                        <a href="/HaberBulteni/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Haber Bülteni</br>Abonelik İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "kampanya" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Kampanya İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "kampanya" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "kampanya_index" ? "active open" : "")">
+                                                <a href="/Kampanya/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kampanya Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "kampanya_save" ? "active open" : "")">
+                                                <a href="/Kampanya/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kampanya Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "anket" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Anket İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "anket" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "anket_index" ? "active open" : "")">
+                                                <a href="/Anket/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Anket Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "anket_save" ? "active open" : "")">
+                                                <a href="/Anket/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Anket Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "banner" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Banner İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "banner" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "banner_index" ? "active open" : "")">
+                                                <a href="/Banner/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Banner Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "banner_save" ? "active open" : "")">
+                                                <a href="/Banner/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Banner Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "rapor" ? "active open" : "")">
+                                <a href="/Rapor/Index" class="nav-link ">
+                                    <i class="icon-pie-chart"></i>
+                                    <span class="title">Raporlar</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "epostaislem" || pageNameFirst == "smsislem" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-envelope"></i>
+                                    <span class="title">E-posta ve Sms İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "epostaislem" || pageNameFirst == "smsislem" ? "active open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "epostaislem" ? "active open" : "")">
+                                        <a href="/EpostaIslem/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">E-posta İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "smsislem" ? "active open" : "")">
+                                        <a href="/SmsIslem/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Sms İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "sirket" || pageNameFirst == "gonderim" || pageNameFirst == "vergi" || pageNameFirst == "marka" || pageNameFirst == "olcu" || pageNameFirst == "kisalink"|| pageNameFirst == "nitelikgrup" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-list"></i>
+                                    <span class="title">Tanımlama İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "sirket" || pageNameFirst == "gonderim" || pageNameFirst == "vergi" || pageNameFirst == "marka" || pageNameFirst == "olcu" || pageNameFirst == "kisalink" || pageNameFirst == "nitelikgrup" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "sirket" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Şirket İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "sirket" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "sirket_index" ? "active open" : "")">
+                                                <a href="/Sirket/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Şirket Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "sirket_save" ? "active open" : "")">
+                                                <a href="/Sirket/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Şirket Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "gonderim" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Gönderim İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "gonderim" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "gonderim_index" ? "active open" : "")">
+                                                <a href="/Gonderim/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Gönderim Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "gonderim_save" ? "active open" : "")">
+                                                <a href="/Gonderim/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Gönderim Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "vergi" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Vergi İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "vergi" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "vergi_index" ? "active open" : "")">
+                                                <a href="/Vergi/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Vergi Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "vergi_save" ? "active open" : "")">
+                                                <a href="/Vergi/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Vergi Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "marka" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Marka İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "marka" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "marka_index" ? "active open" : "")">
+                                                <a href="/Marka/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Marka Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "marka_save" ? "active open" : "")">
+                                                <a href="/Marka/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Marka Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "olcu" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Ölçü İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "olcu" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "olcu_index" ? "active open" : "")">
+                                                <a href="/Olcu/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ölçü Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "olcu_save" ? "active open" : "")">
+                                                <a href="/Olcu/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Ölçü Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "kisalink" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Kısa Link İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "kisalink" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "kisalink_index" ? "active open" : "")">
+                                                <a href="/KisaLink/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kısa Link Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "kisalink_save" ? "active open" : "")">
+                                                <a href="/KisaLink/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Kısa Link Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "nitelikgrup" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Nitelik Grup İşlemleri</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "nitelikgrup" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "nitelikgrup_index" ? "active open" : "")">
+                                                <a href="/NitelikGrup/Index" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Nitelik Grup Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "nitelikgrup_save" ? "active open" : "")">
+                                                <a href="/NitelikGrup/Save" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Nitelik Grup Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item @(pageNameFirst == "programayar" || pageNameFirst == "cachetemizleme" || pageNameFirst == "yedeklemebakim" || pageNameFirst == "programlog" || pageNameFirst == "banka" || pageNameFirst == "odemeyontemi" ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-settings"></i>
+                                    <span class="title">Sistem İşlemleri</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow @(pageNameFirst == "programayar" || pageNameFirst == "cachetemizleme" || pageNameFirst == "yedeklemebakim" || pageNameFirst == "programlog" || pageNameFirst == "banka" || pageNameFirst == "odemeyontemi" ? "open" : "")"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item @(pageNameFirst == "odemeyontemi" ? "active open" : "")">
+                                        <a href="/Siparis/OdemeYontemi" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Ödeme Yöntemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "programayar" ? "active open" : "")">
+                                        <a href="/ProgramAyar/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Program Ayarları</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "cachetemizleme" ? "active open" : "")">
+                                        <a href="/CacheTemizleme/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Cache Temizleme İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "yedeklemebakim" ? "active open" : "")">
+                                        <a href="/YedeklemeBakim/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Yedekleme ve Bakım İşlemleri</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "programlog" ? "active open" : "")">
+                                        <a href="/ProgramLog/Index" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Program Logları</span>
+                                            <span class="selected"></span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item @(pageNameFirst == "banka" ? "active open" : "")">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="icon-pointer"></i>
+                                            <span class="title">Banka Ayarları</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow @(pageNameFirst == "banka" ? "open" : "")"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item @(pageName == "banka_virtualpossave" ? "active open" : "")">
+                                                <a href="/Banka/VirtualPosSave" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Sanal Pos İşlemleri</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "banka_accountnumbersearch" ? "active open" : "")">
+                                                <a href="/Banka/AccountNumberSearch" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Hesap Numarası Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "banka_accountnumbersave" ? "active open" : "")">
+                                                <a href="/Banka/AccountNumberSave" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Hesap Numarası Kayıt</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "banka_installmentsearch" ? "active open" : "")">
+                                                <a href="/Banka/InstallmentSearch" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Taksit Arama</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @(pageName == "banka_installmentsave" ? "active open" : "")">
+                                                <a href="/Banka/InstallmentSave" class="nav-link">
+                                                    <i class="fa fa-circle-o i-menu-icon"></i>
+                                                    <span class="title">Taksit Kayıt</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page-content-wrapper">
+                    <div class="page-content">
+                        <div class="page-bar margin-bottom-20">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="/Home/Index">@ViewBag.PageProperties.BreadcrumbLevel1</a>
+                                    @if (!string.IsNullOrEmpty(ViewBag.PageProperties.BreadcrumbLevel2))
+                                    {
+                                        <i class="fa fa-angle-right"></i>
+                                    }
+                                </li>
+                                <li>
+                                    <span>@ViewBag.PageProperties.BreadcrumbLevel2</span>
+                                </li>
+                            </ul>
+
+                            <div id="form-error-container" class="page-toolbar" style="display:none;">
+                                <div class="alert alert-danger no-margin" style="padding: 5px 20px !important;">
+                                    <i class="fa fa-warning"></i> <span class="content bold">Sayfada hata.</span>
+                                </div>
+                            </div>
+
+                            <div class="page-toolbar">
+                                @RenderSection("PageToolbar", false)
+                            </div>
+                        </div>
+                        @*<h1 class="page-title">
+                                @ViewBag.PageProperties.PageHeader
+                                <small>@ViewBag.PageProperties.PageDescription</small>
+                            </h1>*@
+                        @RenderBody()
+                    </div>
+                </div>
+                <a href="javascript:;" class="page-quick-sidebar-toggler">
+                    <i class="icon-login"></i>
+                </a>
+                <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+                    @{ Html.RenderAction("LayoutSiparisPartial", "Home"); }
+                </div>
+            </div>
+            <div class="page-footer">
+                <div class="page-footer-inner">
+                    Tüm Hakkı Saklıdır. &copy; @DateTime.Now.Year ForceWebGlobal
+                </div>
+                <div class="scroll-to-top" style="bottom: 30px !important;" data-toggle="tooltip" data-placement="top" title="Başa Git">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="mdlDialog" class="modal fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog blue">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> </button>
+                        <h4 class="modal-title"><span id="spnModalBaslik"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <span id="spnModalIcerik"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn default" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalConfirm" class="modal fade" role="dialog">
+            <div class="modal-dialog blue">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="confirmTitle"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="confirmBody">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top:1px solid #e5e5e5 !important;">
+                        <button class="btn green-jungle btnYes"><i class="fa fa-check-circle"></i>Tamam</button>
+                        <button data-dismiss="modal" aria-hidden="true" class="btn red-haze"><i class="fa fa-times-circle"></i>İptal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--[if lt IE 9]>
+        <script src="~/Content/Theme/assets/global/plugins/respond.min.js"></script>
+        <script src="~/Content/Theme/assets/global/plugins/excanvas.min.js"></script>
+        <script src="~/Content/Theme/assets/global/plugins/ie8.fix.min.js"></script>
+        <![endif]-->
+
+        <script src="~/Content/Theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+        <script src="~/Content/Theme/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+
+        <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+        @*<script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/horizontal-timeline/horizontal-timeline.js" type="text/javascript"></script>*@
+        <script src="~/Content/Theme/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+        @*<script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>*@
+
+        <script src="~/Content/Theme/assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js" type="text/javascript"></script>
+        @*<script src="~/Content/Theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>*@
+
+        <script src="~/Content/Theme/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/autosize/autosize.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
+        @*<script src="~/Content/Theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>*@
+
+        <script src="~/Content/Theme/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+        @*<script src="~/Content/Theme/assets/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>*@
+        <script src="~/Content/Theme/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery.input-ip-address-control-1.0.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+
+        <script src="~/Content/Theme/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/global/plugins/jquery-validation/js/localization/messages_tr.js" type="text/javascript"></script>
+
+        <script src="~/Content/Theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+
+        @*<script src="~/Content/Theme/assets/pages/scripts/table-datatables-colreorder.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/components-form-tools.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/ui-tree.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/components-multi-select.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/ecommerce-products-edit.min.js" type="text/javascript"></script>
+            <script src="~/Content/Theme/assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>*@
+
+        <script src="~/Content/Theme/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="~/Content/Theme/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+
+        <!-- jqeury-tmpl -->
+        <script src="~/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+        <!-- loading modal -->
+        <script src="~/Content/Theme/assets/global/plugins/loading-modal/js/jquery.loadingModal.min.js" type="text/javascript"></script>
+        <!-- commerce helper -->
+        <script src="~/Content/Scripts/commercehelper.js" type="text/javascript"></script>
+        <!-- Pagination -->
+        <script src="~/Content/Scripts/paging/jquery.simplePagination.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            //$(document).ready(function () {
+            //    $('#clickmewow').click(function () {
+            //        $('#radio1003').attr('checked', 'checked');
+            //    });
+            //});
+
+            $(".focus-sense").focus(function (e) {
+                var that = this;
+                setTimeout(function () { $(that).select(); }, 10);
+                return false;
+            });
+
+            setTimeout(function () {
+                $('li.media').unbind("click");
+            }, 1500);
+
+            $('#form-error-container .alert.alert-danger').pulsate({
+                color: "#bf1c56"
+            });
+        </script>
+
+        @RenderSection("js", false)
+    </body>
+}

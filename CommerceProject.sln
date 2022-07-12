@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceProject.Tests", "CommerceProject.Tests\CommerceProject.Tests.csproj", "{DE79CA29-A91C-43D2-9DAA-84CA0F4C4B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceProject.Business", "CommerceProject.Business\CommerceProject.Business.csproj", "{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceProject.Admin", "CommerceProject.Admin\CommerceProject.Admin.csproj", "{4572189E-2C1C-4590-82D6-0491588AC354}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{AC3CCF61-5C43-4A0C-97DC-866AC34A998F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceProject.Presentation.IlkOrta", "CommerceProject.Presentation.IlkOrta\CommerceProject.Presentation.IlkOrta.csproj", "{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE79CA29-A91C-43D2-9DAA-84CA0F4C4B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE79CA29-A91C-43D2-9DAA-84CA0F4C4B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE79CA29-A91C-43D2-9DAA-84CA0F4C4B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE79CA29-A91C-43D2-9DAA-84CA0F4C4B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFCDD573-2994-48F1-9F00-A1D6383C4A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4572189E-2C1C-4590-82D6-0491588AC354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4572189E-2C1C-4590-82D6-0491588AC354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4572189E-2C1C-4590-82D6-0491588AC354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4572189E-2C1C-4590-82D6-0491588AC354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D91C8BBA-8FD7-45F5-8CE4-4D472E952D1C} = {AC3CCF61-5C43-4A0C-97DC-866AC34A998F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+		SolutionGuid = {343B4E70-8EAE-42F3-9899-69B6658DA20A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kenanmuyesser.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CommerceProject.Tests\\CommerceProject.Tests.csproj
+		SccProjectName1 = CommerceProject.Tests
+		SccLocalPath1 = CommerceProject.Tests
+		SccProjectUniqueName2 = CommerceProject.Business\\CommerceProject.Business.csproj
+		SccProjectName2 = CommerceProject.Business
+		SccLocalPath2 = CommerceProject.Business
+		SccProjectUniqueName3 = CommerceProject.Admin\\CommerceProject.Admin.csproj
+		SccProjectName3 = CommerceProject.Admin
+		SccLocalPath3 = CommerceProject.Admin
+		SccProjectUniqueName4 = CommerceProject.Presentation.IlkOrta\\CommerceProject.Presentation.IlkOrta.csproj
+		SccProjectTopLevelParentUniqueName4 = CommerceProject.sln
+		SccProjectName4 = CommerceProject.Presentation.IlkOrta
+		SccLocalPath4 = CommerceProject.Presentation.IlkOrta
+	EndGlobalSection
+EndGlobal

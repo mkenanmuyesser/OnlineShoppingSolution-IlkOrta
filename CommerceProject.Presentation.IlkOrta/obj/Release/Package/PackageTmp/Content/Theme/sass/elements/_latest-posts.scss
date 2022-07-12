@@ -1,0 +1,61 @@
+/******************************************************************************
+  Latest Posts
+*******************************************************************************/
+.latest-posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    overflow: hidden;
+    padding: 22px 0;
+    
+    + li {
+      border-top-width: 1px;
+    }
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+    .image {
+      float: left;
+      height: 84px;
+      margin: 0 25px 0 0;
+      width: 84px;
+    }
+    .meta {
+      color: #7f7f7f;
+      font-size: 11px;
+      line-height: 18px;
+      margin: 0 0 10px;
+    }
+    .description {
+      overflow: hidden;
+    }
+    a {
+      color: #1e1e1e;
+      font-size: 13px;
+      line-height: 20px;
+      margin: 0;
+      transition: opacity linear .2s;
+      
+      &:hover {
+        opacity: .8;
+        filter: alpha(opacity=80);
+        text-decoration: none;
+      }
+    }
+  }
+}
+.latest-posts-white li {
+  border-color: rgba(255,255,255,.3);
+  
+  .meta {
+    color: rgba(255,255,255,.6);
+  }
+  a {
+    color: rgba(255,255,255,.8);
+  }
+}

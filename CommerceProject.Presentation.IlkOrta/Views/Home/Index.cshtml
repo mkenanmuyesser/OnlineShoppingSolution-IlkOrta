@@ -1,0 +1,893 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var ustSliderBannerlar = ViewBag.UstSliderBannerlar as List<Banner>;
+    var gununFirsatUrunleri = ViewBag.GununFirsatUrunleri as List<Urun>;
+    var vitrinUrunleri = ViewBag.VitrinUrunleri as List<Urun>;
+    var enYeniUrunler = ViewBag.EnYeniUrunler as List<Urun>;
+    var indirimdekiUrunler = ViewBag.IndirimdekiUrunler as List<Urun>;
+    var cokSatanUrunler = ViewBag.CokSatanUrunler as List<Urun>;
+    var anasayfaKategoriler = ViewBag.AnasayfaKategoriler as List<Kategori>;
+    var markalar = ViewBag.Markalar as List<Marka>;
+    var anket = ViewBag.Anket as Anket;
+    var kampanya = ViewBag.Kampanya as Kampanya;
+    var girisYapanKullanici = ViewBag.Kullanici as Kullanici;
+}
+
+@section css{
+    <style type="text/css">
+        .modal-homepage {
+            text-align: center;
+            padding: 0 !important;
+        }
+
+            .modal-homepage:before {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+                margin-right: -4px;
+            }
+
+            .modal-homepage .modal-body {
+                padding: 15px !important;
+            }
+
+            .modal-homepage .modal-dialog {
+                display: inline-block;
+                text-align: left;
+                vertical-align: middle;
+            }
+
+            .modal-homepage .modal-content {
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0px !important;
+            }
+
+            .modal-homepage .modal-footer i {
+                font-size: 18px !important;
+            }
+
+        .work-new-container {
+            position: absolute !important;
+            top: 0px !important;
+            left: 13px !important;
+            height: 140px;
+            width: 140px;
+            content: '';
+            display: block;
+            border-bottom: 140px solid transparent;
+            border-left: 140px solid rgba(1,1,1,0.5);
+        }
+
+        .work-new {
+            padding: 10px 25px;
+            text-align: left;
+            position: absolute;
+            left: -150px;
+        }
+    </style>
+}
+
+<div class="modal fade modal-homepage" id="anketModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div id="anketModalContent" class="modal-content">
+            <div class="modal-header" style="border-bottom: 1px solid #EFEFEF !important;">
+                <h5 class="modal-title">Merhaba @(girisYapanKullanici != null ? (girisYapanKullanici.KullaniciDetay.Ad.First().ToString().ToUpper() + girisYapanKullanici.KullaniciDetay.Ad.Substring(1)) : "Misafir"),</h5>
+            </div>
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div id="divAnketModalBody">
+                    <div class="row" style="padding: 20px;">
+                        <div class="col-md-12">
+                            <p style="font-size: 16px;">Anketimize katılmak ister misin?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-xs" style="margin-right: 10px;" onclick="surveyYes();">Ankete Başla</button>
+                <button type="button" class="btn btn-danger btn-xs" onclick="surveyNo();">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-homepage" id="kampanyaModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div id="kampanyaModalContent" class="modal-content">
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div id="divKampanyaModalBody">
+
+                    @if (kampanya != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="carousel-box load overflow" data-carousel-pagination="true" data-carousel-one="true" data-autoplay-disable="true">
+
+                                    @if (!string.IsNullOrEmpty(kampanya.Icerik))
+                                    {
+                                        <div class="title-box" style="font-size: 14px !important;">
+                                            <h2 class="title">@Html.Raw(kampanya.Icerik)</h2>
+                                        </div>
+                                    }
+
+                                    <div class="clearfix"></div>
+
+                                    <div class="row">
+                                        <div class="carousel no-responsive">
+
+                                            @{
+                                                foreach (var kr in kampanya.KampanyaResim.Where(x => x.AktifMi == true))
+                                                {
+                                                    <a href="#" class="work">
+                                                        <img class="replace-2x" src="@kr.ResimYolu" style="width:100%;" alt="">
+                                                        <span class="shadow"></span>
+                                                        <div class="bg-hover"></div>
+
+                                                        @if (kr.YeniMi)
+                                                        {
+                                                            <div class="work-new-container">
+                                                                <div class="work-new">
+                                                                    <span><i class="fa fa-star" style="font-size:60px;color:#f89406;"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        <div class="work-title" style="background: rgba(1,1,1,0.3);">
+                                                            <div class="description" style="font-size: 18px !important; font-family:inherit !important;line-height: 50px !important;">@kr.Aciklama</div>
+                                                        </div>
+                                                    </a>
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+                                    <div class="pagination switches" style="display:none !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                                                }
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-xs" onclick="campaignModalClose();">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slider rs-slider load">
+    <div class="tp-banner-container">
+        <div class="rev_slider tp-banner" data-version="5.0.7">
+            <ul>
+                <li data-delay="7000" data-transition="fade" data-slotamount="7" data-masterspeed="2000">
+                    <div class="elements">
+                        <div class="tp-caption"
+                             data-x="211"
+                             data-y="203"
+                             data-start="1500"
+                             data-transform_in="x:left;s:1000;e:Power4.easeOut"
+                             data-transform_out="x:left;s:500;e:Power1.easeIn"
+                             style="z-index: 2">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img1.png" width="217" height="172" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="97"
+                             data-y="271"
+                             data-start="1000"
+                             data-transform_in="y:top;s:1000;e:Power4.easeOut;"
+                             data-transform_out="y:top;s:500;e:Power1.easeOut">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img2.png" width="71" height="104" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="479"
+                             data-y="271"
+                             data-start="1200"
+                             data-transform_in="y:top;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:top;s:500;e:Power1.easeIn">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img2.png" width="71" height="104" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="-32"
+                             data-y="372"
+                             data-start="1000"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img3.png" width="764" height="76" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="166"
+                             data-y="167"
+                             data-start="1000"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img4.png" width="247" height="71" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="177"
+                             data-y="62"
+                             data-start="1400"
+                             data-transform_in="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 100%;s:700;e:Power4.easeOut"
+                             data-transform_out="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 100%;s:500;e:Power1.easeIn"
+                             style="z-index: 3">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img5.png" width="166" height="107" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="487"
+                             data-y="69"
+                             data-start="1500"
+                             data-transform_in="y:top;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:top;s:500;e:Power1.easeIn"
+                             style="z-index: 1">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img6.png" width="104" height="157" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="539"
+                             data-y="177"
+                             data-start="1000"
+                             data-transform_in="x:left;s:1000;e:Power4.easeOut"
+                             data-transform_out="x:left;s:500;e:Power1.easeIn"
+                             style="z-index: 3">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img7.png" width="95" height="197" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="7"
+                             data-y="134"
+                             data-start="1700"
+                             data-transform_in="x:left;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:top;s:500;e:Power1.easeIn"
+                             style="z-index: 3">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img8.png" width="275" height="240" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="375"
+                             data-y="78"
+                             data-start="1500"
+                             data-transform_in="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;s:1000;e:Power4.easeOut"
+                             data-transform_out="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;s:500;e:Power1.easeIn">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img9.png" width="101" height="101" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="141"
+                             data-y="297"
+                             data-start="1800"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn"
+                             style="z-index: 4">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img10.png" width="64" height="77" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="428"
+                             data-y="356"
+                             data-start="2000"
+                             data-transform_in="x:left;s:500;e:Power4.easeOut"
+                             data-transform_out="x:left;s:500;e:Power1.easeIn"
+                             style="z-index: 3">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img11.png" width="35" height="14" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="225"
+                             data-y="335"
+                             data-start="1880"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn"
+                             style="z-index: 4">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img12.png" width="33" height="25" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="258"
+                             data-y="341"
+                             data-start="1960"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn"
+                             style="z-index: 4">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img13.png" width="33" height="25" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="395"
+                             data-y="335"
+                             data-start="2040"
+                             data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+                             data-transform_out="y:bottom;s:500;e:Power1.easeIn"
+                             style="z-index: 4">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-img14.png" width="33" height="25" alt="">
+                        </div>
+
+                        <h2 class="tp-caption skewtotop title"
+                            data-x="722"
+                            data-y="101"
+                            data-start="1700"
+                            data-transform_in="y:top;s:1000;e:Power4.easeOut"
+                            data-transform_out="y:top;s:500;e:Power1.easeIn">
+                            <strong>OKULA DAİR HER ŞEY</strong>
+                        </h2>
+
+                        <div class="tp-caption lfr skewtoright description"
+                             data-x="707"
+                             data-y="189"
+                             data-start="1500"
+                             data-transform_in="x:right;s:1000;e:Power4.easeOut"
+                             data-transform_out="x:right;s:500;e:Power1.easeIn"
+                             style="max-width: 480px">
+                            <p><strong>Binlerce</strong> ürün çeşidiyle ilk ve orta öğretime dair <br />aradığınız her şey burada.</p>
+                        </div>                       
+                    </div>
+
+                    <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider4-bg.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+                </li>
+
+                <li data-delay="8000" data-transition="fade" data-slotamount="7" data-masterspeed="2000">
+                    <div class="elements">
+                        <div class="tp-caption"
+                             data-x="-121"
+                             data-y="bottom"
+                             data-start="1000"
+                             data-transform_in="x:left;s:1500;e:Power4.easeOut"
+                             data-transform_out="x:left;s:1000;e:Power1.easeIn"
+                             style="z-index: 1">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider3-pig.png" width="576" height="393" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="-121"
+                             data-y="bottom"
+                             data-start="1000"
+                             data-transform_in="x:left;s:1500;e:Power4.easeOut"
+                             data-transform_out="x:left;s:1000;e:Power1.easeIn"
+                             style="z-index: 3">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider3-pig2.png" width="576" height="393" alt="">
+                        </div>
+                        <h2 class="tp-caption title"
+                            data-x="509"
+                            data-y="122"
+                            data-speed="1500"
+                            data-start="1000"
+                            data-transform_in="y:top;s:1000;e:Power0.easeOut"
+                            data-transform_out="y:top;s:1000;e:Power1.easeIn">
+                            <strong>Okul alışverişinin </strong>
+                        </h2>
+
+                        <h2 class="tp-caption title"
+                            data-x="755"
+                            data-y="122"
+                            data-start="1000"
+                            data-transform_in="x:right;s:1000;e:Power0.easeOut"
+                            data-transform_out="x:right;s:1000;e:Power1.easeIn">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en hesaplı hali!
+                        </h2>
+
+                        <div class="tp-caption description"
+                             data-x="495"
+                             data-y="196"
+                             data-start="1500"
+                             data-transform_in="x:0;y:0;z:50;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0;s:500;e:Power0.easeOut"
+                             data-transform_out="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;s:400;e:Power1.easeIn"
+                             style="max-width: 500px;">
+                            <p> Paranızı boşa değil kumbaraya atın</p>
+                        </div>                       
+                        <div class="tp-caption"
+                             data-x="136"
+                             data-y="140"
+                             data-speed="500"
+                             data-start="2200"
+                             data-transform_in="y:top;s:500;e:Power0.easeOut"
+                             data-transform_out="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;s:100;e:Power1.easeIn"
+                             style="z-index: 2">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider3-coin.png" width="64" height="68" alt="">
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="136"
+                             data-y="30"
+                             data-start="2700"
+                             data-transform_in="y:top;s:500;e:Power0.easeOut"
+                             data-transform_out="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;s:300;e:Power1.easeIn"
+                             style="z-index: 2">
+                            <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider3-coin.png" width="64" height="68" alt="">
+                        </div>
+                    </div>
+
+                    <img class="replace-2x" src="/Content/Theme/content/img/slider/rs-slider3-bg.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+                </li>
+
+                @foreach (var banner in ustSliderBannerlar)
+                {
+                    @Html.Partial("~/Views/Home/Partials/SliderBannerPartial.cshtml", banner)
+                }
+            </ul>
+            <div class="tp-bannertimer"></div>
+        </div>
+    </div>
+</div>
+
+<section id="main">
+    <div class="container">
+        <div class="bottom-padding">
+            <div class="title-box text-center">
+                <h1 class="title">Okul Paketi Yardımcısı</h1>
+            </div>
+            @Html.Partial("~/Views/Home/Partials/OkulPaketiYardimcisiPartial.cshtml")
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-sm-4 bottom-padding">
+                <a href="javascript:;" class="banner">
+                    <img class="replace-2x" src="/Uploads/Banner/banner_13.jpg" width="370" height="150" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 bottom-padding">
+                <a href="javascript:;" class="banner">
+                    <img class="replace-2x" src="/Uploads/Banner/banner_14.png" width="370" height="150" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 bottom-padding">
+                <a href="javascript:;" class="banner">
+                    <img class="replace-2x" src="/Uploads/Banner/banner_15.jpg" width="370" height="150" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="carousel-box bottom-padding bottom-padding-mini load overflow" data-autoplay-disable="true">
+            <div class="title-box">
+                <a class="next" href="javascript:;">
+                    <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                    <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+                </svg>
+                </a>
+                <a class="prev" href="javascript:;">
+                    <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                    <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+                </svg>
+                </a>
+                <h2 class="title">Günün Fırsatları</h2>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="carousel products">
+                    @foreach (var urun in gununFirsatUrunleri)
+                    {
+                        @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", urun)
+                    }
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>       
+
+        <div>
+            <div class="title-box text-center">
+                <h1 class="title">Roman Dünyası</h1>
+            </div>
+        </div>
+
+        <div class="products-tab bottom-padding bottom-padding-mini">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabVitrin"><i class="fa fa-eye"></i> Vitrin</a></li>
+                <li><a href="#tabEnYeniler"><i class="fa fa-bolt"></i> En Yeniler</a></li>
+                <li><a href="#tabCokSatanlar"><i class="fa fa-bullhorn"></i> Çok Satanlar</a></li>
+                <li><a href="#tabIndirimdekiler"><i class="fa fa-bell"></i> İndirimdekiler</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active row fade in text-center" id="tabVitrin">
+                    @foreach (var urun in vitrinUrunleri)
+                    {
+                        @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", urun)
+                    }
+                </div>
+
+                <div class="tab-pane  row fade in text-center" id="tabEnYeniler">
+                    @foreach (var urun in enYeniUrunler)
+                    {
+                        @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", urun)
+                    }
+                </div>
+
+                <div class="tab-pane  row fade in text-center" id="tabCokSatanlar">
+                    @foreach (var urun in cokSatanUrunler)
+                    {
+                        @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", urun)
+                    }
+                </div>
+
+                <div class="tab-pane  row fade in text-center" id="tabIndirimdekiler">
+                    @foreach (var urun in indirimdekiUrunler)
+                    {
+                        @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", urun)
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row sidebar">
+            @foreach (var kategori in anasayfaKategoriler)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-3 widget specials">
+                    <div class="title-block">
+                        <h3 class="title"><a href="/Urun/Index/@kategori.Slug">@kategori.Adi</a></h3>
+                    </div>
+                    <ul>
+                        @foreach (var urunKategori in kategori.UrunKategori)
+                        {
+                            <li class="clearfix">
+                                <a href="/Urun/Detay/@urunKategori.Urun.Slug" class="product-image">
+                                    @if (urunKategori.Urun.UrunResim.FirstOrDefault() == null)
+                                    {
+                                        <img class='replace-2x' src='/Uploads/Product/resim_yok.png' alt="" title="" />
+                                    }
+                                    else
+                                    {
+                                        <img class="replace-2x" src="@urunKategori.Urun.UrunResim.FirstOrDefault().ResimYolu" alt="" title="" />
+                                    }
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/Urun/Detay/@urunKategori.Urun.Slug">@urunKategori.Urun.Adi</a>
+                                </h3>
+                                <div class="price-box">
+                                    <span class="price">@string.Format("{0:N}", urunKategori.Urun.Fiyat) <i class="fa fa-try"></i></span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <a class="more" href="/Urun/Index/@kategori.Slug">Daha Fazlası <span class="fa fa-angle-right">&nbsp;</span></a>
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="content col-sm-12 col-md-12">
+                <div class="carousel-box load overflow" data-autoplay-disable="false">
+                    <div class="title-box">
+                        <a class="next" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+                  </svg>
+                        </a>
+                        <a class="prev" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+                  </svg>
+                        </a>
+                        <h2 class="title">Anlaşmalı Kurumlar</h2>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="carousel">
+                            @foreach (var marka in markalar)
+                            {
+                                <div class="col-sm-3 col-md-2 text-center bg-white">
+                                    <a href="" class="client bg-white">
+                                        <img class="replace-2x" src="@marka.Resim" alt="" width="80" height="40">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section js
+{
+    <script type="text/javascript">
+
+    var okulPaketListesi = @Html.Raw(Json.Encode(ViewBag.OkulPaketListesi))
+
+        $(document).ready(function () {
+
+            @if (kampanya != null)
+            {
+                <text>
+                setTimeout(function () {
+                    checkCampaign();
+                }, 2000);
+                </text>
+            }
+            else if (anket != null)
+            {
+                <text>
+                setTimeout(function () {
+                    checkSurvey();
+                }, 2000);
+                </text>
+            }
+
+            $('#drpSiniflar').select2({
+                placeholder: "Sınıf Seçiniz...",
+                allowClear: true,
+                disabled: true,
+                language: {
+                noResults: function (params) {
+                    return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: null,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+            }).val('').trigger('change');
+            $('#drpOkullar').select2({
+                placeholder: "Okul Seçiniz...",
+                allowClear: true,
+                disabled: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: null,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+            }).val('').trigger('change');
+            paketGosterTemizle();
+
+            $('#drpSehirler').select2({
+                placeholder: "Şehir Seçiniz...",
+                allowClear: true,
+                language: {
+                        noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                        }
+                },
+                data: okulPaketListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+            }).on('change', function () {
+                var sehirKod = $('#drpSehirler').val();
+                okulTemizle();
+                sinifTemizle();
+                paketGosterTemizle();
+
+                if (sehirKod == null || sehirKod == '') {
+
+                }
+                else {
+                    $.ajax({
+                        url: '/Home/BagliKategoriGetir/' + sehirKod,
+                        type: "get",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        beforeSend: function () {
+                            showLoadingModal('step2');
+                        },
+                        success: function (result) {
+                            hideLoadingModal('step2');
+
+                            $('#drpOkullar').select2({
+                                placeholder: "Okul Seçiniz...",
+                                disabled: false,
+                                allowClear: true,
+                                language: {
+                                    noResults: function (params) {
+                                        return "Hiç kayıt bulunamadı.";
+                                    }
+                                },
+                                data: result,
+                                escapeMarkup: function (markup) {
+                                    return markup;
+                                }
+                            }).on('change', function () {
+                                var okulKod = $('#drpOkullar').val();
+                                sinifTemizle();
+                                paketGosterTemizle();
+
+                                if (okulKod == null || okulKod == '') {
+
+                                }
+                                else {
+                                    $.ajax({
+                                        url: '/Home/BagliKategoriGetir/' + okulKod,
+                                        type: "get",
+                                        dataType: "json",
+                                        contentType: "application/json; charset=utf-8",
+                                        beforeSend: function () {
+                                            showLoadingModal('step3');
+                                        },
+                                        success: function (result) {
+                                            hideLoadingModal('step3');
+
+                                            $('#drpSiniflar').select2({
+                                                placeholder: "Sınıf Seçiniz...",
+                                                disabled: false,
+                                                allowClear: true,
+                                                language: {
+                                                    noResults: function (params) {
+                                                        return "Hiç kayıt bulunamadı.";
+                                                    }
+                                                },
+                                                data: result,
+                                                escapeMarkup: function (markup) {
+                                                    return markup;
+                                                }
+                                            }).on('change', function () {
+
+                                                var sinifKod = $('#drpSiniflar').val();
+                                                if (sinifKod == null || sinifKod == '') {
+                                                    paketGosterTemizle();
+                                                }
+                                                else {
+                                                    $('#btnPaketGoster').removeAttr('disabled');
+                                                    $('#btnPaketGoster').attr('href', '/Urun/Index/' + sinifKod);
+                                                }
+                                                }).val('').trigger('change');;
+                                        },
+                                        error: function () {
+                                            hideLoadingModal();
+                                            callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                                        }
+                                    });
+                                }
+                                }).val('').trigger('change');
+                        },
+                        error: function () {
+                            hideLoadingModal();
+                            callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    });
+                 }
+            }).val('').trigger('change');
+        });
+
+        function okulTemizle() {
+            $('#drpOkullar').select2('destroy');
+            $('#drpOkullar').off('change');
+            $('#drpOkullar').val('');
+            $('#drpOkullar').children().remove();
+
+            $('#drpOkullar').select2({
+                placeholder: "Okul Seçiniz...",
+                allowClear: true,
+                disabled: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: null,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+            }).val('').trigger('change');
+        };
+
+        function sinifTemizle() {
+            $('#drpSiniflar').select2('destroy');
+            $('#drpSiniflar').off('change');
+            $('#drpSiniflar').val('');
+            $('#drpSiniflar').children().remove();
+
+            $('#drpSiniflar').select2({
+                placeholder: "Sınıf Seçiniz...",
+                allowClear: true,
+                disabled: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: null,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+            }).val('').trigger('change');
+        };
+
+        function paketGosterTemizle() {
+            $('#btnPaketGoster').attr('disabled', 'disabled');
+            $('#btnPaketGoster').attr('href', '/');
+        };
+
+        function checkCampaign() {
+            @if (anket != null)
+            {
+                <text>
+                var value = Cookies.get('ilkorta-showcampaign-@(anket.AnketId)');
+
+                if (value != null && value != undefined)
+                {
+                    return false;
+                }
+
+                $('#kampanyaModal').modal('show');
+                $(window).resize();
+                </text>
+            }
+
+        }
+
+        function campaignModalClose() {
+             @if (anket != null)
+             {
+                 <text>
+                 Cookies.set('ilkorta-showcampaign-@(anket.AnketId)', '0', { expires: 1 });
+
+                 $('#kampanyaModal').modal('hide');
+
+                 setTimeout(function () {
+                     checkSurvey();
+                 }, 1000);
+                 </text>
+              }
+        }
+
+        function checkSurvey() {
+             @if (anket != null)
+             {
+                 <text>
+                     var value = Cookies.get('ilkorta-showsurvey-@(anket.AnketId)');
+                     var isAnswered = Cookies.get('ilkorta-answeredsurvey-@(anket.AnketId)');
+
+                     if (value != null && value != undefined) {
+                         return false;
+                     }
+
+                     if (isAnswered != null && isAnswered != undefined) {
+                         return false;
+                     }
+
+                     $('#anketModal').modal('show');
+                  </text>
+             }
+        }
+
+        function surveyYes() {
+            showLoadingModal('anketModalContent');
+
+            $('#divAnketModalBody').load('/Home/AnketYapPartial', function () {
+                $('#anketModal .modal-title').text('Anketimize Hoşgeldiniz');
+                $('#anketModal .modal-footer').empty();
+
+                hideLoadingModal('anketModalContent');
+            });
+        }
+
+        function surveyNo() {
+             @if (anket != null)
+             {
+                 <text>
+            Cookies.set('ilkorta-showsurvey-@(anket.AnketId)', '0', { expires: 100 });
+
+            $('#anketModal').modal('hide');
+               </text>
+             }
+        }
+    </script>
+}

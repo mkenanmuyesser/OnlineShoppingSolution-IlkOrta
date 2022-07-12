@@ -1,0 +1,817 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{ 
+    var siparisGonderim = ViewBag.SiparisGonderim as SiparisGonderim;
+}
+
+@section css{
+    <style type="text/css">
+        .bg-choosen-detay {
+            background: #bce1fb !important;
+        }
+    </style>
+}
+
+@if (siparisGonderim.SiparisGonderimId > 0)
+{
+    <div class="modal fade" id="epostaModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content" style="width:900px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Eposta Gönder</h4>
+                </div>
+                <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                    <form id="form_eposta">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Konu<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtEpostaKonu" name="txtEpostaKonu" class="form-control input-sm maxlength-handler" maxlength="200" placeholder="Konu" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">İçerik<span class="required"> * </span></label>
+                                    <textarea id="txtEpostaIcerik" name="txtEpostaIcerik" class="form-control" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;border-top: 1px solid #EFEFEF !important;">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-sm green-meadow">
+                                    <i class="fa fa-check"></i>
+                                    Gönder
+                                </button>
+                                <button type="button" class="btn btn-sm red-haze" data-dismiss="modal">
+                                    <i class="fa fa-close"></i>
+                                    Kapat
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/SiparisGonderim/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/SiparisGonderim/Index">
+                        <i class="fa fa-search"></i> Arama
+                    </a>
+                </li>
+                @if (siparisGonderim.SiparisGonderimId > 0)
+                {
+                    <li>
+                        <a href="javascript: epostaModalAc();">
+                            <i class="fa fa-mail-reply"></i> Kullanıcıya Eposta Gönder
+                        </a>
+                    </li>
+                }
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+
+                <form id="comform">
+                    <input type="hidden" id="hdnSiparisGonderimId" value="@siparisGonderim.SiparisGonderimId" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dropDownGonderimTipi" class="control-label">Gönderim Tipi<span class="required"> * </span></label>
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <select id="dropDownGonderimTipi" name="dropDownGonderimTipi" class="form-control select2" style="width:100%;" tabindex="1"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dropDownTeslimZamaniTipi" class="control-label">Teslim Zamanı Tipi<span class="required"> * </span></label>
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <select id="dropDownTeslimZamaniTipi" name="dropDownTeslimZamaniTipi" class="form-control select2" style="width:100%;" tabindex="2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtGonderimTakipNo" class="control-label">Gönderim Takip No</label>
+                                <input id="txtGonderimTakipNo" name="txtGonderimTakipNo" type="text" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Gönderim Takip No Giriniz..." 
+                                       value="@siparisGonderim.TakipNo" tabindex="3">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtGonderimAciklama" class="control-label">Açıklama</label>
+                                <input id="txtGonderimAciklama" name="txtGonderimAciklama" type="text" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." 
+                                       value="@siparisGonderim.Aciklama" tabindex="4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Gönderim Tarihi<span class="required"> * </span></label>
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <div id="dateTimeGonderimTarihi" name="dateTimeGonderimTarihi" class="input-group date" data-provide="datepicker">
+                                        <input type="text" name="dateTimeGonderimTarihi" class="form-control" placeholder="Gönderim Tarihi Giriniz..." 
+                                               value="@(siparisGonderim.SiparisGonderimId > 0 ? siparisGonderim.GonderimTarihi.ToString("dd.MM.yyyy") : "")" tabindex="5">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Teslim Tarihi</label>
+                                <div id="dateTimeTeslimTarihi" name="dateTimeTeslimTarihi" class="input-group date" data-provide="datepicker">
+                                    <input type="text" name="dateTimeTeslimTarihi" class="form-control" placeholder="Teslim Tarihi Giriniz..." 
+                                           value="@(siparisGonderim.TeslimTarihi.HasValue ? siparisGonderim.TeslimTarihi.Value.ToString("dd.MM.yyyy") : "")" tabindex="6">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtGonderimAdet" class="control-label">Gönderilecek Adet<span class="required"> * </span></label>
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input id="txtGonderimAdet" name="txtGonderimAdet" type="text" class="form-control input-sm integer focus-sense" placeholder="Adet Giriniz..." 
+                                           value="@siparisGonderim.Adet" @(siparisGonderim.SiparisGonderimId > 0 ? "readonly" : "") tabindex="7">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtGonderimAktif" class="control-label">Aktif mi?</label>
+                                <div class="icheck-inline">
+                                    <input id="txtGonderimAktif" name="txtGonderimAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" 
+                                           @(siparisGonderim.SiparisGonderimId > 0 ? (siparisGonderim.AktifMi ? "checked" : "") : "checked") tabindex="8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (siparisGonderim.SiparisGonderimId == 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dropDownSiparisDurum" class="control-label">Sipariş Durumu<span class="required"> * </span></label>
+                                    <select id="dropDownSiparisDurum" name="dropDownSiparisDurum" class="form-control select2" style="width:100%;" tabindex="9"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dropDownSiparis" class="control-label">Sipariş<span class="required"> * </span></label>
+                                    <select id="dropDownSiparis" name="dropDownSiparis" class="form-control select2" style="width:100%;" tabindex="10"></select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @if (siparisGonderim.SiparisGonderimId == 0)
+                                {
+                                    <div class="alert alert-info margin-bottom-10">
+                                        <i class="fa fa-info-circle"></i>
+                                        Lütfen yukarıdan <b>Sipariş Durumu</b> 'nu seçtikten sonra <b>Sipariş</b> seçip detaylarının yüklenmesini sağlayın<br />
+                                        Daha sonra gönderim kaydı yapılacak sipariş detayını aşağıdaki listeden seçin.
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-info margin-bottom-10">
+                                        <i class="fa fa-info-circle"></i>
+                                        Sipariş No: <b>#@(siparisGonderim.SiparisDetay.SiparisId)</b>
+                                    </div>
+                                }
+                                <div class="table-responsive">
+                                    <table id="tableSiparisDetay" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr class="bg-grey-silver">
+                                                <th style="width:5%"></th>
+                                                <th style="width:15%">Ürün Kodu</th>
+                                                <th style="width:20%">Barkod No</th>
+                                                <th style="width:30%">Ürün</th>
+                                                <th style="width:20%">Sipariş Detay Adedi</th>
+                                                <th style="width:10%">Aktif mi?</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (siparisGonderim.SiparisGonderimId > 0)
+                                            {
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <label><input type="radio" name="radioDetay" class="icheck" data-radio="iradio_square-blue" checked readonly></label>
+                                                    </td>
+                                                    <td>@siparisGonderim.SiparisDetay.Urun.UrunKod</td>
+                                                    <td>@siparisGonderim.SiparisDetay.Urun.Barkod</td>
+                                                    <td>@siparisGonderim.SiparisDetay.Urun.Adi</td>
+                                                    <td>@siparisGonderim.SiparisDetay.Adet</td>
+                                                    <td>
+                                                        <div class="icheck-inline">
+                                                            <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif"
+                                                                   @(siparisGonderim.SiparisDetay.AktifMi ? "checked" : "") readonly>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="col-md-offset-5 col-md-7">
+                            @if (siparisGonderim.SiparisGonderimId == 0)
+                            {
+                                <button type="submit" class="btn blue" tabindex="11">
+                                    Kaydet
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn yellow" tabindex="11">
+                                    Güncelle
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            }
+                            <a href="/SiparisGonderim/Index" class="btn red" tabindex="12">
+                                İptal
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+@section js{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr data-siparisdetayid="${SiparisDetayId}" class="bg-white">
+            <td class="text-center">
+                <label><input type="radio" name="radioDetay" class="icheck" data-radio="iradio_square-blue"></label>
+            </td>
+            <td>${UrunKod}</td>
+            <td>${UrunBarkod}</td>
+            <td>${UrunAdi}</td>
+            <td>${Adet}</td>
+            <td>
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var gonderimTipListesi = @Html.Raw(Json.Encode(ViewBag.GonderimTipListesi))
+        var teslimZamaniTipListesi = @Html.Raw(Json.Encode(ViewBag.TeslimZamaniTipListesi))
+        var siparisDurumTipListesi = @Html.Raw(Json.Encode(ViewBag.SiparisDurumTipListesi))
+
+        jQuery.validator.addMethod("buyukSifir", function (value, element) {
+            return this.optional(element) || (parseFloat(value) > 0);
+        }, "0' dan büyük bir değer giriniz.");
+
+        $(document).ready(function () {
+            $('.input-group.date').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+            $(".integer").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            @if (siparisGonderim.SiparisGonderimId > 0)
+            {
+                <text>
+                CKEDITOR.replace('txtEpostaIcerik', {
+                    language: 'tr',
+                    contentsLanguage: 'tr',
+                    baseFloatZIndex: 90000000
+                });
+                </text>
+            }
+
+            $('#dropDownGonderimTipi').select2({
+                placeholder: "Gönderim Tipi Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: gonderimTipListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+            @if(siparisGonderim.SiparisGonderimId > 0)
+            {
+                @: $('#dropDownGonderimTipi').val('@(siparisGonderim.GonderimId)').trigger('change');
+            }
+
+            $('#dropDownTeslimZamaniTipi').select2({
+                placeholder: "Teslim Zamanı Tipi Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: teslimZamaniTipListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+            @if(siparisGonderim.SiparisGonderimId > 0)
+            {
+                @: $('#dropDownTeslimZamaniTipi').val('@(siparisGonderim.TeslimZamaniId)').trigger('change');
+            }
+
+            @if (siparisGonderim.SiparisGonderimId == 0)
+            {
+                <text>
+                $('#dropDownSiparis').select2({
+                    placeholder: "Sipariş Seçiniz...",
+                    disabled: true,
+                    allowClear: true,
+                    language: {
+                        noResults: function (params) {
+                            return "Hiç kayıt bulunamadı.";
+                        }
+                    },
+                    data: null,
+                    escapeMarkup: function (markup) {
+                        return markup;
+                    },
+                    templateResult: templateData,
+                    templateSelection: templateDataSelection
+                }).val('').trigger('change');
+
+                $('#dropDownSiparisDurum').select2({
+                    placeholder: "Sipariş Durumu Seçiniz...",
+                    allowClear: true,
+                    language: {
+                        noResults: function (params) {
+                            return "Hiç kayıt bulunamadı.";
+                        }
+                    },
+                    data: siparisDurumTipListesi,
+                    escapeMarkup: function (markup) {
+                        return markup;
+                    },
+                    templateResult: templateData,
+                    templateSelection: templateDataSelection
+                }).on('change', function () {
+                    $('#dropDownSiparis').val('');
+                    $('#dropDownSiparis').off('change');
+                    $('#dropDownSiparis').children().remove();
+                    $('#dropDownSiparis').select2('destroy');
+                    $('#tableSiparisDetay tbody').children().remove();
+
+                    if ($('#dropDownSiparisDurum').val() != null && $('#dropDownSiparisDurum').val() != '') {
+                        // Sipariş durumuna göre siparişleri yükle
+                        $.ajax({
+                            url: '/StokHareket/SiparisGetir',
+                            data: { 'siparisDurumTipId': $('#dropDownSiparisDurum').val() },
+                            type: "get",
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            beforeSend: function () {
+                                showLoadingModal();
+                            },
+                            success: function (result) {
+                                hideLoadingModal();
+
+                                $('#dropDownSiparis').select2({
+                                    placeholder: "Sipariş No Seçiniz...",
+                                    allowClear: true,
+                                    disabled: false,
+                                    language: {
+                                        noResults: function (params) {
+                                            return "Hiç kayıt bulunamadı.";
+                                        }
+                                    },
+                                    data: result,
+                                    escapeMarkup: function (markup) {
+                                        return markup;
+                                    },
+                                    templateResult: templateData,
+                                    templateSelection: templateDataSelection
+                                }).on('change', function () {
+                                    if ($('#dropDownSiparis').val() != null && $('#dropDownSiparis').val() != '') {
+                                        siparisDetayYukle(parseInt($('#dropDownSiparis').val()));
+                                    } else {
+                                        $('#tableSiparisDetay tbody').children().remove();
+                                    }
+                                }).val('').trigger('change');
+                            },
+                            error: function () {
+                                hideLoadingModal();
+                                callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                            }
+                        });
+                    } else {
+                        $('#dropDownSiparis').select2({
+                            placeholder: "Sipariş No Seçiniz...",
+                            allowClear: true,
+                            disabled: true,
+                            language: {
+                                noResults: function (params) {
+                                    return "Hiç kayıt bulunamadı.";
+                                }
+                            },
+                            data: null,
+                            escapeMarkup: function (markup) {
+                                return markup;
+                            },
+                            templateResult: templateData,
+                            templateSelection: templateDataSelection
+                        }).val('').trigger('change');
+                    }
+                }).val('').trigger('change');
+                </text>
+            }
+
+            $('#form_eposta').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                rules: {
+                    txtEpostaKonu: {
+                        maxlength: 200,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function () {
+                    epostaGonder();
+                }
+            });
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    dropDownGonderimTipi: {
+                        required: true
+                    },
+                    dropDownTeslimZamaniTipi: {
+                        required: true
+                    },
+                    dateTimeGonderimTarihi: {
+                        required: true
+                    },
+                    txtGonderimAdet: {
+                        number: true,
+                        buyukSifir: true,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    kaydet();
+                }
+            });
+            $('.select2', $('#comform')).change(function () {
+                $('#comform').validate().element($(this));
+            });
+            $('.input-group.date .form-control', $('#comform')).change(function () {
+                $('#comform').validate().element($(this));
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function siparisDetayYukle(siparisId) {
+            $.ajax({
+                url: '/SiparisGonderim/SiparisDetayGetir',
+                data: {
+                    'siparisId': siparisId
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    $('#tableSiparisDetay tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tableSiparisDetay tbody');
+
+                    $('#tableSiparisDetay .make-switch').bootstrapSwitch();
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    $('input[type="radio"][name="radioDetay"]').iCheck({
+                        radioClass: 'iradio_square-blue'
+                    });
+                    $('input[type="radio"][name="radioDetay"]').on('ifChecked', function (event) {
+                        $('input[type="radio"][name="radioDetay"]').closest('tr').removeClass('bg-choosen-detay').addClass('bg-white');
+                        $(this).closest('tr').removeClass('bg-white').addClass('bg-choosen-detay');
+                    });
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function kaydet() {
+            if (parseInt($('#hdnSiparisGonderimId').val()) == 0) {
+                if ($('#tableSiparisDetay tbody tr').length == 0) {
+                    callAlert('warning', 'Lütfen sipariş seçtikten detaylarını yükleyerek gönderim kaydı yapılacak sipariş detayını seçiniz.');
+                    return false;
+                }
+
+                if (!$('input[type="radio"][name="radioDetay"]').is(':checked')) {
+                    callAlert('warning', 'Lütfen listeden gönderim kaydı yapılacak sipariş detayı seçiniz.');
+                    return false;
+                }
+
+                // Sipariş detay gönderilecek adet kontrol
+                var siparisDetayId = $('input[type="radio"][name="radioDetay"]:checked').closest('tr').attr('data-siparisdetayid');
+                var adet = $('#txtGonderimAdet').val();
+
+                $.ajax({
+                    url: '/SiparisGonderim/SiparisGonderimAdetKontrol',
+                    data: JSON.stringify({ siparisDetayId: siparisDetayId, adet: adet }),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+
+                        if (!result.flag) {
+                            callAlert('warning', result.message);
+                        } else {
+                            var data = {
+                                SiparisGonderimId: 0,
+                                SiparisDetayId: siparisDetayId,
+                                GonderimId: $('#dropDownGonderimTipi').val(),
+                                TeslimZamaniId: ($('#dropDownTeslimZamaniTipi').val() != null && $('#dropDownTeslimZamaniTipi').val() != '') ? $('#dropDownTeslimZamaniTipi').val() : null,
+                                TakipNo: $('#txtGonderimTakipNo').val(),
+                                Adet: adet,
+                                Aciklama: $('#txtGonderimAciklama').val(),
+                                GonderimTarihi: $('#dateTimeGonderimTarihi').find('input').val() != '' ? $('#dateTimeGonderimTarihi').datepicker('getDate').toUTCString() : null,
+                                TeslimTarihi: $('#dateTimeTeslimTarihi').find('input').val() != '' ? $('#dateTimeTeslimTarihi').datepicker('getDate').toUTCString() : null,
+                                AktifMi: $('#txtGonderimAktif').is(":checked") ? true : false
+                            };
+
+                            $.ajax({
+                                url: '/SiparisGonderim/SiparisGonderimKaydetGuncelle',
+                                data: JSON.stringify(data),
+                                type: "post",
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                beforeSend: function () {
+                                    showLoadingModal();
+                                },
+                                success: function (result) {
+                                    hideLoadingModal();
+                                    if (result > 0) {
+                                        callAlert('success', 'Kayıt işlemi başarılı.');
+                                        setTimeout(function myfunction() {
+                                            window.location.href = '/SiparisGonderim/Save/' + result;
+                                        }, 1500);
+                                    }
+                                    else {
+                                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                                    }
+                                },
+                                error: function () {
+                                    hideLoadingModal();
+                                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            } else {
+                var data = {
+                    SiparisGonderimId: $('#hdnSiparisGonderimId').val(),
+                    GonderimId: $('#dropDownGonderimTipi').val(),
+                    TeslimZamaniId: ($('#dropDownTeslimZamaniTipi').val() != null && $('#dropDownTeslimZamaniTipi').val() != '') ? $('#dropDownTeslimZamaniTipi').val() : null,
+                    TakipNo: $('#txtGonderimTakipNo').val(),
+                    Adet: $('#txtGonderimAdet').val(),
+                    Aciklama: $('#txtGonderimAciklama').val(),
+                    GonderimTarihi: $('#dateTimeGonderimTarihi').find('input').val() != '' ? $('#dateTimeGonderimTarihi').datepicker('getDate').toUTCString() : null,
+                    TeslimTarihi: $('#dateTimeTeslimTarihi').find('input').val() != '' ? $('#dateTimeTeslimTarihi').datepicker('getDate').toUTCString() : null,
+                    AktifMi: $('#txtGonderimAktif').is(":checked") ? true : false
+                };
+
+                $.ajax({
+                    url: '/SiparisGonderim/SiparisGonderimKaydetGuncelle',
+                    data: JSON.stringify(data),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result > 0) {
+                            callAlert('success', 'Kayıt işlemi başarılı.');
+                            setTimeout(function myfunction() {
+                                window.location.href = '/SiparisGonderim/Save/' + result;
+                            }, 1500);
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            }
+        }
+
+        @if(siparisGonderim.SiparisGonderimId > 0)
+        {
+            <text>
+            function epostaModalAc() {
+                $('#txtEpostaKonu').val('');
+                CKEDITOR.instances.txtEpostaIcerik.setData('');
+
+                $('#epostaModal').modal('show');
+            }
+            function epostaGonder() {
+                if (CKEDITOR.instances.txtEpostaIcerik.getData() == null || CKEDITOR.instances.txtEpostaIcerik.getData() == '') {
+                    callAlert('warning', 'Eposta içeriği boş bırakılamaz.');
+                    return false;
+                } else if (CKEDITOR.instances.txtEpostaIcerik.getData().length > 1000) {
+                    callAlert('warning', 'Eposta içeriği en fazla 1000 karakter olmalıdır.');
+                    return false;
+                }
+
+                var data = {
+                    kullaniciId: '@siparisGonderim.SiparisDetay.Siparis.KullaniciId',
+                    epostaKonu: $('#txtEpostaKonu').val(),
+                    epostaIcerik: CKEDITOR.instances.txtEpostaIcerik.getData()
+                };
+
+                $.ajax({
+                    url: '/SiparisGonderim/KullaniciEpostaGonder',
+                    data: JSON.stringify(data),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        $('#epostaModal').modal('hide');
+                        if (result.flag) {
+                            callAlert('success', result.message);
+                        }
+                        else {
+                            callAlert('error', result.message);
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            }
+            </text>
+        }
+    </script>
+}

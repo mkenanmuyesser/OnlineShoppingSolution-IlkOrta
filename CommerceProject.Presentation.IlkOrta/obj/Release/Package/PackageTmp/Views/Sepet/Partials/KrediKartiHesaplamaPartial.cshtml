@@ -1,0 +1,62 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var bankalar = ViewBag.Bankalar as List<Banka>;
+    var currentController = ViewContext.RouteData.GetRequiredString("controller");
+}
+
+<input id="hdnKrediKartiTaksit" type="hidden" value="0" />
+<div>
+    @foreach (var banka in bankalar)
+    {
+        <div class="col-sm-4 col-md-4 service ">
+            <div class="text-small">
+                <table class="table table-hover table-bordered table-striped table-condensed">
+                    <tbody>
+                        <tr>
+                            <td colspan="3" align="center">
+                                <div class="icon small">
+                                    <img src="@banka.Logo" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Taksit</b></td>
+                            <td><b>Aylık Ödeme</b></td>
+                            <td><b>Toplam Tutar</b></td>
+                        </tr>
+                        @foreach (var taksit in banka.TaksitBilgileri)
+                        {
+                            <tr>
+                                <td class="text-center" style="vertical-align:middle">
+                                    @if (currentController == "Sepet")
+                                    {
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="krediKarti" class="rbtnKrediKarti" value="@taksit.TaksitId">
+                                                @taksit.TaksitSayisi
+                                            </label>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @taksit.TaksitSayisi
+                                    }
+                                </td>
+                                <td>@string.Format("{0:N}", taksit.AylikOdeme)</td>
+                                <td>@string.Format("{0:N}", taksit.ToplamTutar)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rbtnKrediKarti').on('click', function (event) {
+        var id = $(this).val();
+        $('#hdnKrediKartiTaksit').val(id);      
+    })
+</script>

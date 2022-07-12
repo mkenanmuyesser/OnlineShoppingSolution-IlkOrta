@@ -1,0 +1,94 @@
+/******************************************************************************
+  Media
+*******************************************************************************/
+/* Video */
+embed,
+iframe,
+object,
+video,
+audio {
+  max-width: 100%;
+}
+.video-box {
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4);
+  box-shadow: 0 1px 2px rgba(0,0,0,.4);
+  height: 0;
+  margin-bottom: 22px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  
+  &.html5 {
+    height: auto;
+    padding: 0;
+    
+    .video-js {
+      height: auto !important;
+      line-height: 0;
+      width: 100% !important;
+      
+      .vjs-tech {
+        height: auto;
+        margin: 0;
+        position: relative;
+        width: 100%;
+      }
+    }
+    .vjs-default-skin {
+      color: #fff;
+      
+      .vjs-play-progress,
+      .vjs-volume-level {
+        background-color: #555;
+      }
+      .vjs-control-bar,
+      .vjs-big-play-button {
+        background: rgba(0,0,0,.8);
+      }
+      .vjs-slider {
+        background: rgba(0,0,0,.8);
+      }
+    }
+  }
+  embed,
+  iframe,
+  object,
+  video {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* Audio */
+.audio-box audio {
+  width: 100%;
+}
+.jp-audio,
+.jp-audio *,
+.jp-jplayer,
+.jp-jplayer * {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+div.jp-audio {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 300px;
+  width: 100%;
+  
+  ul.jp-controls {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+.jp-audio button {
+  padding: 0;
+}

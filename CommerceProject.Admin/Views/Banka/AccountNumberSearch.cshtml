@@ -1,0 +1,333 @@
+﻿@{
+    ViewBag.Title = "HesapNumarasi";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<div class="portlet light bordered blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Banka/AccountNumberSave">
+                        <i class="fa fa-save"></i>  Hesap Numarası Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/VirtualPosSave">
+                        <i class="fa fa-save"></i> Sanal Pos İşlemleri
+                    </a>
+                </li>               
+                <li>
+                    <a href="/Banka/InstallmentSearch">
+                        <i class="fa fa-search"></i> Taksit Arama
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/InstallmentSave">
+                        <i class="fa fa-save"></i> Taksit Yeni Kayıt
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-filter font-dark"></i>
+                    <span class="caption-subject font-dark bold">Filtreleme Kriterleri</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse" data-original-title="Genişlet / Daralt" title="Genişlet / Daralt"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">Banka</label>
+                                <select id="dropDownBanka" class="form-control select2"></select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Aktif mi?</label>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="2"> Tümü
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" checked class="icheck" value="1"> Aktif
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="0"> Pasif
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="button" class="btn blue-madison" onclick="javascript: ara()">
+                                    Ara
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button type="button" class="btn green-meadow" onclick="javascript: temizle()">
+                                    Temizle
+                                    <i class="fa fa-recycle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="fa fa-list-ul font-dark"></i>
+                    <span class="caption-subject bold">Sonuç Listesi</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="box">
+                    <div class="box-header">
+                        <div id="boxTools" class="box-tools" style="display:none;">
+                            <div class="input-group pull-left">
+                                <input type="hidden" id="dropDownPagingSize" class="form-control select2" style="width: 100px;" value="5" />
+                            </div>
+                            <div class="input-group pull-right">
+                                <button type="button" class="btn btn-xs green-stripe pull-right" style="margin-right:10px;" onclick="javascript: excelRaporuAl();"><i class="fa fa-file-excel-o"></i>Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="tableHesapNumarasi" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Banka</th>
+                                        <th width="10%">Iban</th>
+                                        <th width="10%">Şehir</th>
+                                        <th width="10%">Şube Kodu</th>
+                                        <th width="10%">Şube Adı</th>
+                                        <th width="10%">Hesap No</th>
+                                        <th width="10%">Hesap Sahibi</th>
+                                        <th width="10%">Sıra</th>
+                                        <th width="10%">Aktif mi?</th>
+                                        <th width="10%">İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div id="footerInfo" class="row" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="input-group pull-left">
+                                    <p id="tableInfo" style="color: #6f6f6f;font-size: 12px;"></p>
+                                </div>
+                                <div class="input-group pull-right">
+                                    <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${BankaAdi}</td>
+            <td>${Iban}</td>
+            <td>${Sehir}</td>
+            <td>${SubeKodu}</td>
+            <td>${SubeAdi}</td>
+            <td>${HesapNo}</td>
+            <td>${HesapSahibi}</td>
+            <td>${Sira}</td>
+            <td>
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: sil('${HesapNumarasiId}');" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                    <a href="/Banka/AccountNumberSave/${HesapNumarasiId}" class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var bankaListesi = @Html.Raw(Json.Encode(ViewBag.BankaListesi))
+
+        $(document).ready(function () {
+            $('#dropDownBanka').select2({
+                placeholder: "Banka Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: bankaListesi
+            }).val('').trigger('change');
+
+            $('#dropDownPagingSize').select2({
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: [
+                    { id: 5, text: 5 },
+                    { id: 10, text: 10 },
+                    { id: 20, text: 20 },
+                    { id: 50, text: 50 }
+                ]
+            }).on('select2:select', function (e) {
+                ara(1, $('#dropDownPagingSize').val());
+            });
+        });
+
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    ara(pageNum, pageCount);
+                }
+            });
+        }
+
+        function ara(pageIndex, pageCount) {
+            pageIndex = pageIndex == null ? 1 : pageIndex;
+            pageCount = pageCount == null ? 5 : pageCount;
+
+            $.ajax({
+                url: '/Banka/HesapNumarasiAra',
+                data: {
+                    'bankaId': ($('#dropDownBanka').val() != '' && $('#dropDownBanka').val() != null) ? $('#dropDownBanka').val() : 0,
+                    'aktiflik': parseInt($('input[name=rdAktif]:checked').val()),
+                    'sayfaSayisi': pageCount,
+                    'sayfaSirasi': pageIndex
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    $('#tableHesapNumarasi tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tableHesapNumarasi tbody');
+
+                    $('#tableHesapNumarasi .make-switch').bootstrapSwitch();
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // table info
+                    var txt = '';
+                    if (result.toplamKayitSayisi > 0) {
+                        var firstPart = ((result.sayfaSirasi - 1) * (result.sayfaSayisi) + 1);
+                        var secondPart = (result.sayfaSirasi * result.sayfaSayisi) > result.toplamKayitSayisi ? result.toplamKayitSayisi : (result.sayfaSirasi * result.sayfaSayisi);
+                        txt = 'Toplam ' + result.toplamKayitSayisi + ' kayıttan ' + firstPart + '-' + secondPart + ' gösteriliyor.';
+
+                        $('#boxTools').show();
+                        $('#footerInfo').show();
+                    }
+                    else {
+                        txt = 'Hiç kayıt bulunamadı.';
+
+                        $('#boxTools').hide();
+                        $('#footerInfo').hide();
+                    }
+                    $('#tableInfo').text(txt);
+
+                    paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function temizle() {
+            $('#dropDownBanka').val('').trigger('change');
+        }
+
+        function sil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $.ajax({
+                    url: '/Banka/HesapNumarasiSil/' + id,
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result) {
+                            callAlert('success', 'Silme işlemi başarılı.');
+                            ara();
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+
+        function excelRaporuAl() {
+            var bankaId = ($('#dropDownBanka').val() != '' && $('#dropDownBanka').val() != null) ? $('#dropDownBanka').val() : 0;
+            var aktiflik = parseInt($('input[name=rdAktif]:checked').val());
+
+            window.location.href = '/Banka/HesapNumarasiExcelRaporuAl?bankaId=' + bankaId
+                 + '&aktiflik=' + aktiflik;
+        }
+    </script>
+}

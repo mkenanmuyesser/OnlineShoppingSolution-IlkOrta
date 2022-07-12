@@ -1,0 +1,18 @@
+/******************************************************************************
+  One Page
+*******************************************************************************/
+.one-page {
+  #main {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .page-header {
+    margin-bottom: 40px;
+  }
+  .full-width-box:last-child {
+    padding-bottom: 0;
+  }
+  .header .primary .navbar .nav .active {
+    color: $danger;
+  }
+}

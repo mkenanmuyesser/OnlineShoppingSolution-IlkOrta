@@ -1,0 +1,66 @@
+﻿@using BotDetect.Web.Mvc;
+@using CommerceProject.Presentation.IlkOrta.Helper;
+
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css
+{   
+    <style type="text/css">
+        .has-feedback label ~ .form-control-feedback{
+            top: 20px !important;
+        }
+    </style>
+}
+
+<section id="main" class="login-register">
+    <header class="page-header">
+        <div class="container">
+            <h1 class="title">Üye Girişi / Kaydı</h1>
+        </div>
+    </header>
+
+    <div class="container" data-appear-animation="fadeIn">
+        <div class="row">
+            <div class="content col-sm-12 col-md-12">
+                <div class="row filter-elements hidden">
+                    <div class="col-xs-12 col-sm-6 col-md-6 box login">
+                        <div class="info-box">
+                            <h3 class="title">Yeni Üyelik</h3>
+                            <p class="descriptions">Yeni bir üyelik oluşturarak, sipariş verme aşamasına hızlıca gelebilir, birden fazla adrese gönderebilir, kargolarınızı takip edebilir ve daha da fazlasını yapabilirsiniz.</p>
+                            <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">Yeni Bir Hesap Oluşturun</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 box login">
+                        @Html.Partial("~/Views/Kullanici/Partials/UyeGirisPartial.cshtml")
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 box register">
+                        @*@Html.Partial("~/Views/Kullanici/Partials/UyeKayitPartial.cshtml")*@
+                        @{Html.RenderAction("UyeKayitPartial", "Kullanici");}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 box register">
+                        <div class="info-box">
+                            <h3 class="title">Hesabım</h3>
+                            <p class="descriptions">Eğer üyelik kaydınız varsa lütfen giriş yapınız.</p>
+                            <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">Giriş Yap</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.com-email').inputmask('email', {
+                onincomplete: function (o, e) {
+                    $(this).val('');
+                }
+            });
+        });       
+    </script>
+}

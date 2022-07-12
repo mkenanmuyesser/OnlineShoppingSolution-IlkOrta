@@ -1,0 +1,66 @@
+/******************************************************************************
+  Fancybox
+*******************************************************************************/
+.fancybox-margin .fixed-header .header,
+.fancybox-margin .fixed-header #top-box {
+  left: -7.5px;
+}
+.fancybox-close {
+  background: #fff;
+  border: 1px solid #7f7f7f;
+  border-radius: 50%;
+  color: #1e1e1e;
+  font-size: 25px;
+  font-weight: normal;
+  height: 30px;
+  line-height: 29px;
+  right: -15px;
+  text-align: center;
+  text-decoration: none;
+  top: -15px;
+  width: 30px;
+  transition: color .2s linear;
+  
+  &:hover {
+    color: #7f7f7f;
+    text-decoration: none;
+    transition: color .2s linear;
+  }
+}
+.fancybox-nav span {
+  background: #ccc;
+  border: 0 none;
+  border-radius: 3px;
+  color: #fbfbfb;
+  display: block;
+  float: right;
+  height: 40px;
+  line-height: 40px;
+  margin: -20px 0 0 0;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  transition: all .2s linear;
+  
+  &:hover {
+    background-color: #000;
+    color: #efefef;
+    text-decoration: none;
+    transition: all .2s linear;
+  }
+  svg {
+    vertical-align: middle;
+  }
+}
+.fontawesome-icon-list {
+  color: #7f7f7f;
+  
+  .fa {
+    color: #1e1e1e;
+    width: 22px;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+  }
+}

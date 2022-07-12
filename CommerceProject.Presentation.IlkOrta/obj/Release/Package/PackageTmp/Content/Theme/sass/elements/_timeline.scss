@@ -1,0 +1,167 @@
+/******************************************************************************
+  Timeline
+*******************************************************************************/
+.timeline {
+  padding: 20px 0;
+  position: relative;
+  
+  &:before {
+    background-color: #d2d2d2;
+    background-color: rgba(0,0,0,.2);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    position: absolute;
+    top: 0;
+    width: 4px;
+  }
+  .post {
+    border: 0 none;
+    margin: 0;
+    padding: 0 40px 5px 0;
+    width: 50%;
+    
+    &:last-child,
+    &:nth-child(even):last-child {
+      padding-bottom: 0;
+    }
+    &:nth-child(even) {
+      margin-left: 50%;
+      padding: 0 0 5px 40px;
+      
+      .timeline-time {
+        left: auto;
+        margin: 31px 40px 0 0;
+        right: 50%;
+        text-align: right;
+      }
+      .timeline-content:before {
+        border: 15px solid transparent;
+        border-right-color: #ccc;
+        left: -30px;
+        right: auto;
+      }
+      .timeline-content:after {
+        border: 14px solid transparent;
+        border-right-color: #fff;
+        left: -28px;
+        right: auto;
+      }
+    }
+    .timeline-time {
+      color: #999;
+      left: 50%;
+      margin: 31px 0 0 40px;
+      position: absolute;
+    }
+    .timeline-icon {
+      background: #1e1e1e;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 18px;
+      height: 40px;
+      left: 50%;
+      line-height: 40px;
+      margin: 22px 0 0 -20px;
+      position: absolute;
+      text-align: center;
+      width: 40px;
+      
+      .livicon svg {
+        left: 0 !important;
+      }
+    }
+    .timeline-content {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 46px;
+      position: relative;
+      
+      &:before,
+      &:after {
+        border: 15px solid transparent;
+        border-left-color: #ccc;
+        content: "";
+        display: block;
+        position: absolute;
+        right: -30px;
+        top: 26px;
+      }
+      &:after {
+        border: 14px solid transparent;
+        border-left-color: #fff;
+        right: -28px;
+        top: 27px;
+      }
+      .video-box:last-child,
+      blockquote:last-child {
+        margin-bottom: 0;
+      }
+      .map-canvas {
+        height: 250px;
+      }
+      .img-rounded {
+        border-radius: 2px;
+      }
+      .entry-title {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      .entry-content {
+        margin: 0;
+      }
+      &.bg {
+        background: #ccc;
+        color: #fff;
+        
+        .entry-title a,
+        blockquote footer,
+        blockquote small,
+        blockquote .small {
+          color: #fff;
+        }
+      }
+    }
+    &.no-padding {
+      .timeline-content {
+        padding: 0;
+      }
+    }
+    &:not(.no-padding) .timeline-content.bg:after {
+      display: none;
+    }
+    $timeline-types: (
+      danger $danger,
+      info $info,
+      warning $warning,
+      success $success,
+      primary $primary
+    );
+    @each $type in $timeline-types {
+      $class: nth($type, 1);
+      $color: nth($type, 2);
+
+      .timeline-content.bg-#{$class},
+      .timeline-content.border-#{$class} {
+        border-color: #{$color};
+        
+        &:before {
+          border-left-color: #{$color};
+        }
+      }
+      &:nth-child(even) .timeline-content.bg-#{$class}:before,
+      &:nth-child(even) .timeline-content.border-#{$class}:before {
+        border: 15px solid transparent;
+        border-right-color: #{$color};
+      }
+    }
+  }
+}

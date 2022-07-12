@@ -1,0 +1,1611 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{ 
+    var iskonto = ViewBag.Iskonto as Iskonto;
+}
+
+<div class="modal fade" id="detayModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+        <div class="modal-content" style="width:900px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Sipariş Detayı</h4>
+            </div>
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div id="divDetay"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red-haze" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Iskonto/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Iskonto/Index">
+                        <i class="fa fa-search"></i> Arama
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <div class="tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab">İskonto Bilgileri</a>
+                        </li>
+                        @if (iskonto.IskontoId > 0)
+                        {
+                            <li>
+                                <a href="#tab_2" data-toggle="tab">Ürün İskontoları</a>
+                            </li>
+                            <li>
+                                <a href="#tab_3" data-toggle="tab">Sepet İskontoları</a>
+                            </li>
+                            <li>
+                                <a href="#tab_4" data-toggle="tab">Kullanım Hareketleri</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="disabled">
+                                <a href="#tab_2">Ürün İskontoları</a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#tab_3">Sepet İskontoları</a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#tab_4">Kullanım Hareketleri</a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <form id="comform_1">
+                                <input id="hdnIskontoId" type="hidden" value="@iskonto.IskontoId" />
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoAdi" class="control-label">İskonto Adı<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoAdi" name="txtIskontoAdi" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="İskonto Adı Giriniz..." value="@iskonto.Adi" tabindex="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoAciklama" class="control-label">Açıklama<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoAciklama" name="txtIskontoAciklama" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." value="@iskonto.Aciklama" tabindex="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dropDownIskontoTipi" class="control-label">İskonto Tipi<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <select id="dropDownIskontoTipi" name="dropDownIskontoTipi" class="form-control select2" tabindex="3"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoMiktari" class="control-label">İskonto Miktarı<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoMiktari" name="txtIskontoMiktari" class="form-control input-sm decimal-4 focus-sense" 
+                                                       value="@iskonto.IskontoMiktari.ToString("N4").Replace(".", "").Replace(",", ".")" tabindex="4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoMinimumFiyat" class="control-label">Minimum Fiyat</label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoMinimumFiyat" name="txtIskontoMinimumFiyat" class="form-control input-sm decimal-4 focus-sense" 
+                                                       value="@(iskonto.MinimumFiyat.HasValue ? iskonto.MinimumFiyat.Value.ToString("N4").Replace(".", "").Replace(",", ".") : "")" tabindex="5">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoMaksimumFiyat" class="control-label">Maksimum Fiyat</label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoMaksimumFiyat" name="txtIskontoMaksimumFiyat" class="form-control input-sm decimal-4 focus-sense"
+                                                       value="@(iskonto.MaksimumFiyat.HasValue ? iskonto.MaksimumFiyat.Value.ToString("N4").Replace(".", "").Replace(",", ".") : "")" tabindex="6">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoHediyeKartAktifMi" class="control-label">Hediye Kart Aktif mi?</label>
+                                            <div class="icheck-inline">
+                                                <input id="txtIskontoHediyeKartAktifMi" name="txtIskontoHediyeKartAktifMi" type="checkbox" class="make-switch" onchange="javascript: hediyeKartAktifMiChanged();" data-size="small" data-on-text="Aktif" data-off-text="Pasif" 
+                                                       @(iskonto.IskontoId > 0 ? (iskonto.HediyeKartAktifMi ? "checked" : "") : "checked") tabindex="7">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoHediyeKartKuponKodu" class="control-label">Hediye Kart Kupon Kodu</label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoHediyeKartKuponKodu" name="txtIskontoHediyeKartKuponKodu" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Hediye Kart Kupon Kodu Giriniz..." 
+                                                       value="@iskonto.HediyeKartKuponKod" @(iskonto.IskontoId > 0 ? (iskonto.HediyeKartAktifMi ? "" : "disabled") : "") tabindex="8">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Başlangıç - Bitiş Tarihi</label>
+                                            <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;">
+                                                <div class="col-md-6" style="padding-left:0px !important;">
+                                                    <div class="form-group">
+                                                        <div class="input-icon right">
+                                                            <i class="fa"></i>
+                                                            <div id="dateTimeIskontoBaslangicTarihi" name="dateTimeIskontoBaslangicTarihi" class="input-group date" data-provide="datepicker">
+                                                                <input type="text" name="dateTimeIskontoBaslangicTarihi" class="form-control" placeholder="Başlangıç Tarihi"
+                                                                       value="@(iskonto.IskontoId > 0 ? (iskonto.BaslangicTarih.HasValue ? iskonto.BaslangicTarih.Value.ToString("dd.MM.yyyy") : "") : "")" tabindex="9">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" style="padding-right:0px !important;">
+                                                    <div class="form-group">
+                                                        <div class="input-icon right">
+                                                            <i class="fa"></i>
+                                                            <div id="dateTimeIskontoBitisTarihi" name="dateTimeIskontoBitisTarihi" class="input-group date" data-provide="datepicker">
+                                                                <input type="text" name="dateTimeIskontoBitisTarihi" class="form-control" placeholder="Bitiş Tarihi"
+                                                                       value="@(iskonto.IskontoId > 0 ? (iskonto.BitisTarih.HasValue ? iskonto.BitisTarih.Value.ToString("dd.MM.yyyy") : "") : "")" tabindex="10">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtIskontoSira" name="txtIskontoSira" class="form-control input-sm integer focus-sense" value="@iskonto.Sira" tabindex="11">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtIskontoAktif" class="control-label">Aktif mi?</label>
+                                            <div class="icheck-inline">
+                                                <input id="txtIskontoAktif" name="txtIskontoAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                       @(iskonto.IskontoId > 0 ? (iskonto.AktifMi ? "checked" : "") : "checked") tabindex="12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-offset-5 col-md-7">
+                                        @if (iskonto.IskontoId == 0)
+                                        {
+                                            <button type="submit" class="btn blue" tabindex="13">
+                                                Kaydet
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn yellow" tabindex="13">
+                                                Güncelle
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        }
+                                        <a href="/Iskonto/Index" class="btn red" tabindex="14">
+                                            İptal
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <div class="form-group">
+                                <div class="well">
+                                    Ürün iskontoları ürünlere özel ve ürün sayfasında da görüntülenecek, belirlenmiş ürünler üzerinden yapılacak olan indirimlerdir.
+                                </div>
+                            </div>
+                            <form id="comform_2">
+                                <div id="accordion3" class="panel-group accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled " data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1">
+                                                    <i class="fa fa-cubes" style="margin-right:5px;"></i>Ürünler</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse_3_1" class="panel-collapse in">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <label for="dropDownUrun" class="control-label">
+                                                                    Ürün<span style="font-size: 12px;color: #ef5e77;"> Ürün Adı / Ürün Kodu / Barkod No' ya göre arama yapabilirsiniz.</span>
+                                                                </label>
+                                                                <div class="input-icon right">
+                                                                    <i class="fa"></i>
+                                                                    <select id="dropDownUrun" name="dropDownUrun" class="form-control select2" style="width:100%;" tabindex="4"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <button type="button" class="btn btn-sm yellow-lemon" style="width:100%;" data-toggle="tooltip" data-placement="top" title="Ürün Ekle"
+                                                                        onclick="javascript: iskontoUrunEkle();">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-top-20">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="table-responsive">
+                                                                    <table id="tableIskontoUrun" class="table table-striped table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="70%">Ürün</th>
+                                                                                <th width="20%">Aktif mi?</th>
+                                                                                <th width="10%">İşlemler</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                foreach (var iskontoUrun in (ViewBag.IskontoUrunler as List<IskontoUrun>))
+                                                                                {
+                                                                                    <tr data-id="@iskontoUrun.IskontoUrunId" data-urun-id="@iskontoUrun.Urun.UrunId">
+                                                                                        <td>@iskontoUrun.Urun.Adi</td>
+                                                                                        <td>
+                                                                                            <div class="icheck-inline">
+                                                                                                <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoUrun.AktifMi ? "checked" : "")>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @*<div class="text-center">
+                                                                                                <button type="button" onclick="javascript: iskontoUrunSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                                                                    <i class="fa fa-remove"></i>
+                                                                                                </button>
+                                                                                            </div>*@
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_2">
+                                                <i class="fa fa-sitemap" style="margin-right:5px;"></i>Kategoriler</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse_3_2" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-9">
+                                                            <div class="form-group">
+                                                                <label for="dropDownKategori" class="control-label">Kategori</label>
+                                                                <select id="dropDownKategori" name="dropDownKategori" class="form-control select2" style="width:100%;"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="txtAltKategori" class="control-label">Alt Kategori Dahil mi?</label>
+                                                                <input id="txtAltKategori" name="txtAltKategori" type="checkbox" class="make-switch " data-on-text="Evet" data-off-text="Hayır" checked>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <button type="button" class="btn btn-sm yellow-lemon" style="width:100%;" data-toggle="tooltip" data-placement="top" title="Kategori Ekle"
+                                                                        onclick="javascript: iskontoKategoriEkle();">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-top-20">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="table-responsive">
+                                                                    <table id="tableIskontoKategori" class="table table-striped table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="50%">Kategori</th>
+                                                                                <th width="20%">Alt Kategori Dahil mi?</th>
+                                                                                <th width="20%">Aktif mi?</th>
+                                                                                <th width="10%">İşlemler</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                foreach (var iskontoKategori in (ViewBag.IskontoKategoriler as List<IskontoKategori>))
+                                                                                {
+                                                                                    <tr data-id="@iskontoKategori.IskontoKategoriId" data-kategori-id="@iskontoKategori.Kategori.KategoriId">
+                                                                                        <td>@iskontoKategori.Kategori.Adi</td>
+                                                                                        <td>
+                                                                                            <div class="icheck-inline">
+                                                                                                <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoKategori.AltKategorilerdeGecerliMi ? "checked" : "") readonly>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <div class="icheck-inline">
+                                                                                                <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoKategori.AktifMi ? "checked" : "")>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @*<div class="text-center">
+                                                                                                <button type="button" onclick="javascript: iskontoKategoriSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                                                                    <i class="fa fa-remove"></i>
+                                                                                                </button>
+                                                                                            </div>*@
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_3">
+                                                <i class="fa fa-star" style="margin-right:5px;"></i>Markalar</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse_3_3" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <label for="dropDownMarka" class="control-label">Marka</label>
+                                                                <select id="dropDownMarka" name="dropDownMarka" class="form-control select2" style="width:100%;"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <button type="button" class="btn btn-sm yellow-lemon" style="width:100%;" data-toggle="tooltip" data-placement="top" title="Marka Ekle"
+                                                                        onclick="javascript: iskontoMarkaEkle();">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-top-20">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="table-responsive">
+                                                                    <table id="tableIskontoMarka" class="table table-striped table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="70%">Marka</th>
+                                                                                <th width="20%">Aktif mi?</th>
+                                                                                <th width="10%">İşlemler</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                foreach (var iskontoMarka in (ViewBag.IskontoMarkalar as List<IskontoMarka>))
+                                                                                {
+                                                                                    <tr data-id="@iskontoMarka.IskontoMarkaId" data-marka-id="@iskontoMarka.Marka.MarkaId">
+                                                                                        <td>@iskontoMarka.Marka.Adi</td>
+                                                                                        <td>
+                                                                                            <div class="icheck-inline">
+                                                                                                <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoMarka.AktifMi ? "checked" : "")>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @*<div class="text-center">
+                                                                                                <button type="button" onclick="javascript: iskontoMarkaSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                                                                    <i class="fa fa-remove"></i>
+                                                                                                </button>
+                                                                                            </div>*@
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-offset-5 col-md-7">
+                                        @if (iskonto.IskontoId == 0)
+                                        {
+                                            <button type="button" class="btn blue" onclick="javascript: urunIskontoKaydet();">
+                                                Kaydet
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn yellow" onclick="javascript: urunIskontoKaydet();">
+                                                Güncelle
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        }
+                                        <a href="/Iskonto/Index" class="btn red">
+                                            İptal
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                            <div class="form-group">
+                                <div class="well">
+                                    Sepet iskontoları kullanıcıya özel ve sepetteki toplam ürün üzerinden yapılacak olan indirimlerdir.
+                                </div>
+                            </div>
+                            <form id="comform_3">
+                                <div id="accordion4" class="panel-group accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled " data-toggle="collapse" data-parent="#accordion4" href="#collapse_4_1">
+                                                <i class="fa fa-user" style="margin-right:5px;"></i>Roller</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse_4_1" class="panel-collapse in">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <label for="dropDownRol" class="control-label">Rol</label>
+                                                                <select id="dropDownRol" name="dropDownRol" class="form-control select2" style="width:100%;">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <button type="button" class="btn btn-sm yellow-lemon" style="width:100%;" data-toggle="tooltip" data-placement="top" title="Rol Ekle"
+                                                                        onclick="iskontoRolEkle();">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-top-20">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="table-responsive">
+                                                                    <table id="tableIskontoRol" class="table table-striped table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="70%">Rol</th>
+                                                                                <th width="20%">Aktif mi?</th>
+                                                                                <th width="10%">İşlemler</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                foreach (var iskontoRol in (ViewBag.IskontoRoller as List<IskontoRol>))
+                                                                                {
+                                                                                    <tr data-id="@iskontoRol.IskontoRolId" data-rol-id="@iskontoRol.Rol.RolId">
+                                                                                        <td>@iskontoRol.Rol.Adi</td>
+                                                                                        <td>
+                                                                                            <div class="icheck-inline">
+                                                                                                <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoRol.AktifMi ? "checked" : "")>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @*<div class="text-center">
+                                                                                                <button type="button" onclick="javascript: iskontoRolSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                                                                    <i class="fa fa-remove"></i>
+                                                                                                </button>
+                                                                                            </div>*@
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                       
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion4" href="#collapse_4_2">
+                                                    <i class="fa fa-industry" style="margin-right:5px;"></i>Şirketler</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse_4_2" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <label for="dropDownSirket" class="control-label">Şirket</label>
+                                                                <select id="dropDownSirket" name="dropDownSirket" class="form-control select2" style="width:100%;">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <button type="button" class="btn btn-sm yellow-lemon" style="width:100%;" data-toggle="tooltip" data-placement="top" title="Şirket Ekle"
+                                                                        onclick="javascript: iskontoSirketEkle();">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-top-20">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table id="tableIskontoSirket" class="table table-striped table-bordered table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th width="70%">Şirket</th>
+                                                                            <th width="20%">Aktif mi?</th>
+                                                                            <th width="10%">İşlemler</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            foreach (var iskontoSirket in (ViewBag.IskontoSirketler as List<IskontoSirket>))
+                                                                            {
+                                                                                <tr data-id="@iskontoSirket.IskontoSirketId" data-sirket-id="@iskontoSirket.Sirket.SirketId">
+                                                                                    <td>@iskontoSirket.Sirket.Adi</td>
+                                                                                    <td>
+                                                                                        <div class="icheck-inline">
+                                                                                            <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(iskontoSirket.AktifMi ? "checked" : "")>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @*<div class="text-center">
+                                                                                            <button type="button" onclick="javascript: iskontoSirketSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                                                                <i class="fa fa-remove"></i>
+                                                                                            </button>
+                                                                                        </div>*@
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-offset-5 col-md-7">
+                                        @if (iskonto.IskontoId == 0)
+                                        {
+                                            <button type="button" class="btn blue" onclick="javascript: sepetIskontoKaydet();">
+                                                Kaydet
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn yellow" onclick="javascript: sepetIskontoKaydet();">
+                                                Güncelle
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        }
+                                        <a href="/Iskonto/Index" class="btn red">
+                                            İptal
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_4">
+                            <form id="comform_4">
+                                <div class="row">
+                                    <div class="col-lg-offset-3 col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Tarih Aralığı</label>
+                                            <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;">
+                                                <div class="col-md-6" style="padding-left:0px !important;">
+                                                    <div class="form-group">
+                                                        <div class="input-icon right">
+                                                            <i class="fa"></i>
+                                                            <div id="dateTimeKullanimBaslangicTarihi" name="dateTimeKullanimBaslangicTarihi" class="input-group date" data-provide="datepicker">
+                                                                <input type="text" name="dateTimeKullanimBaslangicTarihi" class="form-control" placeholder="Başlangıç Tarihi" value="">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" style="padding-right:0px !important;">
+                                                    <div class="form-group">
+                                                        <div class="input-icon right">
+                                                            <i class="fa"></i>
+                                                            <div id="dateTimeKullanimBitisTarihi" name="dateTimeKullanimBitisTarihi" class="input-group date" data-provide="datepicker">
+                                                                <input type="text" name="dateTimeKullanimBitisTarihi" class="form-control" placeholder="Bitiş Tarihi" value="">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtKullanimAktif" class="control-label">Aktif mi?</label>
+                                            <div class="icheck-inline">
+                                                <input id="txtKullanimAktif" name="txtKullanimAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                </div>
+                                <div class="form-actions">
+                                    <div class="text-center">
+                                        <button type="button" class="btn blue-madison" onclick="javascript: kullanimHareketAra()">
+                                            Ara
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" class="btn green-meadow" onclick="javascript: kullanimHareketTemizle()">
+                                            Temizle
+                                            <i class="fa fa-recycle"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row margin-top-20">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <div id="boxTools" class="box-tools" style="display:none;">
+                                                        <div class="input-group pull-left">
+                                                            <input type="hidden" id="dropDownPagingSize" class="form-control select2" style="width: 100px;" value="5" />
+                                                        </div>
+                                                        <div class="input-group pull-right">
+                                                            <button type="button" class="btn btn-xs green-stripe pull-right" style="margin-right:10px;" onclick="javascript: excelRaporuAl();"><i class="fa fa-file-excel-o"></i>Excel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableIskontoKullanim" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="20%">Kullanım Tarihi</th>
+                                                                    <th width="30%">Kullanıcı Adı</th>
+                                                                    <th width="20%">Sipariş Toplamı</th>
+                                                                    <th width="20%">Sipariş İskontosu</th>
+                                                                    <th width="10%">Sipariş Bilgileri</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div id="footerInfo" class="row" style="display:none;">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group pull-left">
+                                                                <p id="tableInfo" style="color: #6f6f6f;font-size: 12px;"></p>
+                                                            </div>
+                                                            <div class="input-group pull-right">
+                                                                <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${Tarih}</td>
+            <td>${KullaniciEposta}</td>
+            <td>${SiparisToplam}</td>
+            <td>${SiparisIskonto}</td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: siparisDetay('${SiparisId}');" class="btn btn-xs blue" data-toggle="tooltip" data-placement="top" title="Sipariş Detayı">
+                        <i class="fa fa-list"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var iskontoTipListesi = @Html.Raw(Json.Encode(ViewBag.IskontoTipListesi))
+        var rolListesi = @Html.Raw(Json.Encode(ViewBag.RolListesi))
+        var sirketListesi = @Html.Raw(Json.Encode(ViewBag.SirketListesi))
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#dropDownIskontoTipi').select2({
+                placeholder: "İskonto Tipi Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: iskontoTipListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            @if(iskonto != null && iskonto.IskontoTipId > 0)
+            {
+                @: $('#dropDownIskontoTipi').val('@(iskonto.IskontoTipId)').trigger('change');
+            }
+
+            $('#dropDownUrun').select2({
+                placeholder: "Ürün Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Urun/UrunAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+            $('#dropDownKategori').select2({
+                placeholder: "Kategori Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Kategori/KategoriAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+            $('#dropDownMarka').select2({
+                placeholder: "Marka Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Marka/MarkaAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+            $('#dropDownRol').select2({
+                placeholder: "Rol Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: rolListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+            $('#dropDownSirket').select2({
+                placeholder: "Şirket Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: sirketListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            $(".integer").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            $(".decimal-4").inputmask('decimal', {
+                rightAlign: false,
+                integerDigits: 18,
+                radixPoint: ".",
+                digits: 4
+            });
+
+            $('.input-group.date').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+
+            $('#dropDownPagingSize').select2({
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: [
+                    { id: 5, text: 5 },
+                    { id: 10, text: 10 },
+                    { id: 20, text: 20 },
+                    { id: 50, text: 50 }
+                ]
+            }).on('select2:select', function (e) {
+                kullanimHareketAra(1, $('#dropDownPagingSize').val());
+            });
+
+            // Form 1 validation
+            $('#comform_1').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    txtIskontoAdi: {
+                        maxlength: 50,
+                        required: true
+                    },
+                    txtIskontoAciklama: {
+                        maxlength: 500,
+                        required: true
+                    },
+                    dropDownIskontoTipi: {
+                        required: true
+                    },
+                    txtIskontoMiktari: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true,
+                    },
+                    txtIskontoSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true,
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    iskontoBilgisiKaydet();
+                },
+            });
+            $('.select2', $('#comform_1')).change(function () {
+                $('#comform_1').validate().element($(this));
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function hediyeKartAktifMiChanged() {
+            if ($('#txtIskontoHediyeKartAktifMi').is(":checked")) {
+                $('#txtIskontoHediyeKartKuponKodu').removeAttr("disabled");
+            } else {
+                $('#txtIskontoHediyeKartKuponKodu').attr('disabled', 'disabled');
+            }
+        }
+
+        function iskontoBilgisiKaydet() {
+            if ($('#dateTimeIskontoBaslangicTarihi').find('input').val() != '' && $('#dateTimeIskontoBitisTarihi').find('input').val() != '') {
+                if ($('#dateTimeIskontoBaslangicTarihi').datepicker('getDate') > $('#dateTimeIskontoBitisTarihi').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var data = {
+                IskontoId: parseInt($('#hdnIskontoId').val()),
+                IskontoTipId: ($('#dropDownIskontoTipi').val() != '' && $('#dropDownIskontoTipi').val() != null) ? $('#dropDownIskontoTipi').val() : 0,
+                Adi: $('#txtIskontoAdi').val(),
+                Aciklama: $('#txtIskontoAciklama').val(),
+                IskontoMiktari: parseFloat($('#txtIskontoMiktari').val()),
+                MinimumFiyat: $('#txtIskontoMinimumFiyat').val() != '' ? parseFloat($('#txtIskontoMinimumFiyat').val()) : null,
+                MaksimumFiyat: $('#txtIskontoMaksimumFiyat').val() != '' ? parseFloat($('#txtIskontoMaksimumFiyat').val()) : null,
+                HediyeKartAktifMi: $('#txtIskontoHediyeKartAktifMi').is(":checked") ? true : false,
+                HediyeKartKuponKod: $('#txtIskontoHediyeKartKuponKodu').val() != '' ? $('#txtIskontoHediyeKartKuponKodu').val() : null,
+                BaslangicTarih: $('#dateTimeIskontoBaslangicTarihi').find('input').val() != '' ? $('#dateTimeIskontoBaslangicTarihi').datepicker('getDate').toUTCString() : null,
+                BitisTarih: $('#dateTimeIskontoBitisTarihi').find('input').val() != '' ? $('#dateTimeIskontoBitisTarihi').datepicker('getDate').toUTCString() : null,
+                Sira: parseInt($('#txtIskontoSira').val()),
+                AktifMi: $('#txtIskontoAktif').is(":checked") ? true : false
+            };
+
+            $.ajax({
+                url: '/Iskonto/IskontoBilgiKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Iskonto/Save/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        // Iskonto Ürün İşlemleri
+        function iskontoUrunEkle() {
+            if ($('#dropDownUrun').val() == null || $('#dropDownUrun').val() == '') {
+                callAlert('warning', 'Lütfen ürün seçiniz.');
+                return false;
+            }
+
+            var dataItem = $("#dropDownUrun").select2("data")[0];
+            $('#tableIskontoUrun tbody').append('<tr data-id="0" data-urun-id="' + dataItem.id + '">' +
+                '<td>' + dataItem.text + '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="text-center">' +
+                        '<button type="button" onclick="javascript: iskontoUrunSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">' +
+                            '<i class="fa fa-remove"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>');
+
+            $('#tableIskontoUrun tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableIskontoUrun tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+        }
+        function iskontoUrunSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+        function iskontoKategoriEkle() {
+            if ($('#dropDownKategori').val() == null || $('#dropDownKategori').val() == '') {
+                callAlert('warning', 'Lütfen kategori seçiniz.');
+                return false;
+            }
+
+            var dataItem = $("#dropDownKategori").select2("data")[0];
+            var isChecked = $('#txtAltKategori').is(':checked');
+            $('#tableIskontoKategori tbody').append('<tr data-id="0" data-kategori-id="' + dataItem.id + '">' +
+                '<td>' + dataItem.text + '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" ' + (isChecked ? 'checked' : '') + ' readonly>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="text-center">' +
+                        '<button type="button" onclick="javascript: iskontoKategoriSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">' +
+                            '<i class="fa fa-remove"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>');
+
+            $('#tableIskontoKategori tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableIskontoKategori tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+        }
+        function iskontoKategoriSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+        function iskontoMarkaEkle() {
+            if ($('#dropDownMarka').val() == null || $('#dropDownMarka').val() == '') {
+                callAlert('warning', 'Lütfen marka seçiniz.');
+                return false;
+            }
+
+            var dataItem = $("#dropDownMarka").select2("data")[0];
+            $('#tableIskontoMarka tbody').append('<tr data-id="0" data-marka-id="' + dataItem.id + '">' +
+                '<td>' + dataItem.text + '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="text-center">' +
+                        '<button type="button" onclick="javascript: iskontoMarkaSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">' +
+                            '<i class="fa fa-remove"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>');
+
+            $('#tableIskontoMarka tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableIskontoMarka tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+        }
+        function iskontoMarkaSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+        function urunIskontoKaydet() {
+            var iskontoUrunListesi = [];
+            $('#tableIskontoUrun tbody').children().each(function () {
+                var row = $(this);
+                iskonUrunListesi.push({
+                    IskontoUrunId: parseInt(row.attr('data-id')),
+                    IskontoId: parseInt($('#hdnIskontoId').val()),
+                    UrunId: parseInt(row.attr('data-urun-id')),
+                    AktifMi: row.find('.icheck-inline input[type="checkbox"]').is(':checked')
+                });
+            });
+
+            var iskontoKategoriListesi = [];
+            $('#tableIskontoKategori tbody').children().each(function () {
+                var row = $(this);
+                iskontoKategoriListesi.push({
+                    IskontoKategoriId: parseInt(row.attr('data-id')),
+                    IskontoId: parseInt($('#hdnIskontoId').val()),
+                    KategoriId: parseInt(row.attr('data-kategori-id')),
+                    AltKategorilerdeGecerliMi: row.children().eq(1).find('.icheck-inline input[type="checkbox"]').is(':checked'),
+                    AktifMi: row.children().eq(2).find('.icheck-inline input[type="checkbox"]').is(':checked')
+                });
+            });
+
+            var iskontoMarkaListesi = [];
+            $('#tableIskontoMarka tbody').children().each(function () {
+                var row = $(this);
+                iskontoMarkaListesi.push({
+                    IskontoMarkaId: parseInt(row.attr('data-id')),
+                    IskontoId: parseInt($('#hdnIskontoId').val()),
+                    MarkaId: parseInt(row.attr('data-marka-id')),
+                    AktifMi: row.find('.icheck-inline input[type="checkbox"]').is(':checked')
+                });
+            });
+
+            var data = {
+                IskontoId: parseInt($('#hdnIskontoId').val()),
+                IskonUrunListesi: iskontoUrunListesi,
+                IskontoKategoriListesi: iskontoKategoriListesi,
+                IskontoMarkaListesi: iskontoMarkaListesi
+            };
+
+            $.ajax({
+                url: '/Iskonto/IskontoUrunKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Iskonto/Save/' + parseInt($('#hdnIskontoId').val());
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        // Iskonto Sepet İşlemleri
+        function iskontoRolEkle() {
+            if ($('#dropDownRol').val() == null || $('#dropDownRol').val() == '') {
+                callAlert('warning', 'Lütfen rol seçiniz.');
+                return false;
+            }
+
+            var dataItem = $("#dropDownRol").select2("data")[0];
+            $('#tableIskontoRol tbody').append('<tr data-id="0" data-rol-id="' + dataItem.id + '">' +
+                '<td>' + dataItem.text + '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="text-center">' +
+                        '<button type="button" onclick="javascript: iskontoRolSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">' +
+                            '<i class="fa fa-remove"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>');
+
+            $('#tableIskontoRol tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableIskontoRol tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+        }
+        function iskontoRolSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+        function iskontoSirketEkle() {
+            if ($('#dropDownSirket').val() == null || $('#dropDownSirket').val() == '') {
+                callAlert('warning', 'Lütfen şirket seçiniz.');
+                return false;
+            }
+
+            var dataItem = $("#dropDownSirket").select2("data")[0];
+            $('#tableIskontoSirket tbody').append('<tr data-id="0" data-sirket-id="' + dataItem.id + '">' +
+                '<td>' + dataItem.text + '</td>' +
+                '<td>' +
+                    '<div class="icheck-inline">' +
+                        '<input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="text-center">' +
+                        '<button type="button" onclick="javascript: iskontoSirketSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">' +
+                            '<i class="fa fa-remove"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>');
+
+            $('#tableIskontoSirket tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableIskontoSirket tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+        }
+        function iskontoSirketSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+        function sepetIskontoKaydet() {
+            var iskontoRolListesi = [];
+            $('#tableIskontoRol tbody').children().each(function () {
+                var row = $(this);
+                iskontoRolListesi.push({
+                    IskontoRolId: parseInt(row.attr('data-id')),
+                    IskontoId: parseInt($('#hdnIskontoId').val()),
+                    RolId: parseInt(row.attr('data-rol-id')),
+                    AktifMi: row.find('.icheck-inline input[type="checkbox"]').is(':checked')
+                });
+            });
+
+            var iskontoSirketListesi = [];
+            $('#tableIskontoSirket tbody').children().each(function () {
+                var row = $(this);
+                iskontoSirketListesi.push({
+                    IskontoSirketId: parseInt(row.attr('data-id')),
+                    IskontoId: parseInt($('#hdnIskontoId').val()),
+                    SirketId: parseInt(row.attr('data-sirket-id')),
+                    AktifMi: row.find('.icheck-inline input[type="checkbox"]').is(':checked')
+                });
+            });
+
+            var data = {
+                IskontoId: parseInt($('#hdnIskontoId').val()),
+                IskontoRolListesi: iskontoRolListesi,
+                IskontoSirketListesi: iskontoSirketListesi
+            };
+
+            $.ajax({
+                url: '/Iskonto/IskontoSepetKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Iskonto/Save/' + parseInt($('#hdnIskontoId').val());
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        // Iskonto Kullanım Hareket İşlemleri
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    kullanimHareketAra(pageNum, pageCount);
+                }
+            });
+        }
+
+        function kullanimHareketAra(pageIndex, pageCount) {
+            if ($('#dateTimeKullanimBaslangicTarihi').find('input').val() != '' && $('#dateTimeKullanimBitisTarihi').find('input').val() != '') {
+                if ($('#dateTimeKullanimBaslangicTarihi').datepicker('getDate') > $('#dateTimeKullanimBitisTarihi').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            pageIndex = pageIndex == null ? 1 : pageIndex;
+            pageCount = pageCount == null ? 5 : pageCount;
+
+            $.ajax({
+                url: '/Iskonto/KullanimHareketAra',
+                data: {
+                    'iskontoId': $('#hdnIskontoId').val(),
+                    'baslangicTarihi': $('#dateTimeKullanimBaslangicTarihi').find('input').val() != '' ? $('#dateTimeKullanimBaslangicTarihi').datepicker('getDate').toUTCString() : null,
+                    'bitisTarihi': $('#dateTimeKullanimBitisTarihi').find('input').val() != '' ? $('#dateTimeKullanimBitisTarihi').datepicker('getDate').toUTCString() : null,
+                    'sayfaSayisi': pageCount,
+                    'sayfaSirasi': pageIndex
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    $('#tableIskontoKullanim tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tableIskontoKullanim tbody');
+
+                    $('#tableIskontoKullanim .make-switch').bootstrapSwitch();
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // table info
+                    var txt = '';
+                    if (result.toplamKayitSayisi > 0) {
+                        var firstPart = ((result.sayfaSirasi - 1) * (result.sayfaSayisi) + 1);
+                        var secondPart = (result.sayfaSirasi * result.sayfaSayisi) > result.toplamKayitSayisi ? result.toplamKayitSayisi : (result.sayfaSirasi * result.sayfaSayisi);
+                        txt = 'Toplam ' + result.toplamKayitSayisi + ' kayıttan ' + firstPart + '-' + secondPart + ' gösteriliyor.';
+
+                        $('#boxTools').show();
+                        $('#footerInfo').show();
+                    }
+                    else {
+                        txt = 'Hiç kayıt bulunamadı.';
+
+                        $('#boxTools').hide();
+                        $('#footerInfo').hide();
+                    }
+                    $('#tableInfo').text(txt);
+
+                    paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function kullanimHareketTemizle() {
+            $('#dateTimeKullanimBaslangicTarihi').data('datepicker').setDate(null);
+            $('#dateTimeKullanimBitisTarihi').data('datepicker').setDate(null);
+        }
+
+        function excelRaporuAl() {
+            if ($('#dateTimeKullanimBaslangicTarihi').find('input').val() != '' && $('#dateTimeKullanimBitisTarihi').find('input').val() != '') {
+                if ($('#dateTimeKullanimBaslangicTarihi').datepicker('getDate') > $('#dateTimeKullanimBitisTarihi').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var iskontoId = $('#hdnIskontoId').val();
+            var baslangicTarihi = $('#dateTimeKullanimBaslangicTarihi').find('input').val() != '' ? $('#dateTimeKullanimBaslangicTarihi').datepicker('getDate').toUTCString() : null;
+            var bitisTarihi = $('#dateTimeKullanimBitisTarihi').find('input').val() != '' ? $('#dateTimeKullanimBitisTarihi').datepicker('getDate').toUTCString() : null;
+
+            window.location.href = '/Iskonto/KullanimHareketExcelRaporuAl?iskontoId=' + iskontoId
+                + '&baslangicTarihi=' + baslangicTarihi
+                + '&bitisTarihi=' + bitisTarihi;
+        }
+
+        function siparisDetay(id) {
+            showLoadingModal();
+            $('#divDetay').html('');
+
+            $('#divDetay').load('/Siparis/SiparisDetayPartial/' + id, function () {
+                $('#detayModal').modal('show');
+                hideLoadingModal();
+            });
+        }
+    </script>
+}

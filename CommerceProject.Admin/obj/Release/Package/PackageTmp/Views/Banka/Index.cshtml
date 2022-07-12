@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<h1 class="page-title">
+    @ViewBag.PageProperties.PageHeader
+</h1>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green-haze" href="/Banka/VirtualPosSave">
+            <div class="visual">
+                <i class="fa fa-adjust"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Sanal Pos İşlemleri</div>
+            </div>
+        </a>
+    </div>      
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="/Banka/AccountNumberSearch">
+            <div class="visual">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Hesap Numarası Arama</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="/Banka/AccountNumberSave">
+            <div class="visual">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Hesap Numarası Kayıt</div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="/Banka/InstallmentSearch">
+            <div class="visual">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Taksit Arama</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="/Banka/InstallmentSave">
+            <div class="visual">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Taksit Kayıt</div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="clearfix"></div>

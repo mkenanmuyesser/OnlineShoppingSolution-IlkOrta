@@ -1,0 +1,322 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "AccountNumberSave";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var hesapNumarasi = ViewBag.HesapNumarasi as HesapNumarasi;
+}
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Banka/AccountNumberSave">
+                        <i class="fa fa-save"></i> Hesap Numarası Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/AccountNumberSearch">
+                        <i class="fa fa-search"></i>  Hesap Numarası Arama
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/VirtualPosSave">
+                        <i class="fa fa-save"></i> Sanal Pos İşlemleri
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/InstallmentSearch">
+                        <i class="fa fa-search"></i> Taksit Arama
+                    </a>
+                </li>
+                <li>
+                    <a href="/Banka/InstallmentSave">
+                        <i class="fa fa-save"></i> Taksit Yeni Kayıt
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <form id="comform">
+                    <input id="hdnHesapNumarasiId" type="hidden" value="@hesapNumarasi.HesapNumarasiId" />
+
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dropDownBanka" class="control-label">Banka<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <select id="dropDownBanka" name="dropDownBanka" class="form-control select2" tabindex="1"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiIban" class="control-label">Iban<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiIban" name="txtHesapNumarasiIban" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Iban Giriniz..." value="@hesapNumarasi.Iban" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiSehir" class="control-label">Şehir<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiSehir" name="txtHesapNumarasiSehir" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Şehir Giriniz..." value="@hesapNumarasi.Sehir" tabindex="3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiSubeKodu" class="control-label">Şube Kodu<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiSubeKodu" name="txtHesapNumarasiSubeKodu" class="form-control input-sm maxlength-handler focus-sense" maxlength="100" placeholder="Şube Kodu Giriniz..." value="@hesapNumarasi.SubeKodu" tabindex="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiSubeAdi" class="control-label">Şube Adı<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiSubeAdi" name="txtHesapNumarasiSubeAdi" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Şube Adı Giriniz..." value="@hesapNumarasi.SubeAdi" tabindex="5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiHesapNo" class="control-label">Hesap No<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiHesapNo" name="txtHesapNumarasiHesapNo" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Hesap No Giriniz..." value="@hesapNumarasi.HesapNo" tabindex="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiHesapSahibi" class="control-label">Hesap Sahibi<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiHesapSahibi" name="txtHesapNumarasiHesapSahibi" class="form-control input-sm maxlength-handler" maxlength="100" placeholder="Hesap Sahibi Giriniz..." value="@hesapNumarasi.HesapSahibi" tabindex="7">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtHesapNumarasiSira" name="txtHesapNumarasiSira" class="form-control input-sm focus-sense" value="@hesapNumarasi.Sira" tabindex="8">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">                           
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtHesapNumarasiAktifMi" class="control-label">Aktif mi?</label>
+                                    <div class="icheck-inline">
+                                        <input id="txtHesapNumarasiAktifMi" name="txtHesapNumarasiAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(hesapNumarasi.HesapNumarasiId > 0 ? (hesapNumarasi.AktifMi ? "checked" : "") : "checked") tabindex="9">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                @if (hesapNumarasi.HesapNumarasiId == 0)
+                                {
+                                    <button type="submit" class="btn blue" tabindex="10">
+                                        Kaydet
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn yellow" tabindex="10">
+                                        Güncelle
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                }
+                                <a href="/Banka/AccountNumberSearch" class="btn red" tabindex="11">
+                                    İptal
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script type="text/javascript">
+        var bankaListesi = @Html.Raw(Json.Encode(ViewBag.BankaListesi))
+
+        $(document).ready(function () {
+            $('#dropDownBanka').select2({
+                placeholder: "Banka Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: bankaListesi
+            }).val('').trigger('change');
+
+            @if(hesapNumarasi != null && hesapNumarasi.BankaId > 0)
+            {
+                @: $('#dropDownBanka').val('@(hesapNumarasi.BankaId)').trigger('change');
+            }
+
+            $("#txtHesapNumarasiSira").inputmask('99', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00'
+            });
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    dropDownBanka: {
+                        required: true
+                    },
+                    txtHesapNumarasiIban: {
+                        maxlength: 100,
+                        required: true
+                    },
+                    txtHesapNumarasiSehir: {
+                        maxlength: 100,
+                        required: true
+                    },
+                    txtHesapNumarasiSubeKodu: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    },
+                    txtHesapNumarasiSubeAdi: {
+                        maxlength: 100,
+                        required: true
+                    },
+                    txtHesapNumarasiHesapNo: {
+                        maxlength: 100,
+                        required: true
+                    },
+                    txtHesapNumarasiHesapSahibi: {
+                        maxlength: 100,
+                        required: true
+                    },
+                    txtHesapNumarasiSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function () {
+                    kaydet();
+                },
+            });
+        });
+
+        function kaydet() {
+            var data = {
+                HesapNumarasiId: $('#hdnHesapNumarasiId').val(),
+                BankaId: ($('#dropDownBanka').val() != '' && $('#dropDownBanka').val() != null) ? $('#dropDownBanka').val() : 0,
+                Iban: $('#txtHesapNumarasiIban').val(),
+                Sehir: $('#txtHesapNumarasiSehir').val(),
+                SubeKodu: $('#txtHesapNumarasiSubeKodu').val(),
+                SubeAdi: $('#txtHesapNumarasiSubeAdi').val(),
+                HesapNo: $('#txtHesapNumarasiHesapNo').val(),
+                HesapSahibi: $('#txtHesapNumarasiHesapSahibi').val(),
+                Sira: parseInt($('#txtHesapNumarasiSira').val()),
+                AktifMi: $('#txtHesapNumarasiAktifMi').is(":checked") ? true : false
+            };
+
+            $.ajax({
+                url: '/Banka/HesapNumarasiKaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Banka/AccountNumberSave/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

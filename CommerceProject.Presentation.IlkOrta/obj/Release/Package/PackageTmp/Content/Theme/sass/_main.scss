@@ -1,0 +1,103 @@
+/******************************************************************************
+  Main
+*******************************************************************************/
+#main {
+  padding: 80px 0;
+  
+  &.no-padding {
+    padding: 0;
+  }
+}
+.page-header {
+  border-bottom: 1px solid #e1e1e1;
+  margin: 0 0 80px;
+  padding: 0;
+  
+  .title {
+    font-weight: normal;
+    margin: -4px 0 18px;
+    padding: 0;
+    position: relative;
+  }
+  .container {
+    position: relative;
+    
+    &:before {
+      background: #1e1e1e;
+      bottom: 0px;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 15px;
+      margin: 0 0 -1px;
+      position: absolute;
+      width: 40px;
+    }
+  }
+  .page-description {
+    padding: 0 0 18px;
+  }
+}
+.title-box {
+  border-bottom-width: 1px;
+  margin-bottom: 40px;
+  position: relative;
+  
+  &:before {
+    background: #1e1e1e;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    margin: 0 0 -1px;
+    position: absolute;
+    width: 40px;
+  }
+  &.text-right:before {
+    left: auto;
+    right: 0;
+  }
+  &.text-center:before {
+    left: 50%;
+    margin-left: -20px;
+  }
+  .title {
+    color: #7f7f7f;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 0 12px 0;
+    padding: 14px 0 0;
+  }
+  h1.title,
+  .h1.title {
+    font-size: 24px;
+  }
+  .btn {
+    font-size: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+    .glyphicon {
+      margin: -1px 0 0 3px;
+    }
+  }
+  &.title-white .title {
+    color: #fff;
+  }
+}
+.title-box.no-margin,
+.no-margin {
+  margin-bottom: 0 !important;
+}
+.title-box.title-white,
+.page-header.white {
+  border-color: rgba(255,255,255,.3);
+}
+.title-box.title-white:before,
+.page-header.white .container:before {
+  background: #fff;
+}

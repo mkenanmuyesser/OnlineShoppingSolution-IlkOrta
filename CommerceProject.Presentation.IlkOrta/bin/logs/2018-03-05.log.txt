@@ -1,0 +1,3 @@
+2018-03-05 20:48:13.1339|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--Count must have a non-negative value.
+Parameter name: count 
+2018-03-05 21:27:49.9914|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|25|KenanBusinessPC--C:\Programs\CommerceProject\CommerceProject.Presentation.IlkOrta\Views\Arama\Index.cshtml(75): error CS0103: The name 'paket' does not exist in the current context 

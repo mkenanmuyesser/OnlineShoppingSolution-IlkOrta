@@ -1,0 +1,605 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<div class="modal fade" id="rolModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Roller</h4>
+            </div>
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tableRoller" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="70%">Rol Adı</th>
+                                        <th width="30%">Aktif mi?</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red-haze" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet light bordered blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Kullanici/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-filter font-dark"></i>
+                    <span class="caption-subject font-dark bold">Filtreleme Kriterleri</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse" data-original-title="Genişlet / Daralt" title="Genişlet / Daralt"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form id="comform">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="txtKullaniciAdi" class="control-label">Kullanıcı Adı</label>
+                                    <input id="txtKullaniciAdi" class="form-control input-sm" placeholder="Kullanıcı Adı Giriniz..." tabindex="1">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="txtKullaniciSoyadi" class="control-label">Kullanıcı Soyadı</label>
+                                    <input id="txtKullaniciSoyadi" class="form-control input-sm" placeholder="Kullanıcı Soyadı Giriniz..." tabindex="2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtKullaniciEposta" class="control-label">Eposta</label>
+                                    <div class="input-icon right">
+                                        <i class="fa"></i>
+                                        <input id="txtKullaniciEposta" class="form-control input-sm" placeholder="Eposta Giriniz..." tabindex="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Üyelik Tarihi</label>
+                                    <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;padding-bottom:15px !important;">
+                                        <div class="col-md-6" style="padding-left:0px !important;">
+                                            <div id="dateTimeUyelikBaslangic" class="input-group date" data-provide="datepicker">
+                                                <input type="text" class="form-control" placeholder="Başlangıç Tarihi" tabindex="4">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding-right:0px !important;">
+                                            <div id="dateTimeUyelikBitis" class="input-group date" data-provide="datepicker">
+                                                <input type="text" class="form-control" placeholder="Bitiş Tarihi" tabindex="5">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Son Giriş Tarihi</label>
+                                    <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;padding-bottom:15px !important;">
+                                        <div class="col-md-6" style="padding-left:0px !important;">
+                                            <div id="dateTimeSonGirisBaslangic" class="input-group date" data-provide="datepicker">
+                                                <input type="text" class="form-control" placeholder="Başlangıç Tarihi" tabindex="6">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding-right:0px !important;">
+                                            <div id="dateTimeSonGirisBitis" class="input-group date" data-provide="datepicker">
+                                                <input type="text" class="form-control" placeholder="Bitiş Tarihi" tabindex="7">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Rol</label>
+                                    <select id="dropDownRol" class="form-control select2" tabindex="8"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Aktif mi?</label>
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label>
+                                                <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="2"> Tümü
+                                            </label>
+                                            <label>
+                                                <input type="radio" data-radio="iradio_square-aero" name="rdAktif" checked class="icheck" value="1"> Aktif
+                                            </label>
+                                            <label>
+                                                <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="0"> Pasif
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="button" class="btn blue-madison" onclick="javascript: ara()" tabindex="9">
+                                    Ara
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button type="button" class="btn green-meadow" onclick="javascript: temizle()" tabindex="10">
+                                    Temizle
+                                    <i class="fa fa-recycle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="fa fa-list-ul font-dark"></i>
+                    <span class="caption-subject bold">Sonuç Listesi</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="box">
+                    <div class="box-header">
+                        <div id="boxTools" class="box-tools" style="display:none;">
+                            <div class="input-group pull-left">
+                                <input type="hidden" id="dropDownPagingSize" class="form-control select2" style="width: 100px;" value="5" />
+                            </div>
+                            <div class="input-group pull-right">
+                                <button type="button" class="btn btn-xs green-stripe pull-right" style="margin-right:10px;" onclick="javascript: excelRaporuAl();"><i class="fa fa-file-excel-o"></i>Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="tableKullanici" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">Adı Soyadı</th>
+                                        <th width="15%">Eposta</th>
+                                        <th width="10%">Şirket</th>
+                                        <th width="15%">Üyelik Tarihi</th>
+                                        <th width="15%">Son Giriş Tarihi</th>
+                                        <th width="5%">Roller</th>
+                                        <th width="10%">Aktif mi?</th>
+                                        <th width="10%">İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div id="footerInfo" class="row" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="input-group pull-left">
+                                    <p id="tableInfo" style="color: #6f6f6f;font-size: 12px;"></p>
+                                </div>
+                                <div class="input-group pull-right">
+                                    <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script id="rol-row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${RolAdi}</td>
+            <td>
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${Adi} ${Soyadi}</td>
+            <td>${Eposta}</td>
+            <td>${Sirket}</td>
+            <td>${UyelikTarihi}</td>
+            <td>${SonGirisTarihi}</td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: kullaniciRolGoster('${KullaniciId}', false);" class="btn btn-xs blue" data-toggle="tooltip" data-placement="top" title="Rolleri Göster">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <div class="icheck-inline">
+                        {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                        {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                        {{/if}}
+                    </div>
+                </div>
+                    
+            </td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: sil('${KullaniciId}');" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                    <a href="/Kullanici/Save/${KullaniciId}" class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var rolListesi = @Html.Raw(Json.Encode(ViewBag.RolListesi))
+
+        $(document).ready(function () {
+            $('.input-group.date').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+
+            $('#dropDownRol').select2({
+                placeholder: "Rol Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: rolListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            $('#dropDownPagingSize').select2({
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: [
+                    { id: 5, text: 5 },
+                    { id: 10, text: 10 },
+                    { id: 20, text: 20 },
+                    { id: 50, text: 50 }
+                ]
+            }).on('select2:select', function (e) {
+                ara(1, $('#dropDownPagingSize').val());
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    ara(pageNum, pageCount);
+                }
+            });
+        }
+
+        function validateEmail(email) {
+          var re = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(email);
+        }
+
+        function ara(pageIndex, pageCount) {
+            if ($('#dateTimeUyelikBaslangic').datepicker('getDate') != '' && $('#dateTimeUyelikBitis').datepicker('getDate')) {
+                if ($('#dateTimeUyelikBaslangic').datepicker('getDate') > $('#dateTimeUyelikBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            if ($('#dateTimeSonGirisBaslangic').datepicker('getDate') != '' && $('#dateTimeSonGirisBitis').datepicker('getDate')) {
+                if ($('#dateTimeSonGirisBaslangic').datepicker('getDate') > $('#dateTimeSonGirisBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var emailIsValid = true;
+
+            if ($("#txtKullaniciEposta").val() != '') {
+                var email = $("#txtKullaniciEposta").val();
+                if (validateEmail(email)) {
+                    $("#txtKullaniciEposta").parent().find('i').removeClass('fa-warning');
+                    $("#txtKullaniciEposta").parent().parent().removeClass('has-error');
+                } else {
+                    $("#txtKullaniciEposta").parent().find('i').addClass('fa-warning');
+                    $("#txtKullaniciEposta").parent().parent().addClass('has-error');
+                    emailIsValid = false;
+                }
+            }
+
+            if (emailIsValid) {
+                $("#txtKullaniciEposta").parent().find('i').removeClass('fa-warning');
+                $("#txtKullaniciEposta").parent().parent().removeClass('has-error');
+
+                pageIndex = pageIndex == null ? 1 : pageIndex;
+                pageCount = pageCount == null ? parseInt($('#dropDownPagingSize').val()) : pageCount;
+
+                $.ajax({
+                    url: '/Kullanici/Ara',
+                    data: {
+                        'adi': $('#txtKullaniciAdi').val(),
+                        'soyadi': $('#txtKullaniciSoyadi').val(),
+                        'eposta': $('#txtKullaniciEposta').val(),
+                        'uyelikBaslangicTarihi': $('#dateTimeUyelikBaslangic').find('input').val() != '' ? $('#dateTimeUyelikBaslangic').datepicker('getDate').toUTCString() : null,
+                        'uyelikBitisTarihi': $('#dateTimeUyelikBitis').find('input').val() != '' ? $('#dateTimeUyelikBitis').datepicker('getDate').toUTCString() : null,
+                        'sonGirisBaslangicTarihi': $('#dateTimeSonGirisBaslangic').find('input').val() != '' ? $('#dateTimeSonGirisBaslangic').datepicker('getDate').toUTCString() : null,
+                        'sonGirisBitisTarihi': $('#dateTimeSonGirisBitis').find('input').val() != '' ? $('#dateTimeSonGirisBitis').datepicker('getDate').toUTCString() : null,
+                        'rolId': ($('#dropDownRol').val() != null && $('#dropDownRol').val() != '') ? parseInt($('#dropDownRol').val()) : 0,
+                        'aktiflik': parseInt($('input[name=rdAktif]:checked').val()),
+                        'sayfaSayisi': pageCount,
+                        'sayfaSirasi': pageIndex
+                    },
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+
+                        $('#tableKullanici tbody').children().remove();
+                        $('#row').tmpl(result.sonucListesi).appendTo('#tableKullanici tbody');
+
+                        $('#tableKullanici .make-switch').bootstrapSwitch();
+                        $('[data-toggle="tooltip"]').tooltip();
+
+                        // table info
+                        var txt = '';
+                        if (result.toplamKayitSayisi > 0) {
+                            var firstPart = ((result.sayfaSirasi - 1) * (result.sayfaSayisi) + 1);
+                            var secondPart = (result.sayfaSirasi * result.sayfaSayisi) > result.toplamKayitSayisi ? result.toplamKayitSayisi : (result.sayfaSirasi * result.sayfaSayisi);
+                            txt = 'Toplam ' + result.toplamKayitSayisi + ' kayıttan ' + firstPart + '-' + secondPart + ' gösteriliyor.';
+
+                            $('#boxTools').show();
+                            $('#footerInfo').show();
+                        }
+                        else {
+                            txt = 'Hiç kayıt bulunamadı.';
+
+                            $('#boxTools').hide();
+                            $('#footerInfo').hide();
+                        }
+                        $('#tableInfo').text(txt);
+
+                        paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            }
+        }
+
+        function temizle() {
+            $('#txtKullaniciAdi').val('');
+            $('#txtKullaniciSoyadi').val('');
+            $('#txtKullaniciEposta').val('');
+            $('#dateTimeUyelikBaslangic').data('datepicker').setDate(null);
+            $('#dateTimeUyelikBitis').data('datepicker').setDate(null);
+            $('#dateTimeSonGirisBaslangic').data('datepicker').setDate(null);
+            $('#dateTimeSonGirisBitis').data('datepicker').setDate(null);
+            $('#dropDownRol').val('').trigger('change');
+        }
+
+        function sil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $.ajax({
+                    url: '/Kullanici/Sil/' + id,
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result) {
+                            callAlert('success', 'Silme işlemi başarılı.');
+                            ara();
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+
+        function excelRaporuAl() {
+            if ($('#dateTimeUyelikBaslangic').datepicker('getDate') != '' && $('#dateTimeUyelikBitis').datepicker('getDate')) {
+                if ($('#dateTimeUyelikBaslangic').datepicker('getDate') > $('#dateTimeUyelikBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            if ($('#dateTimeSonGirisBaslangic').datepicker('getDate') != '' && $('#dateTimeSonGirisBitis').datepicker('getDate')) {
+                if ($('#dateTimeSonGirisBaslangic').datepicker('getDate') > $('#dateTimeSonGirisBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var emailIsValid = true;
+
+            if ($("#txtKullaniciEposta").val() != '') {
+                var email = $("#txtKullaniciEposta").val();
+                if (validateEmail(email)) {
+                    $("#txtKullaniciEposta").parent().find('i').removeClass('fa-warning');
+                    $("#txtKullaniciEposta").parent().parent().removeClass('has-error');
+                } else {
+                    $("#txtKullaniciEposta").parent().find('i').addClass('fa-warning');
+                    $("#txtKullaniciEposta").parent().parent().addClass('has-error');
+                    emailIsValid = false;
+                }
+            }
+
+            if (emailIsValid) {
+                var adi = $('#txtKullaniciAdi').val();
+                var soyadi = $('#txtKullaniciSoyadi').val();
+                var eposta = $('#txtKullaniciEposta').val();
+                var uyelikBaslangicTarihi = $('#dateTimeUyelikBaslangic').find('input').val() != '' ? $('#dateTimeUyelikBaslangic').datepicker('getDate').toUTCString() : null;
+                var uyelikBitisTarihi = $('#dateTimeUyelikBitis').find('input').val() != '' ? $('#dateTimeUyelikBitis').datepicker('getDate').toUTCString() : null;
+                var sonGirisBaslangicTarihi = $('#dateTimeSonGirisBaslangic').find('input').val() != '' ? $('#dateTimeSonGirisBaslangic').datepicker('getDate').toUTCString() : null;
+                var sonGirisBitisTarihi = $('#dateTimeSonGirisBitis').find('input').val() != '' ? $('#dateTimeSonGirisBitis').datepicker('getDate').toUTCString() : null;
+                var rolId = ($('#dropDownRol').val() != null && $('#dropDownRol').val() != '') ? parseInt($('#dropDownRol').val()) : 0;
+                var aktiflik = parseInt($('input[name=rdAktif]:checked').val());
+
+                window.location.href = '/Kullanici/ExcelRaporuAl?adi=' + adi
+                    + '&soyadi=' + soyadi
+                    + '&eposta=' + eposta
+                    + '&uyelikBaslangicTarihi=' + uyelikBaslangicTarihi
+                    + '&uyelikBitisTarihi=' + uyelikBitisTarihi
+                    + '&sonGirisBaslangicTarihi=' + sonGirisBaslangicTarihi
+                    + '&sonGirisBitisTarihi=' + sonGirisBitisTarihi
+                    + '&rolId=' + rolId
+                    + '&aktiflik=' + aktiflik
+            }
+        }
+
+        function kullaniciRolGoster(id) {
+            $('#tableRoller tbody').children().remove();
+            $('#tableRoller tbody').empty();
+
+            $.ajax({
+                url: '/Kullanici/KullaniciyaAitRolleriGetir',
+                data: {
+                    'id': id
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    
+                    $('#rol-row').tmpl(result.rolListesi).appendTo('#tableRoller tbody');
+
+                    $('#tableRoller .make-switch').bootstrapSwitch();
+
+                    $('#rolModal').modal('show');
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

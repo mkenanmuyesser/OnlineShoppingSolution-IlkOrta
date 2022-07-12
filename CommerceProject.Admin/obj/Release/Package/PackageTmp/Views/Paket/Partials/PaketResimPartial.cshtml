@@ -1,0 +1,91 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var paketResimler = ViewBag.PaketResimler as List<PaketResim>;
+}
+
+<style type="text/css">
+    .cbp-popup-wrap.cbp-popup-lightbox.cbp-popup-transitionend {
+        z-index: 9999999999;
+    }
+</style>
+
+<div class="portfolio-content">
+
+    @if (paketResimler != null && paketResimler.Count > 0)
+    {
+        <div id="js-grid-full-width" class="cbp">
+
+            @{
+                foreach (var resim in paketResimler)
+                {
+                    <div class="cbp-item">
+                        <a href="@resim.ResimYolu" class="cbp-caption cbp-lightbox" data-title="@resim.Aciklama">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="@resim.ResimYolu" alt="" style="width:280px !important;">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">@resim.Aciklama</div>
+                                        <div class="cbp-l-caption-desc">@resim.Tarih.ToString("dd.MM.yyyy")</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+
+        </div>
+    }
+    else
+    {
+        <p>Resim bulunamadı.</p>
+    }
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#js-grid-full-width').cubeportfolio({
+                //filters: '#js-filters-full-width',
+                //loadMore: '#js-loadMore-full-width',
+                //loadMoreAction: 'auto',
+                layoutMode: 'grid',
+                //sortToPreventGaps: true,
+                defaultFilter: '*',
+                animationType: 'rotateSides',
+                gapHorizontal: 10,
+                gapVertical: 10,
+                gridAdjustment: 'responsive',
+                mediaQueries: [{
+                    width: 1500,
+                    cols: 5
+                }, {
+                    width: 1100,
+                    cols: 4
+                }, {
+                    width: 800,
+                    cols: 3
+                }, {
+                    width: 480,
+                    cols: 2
+                }, {
+                    width: 320,
+                    cols: 1
+                }],
+                caption: 'zoom',
+                displayType: 'sequentially',
+                displayTypeSpeed: 200,
+
+                // lightbox
+                lightboxDelegate: '.cbp-lightbox',
+                lightboxGallery: true,
+                lightboxTitleSrc: 'data-title',
+                lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} / {{total}}</div>',
+            });
+        }, 3000);
+    });
+</script>

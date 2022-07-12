@@ -1,0 +1,54 @@
+/******************************************************************************
+  Galleries
+*******************************************************************************/
+.gallery .images-box {
+  margin-bottom: 30px;
+}
+.gallery-images {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  display: block;
+  line-height: 0;
+  max-width: 100%;
+  position: relative;
+  
+  img {
+    border-radius: 5px;
+  }
+  .bg-images {
+    border-radius: 4px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    
+    i {
+      margin: 5px 0 0 5px;
+      
+      &:before {
+        color: #fff;
+        font-size: 20px;
+        -webkit-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+      }
+    }
+  }
+  &:hover {
+    > .bg-images {
+      background: #fff;
+      background: rgba(255,255,255,.7);
+      -webkit-transition: all .2s ease-out;
+      transition: all .2s ease-out;
+    }
+    .bg-images i:before {
+      color: #000;
+      font-size: 30px;
+      -webkit-transition: all .2s ease-out;
+      transition: all .2s ease-out;
+    }
+  }
+}

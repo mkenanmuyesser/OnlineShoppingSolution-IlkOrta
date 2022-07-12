@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Yorum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main" class="page ">
+    <header class="page-header">
+        <div class="container">
+            <h1 class="title">Yorumlarım</h1>
+        </div>
+    </header>
+    <div class="container"  data-appear-animation="fadeIn">
+        <div class="row">
+            <article class="col-sm-9 col-md-9 content">
+                <div id="divYorum" class="info-box">
+                    <div class="table-box text-small">
+                        <table id="tableYorum" class="table table-hover table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr class="first last">
+                                    <th>Urun No</th>
+                                    <th>Tarih</th>
+                                    <th>Yorum</th>
+                                    <th>Durum</th>
+                                    <th class="text-center">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div id="footerInfo" class="row" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="input-group pull-left">
+                                    <p id="tableInfo" style="color: #6f6f6f;font-size: 12px;"></p>
+                                </div>
+                                <div class="input-group pull-right">
+                                    <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </article>
+
+            @Html.Partial("~/Views/Kullanici/Partials/KullaniciMenuPartial.cshtml")
+        </div>
+    </div>
+</section>
+
+@section js{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>#${UrunNo}</td>
+            <td>${Tarih}</td>
+            <td>${Yorum}</td>
+            {{if GosterilsinMi}}
+            <td class="text-success"><em>Onaylandı</em></td>
+            {{else}}
+            <td class="text-danger"><em>İnceleniyor</em></td>
+            {{/if}}
+            <td>
+                <div class="text-center last">
+                    <div class="btn-group">
+                        <a href="javascript: sil('${UrunYorumId}');" class="btn btn-sm btn-danger" title="Sil">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                        <a href="/Urun/Detay/${UrunNo}" class="btn btn-sm btn-success" title="Ürüne Git">
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>                      
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ara();
+        });
+
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    ara(pageNum, pageCount);
+                }
+            });
+        }
+
+        function ara(pageIndex, pageCount) {
+            pageIndex = pageIndex == null ? 1 : pageIndex;
+            pageCount = pageCount == null ? 5 : pageCount;
+
+            $.ajax({
+                url: '/Kullanici/YorumAra',
+                data: {
+                    'sayfaSayisi': pageCount,
+                    'sayfaSirasi': pageIndex
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal('divYorum');
+                },
+                success: function (result) {
+                    hideLoadingModal('divYorum');
+
+                    $('#tableYorum tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tableYorum tbody');
+
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // table info
+                    var txt = '';
+                    if (result.toplamKayitSayisi > 0) {
+                        var firstPart = ((result.sayfaSirasi - 1) * (result.sayfaSayisi) + 1);
+                        var secondPart = (result.sayfaSirasi * result.sayfaSayisi) > result.toplamKayitSayisi ? result.toplamKayitSayisi : (result.sayfaSirasi * result.sayfaSayisi);
+                        txt = 'Toplam ' + result.toplamKayitSayisi + ' kayıttan ' + firstPart + '-' + secondPart + ' gösteriliyor.';
+
+                        $('#boxTools').show();
+                        $('#footerInfo').show();
+                    }
+                    else {
+                        txt = 'Hiç kayıt bulunamadı.';
+
+                        $('#boxTools').hide();
+                        $('#footerInfo').hide();
+                    }
+                    $('#tableInfo').text(txt);
+
+                    paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                },
+                error: function () {
+                    hideLoadingModal('divYorum');
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function sil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+
+                $.ajax({
+                    url: '/Kullanici/YorumSil/' + id,
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal('divYorum');
+                    },
+                    success: function (result) {
+                        hideLoadingModal('divYorum');
+                        if (result) {
+                            callAlert('success', 'Silme işlemi başarılı.');
+                            ara();
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal('divYorum');
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+    </script>
+}

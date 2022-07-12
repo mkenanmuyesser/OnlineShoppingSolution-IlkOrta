@@ -1,0 +1,17 @@
+﻿@model CommerceProject.Business.Custom.KategoriTreeNodeDataObj
+
+<li id="@Model.KategoriId" data-text="@Model.KategoriAdi">
+    <a href="javascript:;">@Model.KategoriAdi</a>
+
+    @{
+        if (Model.Children.Count > 0)
+        {
+            foreach (var child in Model.Children)
+            {
+                <ul>
+                    @{Html.RenderAction("KategoriNodePartial", "Kategori", child);}
+                </ul>
+            }
+        }
+    }
+</li>

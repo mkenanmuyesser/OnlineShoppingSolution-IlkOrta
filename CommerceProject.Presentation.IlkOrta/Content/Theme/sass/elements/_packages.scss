@@ -1,0 +1,88 @@
+/******************************************************************************
+  Packages
+*******************************************************************************/
+.package {
+  background: #f7f7f7;
+  margin: 0 auto 40px;
+  max-width: 370px;
+  
+  .title {
+    line-height: 32px;
+    padding: 20px 20px 15px;
+    
+    a {
+      color: #1e1e1e;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 32px;
+      text-decoration: none;
+    }
+  }
+  .price-box {
+    font-size: 12px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 0 20px 20px;
+    
+    .icon {
+      color: #505050;
+      height: 96px;
+      text-align: center;
+      width: 96px;
+      
+      i {
+        background: none;
+        font-size: 50px;
+        height: auto;
+        line-height: 100px;
+        margin: 0;
+        width: auto
+      }
+    }
+    .description {
+      margin: 0 120px 17px 0;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1;
+      margin: 7px 0 0;
+      
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+  .bottom-box {
+    border-top-width: 1px;
+    overflow: hidden;
+    padding: 19px 19px 20px;
+    
+    .more {
+      color: #7f7f7f;
+      display: block;
+      float: left;
+      font-size: 12px;
+      line-height: 1;
+      text-decoration: none;
+      -webkit-transition: opacity .2s linear;
+      transition: opacity .2s linear;
+      
+      &:hover {
+        opacity: .65;
+        filter: alpha(opacity=65);
+        -webkit-transition: opacity .2s linear;
+        transition: opacity .2s linear;
+      }
+      span {
+        font-size: 17px;
+        line-height: 12px;
+        margin: 0 0 0 3px;
+        vertical-align: top;
+      }
+    }
+    .rating-box {
+      float: right;
+    }
+  }
+}

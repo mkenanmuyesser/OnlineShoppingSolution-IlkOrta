@@ -1,0 +1,87 @@
+﻿<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-bar-chart font-dark"></i>
+            <span class="caption-subject bold">Chart</span>
+            <span class="caption-helper">Sıralamaya göre <span class="bold">İLK 20</span> ürün getiriliyor...</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div id="chartRaporUrunSatis" class="chart" style="height: 400px;"></div>
+        <div class="well margin-top-20">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="text-left">Üst Yarıçap:</label>
+                    <input class="chartRaporUrunSatis_input" data-property="topRadius" type="range" min="0" max="1.5" value="1" step="0.01" />
+                </div>
+                <div class="col-sm-4">
+                    <label class="text-left">Açı:</label>
+                    <input class="chartRaporUrunSatis_input" data-property="angle" type="range" min="0" max="89" value="30" step="1" />
+                </div>
+                <div class="col-sm-4">
+                    <label class="text-left">Derinlik:</label>
+                    <input class="chartRaporUrunSatis_input" data-property="depth3D" type="range" min="1" max="120" value="40" step="1" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var chartData = @Html.Raw(Json.Encode(ViewBag.ChartData))
+
+    $(document).ready(function () {
+        var chart = AmCharts.makeChart("chartRaporUrunSatis", {
+            "theme": "light",
+            "type": "serial",
+            "startDuration": 2,
+
+            "fontFamily": 'Open Sans',
+
+            "color": '#888',
+
+            "dataProvider": chartData,
+            "valueAxes": [{
+                "position": "left",
+                "axisAlpha": 0,
+                "gridAlpha": 0
+            }],
+            "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]] adet</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "adet"
+            }],
+            "depth3D": 40,
+            "angle": 30,
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "urun",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "gridAlpha": 0
+
+            }
+        });
+
+        $('.chartRaporUrunSatis_input').off().on('input change', function () {
+            var property = jQuery(this).data('property');
+            var target = chart;
+            chart.startDuration = 0;
+
+            if (property == 'topRadius') {
+                target = chart.graphs[0];
+            }
+
+            target[property] = this.value;
+            chart.validateNow();
+        });
+    });
+</script>

@@ -1,0 +1,1 @@
+2018-02-19 16:58:53.8118|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--An error occurred when trying to create a controller of type 'CommerceProject.Presentation.IlkOrta.Controllers.HomeController'. Make sure that the controller has a parameterless public constructor. 

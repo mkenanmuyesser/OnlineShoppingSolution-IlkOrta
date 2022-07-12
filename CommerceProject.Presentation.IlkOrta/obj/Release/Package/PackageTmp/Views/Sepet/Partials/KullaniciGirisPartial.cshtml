@@ -1,0 +1,34 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var kullanici = ViewBag.Kullanici as Kullanici;
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;  
+}
+
+@if (kullanici == null)
+{
+    if (icerikAyar.MisafirSatinAlmaAktifMi)
+    {
+        <div class="col-sm-4 col-md-4 bottom-padding-mobile">
+            <h3 class="title">Üye girişi yapınız veya üye olmadan devam ediniz.</h3>
+            <p>Üye olun ve şu kolaylıklardan yararlanın :</p>
+            <ul>
+                <li>Hızlı ve kolay ödeme</li>
+                <li>Sipariş durumunuzu ve geçmiş siparişlerinizi görebilme</li>
+                <li>Gönderim durumunuzu takip edebilme</li>
+            </ul>
+        </div>
+    }
+
+    <div class="col-sm-8 col-md-8">
+        @Html.Partial("~/Views/Kullanici/Partials/UyeGirisPartial.cshtml")
+    </div>
+}
+else
+{
+    //ad soyad girilmediyse ne yapılacak? buraya bak
+
+    <div class="col-sm-12 col-md-12 bottom-padding-mobile">
+        <p>@Html.Raw("Hoşgeldiniz " + kullanici.KullaniciDetay.Ad + " " + kullanici.KullaniciDetay.Soyad)</p>
+    </div>
+}

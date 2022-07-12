@@ -1,0 +1,1 @@
+2018-02-10 20:34:30.1486|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--Path '/Views/Kullanici/Partials/KullaniciMenuPartial.cshtml' was not found. 

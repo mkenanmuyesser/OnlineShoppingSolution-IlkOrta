@@ -1,0 +1,103 @@
+/******************************************************************************
+  Boxed
+*******************************************************************************/
+.boxed {
+  background: #fff;
+  margin: 0 auto;
+  max-width: 1300px;
+  padding-top: 20px;
+  @media (max-width: 1300px) {
+    padding-top: 0;
+  }
+  
+  .page-box {
+    background: #fff;
+    -webkit-box-shadow: rgba(0,0,0,0.6) 0px 0px 18px;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  &.loaded {
+    .page-box {
+      overflow: visible;
+    }
+  }
+  &.fixed-header {
+    .header {
+      margin-top: 0;
+      position: absolute;
+    }
+    &.fixed {
+      .header {
+        position: fixed;
+        top: 0;
+      }
+      &.fixed-top {
+        #top-box {
+          position: fixed;
+          top: 0;
+        }
+        .header {
+          top: 40px;
+        }
+      }
+    }
+    &.hidden-top #top-box {
+      margin-bottom: 104px;
+    }
+  }
+  &.hidden-top {
+    .page-box {
+      padding-top: 0;
+      transition: none;
+    }
+    #top-box {
+      left: 0;
+      margin-top: 0;
+      position: static;
+      transition: none;
+    }
+    .header {
+      top: 40px;
+    }
+    &.fixed .header {
+      top: 0;
+    }
+  }
+  .header-wrapper {
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,.15);
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    margin: 0 auto;
+    max-width: 1300px;
+  }
+  .top-box-wrapper {
+    margin: 0 auto;
+    max-width: 1300px;
+  }
+  .banner-set.banner-set-mini.banner-set-no-pagination .pagination {
+    display: inline-block !important;
+  }
+  .banner-set.banner-set-mini.banner-set-no-pagination .prev,
+  .banner-set.banner-set-mini.banner-set-no-pagination .next {
+    margin: 15px 0 0 !important;
+    position: static;
+  }
+  #footer {
+    min-width: 100%;
+    padding-bottom: 20px;
+    position: relative;
+    @media (max-width: 1300px) {
+      padding-bottom: 0;
+    }
+    
+    &.footer-two {
+      margin-bottom: 0;
+    }
+  }
+  @media (min-width: $media-md + 1) {
+    &.padding-top {
+      padding-top: 420px;
+    }
+  }
+}

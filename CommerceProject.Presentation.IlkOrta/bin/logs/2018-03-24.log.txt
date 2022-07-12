@@ -1,0 +1,88 @@
+2018-03-24 11:15:54.1418|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--DDDPost 
+2018-03-24 11:20:07.0369|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:11:21.7858|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:12:17.2072|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 12:18:14.6669|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--DDDPost 
+2018-03-24 12:22:49.6218|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:23:25.5493|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:23:33.1553|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 12:26:07.7886|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:26:39.4283|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:28:52.1003|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:29:19.5576|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:31:53.3221|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 12:32:48.2576|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:33:00.1954|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 12:35:49.5860|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|17|KenanBusinessPC--DDDPost 
+2018-03-24 12:36:13.5584|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:37:04.0825|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|17|KenanBusinessPC--DDDPost 
+2018-03-24 12:37:15.8969|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|16|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 12:38:14.7450|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|12|KenanBusinessPC--DDDPost 
+2018-03-24 12:43:07.8492|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|12|KenanBusinessPC--DDDPost 
+2018-03-24 12:46:28.0081|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 12:47:00.0228|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|12|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:47:55.1994|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|17|KenanBusinessPC--DDDPost 
+2018-03-24 12:48:48.5214|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 12:51:34.6684|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|12|KenanBusinessPC--DDDPost 
+2018-03-24 12:58:28.3319|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--DDDPost 
+2018-03-24 13:22:05.7735|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--DDDPost 
+2018-03-24 13:23:02.4117|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 13:24:55.8414|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--DDDPost 
+2018-03-24 13:25:42.7229|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--DDDOdemeOnay null bilgi 
+2018-03-24 13:57:13.9652|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|15|KenanBusinessPC--DDDPost 
+2018-03-24 13:57:42.0811|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 14:00:04.0494|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 14:00:54.5385|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 14:01:35.8011|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--DDDPost 
+2018-03-24 14:02:17.8510|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 14:02:54.8836|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--DDDPost 
+2018-03-24 14:03:30.3173|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 14:04:05.0529|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|21|KenanBusinessPC--DDDPost 
+2018-03-24 14:07:10.5844|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--DDDPost 
+2018-03-24 14:07:48.0986|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--DDDOdemeOnay : 1047 - 30825e1637bfb5 - Ödeme baþarýlý 
+2018-03-24 14:09:56.8637|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 14:10:34.1051|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|15|KenanBusinessPC--DDDPost 
+2018-03-24 14:11:56.8652|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--3d OdemeSonuc baþarýlý 
+2018-03-24 14:12:23.5598|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--The view 'Error' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Sepet/Error.aspx
+~/Views/Sepet/Error.ascx
+~/Views/Shared/Error.aspx
+~/Views/Shared/Error.ascx
+~/Views/Sepet/Error.cshtml
+~/Views/Sepet/Error.vbhtml
+~/Views/Shared/Error.cshtml
+~/Views/Shared/Error.vbhtml 
+2018-03-24 14:13:41.9412|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--Path '/Views/Sepet/Partials/SiparisOzetPartial.cshtml' was not found. 
+2018-03-24 14:17:09.8369|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|16|KenanBusinessPC--DDDPost 
+2018-03-24 14:17:48.2406|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 14:18:48.6913|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|13|KenanBusinessPC--DDDPost 
+2018-03-24 14:19:38.2426|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--DDDOdemeOnay : 1050 - 25635f7d6beddd - Ödeme baþarýlý 
+2018-03-24 18:07:38.7379|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--DDDPost 
+2018-03-24 18:10:25.3492|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 18:11:09.7733|Info|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|7|KenanBusinessPC--DDDPost 
+2018-03-24 18:18:06.4089|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 18:26:46.4088|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|9|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 
+2018-03-24 18:27:12.2293|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 18:33:13.6975|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|8|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 18:37:27.7536|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|14|KenanBusinessPC--The view 'Error' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Sepet/Error.aspx
+~/Views/Sepet/Error.ascx
+~/Views/Shared/Error.aspx
+~/Views/Shared/Error.ascx
+~/Views/Sepet/Error.cshtml
+~/Views/Sepet/Error.vbhtml
+~/Views/Shared/Error.cshtml
+~/Views/Shared/Error.vbhtml 
+2018-03-24 18:38:03.1351|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--The view 'Error' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Sepet/Error.aspx
+~/Views/Sepet/Error.ascx
+~/Views/Shared/Error.aspx
+~/Views/Shared/Error.ascx
+~/Views/Sepet/Error.cshtml
+~/Views/Sepet/Error.vbhtml
+~/Views/Shared/Error.cshtml
+~/Views/Shared/Error.vbhtml 
+2018-03-24 19:02:28.0809|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|5|KenanBusinessPC--OdemeSonuc : Taksitli islem yetkisi yok 
+2018-03-24 19:04:53.7874|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|11|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 19:09:29.7242|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc null bilgi 
+2018-03-24 19:26:27.8727|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|10|KenanBusinessPC--OdemeSonuc : CustomerIPAddress field must contain a valid ip address 

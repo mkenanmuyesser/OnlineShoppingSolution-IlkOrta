@@ -1,0 +1,145 @@
+/******************************************************************************
+  Icons
+*******************************************************************************/
+.icon {
+  background: none;
+  color: #1e1e1e;
+  display: inline-block;
+  font-size: 20px;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 0 4px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: top;
+  width: 32px;
+  
+  .fa {
+    width: 100%;
+  }
+  &.pull-left {
+    float: left;
+    margin-right: 10px;
+  }
+  &.pull-right {
+    float: right;
+    margin-left: 10px;
+  }
+  &.icon-24 {
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    width: 24px;
+  }
+  &.icon-40 {
+    font-size: 26px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+  }
+  &.icon-60 {
+    font-size: 32px;
+    height: 60px;
+    line-height: 60px;
+    width: 60px;
+  }
+  &.icon-100 {
+    font-size: 50px;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+  }
+  &.rounded {
+    border-radius: 3px;
+  }
+  &.circle {
+    border-radius: 400px;
+  }
+  &.border {
+    box-sizing: border-box;
+    border-width: 1px;
+  }
+  &.bg {
+    background-color: #f2f2f2;
+  }
+}
+.btn-icon .icon {
+  color: #fff;
+  font-size: 14px;
+  margin: 2px 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  width: auto;
+  
+  .fa {
+    width: inherit;
+  }
+}
+/* Livicons */
+.livicon {
+  display: inline-block;
+  line-height: inherit;
+  vertical-align: middle;
+  
+  svg {
+    vertical-align: top;
+  }
+  &.metro-bg {
+    box-sizing: content-box;
+    margin-bottom: 4px;
+    padding: 26px 25px 26px 27px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+.big-icon .livicon svg,
+.icon .livicon svg {
+  top: 25% !important;
+}
+.color {
+  &.icon {
+    color: #fff;
+    transition: background-color .2s linear;
+    
+    &:hover {
+      background-color: #000;
+    }
+  }
+  
+  &.icon-adn{background-color:#504e54;} 
+  &.icon-apple{background-color:#aeb5c5;} 
+  &.icon-android{background-color:#A5C63B;}  
+  &.icon-bitbucket,&.icon-bitbucket-square{background-color:#003366;} 
+  &.icon-bitcoin,&.icon-btc{background-color:#F7931A;} 
+  &.icon-css3{background-color:#1572B7;} 
+  &.icon-dribbble{background-color:#F46899;}  
+  &.icon-dropbox{background-color:#018BD3;}
+  &.icon-facebook,&.icon-facebook-square{background-color:#3C599F;}  
+  &.icon-flickr{background-color:#FF0084;}
+  &.icon-foursquare{background-color:#0086BE;}
+  &.icon-github,&.icon-github-alt,&.icon-github-square{background-color:#070709;} 
+  &.icon-google-plus,&.icon-google-plus-square{background-color:#CF3D2E;} 
+  &.icon-html5{background-color:#E54D26;}
+  &.icon-instagram{background-color:#A1755C;}
+  &.icon-linkedin,&.icon-linkedin-square{background-color:#0085AE;} 
+  &.icon-linux{background-color:#FBC002;}
+  &.icon-maxcdn{background-color:#F6AE1C;}
+  &.icon-pagelines{background-color:#241E20;color:#3984EA;}
+  &.icon-pinterest,&.icon-pinterest-square{background-color:#CC2127;} 
+  &.icon-renren{background-color:#025DAC;}
+  &.icon-skype{background-color:#01AEF2;}
+  &.icon-stack-exchange{background-color:#245590;}
+  &.icon-stack-overflow{background-color:#FF7300;}
+  &.icon-trello{background-color:#265A7F;}
+  &.icon-tumblr,&.icon-tumblr-square{background-color:#314E6C;} 
+  &.icon-twitter,&.icon-twitter-square{background-color:#32CCFE;} 
+  &.icon-vimeo-square{background-color:#229ACC;}
+  &.icon-vk{background-color:#375474;}
+  &.icon-weibo{background-color:#D72B2B;}
+  &.icon-windows{background-color:#12B6F3;}
+  &.icon-xing,&.icon-xing-square{background-color:#00555C;} 
+  &.icon-youtube,&.icon-youtube-play,&.icon-youtube-square{background-color:#C52F30;}
+}

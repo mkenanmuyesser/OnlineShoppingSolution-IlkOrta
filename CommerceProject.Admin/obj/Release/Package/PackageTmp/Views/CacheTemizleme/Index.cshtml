@@ -1,0 +1,147 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var cacheList = ViewBag.CacheList as List<Cache>;
+}
+
+<div class="portlet light bordered blue-soft">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-1">
+                                <label>
+                                    <input id="chkTumunuSec" type="checkbox" class="icheck" value="0"> <b>Tümünü Seç</b>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+
+                            <div class="col-md-3 col-md-offset-1">
+                                <div class="input-group">
+                                    <div class="icheck-list">
+                                        @foreach (var cache in cacheList)
+                                        {
+                                            if (cache.CacheId % 3 == 1)
+                                            {
+                                                <label>
+                                                    <input type="checkbox" class="icheck" value="@cache.CacheId"> @cache.Aciklama
+                                                </label>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-md-offset-1">
+                                <div class="input-group">
+                                    <div class="icheck-list">
+                                        @foreach (var cache in cacheList)
+                                        {
+                                            if (cache.CacheId % 3 == 2)
+                                            {
+                                                <label>
+                                                    <input type="checkbox" class="icheck" value="@cache.CacheId"> @cache.Aciklama
+                                                </label>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-md-offset-1">
+                                <div class="input-group">
+                                    <div class="icheck-list">
+                                        @foreach (var cache in cacheList)
+                                        {
+                                            if (cache.CacheId % 3 == 0)
+                                            {
+                                                <label>
+                                                    <input type="checkbox" class="icheck" value="@cache.CacheId"> @cache.Aciklama
+                                                </label>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="button" onclick="javascript: temizle();" class="btn green-meadow">
+                                    Temizle
+                                    <i class="fa fa-recycle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#chkTumunuSec').iCheck({
+                checkboxClass: 'icheckbox_square-purple'
+            }).on('ifChecked', function (event) {
+                $('.icheck').iCheck('check');
+            }).on('ifUnchecked', function (event) {
+                $('.icheck').iCheck('uncheck');
+            });
+        });
+
+        function temizle() {
+
+            var data = [];
+
+            $('.icheck').each(function () {
+                var id = parseInt($(this).val());
+
+                if ($(this).parent().hasClass('checked') && id != 0) {                  
+                    data.push(id);
+                }
+            });
+
+            $.ajax({
+                url: '/CacheTemizleme/Temizle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    if (result) {
+                        callAlert('success', 'Cache temizleme işlemi başarıyla tamamlandı.');
+                    }
+                    else {
+                        callAlert('error', 'Cache temizleme işlemi sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

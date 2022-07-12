@@ -1,0 +1,369 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "UrunDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var icerikAyar = ViewBag.IcerikAyar as IcerikAyar;
+    var kullanici = ViewBag.Kullanici as Kullanici;
+    var paket = ViewBag.PaketData as Paket;
+    var iliskiliUrunler = ViewBag.IliskiliUrunler as List<Urun>;
+    var bankalar = ViewBag.Bankalar as List<Banka>;
+}
+
+@section css
+{
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+          rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .price-old {
+            display: table-cell;
+        }
+    </style>
+}
+
+<input id="hdnPaketId" type="hidden" value="@paket.PaketId" />
+
+<div id="main" class="page">
+    <header class="page-header">
+        <div class="container">
+            <h3 class="title">@paket.Adi</h3>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <article class="content product-page col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="image-box">
+                            <span></span>
+                            @*<span class="sale top"></span>*@
+                            <div class="general-img" style="background-color:transparent !important">
+                                @if (paket.AnaResim == null)
+                                {
+                                    <img class='replace-2x' style="min-height:200px;" src='/Uploads/Product/resim_yok.png' data-zoom-image='/Uploads/Product/resim_yok.png' alt='' title='' />
+                                }
+                                else
+                                {
+                                    <img class="replace-2x" style="min-height:200px;" src="@paket.AnaResim.ResimYolu" data-zoom-image="@paket.AnaResim.ResimYolu" alt="" title="" />
+                                }
+                            </div>
+
+                            <div class="thumblist-box load">
+                                <a href="javascript:;" class="prev">
+                                    <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                    <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+				  </svg>
+                                </a>
+                                <a href="javascript:;" class="next">
+                                    <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                    <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+				  </svg>
+                                </a>
+
+                                <div class="thumblist-box load">
+                                    <a href="javascript:;" class="prev">
+                                        <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+				  </svg>
+                                    </a>
+                                    <a href="javascript:;" class="next">
+                                        <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                                        <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+				  </svg>
+                                    </a>
+
+                                    <div id="thumblist" class="thumblist">
+                                        @foreach (var paketResim in paket.PaketResim.Where(x => x.AktifMi).OrderBy(x => x.Sira))
+                                        {
+                                            <a class="active" href="javascript:;" data-image="@paketResim.ResimYolu" data-zoom-image="@Html.Raw(paketResim.ResimYolu)" style="background-color:white !important">
+                                                <img class="replace-2x" alt="" style="width:75px;" src="@paketResim.ResimYolu">
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-7 col-md-7">
+                        <div class="description">
+                            @paket.KisaAciklama
+                            <br />
+                            <span><strong>Paket Kodu : </strong> @paket.PaketKod</span>
+                            <br />
+                            <span><strong>Toplam Ürün Adedi : </strong> @paket.PaketUrun.Sum(x => x.Adet)</span>
+                            <br />
+                            @foreach (var paketNitelik in paket.PaketNitelik)
+                            {
+                                <span>
+                                    <strong>@paketNitelik.Nitelik.Adi : </strong>
+                                    @paketNitelik.NitelikDegeri
+                                </span>
+                                <br />
+                            }
+                        </div>
+
+                        <div class="availability-sku">
+                            <div><span><a id="spnIndirimMiktari" class="icon color circle icon-100 icon-youtube">%@paket.IndirimMiktari</a></span></div>
+                        </div>
+
+                        <div class="price-box">
+                            <span id="spnPriceOld" name="spnPriceOld" class="price-old">@string.Format("{0:N}", paket.EskiFiyat) <i class="fa fa-try"></i></span>
+                            <span id="spnPrice" name="spnPrice" class="price">@string.Format("{0:N}", paket.Fiyat) <i class="fa fa-try"></i></span>
+                        </div>
+
+                        <form id="comform" class="form-inline add-cart-form">
+                            <button class="btn add-cart btn-default btn-lg" type="button" onclick="sepetePaketEkleSecimli($('#hdnPaketId').val(),$('#txtPaketAdet').val());">Sepete Ekle</button>
+                            <button class="btn add-cart btn-success btn-lg" type="button" onclick="hemenPaketAlSecimli($('#hdnPaketId').val(),$('#txtPaketAdet').val());">Hemen Al</button>
+                            <div class="number">
+                                <label>Adet : </label>
+                                <input id="txtPaketAdet" name="txtPaketAdet" type="text" value="1" class="form-control">
+                                <div class="regulator">
+                                    <a href="javascript:;" class="number-up"><i class="fa fa-angle-up"></i></a>
+                                    <a href="javascript:;" class="number-down"><i class="fa fa-angle-down"></i></a>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="table-box text-small">
+                            <table class="table table-hover table-bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Resim</th>
+                                        <th>Ürün Adı</th>
+                                        <th class="price">Eski Fiyat</th>
+                                        <th class="price">Fiyat</th>
+                                        <th class="qty">Adet</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var paketUrun in paket.PaketUrun)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox without-styles">
+                                                    <label>
+                                                        <input type="checkbox" class="chkurun" value="@paketUrun.Urun.UrunId" checked>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if (paketUrun.Urun.ThumbResim == null)
+                                                {
+                                                    <img class='replace-2x' src='/Uploads/Product/resim_yok.png' alt="" title="" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="replace-2x" src="@paketUrun.Urun.ThumbResim.ResimYolu" alt="" title="" />                                           
+                                                }
+                                            </td>
+                                            <td>@paketUrun.Urun.Adi</td>
+                                            <td class="price-old">@string.Format("{0:N}", paketUrun.Urun.EskiFiyat) <i class="fa fa-try"></i></td>
+                                            <td class="price">@string.Format("{0:N}", paketUrun.Urun.Fiyat) <i class="fa fa-try"></i></td>
+                                            <td class="price">@paketUrun.Adet</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="product-tab">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tabAciklama">Açıklama</a></li>
+                        <li><a href="#tabTaksitSecenekleri">Taksit Seçenekleri</a></li>
+                        <li><a href="#tabTavsiyeEt">Tavsiye Et</a></li>
+                        <li><a href="#tabIadeKosullari">İade Koşulları</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabAciklama">
+                            @Html.Raw(paket.UzunAciklama)
+                        </div>
+                        <div class="tab-pane" id="tabTaksitSecenekleri">
+                            @Html.Partial("~/Views/Sepet/Partials/KrediKartiHesaplamaPartial.cshtml")
+                        </div>
+                        <div class="tab-pane" id="tabTavsiyeEt">
+                            @Html.Partial("~/Views/Urun/Partials/TavsiyeEtPartial.cshtml")
+                        </div>
+                        <div class="tab-pane" id="tabIadeKosullari">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="content-block frame">
+                                    @Html.Raw(icerikAyar.IadeKosullari)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="recommended-product carousel-box load overflow" data-autoplay-disable="true">
+                    <div class="title-box">
+                        <a class="next" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+			  </svg>
+                        </a>
+                        <a class="prev" href="javascript:;">
+                            <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+			  </svg>
+                        </a>
+                        <h2 class="title">İlişkili Ürünler</h2>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="carousel products">
+                            @foreach (var iliskiliUrun in iliskiliUrunler)
+                            {
+                                @Html.Partial("~/Views/Urun/Partials/UrunMiniPartial.cshtml", iliskiliUrun)
+                            }
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('.chkurun').change(function () {
+
+                var seciliUrunler = new Array();
+                $(".chkurun:checked").each(function () {
+                    seciliUrunler.push($(this).val());
+                });
+
+                $.ajax({
+                    url: '/Urun/PaketUrunHesapla',
+                    data: JSON.stringify({
+                        'paketId':@paket.PaketId,
+                        'seciliUrunler': seciliUrunler,
+                    }),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        $('#spnPriceOld').html(result.eskifiyat + ' <i class="fa fa-try"></i>');
+                        $('#spnPrice').html(result.fiyat + ' <i class="fa fa-try"></i>');
+                        $('#spnIndirimMiktari').html('%'+result.indirimMiktari);
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        });
+
+        function sepetePaketEkleSecimli(id, adet) {
+            if (adet == '' || adet == '0') {
+                callAlert('warning', 'Adet bilgisi 0\'dan büyük olmalıdır.');
+                return false;
+            }
+
+            var seciliUrunler = new Array();
+            $(".chkurun:checked").each(function () {
+                seciliUrunler.push($(this).val());
+            });
+
+            if (seciliUrunler == '' || seciliUrunler == null || seciliUrunler.length == 0) {
+                callAlert('warning', 'Paket içerisinden en az 1 ürün seçmeniz gerekmektedir.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Sepet/SepetePaketEkleSecimli',
+                data: JSON.stringify({
+                    'paketId': id,
+                    'adet': adet,
+                    'seciliUrunler': seciliUrunler,
+                }),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result == null || result == '') {
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                    else {
+                        menuSepetYenile();
+                        callAlert('success', 'Sepetinize paketten seçmiş olduğunuz ürünler eklendi.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function hemenPaketAlSecimli(id, adet) {
+            if (adet == '' || adet == '0') {
+                callAlert('warning', 'Adet bilgisi 0\'dan büyük olmalıdır.');
+                return false;
+            }
+
+            var seciliUrunler = new Array();
+            $(".chkurun:checked").each(function () {
+                seciliUrunler.push($(this).val());
+            });
+
+            if (seciliUrunler == '' || seciliUrunler == null || seciliUrunler.length == 0) {
+                callAlert('warning', 'Paket içerisinden en az 1 ürün seçmeniz gerekmektedir.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Sepet/HemenPaketAlSecimli',
+                data: JSON.stringify({
+                    'paketId': id,
+                    'adet': adet,
+                    'seciliUrunler': seciliUrunler,
+                }),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result == null || result == '') {
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                    else {
+                        window.location = result;
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

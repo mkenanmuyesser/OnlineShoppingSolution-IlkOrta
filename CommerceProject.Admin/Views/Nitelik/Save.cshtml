@@ -1,0 +1,423 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{ 
+    var nitelik = ViewBag.Nitelik as Nitelik;
+}
+
+<div class="portlet light bordered blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Nitelik/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Nitelik/Index">
+                        <i class="fa fa-search"></i> Arama
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <div class="tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab"> Nitelik Bilgileri </a>
+                        </li>
+                        @if (nitelik.NitelikId > 0)
+                        {
+                            <li>
+                                <a href="#tab_2" data-toggle="tab">Ürünler</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="disabled">
+                                <a href="#tab_2">Ürünler</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="tab_1">
+                            <form id="comform">
+                                <input id="hdnNitelikId" type="hidden" value="@nitelik.NitelikId" />
+
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtNitelikAdi" class="control-label">Nitelik Adı<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <input id="txtNitelikAdi" name="txtNitelikAdi" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Nitelik Adı Giriniz..." value="@nitelik.Adi" tabindex="1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtNitelikAciklama" class="control-label">Açıklama</label>
+                                                <input id="txtNitelikAciklama" name="txtNitelikAciklama" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Nitelik Adı Giriniz..." value="@nitelik.Aciklama" tabindex="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dropDownNitelikGrup" class="control-label">Nitelik Grubu<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <select id="dropDownNitelikGrup" name="dropDownNitelikGrup" class="form-control select2" style="width:100%;" tabindex="3"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtNitelikSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                                <div class="input-icon right">
+                                                    <i class="fa"></i>
+                                                    <input id="txtNitelikSira" name="txtNitelikSira" class="form-control input-sm integer focus-sense" placeholder="Sıra Giriniz..." value="@nitelik.Sira" tabindex="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtNitelikAktif" class="control-label">Aktif mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtNitelikAktif" name="txtNitelikAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif"
+                                                            @(nitelik.NitelikId > 0 ? (nitelik.AktifMi ? "checked" : "") : "checked") tabindex="5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="text-center">
+                                        @if (nitelik.NitelikId == 0)
+                                        {
+                                            <button type="submit" class="btn blue">
+                                                Kaydet
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn yellow">
+                                                Güncelle
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        }
+                                        <a href="/Nitelik/Index" class="btn red">
+                                            İptal
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="tab_2" class="tab-pane">
+                            <div id="divUrunNitelikPartial">
+                            </div>
+                            
+                            <div id="urunNitelikContainer" class="row margin-top-20">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="table-responsive">
+                                                <div class="input-group pull-right">
+                                                    <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                                </div>
+                                                <table id="tableUrunNitelik" class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="15%">Ürün Kodu</th>
+                                                            <th width="15%">Barkod</th>
+                                                            <th width="20%">Ürün Adı</th>
+                                                            <th width="20%">Nitelik Değeri</th>
+                                                            <th width="10%">Sıra</th>
+                                                            <th width="10%">Aktif mi?</th>
+                                                            <th width="10%">İşlemler</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script id="nitelikurunrow" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${UrunKod}</td>
+            <td>${UrunBarkod}</td>
+            <td>${UrunAdi}</td>
+            <td>${NitelikDegeri}</td>
+            <td>${Sira}</td>
+            <td>
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: loadPartial('/Nitelik/UrunNitelikEkleGuncellePartial/${UrunNitelikId}')" class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var nitelikGrupListesi = @Html.Raw(Json.Encode(ViewBag.NitelikGrupListesi))
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            urunNitelikAra();
+
+            loadPartial('/Nitelik/UrunNitelikEkleGuncellePartial');
+
+            $(".integer").inputmask('99999', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '00000'
+            });
+
+            $('#dropDownNitelikGrup').select2({
+                placeholder: "Nitelik Grubu Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: nitelikGrupListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            @if(nitelik != null && nitelik.NitelikGrupId > 0)
+            {
+                @: $('#dropDownNitelikGrup').val('@(nitelik.NitelikGrupId)').trigger('change');
+            }
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    txtNitelikAdi: {
+                        maxlength: 50,
+                        required: true
+                    },
+                    txtNitelikAciklama: {
+                        maxlength: 500,
+                        required: false
+                    },
+                    dropDownNitelikGrup: {
+                        required: true
+                    },
+                    txtNitelikSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    kaydet();
+                }
+            });
+            $('.select2', $('#comform')).change(function () {
+                $('#comform').validate().element($(this));
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    urunNitelikAra(pageNum, pageCount);
+                }
+            });
+        }
+
+        function urunNitelikAra(pageIndex, pageCount) {
+            pageIndex = pageIndex == null ? 1 : pageIndex;
+            pageCount = pageCount == null ? 10 : pageCount;
+
+            $.ajax({
+                url: '/Nitelik/UrunNitelikAra',
+                data: {
+                    'nitelikId': $('#hdnNitelikId').val(),
+                    'sayfaSayisi': pageCount,
+                    'sayfaSirasi': pageIndex
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    $('#urunNitelikContainer').loadingModal({ text: 'Lütfen Bekleyin...' });
+                    $('#urunNitelikContainer').loadingModal('animation', 'cubeGrid');
+                },
+                success: function (result) {
+                    $('#urunNitelikContainer').loadingModal('destroy');
+
+                    $('#tableUrunNitelik tbody').children().remove();
+                    $('#nitelikurunrow').tmpl(result.sonucListesi).appendTo('#tableUrunNitelik tbody');
+
+                    $('#tableUrunNitelik .make-switch').bootstrapSwitch();
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                },
+                error: function () {
+                    $('#urunNitelikContainer').loadingModal('destroy');
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function kaydet() {
+            var data = {
+                NitelikId: $('#hdnNitelikId').val(),
+                NitelikGrupId: ($('#dropDownNitelikGrup').val() != '' && $('#dropDownNitelikGrup').val() != null) ? $('#dropDownNitelikGrup').val() : 0,
+                Adi: $('#txtNitelikAdi').val(),
+                Aciklama: $('#txtNitelikAciklama').val(),
+                Sira: $('#txtNitelikSira').val(),
+                AktifMi: $('#txtNitelikAktif').is(":checked") ? true : false
+            };
+
+            $.ajax({
+                url: '/Nitelik/KaydetGuncelle',
+                data: JSON.stringify(data),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Nitelik/Save/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function loadPartial(url) {
+            $('#divUrunNitelikPartial').loadingModal({ text: 'Lütfen Bekleyin...' });
+            $('#divUrunNitelikPartial').loadingModal('animation', 'cubeGrid');
+
+            $('#divUrunNitelikPartial').load(url, function () {
+                $('#divUrunNitelikPartial').loadingModal('destroy');
+            });
+        }
+    </script>
+}

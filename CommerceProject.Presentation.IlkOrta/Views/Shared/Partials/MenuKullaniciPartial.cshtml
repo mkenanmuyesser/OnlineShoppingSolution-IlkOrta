@@ -1,0 +1,45 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    var kullanici = ViewBag.Kullanici as Kullanici;
+    var sepettekiUrunler = ViewBag.Sepet as List<Sepet>;
+}
+
+<nav class="collapse collapsing navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+        @if (kullanici != null && kullanici.KullaniciDetay != null)
+        {
+            <li><a href="/Kullanici/Bilgi">Hesabım <i class="fa fa-archive"></i></a></li>
+            <li><a href="/Kullanici/IstekListesi">İstek Listem <i class="fa fa-heart"></i></a></li>
+            <li>
+                <a href="/Sepet">
+                    Sepetim<span id="sepetAdet" class="count">
+                        @if (sepettekiUrunler == null || !sepettekiUrunler.Any())
+                        {
+                            @Html.Raw("0");
+                        }
+                        else
+                        {
+                            @sepettekiUrunler.Sum(x => x.Adet)
+                        }
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/Kullanici">
+                    Hoşgeldiniz
+                    @kullanici.KullaniciDetay.Ad
+                    @kullanici.KullaniciDetay.Soyad
+                </a>
+            </li>
+            <li>
+                 <a href="/Kullanici/KullaniciCikis">Çıkış <i class="fa fa-user"></i></a>
+            </li>
+        }
+        else
+        {
+            <li><a href="/Kullanici/Giris">Giriş Yap <i class="fa fa-lock after"></i></a></li>
+        }
+    </ul>
+</nav>
+

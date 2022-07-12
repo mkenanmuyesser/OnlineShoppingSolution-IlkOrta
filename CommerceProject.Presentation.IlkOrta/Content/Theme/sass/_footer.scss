@@ -1,0 +1,122 @@
+/******************************************************************************
+  Footer
+*******************************************************************************/
+#footer {
+  color: #7f7f7f;
+  margin: 0;
+  overflow-x: hidden;
+  
+  &.footer-two {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    
+    .footer-top {
+      padding-bottom: 43px;
+    }
+    .social {
+      text-align: center;
+    
+      .icon {
+        display: inline-block;
+        float: none;
+        margin: 0 3px;
+      }
+    }
+  }
+  .footer-top {
+    background: #f2f2f2;
+    font-size: 12px;
+    line-height: 21px;
+    padding: 50px 0 13px;
+  }
+  .footer-bottom {
+    background: #f7f7f7;
+    border-top-width: 1px;
+    font-size: 11px;
+    line-height: 17px;
+    padding: 21px 0 20px;
+  }
+  .sidebar {
+    .widget {
+      margin-bottom: 30px;
+      
+      &:nth-child(4n+1) {
+        clear: left;
+      }
+      p {
+        margin: 0 0 16px;
+      }
+      header,
+      .title-block {
+        margin: 0 0 15px;
+        padding: 0 0 12px;
+        
+        &:before,
+        &:before {
+          display: none;
+        }
+        .title {
+          color: #1e1e1e;
+          font-size: 16px;
+          font-weight: normal;
+          line-height: 1.3;
+          text-transform: uppercase;
+        }
+      }
+      .next,
+      .prev {
+        height: 26px;
+        line-height: 26px;
+        width: 26px;
+        
+        svg {
+          height: 14px;
+        }
+      }
+    }
+    .compare-products li,
+    .compare-products li .title,
+    .compare-products li .close,
+    .wishlist .add-cart {
+      background-color: #f2f2f2;
+    }
+  }
+  .phone,
+  .address {
+    padding-left: 34px;
+    position: relative;
+  }
+  .footer-icon {
+    color: #c6c6c6;
+    left: 16px;
+    position: absolute;
+    top: 0;
+    
+    &:before {
+      font-size: 20px;
+      line-height: 18px;
+      width: auto;
+    }
+  }
+  .up {
+    background: #c6c6c6;
+    border-radius: 3px;
+    display: block;
+    float: right;
+    height: 40px;
+    text-align: center;
+    width: 40px;
+    transition: all .2s linear;
+    
+    &:hover {
+      background: #000;
+      transition: all .2s linear;
+    }
+    .glyphicon {
+      color: #fff;
+      margin: 14px 0 0 -.5px;
+      vertical-align: top;
+    }
+  }
+}

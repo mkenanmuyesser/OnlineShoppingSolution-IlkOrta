@@ -1,0 +1,607 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@section css{
+    <link href="~/Content/Theme/assets/global/plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="modal fade" id="detayModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+        <div class="modal-content" style="width:900px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div id="divDetay"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red-haze" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet light bordered blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Paket/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-filter font-dark"></i>
+                    <span class="caption-subject font-dark bold">Filtreleme Kriterleri</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse" data-original-title="Genişlet / Daralt" title="Genişlet / Daralt"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="txtPaketAdi" class="control-label">Paket Adı</label>
+                                <input id="txtPaketAdi" name="txtPaketAdi" class="form-control" placeholder="Paket Adı Giriniz..." tabindex="1">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtPaketKodu" class="control-label">Paket Kodu</label>
+                                <input id="txtPaketKodu" name="txtPaketKodu" class="form-control" placeholder="Paket Kodu Giriniz..." tabindex="2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="dropDownUrun" class="control-label">
+                                    Ürün<span style="font-size: 12px;color: #ef5e77;"> Ürün Adı / Ürün Kodu / Barkod No' ya göre arama yapabilirsiniz.</span>
+                                </label>
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <select id="dropDownUrun" name="dropDownUrun" class="form-control select2" style="width:100%;" tabindex="3"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dropDownKategori" class="control-label">Kategori</label>
+                                <select id="dropDownKategori" class="form-control select2" tabindex="4"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">Tarih Aralığı</label>
+                                <div class="col-md-12" style="padding-left:0px !important;padding-right:0px !important;">
+                                    <div class="col-md-6" style="padding-left:0px !important;">
+                                        <div id="dateTimeBaslangic" class="input-group date" data-provide="datepicker">
+                                            <input type="text" class="form-control" placeholder="Başlangıç Tarihi" tabindex="5">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-right:0px !important;">
+                                        <div id="dateTimeBitis" class="input-group date" data-provide="datepicker">
+                                            <input type="text" class="form-control" placeholder="Bitiş Tarihi" tabindex="6">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Aktif mi?</label>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="2"> Tümü
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" checked class="icheck" value="1"> Aktif
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdAktif" class="icheck" value="0"> Pasif
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label class="control-label">Satın Alma Aktif mi?</label>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdSatinAlAktif" class="icheck" value="2" checked> Tümü
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdSatinAlAktif" class="icheck" value="1"> Aktif
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdSatinAlAktif" class="icheck" value="0"> Pasif
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Ön Sipariş Aktif mi?</label>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdOnSiparisAktif" class="icheck" value="2" checked> Tümü
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdOnSiparisAktif" class="icheck" value="1"> Aktif
+                                        </label>
+                                        <label>
+                                            <input type="radio" data-radio="iradio_square-aero" name="rdOnSiparisAktif" class="icheck" value="0"> Pasif
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="button" class="btn blue-madison" onclick="javascript: ara()" tabindex="7">
+                                    Ara
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button type="button" class="btn green-meadow" onclick="javascript: temizle()" tabindex="8">
+                                    Temizle
+                                    <i class="fa fa-recycle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="fa fa-list-ul font-dark"></i>
+                    <span class="caption-subject bold">Sonuç Listesi</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="box">
+                    <div class="box-header">
+                        <div id="boxTools" class="box-tools" style="display:none;">
+                            <div class="input-group pull-left">
+                                <input type="hidden" id="dropDownPagingSize" class="form-control select2" style="width: 100px;" value="5" />
+                            </div>
+                            <div class="input-group pull-right">
+                                <button type="button" class="btn btn-xs green-stripe pull-right" style="margin-right:10px;" onclick="javascript: excelRaporuAl();"><i class="fa fa-file-excel-o"></i>Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="tablePaket" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Kodu</th>
+                                        <th width="5%">Sıra</th>
+                                        <th width="10%">Adı</th>
+                                        <th width="15%">Kısa Açıklama</th>
+                                        <th width="5%">Baş. Trh.</th>
+                                        <th width="5%">Bit. Trh.</th>
+                                        <th width="10%">Kategori</th>
+                                        <th width="10%">Satın Alma Aktif mi?</th>
+                                        <th width="10%">Ön Sipariş Aktif mi?</th>
+                                        <th width="5%">Aktif mi?</th>
+                                        <th width="15%">İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div id="footerInfo" class="row" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="input-group pull-left">
+                                    <p id="tableInfo" style="color: #6f6f6f;font-size: 12px;"></p>
+                                </div>
+                                <div class="input-group pull-right">
+                                    <ul id="ulPaging" class="no-margin pull-right"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Content/Theme/assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js" type="text/javascript"></script>
+
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${PaketKod}</td>
+            <td>${Sira}</td>
+            <td>${Adi}</td>
+            <td>${KisaAciklama}</td>
+            <td>${BaslangicTarihi}</td>
+            <td>${BitisTarihi}</td>
+            <td>${Kategori}</td>
+            <td>
+                <div class="icheck-inline">
+                    {{if SatinAlAktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="icheck-inline">
+                    {{if OnSiparisAktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                        <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <a href="javascript: detayModalShow('/Paket/PaketUrunPartial/${PaketId}', 'Ürün Listesi');" class="btn btn-xs blue" data-toggle="tooltip" data-placement="top" title="Ürünleri Göster">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="javascript: detayModalShow('/Paket/PaketResimPartial/${PaketId}', 'Resim Listesi');" class="btn btn-xs green-haze" data-toggle="tooltip" data-placement="top" title="Resimleri Göster">
+                        <i class="fa fa-image"></i>
+                    </a>
+                    <a href="javascript: sil('${PaketId}');" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                    <a href="/Paket/Save/${PaketId}" class="btn btn-xs yellow-casablanca" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dateTimeBaslangic').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+            $('#dateTimeBitis').datepicker({
+                autoclose: true,
+                dateFormat: "dd.mm.yyyy",
+                language: 'tr'
+            });
+
+            $('#dropDownUrun').select2({
+                placeholder: "Ürün Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Urun/UrunAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+
+            $('#dropDownKategori').select2({
+                placeholder: "Kategori Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Kategori/KategoriAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+
+            $('#dropDownPagingSize').select2({
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: [
+                    { id: 5, text: 5 },
+                    { id: 10, text: 10 },
+                    { id: 20, text: 20 },
+                    { id: 50, text: 50 }
+                ]
+            }).on('select2:select', function (e) {
+                ara(1, $('#dropDownPagingSize').val());
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function paging(totalCount, pageCount, pageIndex) {
+            $('#ulPaging').pagination('destroy');
+            $('#ulPaging').pagination({
+                items: totalCount,
+                itemsOnPage: pageCount,
+                currentPage: pageIndex,
+                cssStyle: 'light-theme',
+                prevText: 'Önceki Sayfa',
+                nextText: 'Sonraki Sayfa',
+                onPageClick: function (pageNum) {
+                    ara(pageNum, pageCount);
+                }
+            });
+        }
+
+        function ara(pageIndex, pageCount) {
+            if ($('#dateTimeBaslangic').datepicker('getDate') != '' && $('#dateTimeBitis').datepicker('getDate')) {
+                if ($('#dateTimeBaslangic').datepicker('getDate') > $('#dateTimeBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            pageIndex = pageIndex == null ? 1 : pageIndex;
+            pageCount = pageCount == null ? parseInt($('#dropDownPagingSize').val()) : pageCount;
+
+            $.ajax({
+                url: '/Paket/Ara',
+                data: {
+                    'adi': $('#txtPaketAdi').val(),
+                    'kodu': $('#txtPaketKodu').val(),
+                    'urunId': ($('#dropDownUrun').val() != '' && $('#dropDownUrun').val() != null) ? $('#dropDownUrun').val() : 0,
+                    'kategoriId': ($('#dropDownKategori').val() != '' && $('#dropDownKategori').val() != null) ? $('#dropDownKategori').val() : 0,
+                    'baslangicTarihi': $('#dateTimeBaslangic').find('input').val() != '' ? $('#dateTimeBaslangic').datepicker('getDate').toUTCString() : null,
+                    'bitisTarihi': $('#dateTimeBitis').find('input').val() != '' ? $('#dateTimeBitis').datepicker('getDate').toUTCString() : null,
+                    'satinAlmaAktiflik': parseInt($('input[name=rdSatinAlAktif]:checked').val()),
+                    'onSiparisAktiflik': parseInt($('input[name=rdOnSiparisAktif]:checked').val()),
+                    'aktiflik': parseInt($('input[name=rdAktif]:checked').val()),
+                    'sayfaSayisi': pageCount,
+                    'sayfaSirasi': pageIndex
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+
+                    $('#tablePaket tbody').children().remove();
+                    $('#row').tmpl(result.sonucListesi).appendTo('#tablePaket tbody');
+
+                    $('#tablePaket .make-switch').bootstrapSwitch();
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // table info
+                    var txt = '';
+                    if (result.toplamKayitSayisi > 0) {
+                        var firstPart = ((result.sayfaSirasi - 1) * (result.sayfaSayisi) + 1);
+                        var secondPart = (result.sayfaSirasi * result.sayfaSayisi) > result.toplamKayitSayisi ? result.toplamKayitSayisi : (result.sayfaSirasi * result.sayfaSayisi);
+                        txt = 'Toplam ' + result.toplamKayitSayisi + ' kayıttan ' + firstPart + '-' + secondPart + ' gösteriliyor.';
+
+                        $('#boxTools').show();
+                        $('#footerInfo').show();
+                    }
+                    else {
+                        txt = 'Hiç kayıt bulunamadı.';
+
+                        $('#boxTools').hide();
+                        $('#footerInfo').hide();
+                    }
+                    $('#tableInfo').text(txt);
+
+                    paging(result.toplamKayitSayisi, result.sayfaSayisi, result.sayfaSirasi);
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function sil(id) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $.ajax({
+                    url: '/Paket/Sil/' + id,
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result) {
+                            callAlert('success', 'Silme işlemi başarılı.');
+                            ara();
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            });
+        }
+
+        function temizle() {
+            $('#txtPaketAdi').val('');
+            $('#txtPaketKodu').val('');
+            $('#dropDownUrun').val('').trigger('change');
+            $('#dropDownKategori').val('').trigger('change');
+            $('#dateTimeBaslangic').data('datepicker').setDate(null);
+            $('#dateTimeBitis').data('datepicker').setDate(null);
+        }
+
+        function excelRaporuAl() {
+            if ($('#dateTimeBaslangic').datepicker('getDate') != '' && $('#dateTimeBitis').datepicker('getDate')) {
+                if ($('#dateTimeBaslangic').datepicker('getDate') > $('#dateTimeBitis').datepicker('getDate')) {
+                    callAlert('warning', 'Başlangıç tarihi bitiş tarihinden büyük olamaz.');
+                    return false;
+                }
+            }
+
+            var adi = $('#txtPaketAdi').val();
+            var kodu = $('#txtPaketKodu').val();
+            var urunId = ($('#dropDownUrun').val() != '' && $('#dropDownUrun').val() != null) ? $('#dropDownUrun').val() : 0;
+            var kategoriId = ($('#dropDownKategori').val() != '' && $('#dropDownKategori').val() != null) ? $('#dropDownKategori').val() : 0;
+            var baslangicTarihi = $('#dateTimeBaslangic').find('input').val() != '' ? $('#dateTimeBaslangic').datepicker('getDate').toUTCString() : null;
+            var bitisTarihi = $('#dateTimeBitis').find('input').val() != '' ? $('#dateTimeBitis').datepicker('getDate').toUTCString() : null;
+            var satinAlmaAktiflik = parseInt($('input[name=rdSatinAlAktif]:checked').val());
+            var onSiparisAktiflik = parseInt($('input[name=rdOnSiparisAktif]:checked').val());
+            var aktiflik = parseInt($('input[name=rdAktif]:checked').val());
+
+            window.location.href = '/Paket/ExcelRaporuAl?adi=' + adi
+                + '&kodu=' + kodu
+                + '&urunId=' + urunId
+                + '&kategoriId=' + kategoriId
+                + '&baslangicTarihi=' + baslangicTarihi
+                + '&bitisTarihi=' + bitisTarihi
+                + '&satinAlmaAktiflik=' + satinAlmaAktiflik
+                + '&onSiparisAktiflik=' + onSiparisAktiflik
+                + '&aktiflik=' + aktiflik;
+        }
+
+        function detayModalShow(url, title) {
+            $('#divDetay').html('');
+            $('#modalTitle').text(title);
+
+            $('#divDetay').load(url, function () {
+                $('#detayModal').modal('show');
+            });
+        }
+    </script>
+}

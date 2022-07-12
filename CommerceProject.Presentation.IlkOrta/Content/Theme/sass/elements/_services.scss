@@ -1,0 +1,94 @@
+/******************************************************************************
+  Services
+*******************************************************************************/
+.service {
+  .icon {
+    border-radius: 35px;
+    color: #1e1e1e;
+    display: block;
+    height: 70px;
+    float: left;
+    margin: 0 30px 0 0;
+    text-align: center;
+    text-decoration: none;
+    width: 70px;
+    -webkit-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+    
+    &:hover {
+      opacity: 0.8;
+      filter: alpha(opacity=80);
+      -webkit-transition: opacity .2s linear;
+      transition: opacity .2s linear;
+    }
+    i:before {
+      font-size: 30px;
+      line-height: 70px;
+    }
+  }
+  .title {
+    margin: 2px 0 17px;
+  }
+  .text-small {
+    overflow: hidden;
+  }
+}
+.services .service,
+.services .features-block {
+  margin-bottom: 40px;
+}
+.services-box-three-left {
+  margin-bottom: 40px;
+  padding: 20px;
+}
+.service,
+.big-services-box,
+.features-block {
+  a:not(.btn) {
+    color: #1e1e1e;
+    transition: opacity .2s linear;
+    
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+      filter: alpha(opacity=80);
+      text-decoration: none;
+      transition: opacity .2s linear;
+    }
+  }
+  > a {
+    display: inline-block;
+  }
+}
+.white .service a,
+.white .big-services-box a {
+  color: #fff;
+}
+.big-services-box {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.big-icon {
+  border-radius: 50px;
+  color: #1e1e1e;
+  display: block;
+  height: 100px;
+  margin: 0 auto 20px;
+  text-align: center;
+  width: 100px;
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+.big-icon i:before {
+  font-size: 50px;
+  line-height: 100px;
+}
+a.big-icon:hover {
+  opacity: .8;
+  filter: alpha(opacity=80);
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+.big-icon.pull-left {
+  margin: 0 20px 20px 0;
+}

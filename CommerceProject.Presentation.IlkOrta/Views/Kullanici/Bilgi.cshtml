@@ -1,0 +1,218 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Bilgi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var kullanici = ViewBag.Kullanici as Kullanici;
+    var kullaniciDetay = ViewBag.KullaniciDetay as KullaniciDetay;
+}
+
+<section id="main" class="page ">
+    <header class="page-header">
+        <div class="container">
+            <h1 class="title">Hesap Bilgilerinizi Güncelleyin</h1>
+        </div>
+    </header>
+    <div class="container" data-appear-animation="fadeIn">
+        <div class="row">
+            <article class="col-sm-9 col-md-9 content">
+                <div class="my-account margin-top">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <form class="form-validator">
+                                <div class="title-box">
+                                    <h2 class="title">Hesap Bilgisi</h2>
+                                </div>
+
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <div class="form-group">
+                                            <label>Ad <span class="required">*</span></label>
+                                            <input id="txtKullaniciBilgiAd" name="txtKullaniciBilgiAd" class="form-control input-sm" type="text" placeholder="Adınızı Giriniz..." required value="@kullaniciDetay.Ad">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Soyad <span class="required">*</span></label>
+                                            <input id="txtKullaniciBilgiSoyad" name="txtKullaniciBilgiSoyad" class="form-control input-sm" type="text" placeholder="Soyadınızı Giriniz..." required value="@kullaniciDetay.Soyad">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            <label>E-posta Adresi</label>
+                                            <input id="txtKullaniciBilgiEposta" name="txtKullaniciBilgiEposta" class="form-control input-sm com-email" type="text" disabled value="@kullanici.Eposta">
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="buttons-box clearfix">
+                                    <button class="btn btn-primary" onclick="javascript: kullaniciDetayGuncelle()">Kaydet</button>
+                                    <button class="btn btn-danger">İptal</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6">
+                            <form class="form-validator">
+                                <div class="title-box">
+                                    <h2 class="title">Şifre Değiştir</h2>
+                                </div>
+
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <div class="form-group">
+                                            <label>Şu Anki Şifre <span class="required">*</span></label>
+                                            <input id="txtKullaniciBilgiEskiSifre" name="txtKullaniciBilgiEskiSifre" type="password" class="form-control input-sm" placeholder="Şu Anki Şifrenizi Giriniz..." required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Yeni Şifre <span class="required">*</span></label>
+                                            <input id="txtKullaniciBilgiYeniSifre" name="txtKullaniciBilgiYeniSifre" type="password" class="form-control input-sm" placeholder="Yeni Şifrenizi Giriniz..." required autocomplete="off">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            <label>Yeni Şifre Tekrar <span class="required">*</span></label>
+                                            <input id="txtKullaniciBilgiYeniSifreTekrar" name="txtKullaniciBilgiYeniSifreTekrar" type="password" class="form-control input-sm" placeholder="Yeni Şifrenizi Tekrar Giriniz..." required autocomplete="off">
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="buttons-box clearfix">
+                                    <button class="btn btn-success" onclick="javascript: kullaniciSifreDegistir()">Şifre Değiştir</button>
+                                    <button class="btn btn-danger">İptal</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            @Html.Partial("~/Views/Kullanici/Partials/KullaniciMenuPartial.cshtml")
+        </div>
+    </div>
+</section>
+
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.com-email').inputmask('email', {
+                onincomplete: function (o, e) {
+                    $(this).val('');
+                }
+            });
+            //$('#comform').validate({
+            //    errorElement: 'span',
+            //    errorClass: 'help-block help-block-error',
+            //    focusInvalid: false,
+            //    ignore: "",
+            //    rules: {
+            //        txtAd: {
+            //            maxlength: 50,
+            //            required: true
+            //        },
+            //        txtSoyad: {
+            //            maxlength: 50,
+            //            required: true
+            //        },
+            //        txtSifre: {
+            //            maxlength: 50,
+            //            required: true
+            //        },
+            //        txtSifreTekrar: {
+            //            maxlength: 50,
+            //            required: true
+            //        }
+            //        ,
+            //        txtEposta: {
+            //            maxlength: 50,
+            //            required: true
+            //        }
+            //    },
+            //    errorPlacement: function (error, element) {
+            //        var icon = $(element).parent('.input-icon').children('i');
+            //        icon.removeClass('fa-check').addClass("fa-warning");
+            //        icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+            //    },
+            //    highlight: function (element) {
+            //        $(element)
+            //            .closest('.form-group').removeClass("has-success").addClass('has-error');
+            //    },
+            //    unhighlight: function (element) {
+
+            //    },
+            //    success: function (label, element) {
+            //        var icon = $(element).parent('.input-icon').children('i');
+            //        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+            //        icon.removeClass("fa-warning").addClass("fa-check");
+            //    },
+            //    submitHandler: function () {
+            //        kullaniciKayit();
+            //    },
+            //});
+        });
+
+        function kullaniciDetayGuncelle() {
+            if ($('#txtKullaniciBilgiAd').val() == '' || $('#txtKullaniciBilgiSoyad').val() == '') {
+                callAlert('warning', 'Lütfen gerekli alanları doldurunuz.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Kullanici/KullaniciDetayGuncelle',
+                data: {
+                    'ad': $('#txtKullaniciBilgiAd').val(),
+                    'soyad': $('#txtKullaniciBilgiSoyad').val(),
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+
+        function kullaniciSifreDegistir() {
+            if ($('#txtKullaniciBilgiEskiSifre').val() == '' || $('#txtKullaniciBilgiYeniSifre').val() == '' || $('#txtKullaniciBilgiYeniSifreTekrar').val() == '') {
+                callAlert('warning', 'Lütfen gerekli alanları doldurunuz.');
+                return false;
+            }
+            else if ($('#txtKullaniciBilgiYeniSifre').val() != $('#txtKullaniciBilgiYeniSifreTekrar').val()) {
+                callAlert('warning', 'Girdiğiniz şifreler uyuşmamaktadır.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Kullanici/KullaniciSifreDegistir',
+                data: {
+                    'eskiSifre': $('#txtKullaniciBilgiEskiSifre').val(),
+                    'yeniSifre': $('#txtKullaniciBilgiYeniSifre').val(),
+                },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,324 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+@{
+    var marka = ViewBag.Marka as Marka;
+}
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/Marka/Save">
+                        <i class="fa fa-save"></i> Yeni Kayıt
+                    </a>
+                </li>
+                <li>
+                    <a href="/Marka/Index">
+                        <i class="fa fa-search"></i> Arama
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <div class="tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab">Marka Bilgileri</a>
+                        </li>
+                        <li>
+                            <a href="#tab_2" data-toggle="tab">Seo</a>
+                        </li>
+                    </ul>
+                    <form id="comform">
+                        <input id="hdnMarkaId" type="hidden" value="@marka.MarkaId" />
+                        <input id="hdnResimYolu" type="hidden" value="@marka.Resim" />
+
+                        <div class="form-body tab-content" style="padding:10px !important;border: 1px solid #ddd !important;">
+                            <div class="tab-pane active" id="tab_1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMarkaAdi" class="control-label">Adı<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtMarkaAdi" name="txtMarkaAdi" class="form-control input-sm maxlength-handler" maxlength="50" placeholder="Marka Adı Giriniz..." value="@marka.Adi" tabindex="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMarkaAciklama" class="control-label">Açıklama<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <textarea id="txtMarkaAciklama" name="txtMarkaAciklama" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Açıklama Giriniz..." tabindex="2">@marka.Aciklama</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMarkaSira" class="control-label">Sıra<span class="required"> * </span></label>
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                <input id="txtMarkaSira" name="txtMarkaSira" class="form-control input-sm focus-sense" value="@marka.Sira" tabindex="3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-6" style="padding-left:0px !important;">
+                                            <div class="form-group">
+                                                <label for="txtMarkaAktifMi" class="control-label">Aktif mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtMarkaAktifMi" name="txtMarkaAktifMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" @(marka.MarkaId > 0 ? (marka.AktifMi ? "checked" : "") : "checked") tabindex="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtMarkaAnasayfadaGosterilsinMi" class="control-label">Anasayfada Gösterilsin mi?</label>
+                                                <div class="icheck-inline">
+                                                    <input id="txtMarkaAnasayfadaGosterilsinMi" name="txtMarkaAnasayfadaGosterilsinMi" type="checkbox" class="make-switch" data-size="small" data-on-text="Evet" data-off-text="Hayır" @(marka.MarkaId > 0 ? (marka.AnaSayfadaGosterilsinMi ? "checked" : "") : "checked") tabindex="5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                    @if (string.IsNullOrEmpty(marka.Resim))
+                                                    {
+                                                        <img id="emptyFile" src="/Content/Img/no-image.png" alt="" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img id="emptyFile" src="@marka.Resim" alt="" />
+                                                    }
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                <div>
+                                                    <span class="btn default btn-file">
+                                                        <span class="fileinput-new" style="width:98px;"> Resim Seç </span>
+                                                        <span class="fileinput-exists" style="width:98px;"> Değiştir </span>
+                                                        <input id="fileUploadResim" name="fileUploadResim" type="file" onchange="resimSecildi();">
+                                                    </span>
+                                                    <a href="javascript:;" style="width:98px;" class="btn red fileinput-exists" data-dismiss="fileinput"> Sil </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_2">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMetaTitle" class="control-label">Meta Title</label>
+                                            <textarea id="txtMetaTitle" name="txtMetaTitle" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Title Giriniz..." tabindex="1">@marka.MetaTitle</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMetaKeywords" class="control-label">Meta Keywords</label>
+                                            <textarea id="txtMetaKeywords" name="txtMetaKeywords" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Keywords Giriniz..." tabindex="2">@marka.MetaKeywords</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="txtMetaDescription" class="control-label">Meta Description</label>
+                                            <textarea id="txtMetaDescription" name="txtMetaDescription" rows="1" class="form-control input-sm maxlength-handler" maxlength="500" placeholder="Meta Description Giriniz..." tabindex="3">@marka.MetaDescription</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <div class="col-md-offset-5 col-md-7">
+                                    @if (marka.MarkaId == 0)
+                                    {
+                                        <button type="submit" class="btn blue">
+                                            Kaydet
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn yellow">
+                                            Güncelle
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    }
+                                    <a href="/Marka/Index" class="btn red">
+                                        İptal
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/Theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtMarkaSira").inputmask('9999', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '0000'
+            });
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    txtMarkaAdi: {
+                        maxlength: 50,
+                        required: true
+                    },
+                    txtMarkaAciklama: {
+                        maxlength: 500,
+                        required: true
+                    },
+                    txtMarkaSira: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function () {
+                    kaydet();
+                },
+            });
+        });
+
+        function resimSecildi() {
+            $('#emptyFile').attr('src', '/Content/Img/no-image.png');
+            $('#hdnResimYolu').val('');
+
+            var ext = $('#fileUploadResim').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'bmp']) == -1) {
+                callAlert('warning', 'Uygun resim formatları \'gif\', \'png\', \'jpg\', \'jpeg\', \'bmp\' olmalıdır.');
+                $('#fileUploadResim').val('');
+                return false;
+            }
+        }
+
+        function kaydet() {
+            if (document.getElementById("fileUploadResim").files.length > 1) {
+                var ext = $('#fileUploadResim').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'bmp']) == -1) {
+                    callAlert('warning', 'Uygun resim formatları \'gif\', \'png\', \'jpg\', \'jpeg\', \'bmp\' olmalıdır.');
+                    return false;
+                }
+            }
+
+            var formData = new FormData();
+            var totalFiles = document.getElementById("fileUploadResim").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("fileUploadResim").files[i];
+
+                formData.append("fileUploadResim", file);
+            }
+            formData.append('markaId', $('#hdnMarkaId').val());
+            formData.append('adi', $('#txtMarkaAdi').val());
+            formData.append('aciklama', $('#txtMarkaAciklama').val());
+            formData.append('sira', parseInt($('#txtMarkaSira').val()));
+            formData.append('metaTitle', $('#txtMetaTitle').val());
+            formData.append('metaKeywords', $('#txtMetaKeywords').val());
+            formData.append('metaDescription', $('#txtMetaDescription').val());
+            formData.append('anaSayfadaGosterilsinMi', $('#txtMarkaAnasayfadaGosterilsinMi').is(":checked") ? true : false);
+            formData.append('aktifMi', $('#txtMarkaAktifMi').is(":checked") ? true : false);
+            formData.append('resim', $('#hdnResimYolu').val());
+
+            $.ajax({
+                url: '/Marka/KaydetGuncelle',
+                data: formData,
+                type: "post",
+                dataType: "json",
+                contentType: false,
+                processData: false,
+
+                beforeSend: function () {
+                    showLoadingModal();
+                },
+                success: function (result) {
+                    hideLoadingModal();
+                    if (result > 0) {
+                        callAlert('success', 'Kayıt işlemi başarılı.');
+                        setTimeout(function myfunction() {
+                            window.location.href = '/Marka/Save/' + result;
+                        }, 1500);
+                    }
+                    else {
+                        callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    hideLoadingModal();
+                    callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

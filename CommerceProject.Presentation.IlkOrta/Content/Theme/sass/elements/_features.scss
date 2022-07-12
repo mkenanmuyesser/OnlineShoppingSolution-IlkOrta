@@ -1,0 +1,39 @@
+/******************************************************************************
+  Features
+*******************************************************************************/
+.features-block {
+  .header-box {
+    display: block;
+    min-height: 30px;
+    margin: 0 0 13px;
+    overflow: hidden;
+    
+    .icon-box {
+      background: none;
+      color: #1e1e1e;
+      float: left;
+      height: 30px;
+      margin: 0 10px 0 0; 
+      text-align: center;
+      width: 24px;
+      -webkit-transition: opacity .2s linear;
+      transition: opacity .2s linear;
+      
+      i:before {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+    a.icon-box {
+      &:hover {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -webkit-transition: opacity .2s linear;
+        transition: opacity .2s linear;
+      }
+    }
+    h6 {
+      margin: 6px 0 0;
+    }
+  }
+}

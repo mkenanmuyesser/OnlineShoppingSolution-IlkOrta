@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<h1 class="page-title">
+    @ViewBag.PageProperties.PageHeader
+</h1>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="/Urun/Search">
+            <div class="visual">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Ürün Arama</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="/Urun/Save">
+            <div class="visual">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Ürün Kayıt</div>
+            </div>
+        </a>
+    </div>   
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 red" href="/Urun/Card">
+            <div class="visual">
+                <i class="fa fa-barcode"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    &nbsp;
+                </div>
+                <div class="desc">Ürün Kartı</div>
+            </div>
+        </a>
+    </div>
+</div>

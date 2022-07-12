@@ -1,0 +1,84 @@
+﻿@using CommerceProject.Business.Entities
+@using BotDetect.Web.Mvc;
+@using CommerceProject.Presentation.IlkOrta.Helper;
+
+<div>
+    <div class="col-sm-5 col-md-5">
+        <label>E-posta Adresiniz : <span class="required">*</span></label>
+        <input id="txtGonderenEposta" name="txtGonderenEposta" class="form-control com-email" type="text">
+        <label>Arkadaşınızın E-posta Adresi : <span class="required">*</span></label>
+        <input id="txtGonderilenEposta" name="txtGonderilenEposta" class="form-control come-mail" type="text">
+    </div>
+    <div class="col-sm-7 col-md-7">
+        <label>Yorum : <span class="required">*</span></label>
+        <textarea id="txtGonderenYorum" name="txtGonderenYorum" class="form-control"></textarea>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div>
+            <label>Doğrulama Kodu : <span class="required">*</span></label>
+            @{
+                MvcCaptcha tavsiyeCaptcha = CaptchaHelper.GetCaptcha("tavsiyeCaptcha", "txtTavsiyeCaptchaDogrulama");
+            }
+            @Html.Captcha(tavsiyeCaptcha)
+        </div>
+        <div class="actions">
+            <input id="txtTavsiyeCaptchaDogrulama" name="txtTavsiyeCaptchaDogrulama" class="form-control" type="text" style="width:250px;" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <button class="btn btn-default" onclick="tavsiyeEt();">Gönder</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.com-email').inputmask('email', {
+            onincomplete: function (o, e) {
+                $(this).val('');
+            }
+        });
+    });
+
+    function tavsiyeEt() {
+        // validation
+        if ($('#txtGonderenEposta').val() == '' || $('#txtGonderilenEposta').val() == '' || $("#txtTavsiyeCaptchaDogrulama").val() == '') {
+            callAlert('warning', 'Lütfen gerekli alanları doldurunuz.');
+            return false;
+        }
+
+        var captchaControl = $("#txtTavsiyeCaptchaDogrulama");
+        var captchaObj = captchaControl.get(0).Captcha;
+
+        $.ajax({
+            url: '/Urun/TavsiyeEt',
+            data: JSON.stringify({
+                'captchaId': captchaObj.Id,
+                'instanceId': captchaObj.InstanceId,
+                'userInput': captchaControl.val(),
+                'urunId': $('#hdnUrunId').val(),
+                'gonderenEposta': $('#txtGonderenEposta').val(),
+                'gonderilenEposta': $('#txtGonderilenEposta').val(),
+                'yorum': $('#txtGonderenYorum').val(),
+            }),
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
+                showLoadingModal();
+            },
+            success: function (result) {
+                hideLoadingModal();
+
+                callAlert(result.messageType, result.message);
+
+                captchaObj.ReloadImage();
+            },
+            error: function () {
+                hideLoadingModal();
+                callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                captchaObj.ReloadImage();
+            }
+        });
+    }
+</script>
+

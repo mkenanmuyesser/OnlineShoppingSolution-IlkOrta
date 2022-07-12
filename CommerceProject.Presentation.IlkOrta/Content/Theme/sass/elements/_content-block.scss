@@ -1,0 +1,21 @@
+/******************************************************************************
+  Content Block
+*******************************************************************************/
+.content-block {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px;
+  
+  .btn {
+    + .btn {
+      margin-left: 14px;
+    }
+    &.pull-left {
+      margin: 0 10px 0 0;
+    }
+    &.pull-right {
+      margin: 0 0 0 10px;
+    }
+  }
+}

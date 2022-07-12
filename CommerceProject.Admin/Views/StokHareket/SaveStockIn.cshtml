@@ -1,0 +1,682 @@
+﻿@using CommerceProject.Business.Entities
+
+@{
+    ViewBag.Title = "SaveStockIn";
+    Layout = "~/Views/Shared/_MainRoot.cshtml";
+}
+
+<div class="modal fade" id="detayModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+        <div class="modal-content" style="width:900px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">İade Talep Detayı</h4>
+            </div>
+            <div class="modal-body" style="border-bottom: 1px solid #EFEFEF !important;">
+                <div id="divDetay"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red-haze" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet light bordered blue-steel">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle font-white"></i>
+            <span class="caption-subject bold font-white uppercase"> @ViewBag.PageProperties.PageHeader </span>
+            <span class="caption-helper">@ViewBag.PageProperties.PageDescription</span>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                İşlemler
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="/StokHareket/SaveStockIn">
+                        <i class="fa fa-save"></i> Yeni Stok Girişi
+                    </a>
+                </li>
+                <li>
+                    <a href="/StokHareket/Index">
+                        <i class="fa fa-industry"></i> Stok İşlemleri
+                    </a>
+                </li>
+                <li>
+                    <a href="/StokHareket/Search">
+                        <i class="fa fa-search"></i> Stok Hareketleri
+                    </a>
+                </li>
+                <li>
+                    <a href="/StokHareket/SaveStockOut">
+                        <i class="fa fa-save"></i> Yeni Stok Çıkışı
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="" class="fullscreen" data-original-title="Tam Ekran" title="Tam Ekran">
+                        <i class="fa fa-arrows-alt"></i> Tam Ekran
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet light bordered">
+            <div class="portlet-body form">
+                <form id="comform">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="portlet light bordered bg-grey-salsa">
+                                    <div class="portlet-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="dropDownPersonel" class="control-label">Kayıt Yapan Personel</label>
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <select id="dropDownPersonel" name="dropDownPersonel" class="form-control select2" style="width:100%;" tabindex="1"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="dropDownIadeTalepDurum" class="control-label">İade Talep Durumu</label>
+                                                    <select id="dropDownIadeTalepDurum" name="dropDownIadeTalepDurum" class="form-control select2" style="width:100%;" tabindex="2"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="dropDownIadeTalep" class="control-label">İade Talep No</label>
+                                                    <div class="input-group">
+                                                        <select id="dropDownIadeTalep" name="dropDownIadeTalep" class="form-control select2" style="width:100%;" tabindex="3"></select>
+                                                        <span class="input-group-btn">
+                                                            <button class="btn blue" type="button" data-toggle="tooltip" data-placement="top" title="İade Talep Detayı" onclick="iadeTalepDetay();" tabindex="4"><i class="fa fa-eye"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="portlet light bordered bg-inverse">
+                                    <div class="portlet-body">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="dropDownUrun" class="control-label">
+                                                        Ürün<span class="required"> * </span>
+                                                        <span style="font-size: 12px;color: #ef5e77;">Ürün Adı / Ürün Kodu / Barkod No' ya göre arama yapabilirsiniz.</span>
+                                                    </label>
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <select id="dropDownUrun" name="dropDownUrun" class="form-control select2" style="width:100%;" tabindex="5"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="dropDownOlcuTip" class="control-label">Ölçü Tipi (Ağırlık)<span class="required"> * </span></label>
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <select id="dropDownOlcuTip" name="dropDownOlcuTip" class="form-control select2" style="width:100%;" tabindex="6"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtMiktar" class="control-label">Miktar<span class="required"> * </span></label>
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input id="txtMiktar" name="txtMiktar" class="form-control input-sm decimal-4 focus-sense" placeholder="Miktar Giriniz..." tabindex="7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtBirimFiyat" class="control-label">Birim Fiyat<span class="required"> * </span></label>
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input id="txtBirimFiyat" name="txtBirimFiyat" class="form-control input-sm decimal-4 focus-sense" placeholder="Birim Fiyat Giriniz..." tabindex="8">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtAciklama" class="control-label">Açıklama</label>
+                                                    <input id="txtAciklama" name="txtAciklama" class="form-control input-sm" placeholder="Açıklama Giriniz..." tabindex="9">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtAktif" class="control-label">Aktif mi?</label>
+                                                    <div class="icheck-inline">
+                                                        <input id="txtAktif" name="txtAktif" type="checkbox" class="make-switch" data-size="small" data-on-text="Aktif" data-off-text="Pasif" checked tabindex="10">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-sm yellow-lemon pull-right" tabindex="11">
+                                                        Ekle
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-sm green-meadow" onclick="javascript: temizle()" tabindex="12">
+                                                        Temizle
+                                                        <i class="fa fa-recycle"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="table-responsive">
+                                    <table id="tableStokHareket" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">Barkod No</th>
+                                                <th width="10%">Ürün Kodu</th>
+                                                <th width="10%">İade Talep No</th>
+                                                <th width="15%">Ürün</th>
+                                                <th width="10%">Miktar</th>
+                                                <th width="10%">Ölçü Tip</th>
+                                                <th width="10%">Birim Fiyatı</th>
+                                                <th width="15%">Açıklama</th>
+                                                <th width="5%">Aktif mi?</th>
+                                                <th width="5%">İşlemler</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="button" class="btn blue pull-right" onclick="stokHareketKaydet()">
+                                    Kaydet
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a href="/StokHareket/Index" class="btn red pull-left">
+                                    İptal
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script id="row" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${BarkodNo}</td>
+            <td>${UrunKodu}</td>
+            <td class="iadetalep" data-val="${IadeTalepNo}">
+                {{if IadeTalepNo != ''}}
+                    <span>#${IadeTalepNo}</span>
+                {{/if}}
+            </td>
+            <td class="urun" data-val="${UrunId}">${UrunAdi}</td>
+            <td class="miktar">${Miktar}</td>
+            <td class="olcutip" data-val="${OlcuTipId}">${OlcuTipAdi}</td>
+            <td class="birimfiyat">${BirimFiyat}</td>
+            <td class="aciklama">${Aciklama}</td>
+            <td class="aktifmi">
+                <div class="icheck-inline">
+                    {{if AktifMi}}
+                    <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" checked readonly>
+                    {{else}}
+                    <input type="checkbox" class="make-switch" data-size="mini" data-on-text="Aktif" data-off-text="Pasif" readonly>
+                    {{/if}}
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <button type="button" onclick="javascript: satirSil(this);" class="btn btn-xs red" data-toggle="tooltip" data-placement="top" title="Sil">
+                        <i class="fa fa-remove"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var kullaniciListesi = @Html.Raw(Json.Encode(ViewBag.KullaniciListesi))
+        var olcuListesi = @Html.Raw(Json.Encode(ViewBag.OlcuListesi))
+        var iadeTalepDurumTipListesi = @Html.Raw(Json.Encode(ViewBag.IadeTalepDurumTipListesi))
+
+        $(document).ready(function () {
+            $(".integer").inputmask('9999', {
+                numericInput: true,
+                rightAlignNumerics: false,
+                greedy: false,
+                placeholder: '0000'
+            });
+
+            $(".decimal-4").inputmask('decimal', {
+                rightAlign: false,
+                integerDigits: 18,
+                radixPoint: ".",
+                digits: 4
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#dropDownPersonel').select2({
+                placeholder: "Personel Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: kullaniciListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            $('#dropDownIadeTalep').select2({
+                placeholder: "İade Talep No Seçiniz...",
+                allowClear: true,
+                disabled: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: null,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            $('#dropDownIadeTalepDurum').select2({
+                placeholder: "İade Talep Durumu Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: iadeTalepDurumTipListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).on('change', function () {
+                $('#dropDownIadeTalep').val('').trigger('change');
+                $('#dropDownIadeTalep').children().remove();
+                $('#dropDownIadeTalep').select2('destroy');
+
+                if ($('#dropDownIadeTalepDurum').val() != null && $('#dropDownIadeTalepDurum').val() != '') {
+                    // İade talep durumuna göre iade talepleri yükle
+                    $.ajax({
+                        url: '/StokHareket/IadeTalepGetir',
+                        data: { 'iadeTalepDurumTipId': $('#dropDownIadeTalepDurum').val() },
+                        type: "get",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        beforeSend: function () {
+                            showLoadingModal();
+                        },
+                        success: function (result) {
+                            hideLoadingModal();
+
+                            $('#dropDownIadeTalep').select2({
+                                placeholder: "İade Talep No Seçiniz...",
+                                allowClear: true,
+                                disabled: false,
+                                language: {
+                                    noResults: function (params) {
+                                        return "Hiç kayıt bulunamadı.";
+                                    }
+                                },
+                                data: result,
+                                escapeMarkup: function (markup) {
+                                    return markup;
+                                },
+                                templateResult: templateData,
+                                templateSelection: templateDataSelection
+                            }).val('').trigger('change');
+                        },
+                        error: function () {
+                            hideLoadingModal();
+                            callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    });
+                } else {
+                    $('#dropDownIadeTalep').select2({
+                        placeholder: "İade Talep No Seçiniz...",
+                        allowClear: true,
+                        disabled: true,
+                        language: {
+                            noResults: function (params) {
+                                return "Hiç kayıt bulunamadı.";
+                            }
+                        },
+                        data: null,
+                        escapeMarkup: function (markup) {
+                            return markup;
+                        },
+                        templateResult: templateData,
+                        templateSelection: templateDataSelection
+                    }).val('').trigger('change');
+                }
+            }).val('').trigger('change');
+
+            $('#dropDownUrun').select2({
+                placeholder: "Ürün Ara...",
+                allowClear: true,
+                minimumInputLength: 3,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    },
+                    searching: function () {
+                        return 'Aranıyor...';
+                    },
+                    inputTooShort: function (args) {
+                        var remainingChars = args.minimum - args.input.length;
+                        var message = 'En az ' + remainingChars + ' karakter daha girmelisiniz.';
+                        return message;
+                    },
+                    errorLoading: function () {
+                        return 'Sonuç yüklenemedi.';
+                    },
+                },
+                ajax: {
+                    url: '/Urun/UrunAra',
+                    dataType: 'json',
+                    type: 'get',
+                    delay: 500,
+                    params: {
+                        contentType: 'application/json; charset=utf-8'
+                    },
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        var data = $.map(data, function (obj) {
+                            obj.id = obj.id;
+                            obj.text = obj.text;
+                            return obj;
+                        });
+
+                        return {
+                            results: data
+                        };
+                    },
+                    escapeMarkup: function (m) { return m; }
+                }
+            });
+
+            $('#dropDownOlcuTip').select2({
+                placeholder: "Ölçü Tipi Seçiniz...",
+                allowClear: true,
+                language: {
+                    noResults: function (params) {
+                        return "Hiç kayıt bulunamadı.";
+                    }
+                },
+                data: olcuListesi,
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+                templateResult: templateData,
+                templateSelection: templateDataSelection
+            }).val('').trigger('change');
+
+            $('#comform').validate({
+                errorElement: 'span',
+                errorClass: 'help-block help-block-error',
+                focusInvalid: false,
+                ignore: "",
+                invalidHandler: validationInvalidHandler,
+                rules: {
+                    //dropDownPersonel: {
+                    //    required: true
+                    //},
+                    dropDownUrun: {
+                        required: true
+                    },
+                    txtMiktar: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    },
+                    txtBirimFiyat: {
+                        number: true,
+                        greaterThanZero: true,
+                        required: true
+                    },
+                    dropDownOlcuTip: {
+                        required: true
+                    },
+                    txtAciklama: {
+                        maxlength: 500,
+                        required: false
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+                },
+                highlight: function (element) {
+                    $(element)
+                        .closest('.form-group').removeClass("has-success").addClass('has-error');
+                },
+                unhighlight: function (element) {
+
+                },
+                success: function (label, element) {
+                    var icon = $(element).parent('.input-icon').children('i');
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    icon.removeClass("fa-warning").addClass("fa-check");
+                },
+                submitHandler: function (e) {
+                    satirEkle();
+                },
+            });
+            $('.select2', $('#comform')).change(function () {
+                $('#comform').validate().element($(this));
+            });
+        });
+
+        function templateData(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+        function templateDataSelection(obj) {
+            if (obj.id == '')
+                return obj.text;
+
+            if (obj.aktif) {
+                return obj.text;
+            } else {
+                return '<span style="color:red;">' + obj.text + ' (Pasif)</span>';
+            }
+        }
+
+        function iadeTalepDetay() {
+            if ($('#dropDownIadeTalep').val() != null && $('#dropDownIadeTalep').val() != '') {
+                showLoadingModal();
+                $('#divDetay').html('');
+
+                $('#divDetay').load('/IadeTalep/IadeTalepDetayPartial/' + $('#dropDownIadeTalep').val(), function () {
+                    $('#detayModal').modal('show');
+                    hideLoadingModal();
+                });
+            } else {
+                callAlert('warning', 'Lütfen iade talep no seçiniz.');
+            }
+        }
+
+        function satirEkle() {
+            var urunItem = $('#dropDownUrun').select2('data')[0];
+
+            var ayniUrunVarMi = false;
+            $('#tableStokHareket tbody tr').each(function () {
+                if ($(this).find('.urun').attr('data-val') == $('#dropDownUrun').val()) {
+                    ayniUrunVarMi = true;
+                    return false;
+                }
+            });
+            if (ayniUrunVarMi) {
+                callAlert('warning', 'Aynı ürün listeye daha önce eklenmiş.');
+                return false;
+            }
+
+            var data = {
+                BarkodNo: urunItem.barkod,
+                UrunKodu: urunItem.kod,
+                IadeTalepNo: ($('#dropDownIadeTalep').val() != null && $('#dropDownIadeTalep').val() != '') ? $('#dropDownIadeTalep').val() : '',
+                UrunId: $('#dropDownUrun').val(),
+                UrunAdi: urunItem.text,
+                Miktar: $('#txtMiktar').val(),
+                OlcuTipId: $('#dropDownOlcuTip').val(),
+                OlcuTipAdi: $('#dropDownOlcuTip').select2('data')[0].text,
+                BirimFiyat: $('#txtBirimFiyat').val(),
+                Aciklama: $('#txtAciklama').val(),
+                AktifMi: $('#txtAktif').is(':checked')
+            };
+
+            $('#row').tmpl(data).appendTo('#tableStokHareket tbody');
+
+            $('#tableStokHareket tbody').children().last().find('.icheck-inline .make-switch').bootstrapSwitch();
+            $('#tableStokHareket tbody').children().last().find('[data-toggle="tooltip"]').tooltip();
+
+            temizle();
+        }
+        function satirSil(obj) {
+            confirm('ONAY', '<p>Silmek istediğinize emin misiniz?</p>', function () {
+                $(obj).closest('tr').remove();
+            });
+        }
+
+        function stokHareketKaydet() {
+            if ($('#dropDownPersonel').val() == null || $('#dropDownPersonel').val() == '') {
+                callAlert('warning', 'Lütfen kayıt yapan personeli seçiniz.');
+            } else if ($('#tableStokHareket tbody tr').length == 0) {
+                callAlert('warning', 'Lütfen listeye en az 1 adet stok çıkışı ekleyin.');
+            } else {
+                var data = [];
+
+                $('#tableStokHareket tbody tr').each(function () {
+                    var trRow = $(this);
+
+                    data.push({
+                        UrunId: trRow.find('.urun').attr('data-val'),
+                        StokHareketTipId: 1,
+                        SiparisId: null,
+                        OlcuId: trRow.find('.olcutip').attr('data-val'),
+                        IadeTalepId: trRow.find('.iadetalep').attr('data-val') != '' ? trRow.find('.iadetalep').attr('data-val') : null,
+                        Miktar: parseFloat(trRow.find('.miktar').html()),
+                        Fiyat: parseFloat(trRow.find('.birimfiyat').html()),
+                        Aciklama: trRow.find('.aciklama').html(),
+                        KayitKullaniciKey: $('#dropDownPersonel').val(),
+                        AktifMi: trRow.find('.aktifmi .icheck-inline input[type="checkbox"]').is(':checked')
+                    });
+                });
+
+                $.ajax({
+                    url: '/StokHareket/StokHareketKaydet',
+                    data: JSON.stringify(data),
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function () {
+                        showLoadingModal();
+                    },
+                    success: function (result) {
+                        hideLoadingModal();
+                        if (result) {
+                            callAlert('success', 'Kayıt işlemi başarılı.');
+                            setTimeout(function myfunction() {
+                                window.location.reload(true);
+                            }, 1500);
+                        }
+                        else {
+                            callAlert('error', 'İşlem sırasında bir sorun oluştu. Lütfen tekrar deneyin.');
+                        }
+                    },
+                    error: function () {
+                        hideLoadingModal();
+                        callAlert('error', 'Beklenmedik bir sorun oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            }
+        }
+
+        function temizle() {
+            //$('#dropDownPersonel').val('').trigger('change');
+            $('#dropDownIadeTalepDurum').val('').trigger('change');
+            $('#dropDownUrun').val('').trigger('change');
+            $('#txtMiktar').val('');
+            $('#txtBirimFiyat').val('');
+            $('#dropDownOlcuTip').val('').trigger('change');
+            $('#txtAciklama').val('');
+
+            //$('#comform').validate().element($('#dropDownPersonel'));
+            $('#comform').validate().element($('#dropDownUrun'));
+            $('#comform').validate().element($('#txtMiktar'));
+            $('#comform').validate().element($('#txtBirimFiyat'));
+            $('#comform').validate().element($('#dropDownOlcuTip'));
+            $('#comform').validate().element($('#txtAciklama'));
+        }
+    </script>
+}

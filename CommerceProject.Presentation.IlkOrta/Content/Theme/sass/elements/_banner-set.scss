@@ -1,0 +1,341 @@
+/******************************************************************************
+  Banner Set
+*******************************************************************************/
+.banner-set {
+  border-top-width: 1px;
+  padding-bottom: 16px;
+  overflow: hidden;
+  
+  &:before {
+    border-top: 1px solid #e1e1e1;
+    content: "";
+    display: block;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    right: 0;
+  }
+  > .container {
+    &:after {
+      border-top: 1px solid #e1e1e1;
+      content: "";
+      display: block;
+      left: 0;
+      margin-top: -1px;
+      position: absolute;
+      right: 0;
+    }
+  }
+  .container {
+    > * {
+      transition: opacity .2s linear;
+    }
+  }
+  .banner {
+    border-right-width: 1px;
+    color: #7f7f7f;
+    display: block;
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+    width: 292px;
+    padding: 19px;
+    text-align: left;
+    text-decoration: none;
+    transition: color .2s linear, box-shadow .2s linear;
+    @media (max-width: $media-md) {
+      padding: 19px 9px;
+      width: 235px;
+    }
+    @media (max-width: $media-sm) {
+      width: 180px;
+    }
+    @media (max-width: $media-xs) {
+      width: 290px;
+    }
+    
+    &:first-child {
+      border-left-width: 1px;
+    }
+    img {
+      margin: 0 0 28px 0;
+      max-height: 158px;
+      width: 100%;
+      transition: opacity .2s linear;
+    }
+    .title {
+      color: #7f7f7f;
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 1.2;
+      margin: 0;
+      padding: 0 0 12px;
+      text-decoration: none;
+      transition: all .2s linear;
+      @media (max-width: $media-sm) {
+        font-size: 18px;
+      }
+    }
+    .description {
+      height: 54px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &:hover {
+      color: #1e1e1e;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.13);
+      opacity: 1;
+      filter: alpha(opacity = 100);
+      transition: color .2s linear, box-shadow .2s linear;
+      
+      img {
+        opacity: .9;
+        filter: alpha(opacity = 90);
+        transition: opacity .2s linear;
+      }
+      .title {
+        color: #1e1e1e;
+        transition: all .2s linear;
+      }
+    }
+  }
+  .nav-box {
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+  }
+  .next,
+  .prev,
+  .pagination {
+    display: inline-block !important;
+    margin-top: 14px;
+    vertical-align: top;
+  }
+  .next,
+  .prev {
+    color: #ccc;
+    font-size: 13px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: top;
+    transition: color .2s linear;
+    
+    &:hover {
+      color: #1e1e1e;
+      transition: color .2s linear;
+    }
+    &.disabled {
+      cursor: default;
+      opacity: .12;
+      filter: alpha(opacity = 12);
+    }
+    .glyphicon {
+      margin: 0;
+      top: 0;
+      vertical-align: top;
+    }
+  }
+  .pagination {
+    height: 14px;
+    margin: 15px 7px 0;
+    
+    a {
+      background: #ececec;
+      
+      &:hover {
+        background: #000;
+      }
+      &.selected {
+        background: #ccc;
+      }
+    }
+  }
+  .container & .container {
+    padding: 0;
+    width: auto;
+  }
+  &.bottom-padding {
+    padding-bottom: 0;
+  }
+  &.load {
+    .container {
+      background-image: url($preloader-img), none;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: 40px;
+      height: 314px;
+      overflow: hidden;
+      @media (min-width: $media-xs + 1) and (max-width: $media-sm) {
+        height: 258px;
+      }
+      
+      > * {
+        opacity: 0;
+        filter: alpha(opacity = 0);
+        transition: opacity .2s linear;
+      }
+    }
+    .nav-box .container,
+    &.banner-set-mini .nav-box .container {
+      background: none;
+      height: auto;
+    }
+  }
+  &.banner-set-mini {
+    overflow: visible;
+    padding-bottom: 0;
+    
+    .banner {
+      padding: 9px;
+      width: 146px;
+      @media (max-width: $media-md) {
+        width: 144px;
+      }
+      
+      img {
+        margin-bottom: 14px;
+      }
+      .title {
+        font-size: 14px;
+        padding: 0;
+      }
+    }
+    @media (max-width: $media-md) {
+      .prev {
+        margin-left: 0;
+      }
+      .next {
+        margin-right: 0;
+      }
+    }
+    .pagination {
+      margin-bottom: 15px;
+    }
+    &.banner-set-no-pagination {
+      .container {
+        @media (max-width: $media-md) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        @media (max-width: $media-sm) {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+      
+      .nav-box {
+        position: relative;
+        
+        .container {
+          position: relative;
+        }
+      }
+      .pagination {
+        display: none !important;
+        @media (min-width: $media-md + 1) and (max-width: $media-md + 71) {
+          display: inline-block !important;
+        }
+        @media (max-width: 800px) {
+          display: inline-block !important;
+        }
+      }
+      .prev {
+        left: 0;
+        margin: -70.5px 0 0 -15px;
+        position: absolute;
+        top: 0;
+        @media (min-width: $media-md + 1) and (max-width: $media-md + 71) {
+          display: inline-block !important;
+          margin: 15px 0 0 !important;
+          position: static;
+        }
+        @media (max-width: $media-md) {
+          margin-left: 15px;
+        }
+        @media (max-width: $media-sm) {
+          margin-left: -15px;
+        }
+        @media (max-width: 800px) {
+          display: inline-block !important;
+          margin: 15px 0 0 !important;
+          position: static;
+        }
+      }
+      .next {
+        margin: -70.5px -15px 0 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media (min-width: $media-md + 1) and (max-width: $media-md + 71) {
+          display: inline-block !important;
+          margin: 15px 0 0 !important;
+          position: static;
+        }
+        @media (max-width: $media-md) {
+          margin-right: 15px;
+        }
+        @media (max-width: $media-sm) {
+          margin-right: -15px;
+        }
+        @media (max-width: 800px) {
+          display: inline-block !important;
+          margin: 15px 0 0 !important;
+          position: static;
+        }
+      }
+      .container & {
+        .container {
+          @media (max-width: $media-sm) {
+            padding-left: 0;
+            padding-right: 0;
+          }
+        }
+        .prev {
+          margin-left: -30px;
+          @media (max-width: $media-md) {
+            margin-left: 0;
+          }
+          @media (max-width: $media-sm) {
+            margin-left: -30px;
+          }
+        }
+        .next {
+          margin-right: -30px;
+          @media (max-width: $media-md) {
+            margin-right: 0;
+          }
+          @media (max-width: $media-sm) {
+            margin-right: -30px;
+          }
+        }
+      }
+    }
+    &.load {
+      .container {
+        height: 127px;
+        overflow: hidden;
+        
+        .banners {
+          height: 127px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .touch-device & {
+    .carousel-box .pagination a:hover,
+    .banner-set .pagination a:hover {
+      background: #ececec;
+    }
+    .carousel-box .pagination a.selected,
+    .banner-set .pagination a.selected {
+      background: #ccc;
+      background: rgba(0,0,0,.3);
+    }
+    .banner-set .next:hover,
+    .banner-set .prev:hover {
+      color: #ccc;
+    }
+  }
+}

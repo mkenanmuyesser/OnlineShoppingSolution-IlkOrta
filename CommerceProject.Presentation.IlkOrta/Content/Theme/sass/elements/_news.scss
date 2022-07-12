@@ -1,0 +1,47 @@
+/******************************************************************************
+  News
+*******************************************************************************/
+.news {
+  .news-item {
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 35px;
+    
+    .time {
+      color: #7f7f7f;
+      margin-bottom: 2px;
+    }
+    .title {
+      font-size: 14px;
+      margin-bottom: 7px;
+      
+      a {
+        color: #1e1e1e;
+        transition: all .2s linear;
+        
+        &:hover {
+          opacity: .75;
+          filter: alpha(opacity=75);
+          transition: all .2s linear;
+        }
+      }
+    }
+    .more {
+      color: #7f7f7f;
+      margin: 5px 0 0;
+      text-decoration: none;
+      transition: all .2s linear;
+      
+      &:hover {
+        opacity: .8;
+        filter: alpha(opacity=80);
+        transition: all .2s linear;
+      }
+      span {
+        font-size: 16px;
+        line-height: 20px;
+        vertical-align: top;
+      }
+    }
+  }
+}

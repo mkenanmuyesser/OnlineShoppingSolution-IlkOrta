@@ -1,0 +1,738 @@
+/******************************************************************************
+  Sidebar
+*******************************************************************************/
+.sidebar {
+  .widget {
+    margin: 0 0 80px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    ol,
+    ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    header,
+    .title-block {
+      border-bottom: 1px solid #e1e1e1;
+      margin: 0 0 40px;
+      padding: 0 0 15px;
+      position: relative;
+      
+      &:before {
+        background: #1e1e1e;
+        bottom: 0px;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 0;
+        margin: 0 0 -1px;
+        position: absolute;
+        width: 40px;  
+      }
+      .title {
+        color: #7f7f7f;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+    .subtitle {
+      font-size: 14px;
+      line-height: 1;
+      margin: 0 0 25px;
+    }
+  }
+  .whats-news {
+    margin-bottom: 40px;
+    overflow: hidden;
+    
+    header {
+      margin: 0;
+    }
+  }
+  .carousel-box {
+    header .title {
+      line-height: 40px;
+    }
+    .product {
+      display: block;
+      float: left;
+      margin: 40px 15px;
+    }
+  }
+  .action {
+    overflow: hidden;
+    
+    .clear-all {
+      float: left;
+      font-size: 14px;
+      line-height: 40px;
+      text-transform: none;
+      
+      &.close {
+        font-size: 20px;
+        line-height: 38px;
+      }
+      span {
+        font-size: 14px;
+        line-height: 39px;
+        margin: 0 0 0 2px;
+        vertical-align: middle;
+      }
+    }
+    .btn {
+      float: right;
+    }
+  }
+  .more {
+    color: #7f7f7f;
+    font-size: 12px;
+    margin: 5px 0 0;
+    text-decoration: none;
+    transition: opacity .2s linear;
+    
+    &:hover {
+      opacity: .8;
+      filter: alpha(opacity=80);
+      transition: opacity .2s linear;
+      text-decoration: none;
+    }
+  }
+  /* Menu */
+  .menu {
+    li {
+      margin: 0 0 3px;
+
+      a {
+        background-color: #f2f2f2;
+        background-color: rgba(0,0,0,.05);
+        color: #1e1e1e;
+        display: block;
+        padding: 9px 9px 9px 60px;
+        position: relative;
+        text-decoration: none;
+        transition: all .2s linear;
+      
+        &:before {
+          background: #e1e1e1;
+          background: rgba(255,255,255,.4);
+          bottom: 0;
+          content: "";
+          display: block;
+          left: 45px;
+          position: absolute;
+          top: 0;
+          width: 1px;
+        }
+        &:hover {
+          background-color: #e9e9e9;
+          background-color: rgba(0,0,0,.1);
+          transition: all .2s linear;
+        }
+      }
+      > a .item-icon {
+        left: 15px;
+        position: absolute;
+        top: 13px;
+      }
+      &.active {
+        > a {
+          background-color: $general-color;
+          color: #fff;
+          transition: all .2s linear;
+          
+          &:before {
+            background: #444;
+            background: rgba(255,255,255,.2);
+          }
+        }
+      }
+      &.parent {
+        > a {
+          .open-sub {
+            bottom: 0;
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 45px;
+            
+            &:before,
+            &:after {
+              background: $general-color;
+              content: "";
+              display: block;
+              height: 2px;
+              left: 0;
+              margin: 19px 0 0 15px;
+              position: absolute;
+              top: 0;
+              width: 16px;
+            }
+            &:after {
+              height: 16px;
+              margin: 12px 0 0 22px;
+              width: 2px;
+            }
+          }
+        }
+        &.active {
+          > a {
+            .open-sub {
+              &:before,
+              &:after {
+                background: #fff;
+              }
+              &:after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .sub {
+      background-color: #f2f2f2;
+      background-color: rgba(0,0,0,.05);
+      padding: 7px 0 4px 5px;
+      
+      li {
+        margin: 0;
+        
+        a {
+          background: none;
+          color: #7f7f7f;
+          margin: 0;
+          padding: 4px 9px 4px 60px;
+          
+          &:before {
+            display: none;
+          }
+          &:hover {
+            background-color: #e9e9e9;
+            background-color: rgba(0,0,0,.05);
+          }
+        }
+        &.parent {
+          > a .open-sub {
+            left: 10px;
+            
+            &:before,
+            &:after {
+              background: #7f7f7f;
+              margin: 14px 0 0 22px;
+              width: 12px;
+            }
+            &:after {
+              height: 12px;
+              margin: 9px 0 0 27px;
+              width: 2px;
+            }
+          }
+        }
+        :not(.active) > a .item-icon {
+          opacity: .5;
+          filter: alpha(opacity=50);
+        }
+      }
+      .active > a {
+        background: none;
+        color: #000;
+      }
+      .sub {
+        background: none;
+      }
+    }
+  }
+  /* Shop By */
+  .section {
+    + .section{
+      border-top-width: 1px;
+      margin: 20px 0 0;
+      padding: 20px 0 0;
+    }
+    li {
+      color: #7f7f7f;
+      line-height: 18px;
+      overflow: hidden;
+      
+      + li {
+        margin: 12px 0 0;
+      }
+      > a:not(.close) {
+        color: #1e1e1e;
+        transition: opacity .2s linear;
+        text-decoration: none;
+        
+        &:hover,
+        &:focus {
+          opacity: .8;
+          text-decoration: none;
+        }
+      }
+      .fa {
+        color: #7f7f7f;
+      }
+      > span {
+        &:after {
+          color: #7f7f7f;
+          content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+          display: inline-block;
+          font-size: .5em;
+          line-height: 40px;
+          margin: -10px 16px 0 5px;
+          pointer-events: none;
+          position: absolute;
+        }
+        span {
+          color: #1e1e1e;
+        }
+      }
+    }
+    .selected li {
+      margin: 0 0 8px;
+      padding: 0 16px 0 0;
+      position: relative;
+      
+      .close {
+        bottom: 2px;
+        font-size: 20px;
+        padding: 0 2px;
+        position: absolute;
+        right: 0px;
+      }
+    }
+  }
+  /* List */
+  .list {
+    ul {
+      margin-bottom: 0;
+      
+      li {
+        padding: 4px 0;
+        
+        a {
+          color: #1e1e1e;
+          text-decoration: none;
+          transition: opacity .2s linear;
+          
+          &:hover,
+          &:focus {
+            opacity: .8;
+            text-decoration: none;
+          }
+        }
+        span {
+          color: #7f7f7f;
+        }
+      }
+    }
+  }
+  /* Specials */
+  .specials {
+    li {
+      padding: 24px 0;
+      
+      &:first-child {
+        padding-top: 0;
+      }
+      &:last-child {
+        padding-bottom: 0;
+      }
+      + li {
+        border-top-width: 1px;
+      }
+      .product-image {
+        background: #f7f7f7;
+        border: 1px solid #f5f5f5;
+        border-radius: 3px;
+        float: left;
+        height: 74px;
+        margin: 0 15px 1px 0;
+        overflow: hidden;
+        width: 74px;
+      }
+      .product-name {
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 20px;
+        margin: 0 0 4px;
+        padding-left: 85px;
+      }
+      .price-box {
+        font-size: 16px;
+        line-height: 22px;
+        padding-left: 85px;
+      }
+      .rating-box {
+        margin: 3px 0 14px 85px;
+        overflow: hidden;
+      }
+    }
+  }
+  /* Community Poll */
+  .poll {
+    strong {
+      display: block;
+      margin-bottom: 21px;
+    }
+    ul {
+      margin: 0;
+      padding: 0 0 27px;
+    }
+    li {
+      margin-bottom: 11px;
+    }
+  }
+  /* Compare Products */
+  .compare-products {
+    ul {
+      margin: 0;
+      padding: 0 0 17px;
+      
+      li {
+        margin: 0 0 8px;
+        overflow: hidden;
+        padding: 0 16px 0 0;
+        position: relative;
+        
+        .title {
+          color: #1e1e1e;
+          padding-right: 2px;
+          transition: opacity .2s linear;
+          text-decoration: none;
+        
+          &:hover,
+          &:focus {
+            opacity: .8;
+            text-decoration: none;
+          }
+          &:after {
+            content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+            display: inline-block;
+            font-size: .5em;
+            line-height: 40px;
+            margin: -6px 16px 0 5px;
+            pointer-events: none;
+            position: absolute;
+          }
+        }
+        .close {
+          bottom: 2px;
+          font-size: 20px;
+          padding: 0 2px;
+          position: absolute;
+          right: 0px;
+        }
+      }
+    }
+  }
+
+  .wishlist {
+    li {
+      padding: 0 46px 0 0;
+      
+      .title {
+        &:after {
+          margin-right: 40px !important;
+        }
+      }
+    }
+    .add-cart {
+      bottom: 3px;
+      color: #7f7f7f;
+      height: 16px;
+      padding: 0 3px;
+      position: absolute;
+      right: 18px;
+      
+      path {
+        transition: all .2s linear;
+      }
+      &:hover {
+        path {
+          fill: $general-color;
+          transition: all .2s linear;
+        }
+      }
+    }
+  }
+  /* Newsletter */
+  .newsletter {
+    form {
+      margin: 5px 0 0;
+      position: relative;
+    }
+    input {
+      margin: 0;
+      padding-right: 43px;
+      
+      &:focus {
+        + .submit {
+          color: #000;
+          transition: all .2s linear;
+        }
+      }
+    }
+    .submit {
+      background: none;
+      color: #ccc;
+      height: 38px;
+      outline: none;
+      padding: 0;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      width: 38px;
+      
+      .glyphicon {
+        line-height: 20px;
+      }
+    }
+  }
+  /* Recommended */
+  .banners {
+    overflow: hidden;
+   
+    .slide {
+      float: left;
+      max-width: 270px;
+      margin-left: 15px;
+      margin-right: 15px;
+      padding-left: 0;
+      padding-right: 0;
+      position: relative;
+      @media (min-width: $media-sm + 1) and (max-width: $media-md) {
+        width: 220px;
+      }
+      @media (min-width: $media-xs + 1) and (max-width: $media-sm) {
+        width: 165px;
+      }
+    }
+    .banner-text {
+      background: rgb(30,30,30);
+      background: rgba(30,30,30,.65);
+      bottom: 0;
+      color: #fff;
+      left: 0;
+      min-height: 58px;
+      padding: 20px;
+      position: absolute;
+      right: 0;
+      text-align: right;
+      @media (min-width: $media-xs + 1) and (max-width: $media-sm) {
+        padding: 10px;
+      }
+      
+      .title {
+        font-size: 20px;
+        margin: 0;
+      }
+      p {
+        line-height: 18px;
+        margin: 0;
+        @media (min-width: $media-xs + 1) and (max-width: $media-sm) {
+          display: none;
+        }
+      }
+    }
+  }
+  /* Tags */
+  .tags {
+    ul {
+      margin: 0;
+    }
+    li {
+      float: left;
+      margin: 0 3px 3px 0;
+    }
+    a {
+      background: $general-color;
+      background: rgba($general-color,.7);
+      border-radius: 2px;
+      color: #fff;
+      display: block;
+      font-size: 12px;
+      height: 24px;
+      line-height: 24px;
+      padding: 0 5px;
+      text-decoration: none;
+      transition: all .2s linear;
+      
+      &:hover {
+        background: $general-color;
+        transition: all .2s linear;
+      }
+    }
+  }
+  /* Links */
+  .links {
+    li {
+      line-height: 21px;
+    }
+    a {
+      color: #7f7f7f;
+      text-decoration: none;
+      transition: color .2s linear;
+      
+      &:hover {
+        color: #000;
+        transition: color .2s linear;
+      }
+    }
+  }
+  /* Calendar */
+  .calendar-wrap {
+    background: rgba(0,0,0,.05);
+    border-radius: 3px;
+    overflow: hidden;
+    text-align: center;
+  
+    table {
+      margin: 0;
+    
+      td,
+      th {
+        padding: 3px;
+        text-align: center;
+      }
+    }
+    caption {
+      background: $general-color;
+      color: #fff;
+      font-size: 14px;
+      padding: 5px;
+      text-align: center;
+    }
+    tfoot {
+      td {
+        border: 0 none;
+      }
+      a {
+        text-decoration: none;
+        
+        &:hover {
+          opacity: .8;
+          filter: alpha(opacity=80);
+          transition: opacity .2s linear;
+        }
+      }
+    }
+  }
+  /* Datepicker */
+  .calendar {
+    .datepicker-box {
+      .datepicker {
+        background: rgba(0,0,0,.02);
+        border-radius: 3px;
+        padding: 0;
+        width: 270px;
+        max-width: 100%;
+        
+        table {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  /* Other */
+  .facebook-widget .fb-like-box {
+    border: 1px solid #e1e1e1;
+    max-width: 270px;
+    width: 100%;
+    
+    > span {
+      max-width: 100% !important;
+    }
+  }
+}
+
+.product-bottom {
+  .related-products {
+    header {
+      border-bottom: 1px solid #e1e1e1;
+      margin: 0 0 40px;
+      padding: 0 0 15px;
+      position: relative;
+      
+      &:before {
+        background: #1e1e1e;
+        bottom: 0px;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 0;
+        margin: 0 0 -1px;
+        position: absolute;
+        width: 40px;  
+      }
+      h3 {
+        color: #7f7f7f;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active:hover:hover,
+.datepicker table tr td.active.disabled:hover,
+.datepicker table tr td.active.disabled:hover:hover,
+.datepicker table tr td.active:active,
+.datepicker table tr td.active:hover:active,
+.datepicker table tr td.active.disabled:active,
+.datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td.active:hover.active,
+.datepicker table tr td.active.disabled.active,
+.datepicker table tr td.active.disabled:hover.active,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active:hover.disabled,
+.datepicker table tr td.active.disabled.disabled,
+.datepicker table tr td.active.disabled:hover.disabled,
+.datepicker table tr td.active[disabled],
+.datepicker table tr td.active:hover[disabled],
+.datepicker table tr td.active.disabled[disabled],
+.datepicker table tr td.active.disabled:hover[disabled],
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
+  background: $primary;
+}
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today:hover:hover,
+.datepicker table tr td.today.disabled:hover,
+.datepicker table tr td.today.disabled:hover:hover,
+.datepicker table tr td.today:active,
+.datepicker table tr td.today:hover:active,
+.datepicker table tr td.today.disabled:active,
+.datepicker table tr td.today.disabled:hover:active,
+.datepicker table tr td.today.active,
+.datepicker table tr td.today:hover.active,
+.datepicker table tr td.today.disabled.active,
+.datepicker table tr td.today.disabled:hover.active,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today:hover.disabled,
+.datepicker table tr td.today.disabled.disabled,
+.datepicker table tr td.today.disabled:hover.disabled,
+.datepicker table tr td.today[disabled],
+.datepicker table tr td.today:hover[disabled],
+.datepicker table tr td.today.disabled[disabled],
+.datepicker table tr td.today.disabled:hover[disabled],
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover {
+  background: $warning;
+  color: #fff;
+}
+

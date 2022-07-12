@@ -1,0 +1,309 @@
+﻿@using CommerceProject.Business.Entities;
+
+@{
+    var siparis = ViewBag.Siparis as Siparis;
+}
+
+<style type="text/css">
+    .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .col-md-12 {
+        width: 100%;
+    }
+
+    .col-md-6 {
+        width: 50%;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .margin-top-10 {
+        margin-top: 10px !important;
+    }
+
+    .margin-bottom-10 {
+        margin-bottom: 10px !important;
+    }
+
+    .margin-bottom-20{
+        margin-bottom: 20px !important;
+    }
+
+    .alert {
+        border-radius: 2px;
+        border-width: 0;
+        padding: 15px;
+        border: 1px solid transparent;
+    }
+
+    .alert-info {
+        background-color: #e0ebf9 !important;
+        border-color: #e0ebf9 !important;
+        color: #327ad5 !important;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 0 !important;
+    }
+
+    .bold{
+        font-weight: bold;
+    }
+
+    .text-center{
+        text-align: center !important;
+    }
+
+    .text-right{
+        text-align: right !important;
+    }
+
+    .text-left{
+        text-align: left !important;
+    }
+
+    fieldset {
+        padding: 30px !important;
+        border: 0 !important;
+        margin: 0;
+        min-width: 0;
+    }
+
+    legend {
+        margin-bottom: 0px !important;
+        display: block;
+        width: 100%;
+        font-size: 21px;
+        line-height: inherit;
+        color: #34495e;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    table tfoot {
+        border-top: 1px solid #d0d0d0;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="alert alert-info no-margin">
+                <table class="table table-bordered no-margin">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%;">Sipariş No:</td>
+                            <td style="width:80%;font-weight:bold;">#@siparis.SiparisId</td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">Tarih:</td>
+                            <td style="width:80%;font-weight:bold;">@siparis.SiparisTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">Toplam:</td>
+                            <td style="width:80%;font-weight:bold;">@siparis.OdenecekTutar.ToString("N2") <i class="fa fa-try"></i></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">Ödeme Yöntemi:</td>
+                            <td style="width:80%;font-weight:bold;">@siparis.SiparisOdemeTip.Adi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row margin-top-10">
+    <div class="col-md-12">
+        <div class="form-group">
+            <fieldset>
+                <legend>Müşteri Bilgileri</legend>
+                <div class="row margin-bottom-10">
+                    <div class="col-md-12">
+                        Ad Soyad: <span class="bold">@siparis.Kullanici.KullaniciDetay.Ad @siparis.Kullanici.KullaniciDetay.Soyad</span>
+                    </div>
+                </div>
+                <div class="row margin-bottom-20">
+                    <div class="col-md-12">
+                        Eposta: <span class="bold">@siparis.Kullanici.Eposta</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table no-margin">
+                            <tr>
+                                <td style="width:50%;">
+                                    <table class="table table-bordered no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-grey">
+                                                    <div class="text-left bold">Gönderim Adresi</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span>@siparis.Adres.Ad @siparis.Adres.Soyad</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres.Telefon1</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres.AdresBilgi</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@(!string.IsNullOrEmpty(siparis.Adres.PostaKodu) ? siparis.Adres.PostaKodu : "-")</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres.AdresIlce.IlceAdi / @siparis.Adres.AdresIl.IlAdi</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td style="width:50%;">
+                                    <table class="table table-bordered no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-grey">
+                                                    <div class="text-left bold">Fatura Adresi</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span>@siparis.Adres1.Ad @siparis.Adres1.Soyad</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres1.Telefon1</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres1.AdresBilgi</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@(!string.IsNullOrEmpty(siparis.Adres1.PostaKodu) ? siparis.Adres1.PostaKodu : "-")</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@siparis.Adres1.AdresIlce.IlceAdi / @siparis.Adres1.AdresIl.IlAdi</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row margin-top-10">
+    <div class="col-md-12">
+        <div class="form-group">
+            <fieldset>
+                <legend>Sipariş Bilgileri</legend>
+                <div class="row margin-bottom-10">
+                    <div class="col-md-12">
+                        <table class="table table-bordered no-margin">
+                            <thead class="bg-grey">
+                                <tr>
+                                    <th width="20%" class="text-center">Ürün Adı</th>
+                                    <th width="30%" class="text-center">Fiyat (KDV Dahil)</th>
+                                    <th width="20%" class="text-center">Adet</th>
+                                    <th width="30%" class="text-center">Adet x Fiyat (KDV Dahil)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ 
+                                    foreach (var spDetay in siparis.SiparisDetay)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="text-center">
+                                                    @spDetay.Urun.Adi
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    @spDetay.UrunBirimKdvDahilTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    @spDetay.Adet
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    @spDetay.HesaplananKdvDahilTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr style="background:#e0ebf9;">
+                                   <td colspan="4">
+                                       <table class="table table-bordered no-margin" style="background:none !important;">
+                                           <tbody>
+                                               <tr>
+                                                   <td>
+                                                       <div class="text-right">
+                                                           KDV Hariç Tutar: @siparis.UrunKdvHaricToplamTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                       </div>
+                                                   </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                       <div class="text-right">
+                                                           KDV: @siparis.UrunKdvToplamTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                       </div>
+                                                   </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                       <div class="text-right">
+                                                           Ara Toplam: @siparis.UrunKdvDahilToplamTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                       </div>
+                                                   </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                       <div class="text-right">
+                                                           Komisyon Tutarı: @siparis.ToplamKomisyon.ToString("N2") <i class="fa fa-try"></i>
+                                                       </div>
+                                                   </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                       <div class="text-right">
+                                                           Ödenecek Tutar: @siparis.OdenecekTutar.ToString("N2") <i class="fa fa-try"></i>
+                                                       </div>
+                                                   </td>
+                                               </tr>
+                                           </tbody>
+                                       </table>
+                                   </td> 
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

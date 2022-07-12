@@ -1,0 +1,19 @@
+2018-03-10 12:32:02.5071|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|19|KenanBusinessPC--A space or line break was encountered after the "@" character.  Only valid identifiers, keywords, comments, "(" and "{" are valid at the start of a code block and they must occur immediately following "@" with no space in between.
+ 
+2018-03-10 13:40:46.5418|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|7|KenanBusinessPC--C:\Programs\CommerceProject\CommerceProject.Presentation.IlkOrta\Views\Urun\Index.cshtml(176): error CS1525: Invalid expression term ';' 
+2018-03-10 14:21:41.6410|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--C:\Users\KenanBusinessPC\AppData\Local\Temp\Temporary ASP.NET Files\vs\7997d45e\4fa4c88c\App_Web_index.cshtml.c3bce8c7.yhjt9kyf.0.cs(1307): error CS1525: Invalid expression term '=' 
+2018-03-10 14:22:08.8311|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--Unexpected "{" after "@" character. Once inside the body of a code block (@if {}, @{}, etc.) you do not need to use "@{" to switch to code.
+ 
+2018-03-10 14:22:50.2955|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--Unexpected "{" after "@" character. Once inside the body of a code block (@if {}, @{}, etc.) you do not need to use "@{" to switch to code.
+ 
+2018-03-10 14:24:02.3258|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--Unexpected "{" after "@" character. Once inside the body of a code block (@if {}, @{}, etc.) you do not need to use "@{" to switch to code.
+ 
+2018-03-10 14:31:01.3245|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--Unterminated string literal. Strings that start with a quotation mark (") must be terminated before the end of the line.  However, strings that start with @ and a quotation mark (@") can span multiple lines. Closing HTML tags within a string literal may trigger this error message.
+ 
+2018-03-10 14:36:13.1965|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--The "" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ 
+2018-03-10 14:36:39.9933|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--The "" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ 
+2018-03-10 14:37:19.9540|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|36|KenanBusinessPC--The "" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ 
+2018-03-10 18:10:51.5594|Error|CommerceProject.Business.Helper.Logging.LogHelper.LogKaydet|CommerceProject.Business.Helper.Logging.LogHelper|24|KenanBusinessPC--C:\Programs\CommerceProject\CommerceProject.Presentation.IlkOrta\Views\Shared\_Layout.cshtml(322): error CS0103: The name 'aranacakKelime' does not exist in the current context 
