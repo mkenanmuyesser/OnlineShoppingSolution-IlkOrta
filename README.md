@@ -1,6 +1,6 @@
 # OnlineShoppingSolution-IlkOrta
  
- Made in 2015
+Made in 2015
 
 Please check .extra_files folder or github wiki part for detailed project information, screenshots and database files.
 
