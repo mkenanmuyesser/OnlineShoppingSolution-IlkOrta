@@ -6,7 +6,7 @@ Please check .extra_files folder or github wiki part for detailed project inform
 
 The project is an e-commerce solution. 
 
-Used technologies : C#, Asp.Net Mvc, Html5, Bootstrap, Entity Framework, MS Sql Server, Redis Server, Jquery, Ajax, Nlog.
+Used technologies : C#, Asp.Net Mvc, Html5, Bootstrap, Entity Framework, MS Sql Server, Redis Server, Jquery, Ajax, Nlog, Castle Windsor.
 
 Payment at the door, credit card payment (8 banks) and money order payment options can be applied. All project is mobile compatible. Project consists of two parts, the administration panel and the frontend.
 
