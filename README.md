@@ -12,4 +12,4 @@ Payment at the door, credit card payment (8 banks) and money order payment optio
 
 Minran Kenan MÜYESSER
 mkenanmuyesser@hotmail.com
-https://www.linkedin.com/in/minran-kenan-müyesser
+https://www.linkedin.com/in/mkenanmuyesser
